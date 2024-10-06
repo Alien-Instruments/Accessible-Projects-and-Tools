@@ -145,19 +145,12 @@ label {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  white-space: nowrap; /* Prevents wrapping */
+  white-space: nowrap;
 }
 
 #result span {
-  white-space: nowrap; /* Prevent wrapping on spans if needed */
+  white-space: nowrap;
 }
-
-/* .pass {
-  color: green;
-}
-.fail {
-  color: red;
-} */
 
 #info {
   font-size: 25px;
@@ -172,14 +165,6 @@ label {
 
 .buttons {
   overflow: auto;
-}
-.pipette-cursor {
-  cursor: url("./pipette.png") 0 31, auto;
-}
-
-@font-face {
-  font-family: "OpenDyslexic";
-  src: url("accessibility/OpenDyslexic-Regular.otf") format("opentype");
 }
 
 .color-picker-row {
@@ -282,14 +267,6 @@ select {
   background-position: calc(100% - 0.1px) center; /* Position further to the right */
 }
 
-/* select:hover {
-  transform: scale(1.1); 
-}
-
-select:focus {
-  transform: scale(1.1); 
-} */
-
 .radiobutton label {
   cursor: pointer;
   user-select: none;
@@ -334,7 +311,7 @@ span {
 }
 
 #test-panel {
-  position: relative; /* Ensure the parent is positioned */
+  position: relative;
 }
 
 .slider-container {
@@ -1500,3 +1477,4 @@ span {
 .slider-container.simple input[type="range"]:focus::-moz-range-thumb {
   transform: scale(1.2);
 }
+
