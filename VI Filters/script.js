@@ -11,8 +11,8 @@ document
     reader.onload = function (e) {
       const img = new Image();
       img.onload = function () {
-        const maxCanvasWidth = 1200; // Set your desired maximum width
-        const maxCanvasHeight = 1000; // Set your desired maximum height
+        const maxCanvasWidth = 1200; 
+        const maxCanvasHeight = 1000; 
 
         // Get the image's original aspect ratio
         const aspectRatio = img.width / img.height;
@@ -82,20 +82,16 @@ imageCanvas.addEventListener("click", function (event) {
     ).value = `rgb(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b})`;
   }
 
-  // Disable pipette mode and remove custom cursor after selection
-  //imageCanvas.classList.remove("pipette-cursor");
   pipetteMode = null;
 });
 
 // Pipette button event listeners
 document.getElementById("pipetteColor1").addEventListener("click", function () {
   pipetteMode = "color1"; // Set pipette mode to select Color 1
-  //imageCanvas.classList.add("pipette-cursor"); // Add pipette cursor
 });
 
 document.getElementById("pipetteColor2").addEventListener("click", function () {
   pipetteMode = "color2"; // Set pipette mode to select Color 2
-  //imageCanvas.classList.add("pipette-cursor"); // Add pipette cursor
 });
 
 // Add event listener for the save button
