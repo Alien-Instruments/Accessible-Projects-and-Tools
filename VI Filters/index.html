@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+                    <!-- Custom Modal -->
+                    <div id="custom-modal" class="modal" aria-hidden="true" role="alertdialog"
+                                        aria-labelledby="modal-title" aria-describedby="modal-message">
+                                        <div class="modal-content">
+
+                                                            <p id="modal-message" aria-live="assertive" tabindex="0">
+                                                            </p>
+                                                            <button id="modal-ok-btn" class="modal-ok-btn">OK</button>
+                                        </div>
+                    </div>
+
+
+
+                    <button id="toggleAccess" aria-expanded="false" role="button" aria-controls="menu">Show Page
+                                        Settings</button>
+
+
+                    <header>
+
+                                        <div id="accessDiv" class="hidden" style="text-align: center;">
+                                                            <div id="preset-container">
+                                                                                <div class="presets-panel panel">
+                                                                                                    <label
+                                                                                                                        for="preset-name">Save
+                                                                                                                        Presets
+                                                                                                    </label><br>
+                                                                                                    <input role="text" aria-label="Enter Preset Name"
+                                                                                                                        type="text"
+                                                                                                                        id="preset-name"
+                                                                                                                        placeholder="Enter preset name" />
+                                                                                                    <button role="button"
+                                                                                                                        id="save-preset-btn">Save
+                                                                                                                        Preset</button>
+                                                                                </div>
+
+                                                                                <div class="presets-panel panel">
+                                                                                                    <label
+                                                                                                                        for="preset-list">Load
+                                                                                                                        Presets</label><br>
+                                                                                                    <select role="combobox"
+                                                                                                                        aria-label="Load Presets"
+                                                                                                                        id="preset-list">
+                                                                                                                        <option value="" disabled
+                                                                                                                                            selected>
+                                                                                                                                            Select
+                                                                                                                                            a
+                                                                                                                                            preset
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                    <button role="button"
+                                                                                                                        id="delete-preset-btn">Delete
+                                                                                                                        Preset</button>
+                                                                                </div>
+
+                                                            </div>
+
+                                                            <h2>Font Settings</h2>
+                                                            <div
+                                                                                style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                                                                                <div class="font panel">
+                                                                                                    <label
+                                                                                                                        for="font-size-select">Size</label>
+                                                                                                    <select
+                                                                                                                        id="font-size-select">
+                                                                                                                        <option
+                                                                                                                                            value="12">
+                                                                                                                                            Small
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="18">
+                                                                                                                                            Medium
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="26">
+                                                                                                                                            Large
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="34">
+                                                                                                                                            Largest
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div class="font panel"
+                                                                                                    style="width: 12rem;">
+                                                                                                    <label
+                                                                                                                        for="bold-select">Bold</label>
+                                                                                                    <select
+                                                                                                                        id="bold-select">
+                                                                                                                        <option
+                                                                                                                                            value="normal">
+                                                                                                                                            Off
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="bold">
+                                                                                                                                            On
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div class="font panel"
+                                                                                                    style="width: 18rem;">
+                                                                                                    <label
+                                                                                                                        for="font-family-select">Family</label>
+                                                                                                    <select
+                                                                                                                        id="font-family-select">
+                                                                                                                        <option
+                                                                                                                                            value="Arial">
+                                                                                                                                            Arial
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Arial Narrow">
+                                                                                                                                            Arial
+                                                                                                                                            Narrow
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Times New Roman">
+                                                                                                                                            Times
+                                                                                                                                            N
+                                                                                                                                            R
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Verdana">
+                                                                                                                                            Verdana
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Helvetica">
+                                                                                                                                            Helvetica
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Courier">
+                                                                                                                                            Courier
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Courier New">
+                                                                                                                                            Courier
+                                                                                                                                            New
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Andale Mono">
+                                                                                                                                            Andale
+                                                                                                                                            Mono
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Candara">
+                                                                                                                                            Candara
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Geneva">
+                                                                                                                                            Geneva
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Optima">
+                                                                                                                                            Optima
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Trebuchet MS">
+                                                                                                                                            Trebuchet
+                                                                                                                                            MS
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Gill Sans">
+                                                                                                                                            Gill
+                                                                                                                                            Sans
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Palatino">
+                                                                                                                                            Palatino
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Monaco">
+                                                                                                                                            Monaco
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Tahoma">
+                                                                                                                                            Tahoma
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="CustomFont">
+                                                                                                                                            Open
+                                                                                                                                            Dyslexic
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Luminari">
+                                                                                                                                            Luminari
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Chalkduster">
+                                                                                                                                            Chalkduster
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Marker Felt">
+                                                                                                                                            Marker
+                                                                                                                                            Felt
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="Bradley Hand">
+                                                                                                                                            Bradley
+                                                                                                                                            Hand
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div class="font panel"
+                                                                                                    style="width: 12rem;">
+                                                                                                    <label
+                                                                                                                        for="font-style-select">Style</label>
+                                                                                                    <select
+                                                                                                                        id="font-style-select">
+                                                                                                                        <option
+                                                                                                                                            value="normal">
+                                                                                                                                            Normal
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="italic">
+                                                                                                                                            Italic
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="underline">
+                                                                                                                                            Underline
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div class="font panel"
+                                                                                                    style="width: 12rem;">
+                                                                                                    <label
+                                                                                                                        for="font-variant-select">Variant</label>
+                                                                                                    <select
+                                                                                                                        id="font-variant-select">
+                                                                                                                        <option
+                                                                                                                                            value="normal">
+                                                                                                                                            Normal
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="small-caps">
+                                                                                                                                            Small
+                                                                                                                                            Caps
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+                                                            </div>
+                                                            <div class="main">
+
+                                                                                <div class="slider-container panel"
+                                                                                                    id="letter-tour">
+                                                                                                    <label
+                                                                                                                        for="letter-spacing-slider">Letter
+                                                                                                                        Spacing</label>
+                                                                                                    <input role="slider" aria-label="Letter Spacing"
+                                                                                                                        type="range"
+                                                                                                                        min="0"
+                                                                                                                        max="0.2"
+                                                                                                                        value="0"
+                                                                                                                        step="0.01"
+                                                                                                                        id="letter-spacing-slider">
+                                                                                </div>
+
+                                                                                <div class="slider-container panel"
+                                                                                                    id="word-tour">
+                                                                                                    <label
+                                                                                                                        for="word-spacing-slider">Word
+                                                                                                                        Spacing</label>
+                                                                                                    <input role="slider" aria-label="Word Spacing"
+                                                                                                                        type="range"
+                                                                                                                        min="0"
+                                                                                                                        max="0.5"
+                                                                                                                        value="0"
+                                                                                                                        step="0.01"
+                                                                                                                        id="word-spacing-slider">
+                                                                                </div>
+
+                                                                                <div class="slider-container panel"
+                                                                                                    id="line-tour">
+                                                                                                    <label
+                                                                                                                        for="line-spacing-slider">Line
+                                                                                                                        Spacing</label>
+                                                                                                    <input role="slider" aria-label="Line Spacing"
+                                                                                                                        type="range"
+                                                                                                                        min="1"
+                                                                                                                        max="2"
+                                                                                                                        value="1"
+                                                                                                                        step="0.1"
+                                                                                                                        id="line-spacing-slider">
+                                                                                </div>
+                                                            </div>
+
+                                                            <div class="pickers">
+                                                                                <h2 class="styled-text">
+                                                                                                    Use the colour
+                                                                                                    pickers below to
+                                                                                                    change
+                                                                                                    the colours of the
+                                                                                                    page and controls.
+                                                                                </h2>
+                                                            </div>
+
+                                                            <div class="main">
+                                                                                <div id="page-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Page
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="color-picker-2">Fill</label>
+                                                                                                                        <input aria-label="Page Fill Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="color-picker-2">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="border-picker">Border</label>
+                                                                                                                        <input aria-label="Page Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="border-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="color-picker">Font</label>
+                                                                                                                        <input aria-label="Page Font Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="color-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="focus-color-picker">Focus</label>
+                                                                                                                        <input aria-label="Keyboard Focus Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="focus-color-picker">
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div id="button-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Button
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="color-picker-5">Fill</label>
+                                                                                                                        <input aria-label="Button Fill Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="color-picker-5">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="button-border-picker">Border</label>
+                                                                                                                        <input aria-label="Button Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="button-border-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="button-font-picker">Font</label>
+                                                                                                                        <input aria-label="Button Font Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="button-font-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="group-background-picker">Toggle</label>
+                                                                                                                        <input aria-label="Button Toggle Colour "
+                                                                                                                                            type="color"
+                                                                                                                                            id="group-background-picker">
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div id="select-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Menu
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="select-background-picker">Fill</label>
+                                                                                                                        <input aria-label="Menu Fill Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="select-background-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="select-border-picker">Border</label>
+                                                                                                                        <input aria-label="Menu Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="select-border-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="select-font-picker">Font</label>
+                                                                                                                        <input aria-label="Menu Font Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="select-font-picker">
+                                                                                                    </div>
+                                                                                                    <div class="testSelect"
+                                                                                                                        style="border: none;">
+                                                                                                                        <select aria-label="Test Menu/Visual Purposes Only"
+                                                                                                                                            id="font-test-select">
+                                                                                                                                            <option value="20"
+                                                                                                                                                                selected>
+                                                                                                                                                                Option
+                                                                                                                                            </option>
+                                                                                                                        </select>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div id="popup-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Input
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row module-wrapper">
+                                                                                                                        <label
+                                                                                                                                            for="black-keys-colour-picker">Fill</label>
+                                                                                                                        <input aria-label="Text Input Fill"
+                                                                                                                                            type="color"
+                                                                                                                                            id="black-keys-colour-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row module-wrapper">
+                                                                                                                        <label
+                                                                                                                                            for="white-keys-colour-picker">Border</label>
+                                                                                                                        <input aria-label="Text Input Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="white-keys-colour-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row module-wrapper">
+                                                                                                                        <label
+                                                                                                                                            for="key-font-colour-picker">Font</label>
+                                                                                                                        <input aria-label="Text Input Font Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="key-font-colour-picker">
+                                                                                                    </div>
+                                                                                                    <label
+                                                                                                                        for="Test-input">Test</label>
+                                                                                                    <input aria-label="Test Input/Visual Purposes Only"
+                                                                                                                        style="width: 170px; height: 50px;"
+                                                                                                                        type="text"
+                                                                                                                        id="Test-input"
+                                                                                                                        placeholder="Text Entry" />
+                                                                                </div>
+
+
+
+                                                                                <div id="slider-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Slider
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="color-picker-3">Thumb</label>
+                                                                                                                        <input aria-label="Slider Thumb Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="color-picker-3">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="slider-outline-picker">Border</label>
+                                                                                                                        <input aria-label="Slider Thumb Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="slider-outline-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="color-picker-4">Track</label>
+                                                                                                                        <input aria-label="Slider Track Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="color-picker-4">
+                                                                                                    </div>
+                                                                                                    <label
+                                                                                                                        for="knob-design-select">Slider
+                                                                                                                        Style</label><br>
+                                                                                                    <select aria-label="Select Slider Style"
+                                                                                                                        id="knob-design-select">
+                                                                                                                        <option
+                                                                                                                                            value="classic">
+                                                                                                                                            Classic
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="minimal">
+                                                                                                                                            Minimal
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="fancy">
+                                                                                                                                            Fancy
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="retro">
+                                                                                                                                            Retro
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="modern">
+                                                                                                                                            Modern
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="twist">
+                                                                                                                                            twist
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="flat">
+                                                                                                                                            Flat
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="shadow">
+                                                                                                                                            Shadow
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="outline">
+                                                                                                                                            Outline
+
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="simple">
+                                                                                                                                            simple
+
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div id="panel-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Panel
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="panel-background-picker">Fill</label>
+                                                                                                                        <input aria-label="Panel Fill Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="panel-background-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="panel-border-picker">Border</label>
+                                                                                                                        <input aria-label="Panel Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="panel-border-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="panel-gradient-picker">Gradient</label>
+                                                                                                                        <input aria-label="Panel Gradient Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="panel-gradient-picker">
+                                                                                                    </div>
+                                                                                                    <div class="checkbox-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input aria-label="Togggle Gradients"
+                                                                                                                                            role="checkbox"
+                                                                                                                                            type="checkbox"
+                                                                                                                                            id="toggle-gradients">
+                                                                                                                        <label aria-hidden="true"
+                                                                                                                                            class="radiobutton"
+                                                                                                                                            for="toggle-gradients">
+                                                                                                                                            <span
+                                                                                                                                                                class="led-indicator"></span>
+                                                                                                                                            Remove<br>
+                                                                                                                                            Gradient
+                                                                                                                        </label>
+                                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div id="label-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Label
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="label-background-picker">Fill</label>
+                                                                                                                        <input aria-label="Label Fill Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="label-background-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="label-border-picker">Border</label>
+                                                                                                                        <input aria-label="Label Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="label-border-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="label-font-picker">Font</label>
+                                                                                                                        <input aria-label="Label Font Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="label-font-picker">
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div id="output-tour" class="panel">
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <h2>Span
+                                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="output-background-picker">Fill</label>
+                                                                                                                        <input aria-label="Span Fill Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="output-background-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="output-border-picker">Border</label>
+                                                                                                                        <input aria-label="Span Border Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="output-border-picker">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="color-picker-row">
+                                                                                                                        <label
+                                                                                                                                            for="output-font-picker">Font</label>
+                                                                                                                        <input aria-label="Span Font Colour"
+                                                                                                                                            type="color"
+                                                                                                                                            id="output-font-picker">
+                                                                                                    </div>
+                                                                                                    <span
+                                                                                                                        aria-label="Test Span With Text">Lorem
+                                                                                                                        ipsum</span>
+                                                                                </div>
+
+                                                                                <div class="main">
+                                                                                                    <div class="slider-container panel"
+                                                                                                                        id="border-tour">
+                                                                                                                        <label
+                                                                                                                                            for="border-radius-slider">Border
+                                                                                                                                            Radius</label>
+                                                                                                                        <input role="slider" aria-label="Border Radius"
+                                                                                                                                            type="range"
+                                                                                                                                            id="border-radius-slider"
+                                                                                                                                            min="1"
+                                                                                                                                            max="15"
+                                                                                                                                            step="1"
+                                                                                                                                            value="10">
+                                                                                                    </div>
+                                                                                                    <div class="slider-container panel"
+                                                                                                                        id="thickness-tour">
+                                                                                                                        <label
+                                                                                                                                            for="border-thickness-slider">Border
+                                                                                                                                            Thickness</label>
+                                                                                                                        <input role="slider" aria-label="Border Thickness"
+                                                                                                                                            type="range"
+                                                                                                                                            id="border-thickness-slider"
+                                                                                                                                            min="1"
+                                                                                                                                            max="5"
+                                                                                                                                            step="1"
+                                                                                                                                            value="1">
+                                                                                                    </div>
+
+
+
+                                                                                                    <div class="slider-container panel"
+                                                                                                                        id="focus-tour">
+                                                                                                                        <label
+                                                                                                                                            for="focus-size-slider">Focus
+                                                                                                                                            Size</label>
+                                                                                                                        <input role="slider" aria-label="Focus Size"
+                                                                                                                                            type="range"
+                                                                                                                                            id="focus-size-slider"
+                                                                                                                                            min="1"
+                                                                                                                                            max="8"
+                                                                                                                                            value="4">
+                                                                                                    </div>
+                                                                                </div>
+                                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <h1>Upload an Image and Apply Visual Impairment Filters</h1>
+                    </header>
+                    <div>
+                                        <input role="button" aria-label="Upload Image" class="panel" type="file"
+                                                            id="imageUpload" accept="image/*">
+
+                                        <br><br>
+                                        <canvas id="imageCanvas"></canvas>
+                                        <div class="image panel"
+                                                            style="display: flex; flex-wrap: wrap; justify-content: center;">
+                                                            <input aria-label="Enter File Name And Press Save To Download"
+                                                                                type="text" id="filename"
+                                                                                placeholder="Enter file name" />
+                                                            <button role="button" aria-label="Save And Download Image"
+                                                                                id="saveImage">Save Image</button>
+                                                            <button role="button" aria-label="Reset Image"
+                                                                                onclick="resetImage()">Reset
+                                                                                Image</button>
+                                        </div>
+
+
+                                        <button role="button" id="toggleButton" onclick="toggleDivs()">Show Vision Loss
+                                                            Filters</button>
+
+                                        <div class="main" id="colour-loss">
+                                                            <div class="buttons panel">
+                                                                                <h2>Colour Blindness Weakness Filters
+                                                                                </h2>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Deuteranomaly Filter"
+                                                                                                    onclick="applyDeuteranomaly()">Deuteranomaly</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Deuteranopia Filter"
+                                                                                                    onclick="applyDeuteranopia()">Deuteranopia</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Protanopia Filter"
+                                                                                                    onclick="applyProtanopia()">Protanopia</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Protanomaly Filter"
+                                                                                                    onclick="applyProtanomaly()">Protanomaly</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Tritanomaly Filter"
+                                                                                                    onclick="applyTritanomaly()">Tritanomaly</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Tritanopia Filter"
+                                                                                                    onclick="applyTritanopia()">Tritanopia</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Achromatopsia Filter"
+                                                                                                    onclick="applyAchromatopsia()">Achromatopsia</button>
+                                                                                <p>Note: Please reset the image between
+                                                                                                    applying these
+                                                                                                    filters. It is
+                                                                                                    common to experience
+                                                                                                    colour weakness or
+                                                                                                    loss with many
+                                                                                                    visual impairments,
+                                                                                                    therefore these
+                                                                                                    filters can be
+                                                                                                    applied over a
+                                                                                                    visual impairment
+                                                                                                    filter.</p>
+                                                            </div>
+                                                            <!-- Info section -->
+                                                            <div id="info"
+                                                                                style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;">
+                                                                                <p id="info-text">Select a color
+                                                                                                    blindness type from
+                                                                                                    above to
+                                                                                                    learn
+                                                                                                    more about it and
+                                                                                                    see the filters
+                                                                                                    effect
+                                                                                                    on your
+                                                                                                    image.</p>
+                                                            </div>
+                                        </div>
+                                        <div class="main" id="vision-loss">
+                                                            <h2>Visual Impairment Filters</h2>
+                                                            <div class="buttons panel">
+
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Glaucoma Filter"
+                                                                                                    onclick="applyGlaucoma()">Glaucoma</button>
+                                                                                <button role="button" aria-label="Apply Macular
+                                                                                Degeneration Filter"
+                                                                                                    onclick="applyMacularDegeneration()">Macular
+                                                                                                    Degeneration</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Diabetic Retinopathy Filter"
+                                                                                                    onclick="applyDiabeticRetinopathy()">
+                                                                                                    Diabetic
+                                                                                                    Retinopathy</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Diplopia Filter"
+                                                                                                    onclick="applyDiplopia()">Diplopia</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply  Light Perception Only Filter"
+                                                                                                    onclick="applyLightPerceptionWithBlur()">Light
+                                                                                                    Perception
+                                                                                                    Only</button>
+                                                                                <button role="button"
+                                                                                                    aria-label="Apply Cataracts Filter"
+                                                                                                    onclick="applyCataracts()">Cataracts</button>
+                                                            </div>
+
+                                                            <!-- visual impairments -->
+                                                            <div class="buttons panel"
+                                                                                style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                                                                                <div id="peripheral" class="panel"
+                                                                                                    style="width: 250px;">
+                                                                                                    <div
+                                                                                                                        style="display: flex; flex-direction: column; border: none;">
+
+                                                                                                                        <button role="button"
+                                                                                                                                            aria-label="Apply Peripheral Vision Loss Filter"
+                                                                                                                                            onclick="applyPeripheralVisionLoss(false)">Peripheral
+                                                                                                                                            Loss</button>
+                                                                                                                        <!-- Button to apply peripheral vision loss with central blur -->
+                                                                                                                        <button role="button"
+                                                                                                                                            aria-label="Apply Peripheral Vision Loss Filter With Low Vision"
+                                                                                                                                            onclick="applyPeripheralVisionLoss(true)">With
+                                                                                                                                            Low
+                                                                                                                                            Vision</button>
+                                                                                                    </div>
+                                                                                                    <div class="slider-container"
+                                                                                                                        style="border: none;">
+                                                                                                                        <!-- Slider to control the circumference of the clear visible area -->
+                                                                                                                        <label
+                                                                                                                                            for="visionRadius">Visible
+                                                                                                                                            Radius:
+                                                                                                                        </label>
+                                                                                                                        <input role="slider" aria-label="Visible Radius"
+                                                                                                                                            type="range"
+                                                                                                                                            id="visionRadius"
+                                                                                                                                            min="0"
+                                                                                                                                            max="70"
+                                                                                                                                            value="33"
+                                                                                                                                            oninput="applyPeripheralVisionLoss()">
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="panel"
+                                                                                                    style="width: 250px;">
+                                                                                                    <div
+                                                                                                                        style="display: flex; flex-direction: column; border: none;">
+                                                                                                                        <button role="button"
+                                                                                                                                            aria-label="Apply Scotoma Filter"
+                                                                                                                                            onclick="applyScotomas()">Scotomas</button>
+                                                                                                                        <button role="button"
+                                                                                                                                            aria-label="Randomise Spots"
+                                                                                                                                            id="randomizeScotomas">Randomise
+                                                                                                                                            Spots</button>
+                                                                                                    </div>
+                                                                                                    <!-- Sliders for scotomas amount and size -->
+                                                                                                    <div class="slider-container"
+                                                                                                                        style="border: none;">
+                                                                                                                        <label
+                                                                                                                                            for="scotomaAmount">Number
+                                                                                                                                            of
+                                                                                                                                            Blind
+                                                                                                                                            Spots:
+                                                                                                                        </label>
+                                                                                                                        <input role="slider" aria-label="Number
+                                                                                                    of
+                                                                                                    Blind
+                                                                                                    Spots" type="range" id="scotomaAmount" min="1"
+                                                                                                                                            max="20"
+                                                                                                                                            value="5"
+                                                                                                                                            oninput="applyScotomas()">
+                                                                                                                        <span
+                                                                                                                                            id="amountValue">5</span>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="panel"
+                                                                                                    style="display: flex; flex-direction: column; width: 250px;">
+                                                                                                    <button role="button"
+                                                                                                                        aria-label="Apply Snellen Acuity Filter"
+                                                                                                                        onclick="applySnellenAcuity(document.getElementById('snellenAcuity').value)">Snellen
+                                                                                                                        Acuity</button>
+                                                                                                    <label
+                                                                                                                        for="snellenAcuity">Select
+                                                                                                                        Snellen
+                                                                                                                        Acuity:
+                                                                                                    </label>
+                                                                                                    <select
+                                                                                                                        id="snellenAcuity">
+                                                                                                                        <option
+                                                                                                                                            value="20/20">
+                                                                                                                                            20/20
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="20/40">
+                                                                                                                                            20/40
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="20/60">
+                                                                                                                                            20/60
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="20/80">
+                                                                                                                                            20/80
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="20/100">
+                                                                                                                                            20/100
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                    <p>Note: These filters
+                                                                                                                        can
+                                                                                                                        take
+                                                                                                                        a
+                                                                                                                        short
+                                                                                                                        time
+                                                                                                                        to
+                                                                                                                        render
+                                                                                                                        the
+                                                                                                                        image.
+                                                                                                                        The
+                                                                                                                        lower
+                                                                                                                        acuities
+                                                                                                                        ie
+                                                                                                                        20/100
+                                                                                                                        will
+                                                                                                                        take
+                                                                                                                        longer
+                                                                                                                        to
+                                                                                                                        render.
+                                                                                                    </p>
+                                                                                </div>
+                                                            </div>
+
+                                                            <!-- Info section -->
+                                                            <div id="info"
+                                                                                style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;">
+                                                                                <p id="low-vis-info-text">Select a
+                                                                                                    visual impairment
+                                                                                                    from above to
+                                                                                                    learn
+                                                                                                    more about it and
+                                                                                                    see the filters
+                                                                                                    effect
+                                                                                                    on your
+                                                                                                    image.</p>
+                                                            </div>
+                                        </div>
+                    </div>
+
+
+                    <div>
+                                        <h2>Colour Contrast Checker Finder</h2>
+                                        <a aria-label="Go
+                                        to WCAG understanding contrast minimum. Opens in a new window" role="link"
+                                                            href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html">Go
+                                                            to WCAG understanding contrast minimum</a><br><br>
+                                        <div class="main panel" id="contrast-check">
+                                                            <div id="colours"
+                                                                                style="display: flex; flex-direction: row;">
+                                                                                <div id="color-choice-box"
+                                                                                                    class="panel">
+                                                                                                    <label for="color1">Background
+                                                                                                                        Colour
+                                                                                                                        (HEX
+                                                                                                                        or
+                                                                                                                        RGB):</label>
+                                                                                                    <button
+                                                                                                                        id="pipetteColor1">Pick
+                                                                                                                        Color
+                                                                                                                        from
+                                                                                                                        Image</button>
+                                                                                                    <input type="color" id="picker1"
+                                                                                                                        value="#000000"
+                                                                                                                        onchange="updateFromPicker(1)">
+                                                                                                    <input type="text" id="color1"
+                                                                                                                        value="#000000"
+                                                                                                                        placeholder="#000000 or rgb(0,0,0)"
+                                                                                                                        oninput="updateFromInput(1)">
+                                                                                </div>
+                                                                                <button onclick="checkContrast()">Check
+                                                                                                    Contrast</button>
+                                                                                <div id="color-choice-box"
+                                                                                                    class="panel">
+                                                                                                    <label for="color2">Foreground
+                                                                                                                        Colour
+                                                                                                                        (HEX
+                                                                                                                        or
+                                                                                                                        RGB):</label>
+                                                                                                    <button
+                                                                                                                        id="pipetteColor2">Pick
+                                                                                                                        Color
+                                                                                                                        from
+                                                                                                                        Image</button>
+                                                                                                    <input type="color" id="picker2"
+                                                                                                                        value="#FFFFFF"
+                                                                                                                        onchange="updateFromPicker(2)">
+                                                                                                    <input type="text" id="color2"
+                                                                                                                        value="#FFFFFF"
+                                                                                                                        placeholder="#FFFFFF or rgb(255,255,255)"
+                                                                                                                        oninput="updateFromInput(2)">
+                                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="test-panel">
+                                                                                <p>Lorem ipsum, dolor sit amet
+                                                                                                    consectetur
+                                                                                                    adipisicing elit.
+                                                                                                    Quis est culpa
+                                                                                                    maxime blanditiis
+                                                                                                    ipsam?
+                                                                                                    Necessitatibus
+                                                                                                    perferendis, autem
+                                                                                                    culpa maiores hic
+                                                                                                    consequatur tenetur
+                                                                                                    exercitationem
+                                                                                                    dolores. (Normal
+                                                                                                    Font)
+                                                                                </p>
+                                                                                <h2>Lorem ipsum dolor sit amet
+                                                                                                    consectetur
+                                                                                                    adipisicing
+                                                                                                    elit. (Large Font)
+                                                                                </h2>
+
+
+                                                            </div>
+
+                                        </div>
+                                        <div id="result"></div>
+                    </div>
+                    <footer>
+                                        Uicons by <a role="link" aria-label="Uicons by Flaticon. Opens in a new window"
+                                                            href="https://www.flaticon.com/uicons">Flaticon</a>
+                    </footer>
+                    <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script src="script.js"></script>
+                    <script src="ratio.js"></script>
+                    <script src="toggle.js"></script>
+                    <script src="../accessibility/accessibilitySettings.js"></script>
+
+
+</body>
+
+</html>
