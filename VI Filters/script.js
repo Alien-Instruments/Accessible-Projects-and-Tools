@@ -50,9 +50,24 @@ let pipetteMode = null; // To track which color picker is active for selection
 document.getElementById("deleteImage").addEventListener("click", function () {
   // Clear the canvas by setting its width (which clears all content)
   ctx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
-  document.getElementById("imageUpload").value = "";
+
   // Reset the originalImageData to null
   originalImageData = null;
+
+  // To reset the file input field in Safari
+  const oldInput = document.getElementById("imageUpload");
+  const newInput = document.createElement("input");
+
+  newInput.type = "file";
+  newInput.id = "imageUpload";
+  newInput.accept = "image/*"; 
+  newInput.className = oldInput.className; 
+
+  // Re-attach the event listener for image upload
+  newInput.addEventListener("change", oldInput.onchange);
+
+  // Replace the old input with the new one
+  oldInput.parentNode.replaceChild(newInput, oldInput);
 });
 
 // Function to get the RGB color from a canvas pixel
