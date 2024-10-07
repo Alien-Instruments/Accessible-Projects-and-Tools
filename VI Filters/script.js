@@ -54,21 +54,30 @@ document.getElementById("deleteImage").addEventListener("click", function () {
   // Reset the originalImageData to null
   originalImageData = null;
 
-  // To reset the file input field in Safari
+  // Get the current file input field
   const oldInput = document.getElementById("imageUpload");
-  const newInput = document.createElement("input");
 
+  // Create a new file input element
+  const newInput = document.createElement("input");
   newInput.type = "file";
   newInput.id = "imageUpload";
-  newInput.accept = "image/*"; 
-  newInput.className = oldInput.className; 
+  newInput.accept = "image/*";
+  newInput.className = oldInput.className; // Retain the same className
+  newInput.style = oldInput.style; // Optional: Copy the styles if any
+
+  // Detach the event listener from the old input before replacing
+  oldInput.removeEventListener("change", oldInput.onchange);
 
   // Re-attach the event listener for image upload
-  newInput.addEventListener("change", oldInput.onchange);
+  newInput.addEventListener("change", function(event) {
+    // Handle the change event, assuming you have a handler function
+    handleFileUpload(event);
+  });
 
   // Replace the old input with the new one
   oldInput.parentNode.replaceChild(newInput, oldInput);
 });
+
 
 // Function to get the RGB color from a canvas pixel
 function getColorFromCanvas(x, y) {
