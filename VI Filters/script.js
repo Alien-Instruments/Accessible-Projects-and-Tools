@@ -46,6 +46,15 @@ document
 
 let pipetteMode = null; // To track which color picker is active for selection
 
+// Add event listener for the delete button
+document.getElementById("deleteImage").addEventListener("click", function () {
+  // Clear the canvas by setting its width (which clears all content)
+  ctx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+  document.getElementById("imageUpload").value = "";
+  // Reset the originalImageData to null
+  originalImageData = null;
+});
+
 // Function to get the RGB color from a canvas pixel
 function getColorFromCanvas(x, y) {
   const pixelData = ctx.getImageData(x, y, 1, 1).data;
