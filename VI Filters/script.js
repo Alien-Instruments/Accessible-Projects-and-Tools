@@ -46,39 +46,6 @@ document
 
 let pipetteMode = null; // To track which color picker is active for selection
 
-// Add event listener for the delete button
-document.getElementById("deleteImage").addEventListener("click", function () {
-  // Clear the canvas by setting its width (which clears all content)
-  ctx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
-
-  // Reset the originalImageData to null
-  originalImageData = null;
-
-  // Get the current file input field
-  const oldInput = document.getElementById("imageUpload");
-
-  // Create a new file input element
-  const newInput = document.createElement("input");
-  newInput.type = "file";
-  newInput.id = "imageUpload";
-  newInput.accept = "image/*";
-  newInput.className = oldInput.className; // Retain the same className
-  newInput.style = oldInput.style; // Optional: Copy the styles if any
-
-  // Detach the event listener from the old input before replacing
-  oldInput.removeEventListener("change", oldInput.onchange);
-
-  // Re-attach the event listener for image upload
-  newInput.addEventListener("change", function(event) {
-    // Handle the change event, assuming you have a handler function
-    handleFileUpload(event);
-  });
-
-  // Replace the old input with the new one
-  oldInput.parentNode.replaceChild(newInput, oldInput);
-});
-
-
 // Function to get the RGB color from a canvas pixel
 function getColorFromCanvas(x, y) {
   const pixelData = ctx.getImageData(x, y, 1, 1).data;
