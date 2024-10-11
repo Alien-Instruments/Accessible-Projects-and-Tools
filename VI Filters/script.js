@@ -2,47 +2,45 @@ let originalImageData;
 const imageCanvas = document.getElementById("imageCanvas");
 const ctx = imageCanvas.getContext("2d");
 
-document
-  .getElementById("imageUpload")
-  .addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+document.getElementById("imageUpload").addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
 
-    reader.onload = function (e) {
-      const img = new Image();
-      img.onload = function () {
-        const maxCanvasWidth = 1200; 
-        const maxCanvasHeight = 1000; 
+  reader.onload = function (e) {
+    const img = new Image();
+    img.crossOrigin = "Anonymous"; // Ensure no cross-origin issues
 
-        // Get the image's original aspect ratio
-        const aspectRatio = img.width / img.height;
+    img.onload = function () {
+      const maxCanvasWidth = 1200;
+      const maxCanvasHeight = 1000;
 
-        // Calculate new dimensions while maintaining the aspect ratio
-        let newWidth = img.width;
-        let newHeight = img.height;
+      const aspectRatio = img.width / img.height;
+      let newWidth = img.width;
+      let newHeight = img.height;
 
-        if (newWidth > maxCanvasWidth) {
-          newWidth = maxCanvasWidth;
-          newHeight = newWidth / aspectRatio;
-        }
-        if (newHeight > maxCanvasHeight) {
-          newHeight = maxCanvasHeight;
-          newWidth = newHeight * aspectRatio;
-        }
+      if (newWidth > maxCanvasWidth) {
+        newWidth = maxCanvasWidth;
+        newHeight = newWidth / aspectRatio;
+      }
+      if (newHeight > maxCanvasHeight) {
+        newHeight = maxCanvasHeight;
+        newWidth = newHeight * aspectRatio;
+      }
 
-        // Set canvas dimensions to the resized image size
-        imageCanvas.width = newWidth;
-        imageCanvas.height = newHeight;
+      imageCanvas.width = newWidth;
+      imageCanvas.height = newHeight;
 
-        // Draw the resized image on the canvas
-        ctx.drawImage(img, 0, 0, newWidth, newHeight);
-        originalImageData = ctx.getImageData(0, 0, newWidth, newHeight);
-      };
-      img.src = e.target.result;
+      // Draw the resized image on the canvas
+      ctx.drawImage(img, 0, 0, newWidth, newHeight);
+      originalImageData = ctx.getImageData(0, 0, newWidth, newHeight);
     };
 
-    reader.readAsDataURL(file);
-  });
+    img.src = e.target.result; // Use the dataURL from the FileReader
+  };
+
+  reader.readAsDataURL(file); // Ensure it's read as a data URL
+});
+
 
 let pipetteMode = null; // To track which color picker is active for selection
 
