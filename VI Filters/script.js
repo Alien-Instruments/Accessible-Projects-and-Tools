@@ -46,6 +46,32 @@ document
 
 let pipetteMode = null; // To track which color picker is active for selection
 
+// Add event listener for the delete button
+document.getElementById("deleteImage").addEventListener("click", function () {
+  // Clear the canvas
+  ctx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+
+  // Reset the canvas dimensions (helps in some Safari cases)
+  imageCanvas.width = imageCanvas.width; // Reset width
+  imageCanvas.height = imageCanvas.height; // Reset height
+
+  //reset the original image data
+  originalImageData = null;
+  //Remove file name
+  document.getElementById("imageUpload").value = "";
+
+  // Display a placeholder text/color
+  ctx.fillStyle = "#f0f0f0"; // Set a light grey color
+  ctx.fillRect(0, 0, imageCanvas.width, imageCanvas.height);
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "#000000"; // Black text
+  ctx.fillText(
+    "Image Removed",
+    imageCanvas.width / 2 - 60,
+    imageCanvas.height / 2
+  );
+});
+
 // Function to get the RGB color from a canvas pixel
 function getColorFromCanvas(x, y) {
   const pixelData = ctx.getImageData(x, y, 1, 1).data;
