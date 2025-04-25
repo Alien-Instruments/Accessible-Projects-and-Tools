@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Alien Instruments UBIK</title>
+</head>
+
+<body class="letterSpacing wordSpacing">
+
+  <!-- Custom Prompt Modal Group-->
+  <div id="customPrompt" class="modal" style="display: none;">
+    <div class="modal-content">
+      <p id="modal-message"></p>
+      <input type="text" id="modal-input" />
+      <button onclick="confirmModal()">OK</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Custom Prompt Modal for Slider -->
+  <div id="sliderPrompt" class="modal">
+    <div class="modal-content">
+      <p id="slider-modal-message"></p>
+      <input aria-label="Enter Slider Name" type="text" id="slider-modal-input" placeholder="Name" />
+      <!-- <select id="mapping-type-select">
+        <option value="lin">Linear</option>
+        <option value="log">Logarithmic</option>
+      </select> -->
+      <button onclick="confirmSliderModal()">OK</button>
+      <button onclick="closeSliderModal()">Cancel</button>
+    </div>
+  </div>
+
+
+
+  <!-- CC Number Modal -->
+  <div id="cc-number-modal" class="modal">
+    <div class="modal-content">
+      <p id="cc-number-modal-message">Enter CC number:</p>
+      <input type="text" id="cc-number-modal-input" placeholder="0-127" aria-label="Enter Control Change (CC) number" />
+      <button onclick="confirmCCNumberModal()">OK</button>
+      <button onclick="closeCCNumberModal()">Cancel</button>
+      <p id="cc-number-error" style="color: red; display: none;">CC number already in use. Please choose a different CC
+        number.</p>
+    </div>
+  </div>
+
+  <!-- Use Min/Max Modal -->
+  <div id="use-min-max-modal" class="modal">
+    <div class="modal-content">
+      <p>Do you want to use min and max values?</p>
+      <div class="checkbox-wrapper" style="border: none;">
+        <input type="checkbox" id="use-float-checkbox">
+        <label class="radiobutton" for="use-float-checkbox">
+          <span class="led-indicator"></span>
+          Use Float
+        </label>
+      </div>
+      <button onclick="confirmUseMinMax(true)">Yes Choose New Mapped Value</button>
+      <button onclick="confirmUseMinMax(false)">No Use MIDI CC Value</button>
+    </div>
+  </div>
+
+  <!-- Min Max Modal -->
+  <div id="min-max-modal" class="modal">
+    <div class="modal-content">
+      <p id="min-max-modal-message">Enter min and max values:</p>
+      <input type="text" id="min-value-input" placeholder="Min value" />
+      <input type="text" id="max-value-input" placeholder="Max value" />
+      <button onclick="confirmMinMaxModal()">OK</button>
+      <button onclick="closeMinMaxModal()">Cancel</button>
+    </div>
+  </div>
+
+
+  <!-- Custom Tour Modal Structure -->
+  <div id="custom-tour-modal" class="custom-modal" tabindex="-1" role="dialog" aria-labelledby="custom-tour-title"
+    aria-hidden="true" style="display:none;">
+    <div class="custom-modal-content">
+      <h2 id="custom-tour-title">Tour Step Title</h2>
+      <h3 id="custom-tour-text">Tour step content goes here.</h3>
+      <div class="custom-modal-buttons">
+        <button id="custom-next-step" class="button">Next</button>
+        <button id="custom-prev-step" class="button" style="display:none;">Previous</button>
+        <button id="custom-close-tour" class="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Modal -->
+  <div id="custom-alert-modal" class="custom-modal" tabindex="-1" role="dialog" aria-labelledby="custom-alert-title"
+    aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      <h2 id="custom-alert-title">Alert</h2>
+      <h3 id="custom-alert-text"></h3>
+      <div class="custom-modal-buttons">
+        <button id="custom-alert-ok-button" class="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+
+  <h1 style="font-family: 'Alien'; font-size: 46px; justify-self: center;">Alien Instruments UBIK</h1>
+  <h2 style="font-family: 'Alien'; font-size: 34px; justify-self: center;">The Roll Your Own Talking MIDI Mapping
+    Solution
+  </h2>
+
+  <button id="start-tour-button" class="button">Start Tour</button>
+
+  <button id="toggleAccess" class="button wordSpacing letterSpacing">Show Interface Settings</button>
+
+  <!-- Message Modal -->
+  <div id="preset-message-modal" class="modal" aria-hidden="true" role="alertdialog" aria-labelledby="message-title"
+    aria-describedby="message-text">
+    <div class="modal-content">
+      <p id="message-text" tabindex="0" aria-live="assertive"></p>
+      <button id="message-ok-btn">OK</button>
+    </div>
+  </div>
+
+  <!-- Input Modal -->
+  <div id="preset-input-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="input-title"
+    aria-describedby="preset-name-input">
+    <div class="modal-content">
+      <input id="preset-name-input" type="text" placeholder="Enter preset name" />
+      <div style="margin-top: 1rem;">
+        <button id="preset-save-btn">Save</button>
+        <button id="preset-cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal" aria-hidden="true" role="alertdialog" aria-labelledby="confirm-modal-title"
+    aria-describedby="confirm-modal-message">
+    <div class="modal-content">
+      <p id="confirm-modal-message" aria-live="assertive" tabindex="0"></p>
+      <button id="confirm-yes-btn">Yes</button>
+      <button id="confirm-no-btn">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="custom-modal" class="modal" aria-hidden="true" role="alertdialog" aria-labelledby="modal-title"
+    aria-describedby="modal-message">
+    <div class="modal-content">
+
+      <p id="modal-message" aria-live="assertive" tabindex="0">
+      </p>
+      <button id="modal-ok-btn" class="modal-ok-btn">OK</button>
+    </div>
+  </div>
+
+  <!-- Custom Tour Modal Structure -->
+  <div id="custom-tour-modal" class="custom-modal" tabindex="-1" role="dialog" aria-labelledby="custom-tour-title"
+    aria-hidden="true" style="display:none;">
+    <div class="custom-modal-content">
+      <h2 id="custom-tour-title">Tour Step Title</h2>
+      <h3 id="custom-tour-text">Tour step content goes here.</h3>
+      <div class="custom-modal-buttons">
+        <button id="custom-next-step" class="button">Next</button>
+        <button id="custom-prev-step" class="button" style="display:none;">Previous</button>
+        <button id="custom-close-tour" class="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="accessDiv" class="hidden" style="text-align: center;">
+    <div id="preset-container" class="preset-tour">
+      <div class="presets-panel panel">
+        <label for="preset-name">Save
+          Presets
+        </label><br>
+        <input role="text" aria-label="Enter Preset Name" type="text" id="preset-name"
+          placeholder="Enter preset name" />
+        <button role="button" id="save-preset-btn">Save
+          Preset</button>
+      </div>
+
+      <div class="presets-panel panel">
+        <label for="preset-list">Load
+          Presets</label><br>
+        <select role="combobox" aria-label="Load Presets" id="preset-list">
+          <option value="" disabled selected>
+            Select
+            a
+            preset
+          </option>
+        </select>
+        <button role="button" id="delete-preset-btn">Delete
+          Preset</button>
+      </div>
+
+    </div>
+
+    <h2>Font Settings</h2>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-size-select">Size</label>
+        <select id="font-size-select">
+          <option value="12">
+            Small
+          </option>
+          <option value="18">
+            Medium
+          </option>
+          <option value="26">
+            Large
+          </option>
+          <option value="34">
+            Largest
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="bold-select">Bold</label>
+        <select id="bold-select">
+          <option value="normal">
+            Off
+          </option>
+          <option value="bold">
+            On
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel">
+        <label for="font-family-select">Family</label>
+        <select id="font-family-select">
+          <option value="Arial">
+            Arial
+          </option>
+          <option value="Arial Narrow">
+            Arial
+            Narrow
+          </option>
+          <option value="Times New Roman">
+            Times
+            N
+            R
+          </option>
+          <option value="Verdana">
+            Verdana
+          </option>
+          <option value="Helvetica">
+            Helvetica
+          </option>
+          <option value="Courier">
+            Courier
+          </option>
+          <option value="Courier New">
+            Courier
+            New
+          </option>
+          <option value="Andale Mono">
+            Andale
+            Mono
+          </option>
+          <option value="Candara">
+            Candara
+          </option>
+          <option value="Geneva">
+            Geneva
+          </option>
+          <option value="Optima">
+            Optima
+          </option>
+          <option value="Trebuchet MS">
+            Trebuchet
+            MS
+          </option>
+          <option value="Gill Sans">
+            Gill
+            Sans
+          </option>
+          <option value="Palatino">
+            Palatino
+          </option>
+          <option value="Monaco">
+            Monaco
+          </option>
+          <option value="Tahoma">
+            Tahoma
+          </option>
+          <option value="CustomFont">
+            Open
+            Dyslexic
+          </option>
+          <option value="Luminari">
+            Luminari
+          </option>
+          <option value="Chalkduster">
+            Chalkduster
+          </option>
+          <option value="Marker Felt">
+            Marker
+            Felt
+          </option>
+          <option value="Bradley Hand">
+            Bradley
+            Hand
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-style-select">Style</label>
+        <select id="font-style-select">
+          <option value="normal">
+            Normal
+          </option>
+          <option value="italic">
+            Italic
+          </option>
+          <option value="underline">
+            Underline
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-variant-select">Variant</label>
+        <select id="font-variant-select">
+          <option value="normal">
+            Normal
+          </option>
+          <option value="small-caps">
+            Small
+            Caps
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="main">
+
+      <div class="slider-container panel" id="letter-tour">
+        <label for="letter-spacing-slider">Letter
+          Spacing</label>
+        <input role="slider" aria-label="Letter Spacing" type="range" min="0" max="0.2" value="0" step="0.01"
+          id="letter-spacing-slider">
+      </div>
+
+      <div class="slider-container panel" id="word-tour">
+        <label for="word-spacing-slider">Word
+          Spacing</label>
+        <input role="slider" aria-label="Word Spacing" type="range" min="0" max="0.5" value="0" step="0.01"
+          id="word-spacing-slider">
+      </div>
+
+      <div class="slider-container panel" id="line-tour">
+        <label for="line-spacing-slider">Line
+          Spacing</label>
+        <input role="slider" aria-label="Line Spacing" type="range" min="1" max="2" value="1" step="0.1"
+          id="line-spacing-slider">
+      </div>
+    </div>
+
+    <div class="pickers">
+      <h2 class="styled-text">
+        Use the colour
+        pickers below to
+        change
+        the colours of the
+        page and controls.
+      </h2>
+    </div>
+
+    <div class="main">
+      <div id="page-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Page
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-2">Fill</label>
+          <input aria-label="Page Fill Colour" type="color" id="color-picker-2">
+        </div>
+        <div class="color-picker-row">
+          <label for="border-picker">Border</label>
+          <input aria-label="Page Border Colour" type="color" id="border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker">Font</label>
+          <input aria-label="Page Font Colour" type="color" id="color-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="focus-color-picker">Focus</label>
+          <input aria-label="Keyboard Focus Colour" type="color" id="focus-color-picker">
+        </div>
+      </div>
+
+      <div id="button-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Button
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-5">Fill</label>
+          <input aria-label="Button Fill Colour" type="color" id="color-picker-5">
+        </div>
+        <div class="color-picker-row">
+          <label for="button-border-picker">Border</label>
+          <input aria-label="Button Border Colour" type="color" id="button-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="button-font-picker">Font</label>
+          <input aria-label="Button Font Colour" type="color" id="button-font-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="group-background-picker">Toggle</label>
+          <input aria-label="Button Toggle Colour " type="color" id="group-background-picker">
+        </div>
+      </div>
+
+      <div id="select-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Menu
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="select-background-picker">Fill</label>
+          <input aria-label="Menu Fill Colour" type="color" id="select-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="select-border-picker">Border</label>
+          <input aria-label="Menu Border Colour" type="color" id="select-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="select-font-picker">Font</label>
+          <input aria-label="Menu Font Colour" type="color" id="select-font-picker">
+        </div>
+        <div class="testSelect" style="border: none;">
+          <select aria-label="Test Menu/Visual Purposes Only" id="font-test-select">
+            <option value="20" selected>
+              Option
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div id="popup-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Input
+          </h2>
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="black-keys-colour-picker">Fill</label>
+          <input aria-label="Text Input Fill" type="color" id="black-keys-colour-picker">
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="white-keys-colour-picker">Border</label>
+          <input aria-label="Text Input Border Colour" type="color" id="white-keys-colour-picker">
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="key-font-colour-picker">Font</label>
+          <input aria-label="Text Input Font Colour" type="color" id="key-font-colour-picker">
+        </div>
+
+        <input aria-label="Test Input/Visual Purposes Only" style="width: 170px; height: 50px;" type="text"
+          id="Test-input" placeholder="Text Entry" />
+      </div>
+
+
+
+      <div id="slider-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Slider
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-3">Thumb</label>
+          <input aria-label="Slider Thumb Colour" type="color" id="color-picker-3">
+        </div>
+        <div class="color-picker-row">
+          <label for="slider-outline-picker">Border</label>
+          <input aria-label="Slider Thumb Border Colour" type="color" id="slider-outline-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-4">Track</label>
+          <input aria-label="Slider Track Colour" type="color" id="color-picker-4">
+        </div>
+        <label for="knob-design-select">Slider
+          Style</label><br>
+        <select aria-label="Select Slider Style" id="knob-design-select">
+          <option value="classic">
+            Classic
+
+          </option>
+          <option value="minimal">
+            Minimal
+
+          </option>
+          <option value="fancy">
+            Fancy
+
+          </option>
+          <option value="retro">
+            Retro
+
+          </option>
+          <option value="modern">
+            Modern
+
+          </option>
+          <option value="twist">
+            twist
+
+          </option>
+          <option value="flat">
+            Flat
+
+          </option>
+          <option value="shadow">
+            Shadow
+
+          </option>
+          <option value="outline">
+            Outline
+
+          </option>
+          <option value="simple">
+            simple
+
+          </option>
+        </select>
+      </div>
+
+      <div id="panel-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Panel
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-background-picker">Fill</label>
+          <input aria-label="Panel Fill Colour" type="color" id="panel-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-border-picker">Border</label>
+          <input aria-label="Panel Border Colour" type="color" id="panel-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-gradient-picker">Gradient</label>
+          <input aria-label="Panel Gradient Colour" type="color" id="panel-gradient-picker">
+        </div>
+        <button id="toggleGradients" aria-pressed="false">
+          REMOVE<br>GRADIENT
+        </button>
+      </div>
+
+
+      <div id="label-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Label
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="label-background-picker">Fill</label>
+          <input aria-label="Label Fill Colour" type="color" id="label-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="label-border-picker">Border</label>
+          <input aria-label="Label Border Colour" type="color" id="label-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="label-font-picker">Font</label>
+          <input aria-label="Label Font Colour" type="color" id="label-font-picker">
+        </div>
+      </div>
+
+      <div id="output-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Span
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="output-background-picker">Fill</label>
+          <input aria-label="Span Fill Colour" type="color" id="output-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="output-border-picker">Border</label>
+          <input aria-label="Span Border Colour" type="color" id="output-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="output-font-picker">Font</label>
+          <input aria-label="Span Font Colour" type="color" id="output-font-picker">
+        </div>
+        <span aria-label="Test Span With Text">Lorem
+          ipsum</span>
+      </div>
+
+      <div class="main">
+        <div class="slider-container panel" id="border-tour">
+          <label for="border-radius-slider">Border
+            Radius</label>
+          <input role="slider" aria-label="Border Radius" type="range" id="border-radius-slider" min="1" max="15"
+            step="1" value="10">
+        </div>
+        <div class="slider-container panel" id="thickness-tour">
+          <label for="border-thickness-slider">Border
+            Thickness</label>
+          <input role="slider" aria-label="Border Thickness" type="range" id="border-thickness-slider" min="1" max="5"
+            step="1" value="1">
+        </div>
+
+
+
+        <div class="slider-container panel" id="focus-tour">
+          <label for="focus-size-slider">Focus
+            Size</label>
+          <input role="slider" aria-label="Focus Size" type="range" id="focus-size-slider" min="1" max="8" value="4">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <button id="toggleMIDISettings">Show MIDI Settings</button>
+
+  <div id="MIDISettingsDiv" class="hidden">
+    <div id="midi-in-tour">
+      <p>MIDI IN</p>
+      <div>
+        <label for="midi-inputs">MIDI
+          Input Device </label>
+        <select id="midi-inputs">
+          <option value="none">
+            No
+            MIDI
+            input
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="midi-input-channel">MIDI Input Channel</label>
+        <select id="midi-input-channel">
+          <!-- MIDI channels are 1-16 -->
+          <option value="0">1</option>
+          <option value="1">2</option>
+          <option value="2">3</option>
+          <option value="3">4</option>
+          <option value="4">5</option>
+          <option value="5">6</option>
+          <option value="6">7</option>
+          <option value="7">8</option>
+          <option value="8">9</option>
+          <option value="9">10</option>
+          <option value="10">11</option>
+          <option value="11">12</option>
+          <option value="12">13</option>
+          <option value="13">14</option>
+          <option value="14">15</option>
+          <option value="15">16</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div id="midi-out-tour">
+      <p>MIDI OUT</p>
+      <div>
+        <label for="midiOutputSelect">MIDI Output Device</label>
+        <select id="midiOutputSelect"></select>
+      </div>
+      <div>
+        <label for="midi-channel">MIDI Output
+          Channel</label>
+        <select id="midi-channel">
+          <!-- MIDI channels are 1-16 -->
+          <option value="0">1
+          </option>
+          <option value="1">2
+          </option>
+          <option value="2">3
+          </option>
+          <option value="3">4
+          </option>
+          <option value="4">5
+          </option>
+          <option value="5">6
+          </option>
+          <option value="6">7
+          </option>
+          <option value="7">8
+          </option>
+          <option value="8">9
+          </option>
+          <option value="9">10
+          </option>
+          <option value="10">11
+          </option>
+          <option value="11">12
+          </option>
+          <option value="12">13
+          </option>
+          <option value="13">14
+          </option>
+          <option value="14">15
+          </option>
+          <option value="15">16
+          </option>
+        </select>
+      </div>
+      <div class="checkbox-wrapper" style="border: none;" id="midi-pass-tour">
+        <input type="checkbox" id="midi-note-passthrough">
+        <label class="radiobutton" for="midi-note-passthrough">
+          <span class="led-indicator"></span>
+          MIDI Note Passthrough
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button id="toggleVoiceSettings">Show Voice Settings</button>
+
+  <div id="voiceSettingsDiv" class="hidden">
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+      <div class="slider-container" id="pitch-tour">
+        <label aria-hidden="true" for="speech-pitch">Pitch</label>
+        <input aria-label="Speech Pitch" class="slider" id="speech-pitch" max="200" min="100" step="1" type="range"
+          value="100">
+        <span aria-hidden="true" class="lcd-text2" id="pitch-output">100</span>
+      </div>
+
+      <div class="slider-container" id="rate-tour">
+        <label aria-hidden="true" for="speech-rate">Rate</label>
+        <input aria-label="Speech Rate" class="slider" id="speech-rate" max="200" min="0" step="1" type="range"
+          value="100">
+        <span aria-hidden="true" class="lcd-text2" id="rate-output">100</span>
+      </div>
+
+      <div class="slider-container" id="volume-tour">
+        <label aria-hidden="true" for="speech-volume">Volume</label>
+        <input aria-label="Speech Volume" class="slider" id="speech-volume" max="100" min="0" step="1" type="range"
+          value="100">
+        <span aria-hidden="true" class="lcd-text2" id="volume-output">100</span>
+      </div>
+    </div>
+
+
+    <div class="center-container"
+      style="display: flex; flex-direction: column; justify-content: center; border-radius: 10px;">
+      <div class="input-container" style="border: none;">
+        <label for="speech-voice">Voice:</label><br>
+        <select style="width: 80%;" id="speech-voice"></select>
+      </div>
+      <div class="input-container" style="border: none;">
+        <label for="speech-text">Text:</label><br>
+        <input style="width: 80%;" type="text" id="speech-text" value="Hello, how can I help you?" />
+      </div>
+      <button class="button" id="speak-button">Speak</button>
+    </div>
+  </div>
+  </div>
+
+
+  <div>
+    <button id="toggle-custom-preset-manager-button">Show Preset Manager</button>
+    <div>
+
+      <div id="custom-preset-manager" style="display: none;">
+        <h3>Layout Manager</h3>
+        <input type="text" id="custom-preset-name" placeholder="Enter preset name">
+        <button id="custom-save-preset-button">Save Layout</button>
+        <select id="custom-preset-select">
+          <option value="" disabled selected>Select a preset</option>
+        </select>
+        <button id="custom-load-preset-button">Load Layout</button>
+      </div>
+      <div id="custom-patch-manager" style="display: none;">
+        <h3>Patch Manager</h3>
+        <input type="text" id="custom-patch-name" placeholder="Enter patch name">
+        <button id="custom-save-patch-button">Save Patch</button>
+        <select id="custom-patch-select">
+          <option value="" disabled selected>Select a patch</option>
+        </select>
+        <button id="custom-load-patch-button">Load Patch</button>
+      </div>
+    </div>
+
+
+    <div id="program-change-container">
+      <label for="bank-select">Bank Select:</label>
+      <select id="bank-select">
+        <!-- Options will be dynamically populated -->
+      </select>
+
+      <label for="program-select">Program Select:</label>
+      <select id="program-select">
+        <!-- Options will be dynamically populated -->
+      </select>
+
+      <button id="send-program-change">Send Program Change Message</button>
+    </div>
+
+
+    <div id="edit-tour">
+      <button id="toggleDeleteButton" onclick="toggleDeleteButtons()">Enable Delete Buttons</button>
+      <button id="toggleLearnButton" onclick="toggleLearnButtons()">Disable Learn Buttons</button>
+      <button id="toggleSelectButton" onclick="toggleSelectButtons()">Enable Edit CC</button>
+      <div class="checkbox-wrapper" style="border: none;" id="speak-tour">
+        <input type="checkbox" id="speak-midi-toggle">
+        <label class="radiobutton" for="speak-midi-toggle">
+          <span class="led-indicator"></span>
+          Speak Values
+        </label>
+      </div>
+    </div>
+    <button id="addGroupButton">Add Group</button>
+
+    <div id="controller"></div>
+
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <script src="../accessibility/accessibilitySettings.js"></script>
+  <script src="../hitch/hitchhicker.js"></script>
+  <script src="presetManager.js"></script>
+  <script src="MIDISettings.js"></script>
+</body>
+
+</html>
