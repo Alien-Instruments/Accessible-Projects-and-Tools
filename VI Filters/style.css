@@ -284,6 +284,13 @@ span {
   ); /* Adjust based on base font size */
 }
 
+<<<<<<< HEAD
+=======
+.no-gradient {
+  background-image: none;
+}
+
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
 :root {
   --color1: #000000; /* Default color for Color 1 */
   --color2: #ffffff; /* Default color for Color 2 */
@@ -452,7 +459,10 @@ span {
 .image input[type="text"] {
   width: 30%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
 .modal {
   display: none;
   position: fixed;
@@ -1474,3 +1484,7 @@ span {
 .slider-container.simple input[type="range"]:focus::-moz-range-thumb {
   transform: scale(1.2);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34

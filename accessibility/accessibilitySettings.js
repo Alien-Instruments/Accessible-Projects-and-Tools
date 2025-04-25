@@ -934,6 +934,7 @@ $(document).ready(function () {
   retrieveAndApplySliderValues();
 });
 
+<<<<<<< HEAD
 const toggleGradients = $("#toggleGradients");
 
 toggleGradients.on("click", function () {
@@ -971,6 +972,48 @@ $(document).ready(function () {
   $(".slider-container").each(function () {
     $(this).toggleClass("no-gradient", saved);
   });
+=======
+const toggleGradients = $("#toggle-gradients");
+
+toggleGradients.on("change", function () {
+  const elementsWithGradients = $(".panel");
+
+  elementsWithGradients.each(function () {
+    if (toggleGradients.is(":checked")) {
+      $(this).addClass("no-gradient");
+    } else {
+      $(this).removeClass("no-gradient");
+    }
+  });
+
+  const elementsWithGradients2 = $(".slider-container");
+
+  elementsWithGradients2.each(function () {
+    if (toggleGradients.is(":checked")) {
+      $(this).addClass("no-gradient");
+    } else {
+      $(this).removeClass("no-gradient");
+    }
+  });
+
+  // Store toggle state in local storage
+  localStorage.setItem("gradientsEnabled", toggleGradients.is(":checked"));
+});
+
+// Function to retrieve toggle state from local storage
+function retrieveToggleStateFromLocalStorage() {
+  const gradientsEnabled = localStorage.getItem("gradientsEnabled");
+  if (gradientsEnabled !== null) {
+    toggleGradients.prop("checked", gradientsEnabled === "true");
+    // Trigger change event to apply toggle state
+    toggleGradients.trigger("change");
+  }
+}
+
+// Call the function to retrieve toggle state when the page loads
+$(document).ready(function () {
+  retrieveToggleStateFromLocalStorage();
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -1062,6 +1105,7 @@ $(document).ready(function () {
 
   // Helper function to show modal and announce text
   function showModal(message) {
+<<<<<<< HEAD
     modalMessage.text(message);
     modal.attr("aria-hidden", "false");
 
@@ -1079,6 +1123,24 @@ $(document).ready(function () {
         } else if (!e.shiftKey && document.activeElement === modalOkBtn[0]) {
           e.preventDefault();
           modalMessage.focus();
+=======
+    modalMessage.text(message); // Update the modal text
+    modal.attr("aria-hidden", "false");
+
+    // Focus on the message so it's read first by screen readers
+    modalMessage.focus();
+
+    // Trap focus inside the modal (accessibility)
+    $(document).on("keydown", function (e) {
+      if (e.key === "Tab") {
+        // Trap focus inside the modal
+        if (e.shiftKey && document.activeElement === modalMessage[0]) {
+          e.preventDefault();
+          modalOkBtn.focus(); // Cycle focus to the OK button when shift-tabbing
+        } else if (!e.shiftKey && document.activeElement === modalOkBtn[0]) {
+          e.preventDefault();
+          modalMessage.focus(); // Cycle focus back to the message when tabbing
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
         }
       }
     });
@@ -1662,7 +1724,11 @@ const factoryPresets = {
     textColor: "#ffffff",
     whiteKeysColour: "#ffffff",
     wordSpacingSlider: "0",
+<<<<<<< HEAD
     gradientsEnabled: false,
+=======
+    gradientsEnabled: true,
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
   },
   "Simple Dark Bold": {
     backgroundColor: "#000000",
@@ -1674,7 +1740,11 @@ const factoryPresets = {
     buttonBackgroundColor: "#cfcfcf",
     buttonBorderColor: "#000000",
     buttonFontColor: "#000000",
+<<<<<<< HEAD
     focusColor: "#FFFFFF",
+=======
+    focusColor: "#000000",
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
     focusSizeSlider: "8",
     fontFamilySelect: "Tahoma",
     fontSizeSelect: "26",
@@ -1703,6 +1773,10 @@ const factoryPresets = {
     textColor: "#ffffff",
     whiteKeysColour: "#000000",
     wordSpacingSlider: "0",
+<<<<<<< HEAD
     gradientsEnabled: true,
+=======
+    gradientsEnabled: false,
+>>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
   },
 };
