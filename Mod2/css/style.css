@@ -1919,8 +1919,8 @@ input[type="file"] {
 }
 
 .modal-content {
-  max-width: 900px;
-  width: 90%;
-  overflow-y: auto;
-  max-height: 90vh;
+  max-width: 900px !important;
+  width: 90% !important;
+  overflow-y: auto !important;
+  max-height: 90vh !important;
 }
