@@ -31,8 +31,6 @@ body {
 
 body,
 th,
-h2,
-h3,
 p,
 span,
 div,
@@ -1918,4 +1916,11 @@ input[type="file"] {
 
 .slider-container select {
   width: 190px;
+}
+
+.modal-content {
+  max-width: 900px;
+  width: 90%;
+  overflow-y: auto;
+  max-height: 90vh;
 }

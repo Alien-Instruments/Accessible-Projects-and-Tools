@@ -19,6 +19,10 @@
                                         <span id=""></span>
                     </div> -->
 
+
+
+
+
                     <!-- Message Modal -->
                     <div id="preset-message-modal" class="modal" aria-hidden="true" role="alertdialog"
                                         aria-labelledby="message-title" aria-describedby="message-text">
@@ -123,11 +127,391 @@
                     <h1 style="align-self: center; justify-self: center;">Access Mod</h1>
 
                     <div>
+                                        <button id="openManualButton">Help / Manual</button>
+
+                                        <div id="manualModal" class="modal" aria-hidden="true"
+                                                            aria-labelledby="manualTitle" role="dialog">
+                                                            <div class="modal-content" role="document" tabindex="0">
+
+                                                                                <div id="manualBody">
+                                                                                                    <h1>Welcome to Access
+                                                                                                                        Mod!
+                                                                                                    </h1>
+
+                                                                                                    <p>Access Mod is a fully
+                                                                                                                        modular
+                                                                                                                        Web
+                                                                                                                        Audio
+                                                                                                                        synthesizer
+                                                                                                                        designed
+                                                                                                                        for
+                                                                                                                        creative
+                                                                                                                        sound
+                                                                                                                        design,
+                                                                                                                        real-time
+                                                                                                                        modulation,
+                                                                                                                        and
+                                                                                                                        accessibility.
+                                                                                                                        This
+                                                                                                                        manual
+                                                                                                                        explains
+                                                                                                                        how
+                                                                                                                        to
+                                                                                                                        navigate,
+                                                                                                                        control,
+                                                                                                                        and
+                                                                                                                        patch
+                                                                                                                        the
+                                                                                                                        synth
+                                                                                                                        using
+                                                                                                                        a
+                                                                                                                        keyboard,
+                                                                                                                        screen
+                                                                                                                        reader,
+                                                                                                                        or
+                                                                                                                        pointing
+                                                                                                                        device.
+                                                                                                    </p>
+
+                                                                                                    <h3>Quick Start</h3>
+                                                                                                    <p>Press <strong>Power
+                                                                                                                                            On</strong>
+                                                                                                                        to
+                                                                                                                        initialize
+                                                                                                                        the
+                                                                                                                        audio
+                                                                                                                        engine.
+                                                                                                    </p>
+                                                                                                    <p>Use <strong>Start Tutorial</strong>
+                                                                                                                        for
+                                                                                                                        a
+                                                                                                                        step-by-step
+                                                                                                                        guide.
+                                                                                                    </p>
+                                                                                                    <p>Use the built in step
+                                                                                                                        sequencer
+                                                                                                                        or
+                                                                                                                        MIDI
+                                                                                                                        input.
+                                                                                                    </p>
+                                                                                                    <p>Connect modules using
+                                                                                                                        accessible
+                                                                                                                        drag-and-drop
+                                                                                                                        patching.
+                                                                                                    </p>
+                                                                                                    <p>Save and load your
+                                                                                                                        patches
+                                                                                                                        with
+                                                                                                                        the
+                                                                                                                        Preset
+                                                                                                                        Manager.
+                                                                                                    </p>
+
+                                                                                                    <h1>Keyboard Navigation
+                                                                                                                        and
+                                                                                                                        Accessibility
+                                                                                                                        Features
+                                                                                                    </h1>
+
+                                                                                                    <h2>Slider Controls
+                                                                                                    </h2>
+                                                                                                    <p>Sliders are fully operable
+                                                                                                                        by
+                                                                                                                        keyboard
+                                                                                                                        for
+                                                                                                                        precise
+                                                                                                                        or
+                                                                                                                        rapid
+                                                                                                                        adjustment.
+                                                                                                    </p>
+                                                                                                    <p><strong>Arrow keys (←
+                                                                                                                                            →):</strong>
+                                                                                                                        Fine-tune
+                                                                                                                        by
+                                                                                                                        1
+                                                                                                                        step
+                                                                                                                        per
+                                                                                                                        press.
+                                                                                                    </p>
+                                                                                                    <p><strong>Shift + Arrow
+                                                                                                                                            keys:</strong>
+                                                                                                                        Faster
+                                                                                                                        adjustment,
+                                                                                                                        10
+                                                                                                                        steps
+                                                                                                                        per
+                                                                                                                        press.
+                                                                                                    </p>
+                                                                                                    <p><strong>Shift + Control + Arrow
+                                                                                                                                            keys:</strong>
+                                                                                                                        Very
+                                                                                                                        fast
+                                                                                                                        adjustment,
+                                                                                                                        100
+                                                                                                                        steps
+                                                                                                                        per
+                                                                                                                        press.
+                                                                                                    </p>
+                                                                                                    <p><strong>Press 1:</strong>
+                                                                                                                        Snap
+                                                                                                                        slider
+                                                                                                                        to
+                                                                                                                        minimum
+                                                                                                                        value.
+                                                                                                    </p>
+                                                                                                    <p><strong>Press 2:</strong>
+                                                                                                                        Snap
+                                                                                                                        slider
+                                                                                                                        to
+                                                                                                                        maximum
+                                                                                                                        value.
+                                                                                                    </p>
+                                                                                                    <p><strong>Press 0:</strong>
+                                                                                                                        Reset
+                                                                                                                        slider
+                                                                                                                        to
+                                                                                                                        default
+                                                                                                                        value.
+                                                                                                    </p>
+
+                                                                                                    <p>All slider changes
+                                                                                                                        are
+                                                                                                                        announced
+                                                                                                                        for
+                                                                                                                        screen
+                                                                                                                        readers
+                                                                                                                        using
+                                                                                                                        ARIA
+                                                                                                                        live
+                                                                                                                        regions.
+                                                                                                    </p>
+                                                                                                    <h2>Full MIDI Support
+                                                                                                                        and
+                                                                                                                        Mapping
+                                                                                                    </h2>
+                                                                                                    <p>Access Mod includes
+                                                                                                                        full
+                                                                                                                        MIDI
+                                                                                                                        controller
+                                                                                                                        support.
+                                                                                                                        You
+                                                                                                                        can
+                                                                                                                        map
+                                                                                                                        hardware
+                                                                                                                        MIDI
+                                                                                                                        knobs,
+                                                                                                                        sliders,
+                                                                                                                        or
+                                                                                                                        buttons
+                                                                                                                        to
+                                                                                                                        any
+                                                                                                                        available
+                                                                                                                        parameter.
+                                                                                                    </p>
+
+                                                                                                    <p><strong>MIDI Learn
+                                                                                                                                            Mode:</strong>
+                                                                                                                        Click
+                                                                                                                        the
+                                                                                                                        map
+                                                                                                                        button
+                                                                                                                        in
+                                                                                                                        the
+                                                                                                                        CC
+                                                                                                                        Mapper
+                                                                                                                        section
+                                                                                                                        then
+                                                                                                                        move
+                                                                                                                        a
+                                                                                                                        control
+                                                                                                                        on
+                                                                                                                        your
+                                                                                                                        MIDI
+                                                                                                                        device
+                                                                                                                        to
+                                                                                                                        bind
+                                                                                                                        it
+                                                                                                                        to
+                                                                                                                        the
+                                                                                                                        selected
+                                                                                                                        parameter.
+                                                                                                    </p>
+
+                                                                                                    <p>Mapped parameters are
+                                                                                                                        fully
+                                                                                                                        accessible:
+                                                                                                    </p>
+                                                                                                    <ul
+                                                                                                                        style="list-style-type: none; padding-left: 0;">
+                                                                                                                        <li>- Moving a MIDI control
+                                                                                                                                            announces
+                                                                                                                                            the
+                                                                                                                                            updated
+                                                                                                                                            parameter
+                                                                                                                                            value
+                                                                                                                                            to
+                                                                                                                                            screen
+                                                                                                                                            readers.
+                                                                                                                        </li>
+                                                                                                                        <li>- MIDI mappings persist
+                                                                                                                                            through
+                                                                                                                                            patch
+                                                                                                                                            saving
+                                                                                                                                            and
+                                                                                                                                            loading.
+                                                                                                                        </li>
+                                                                                                                        <li>- Both keyboard users
+                                                                                                                                            and
+                                                                                                                                            pointer
+                                                                                                                                            users
+                                                                                                                                            can
+                                                                                                                                            perform
+                                                                                                                                            MIDI
+                                                                                                                                            mapping.
+                                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                    <h2>Drag-and-Drop Patching
+                                                                                                    </h2>
+                                                                                                    <p>Patch module outputs
+                                                                                                                        to
+                                                                                                                        inputs
+                                                                                                                        using
+                                                                                                                        the
+                                                                                                                        keyboard
+                                                                                                                        or
+                                                                                                                        a
+                                                                                                                        pointing
+                                                                                                                        device.
+                                                                                                    </p>
+                                                                                                    <p><strong>Pick up an
+                                                                                                                                            output:</strong>
+                                                                                                                        navigate
+                                                                                                                        to
+                                                                                                                        an
+                                                                                                                        output
+                                                                                                                        and
+                                                                                                                        press
+                                                                                                                        Spacebar.
+                                                                                                    </p>
+                                                                                                    <p><strong>Drop to an
+                                                                                                                                            input:</strong>
+                                                                                                                        navigate
+                                                                                                                        to
+                                                                                                                        an
+                                                                                                                        input
+                                                                                                                        and
+                                                                                                                        press
+                                                                                                                        Spacebar
+                                                                                                                        again.
+                                                                                                    </p>
+                                                                                                    <p>Outputs can be dragged
+                                                                                                                        with
+                                                                                                                        a
+                                                                                                                        mouse
+                                                                                                                        as
+                                                                                                                        usual.
+                                                                                                    </p>
+                                                                                                    <p>Outputs and Inputs
+                                                                                                                        are
+                                                                                                                        clearly
+                                                                                                                        labeled
+                                                                                                                        and
+                                                                                                                        fully
+                                                                                                                        keyboard
+                                                                                                                        accessible.
+                                                                                                    </p>
+
+
+
+                                                                                                    <h2>Preset Management
+                                                                                                    </h2>
+                                                                                                    <p><strong>Save Preset:</strong>
+                                                                                                                        Enter
+                                                                                                                        a
+                                                                                                                        name
+                                                                                                                        and
+                                                                                                                        save
+                                                                                                                        your
+                                                                                                                        current
+                                                                                                                        patch.
+                                                                                                    </p>
+                                                                                                    <p><strong>Load Preset:</strong>
+                                                                                                                        Select
+                                                                                                                        a
+                                                                                                                        saved
+                                                                                                                        preset
+                                                                                                                        and
+                                                                                                                        apply
+                                                                                                                        it.
+                                                                                                    </p>
+                                                                                                    <p><strong>Export Presets:</strong>
+                                                                                                                        Save
+                                                                                                                        presets
+                                                                                                                        to
+                                                                                                                        a
+                                                                                                                        file
+                                                                                                                        (.json).
+                                                                                                    </p>
+                                                                                                    <p><strong>Import Presets:</strong>
+                                                                                                                        Load
+                                                                                                                        presets
+                                                                                                                        from
+                                                                                                                        a
+                                                                                                                        file
+                                                                                                                        (.json).
+                                                                                                    </p>
+
+                                                                                                    <p>Presets save all slider
+                                                                                                                        positions,
+                                                                                                                        patching,
+                                                                                                                        module
+                                                                                                                        settings,
+                                                                                                                        and
+                                                                                                                        color
+                                                                                                                        choices.
+                                                                                                    </p>
+                                                                                                    <p><strong>To learn more take the tour which
+                                                                                                                                            guides
+                                                                                                                                            you
+                                                                                                                                            through
+                                                                                                                                            the
+                                                                                                                                            interface.
+                                                                                                                                            Try
+                                                                                                                                            the
+                                                                                                                                            tutorials
+                                                                                                                                            to
+                                                                                                                                            learn
+                                                                                                                                            more.
+                                                                                                                                            The
+                                                                                                                                            tutorials
+                                                                                                                                            set
+                                                                                                                                            the
+                                                                                                                                            parameters
+                                                                                                                                            for
+                                                                                                                                            you
+                                                                                                                                            while
+                                                                                                                                            you
+                                                                                                                                            read
+                                                                                                                                            the
+                                                                                                                                            descriptions.
+                                                                                                                                            Have
+                                                                                                                                            fun
+                                                                                                                                            and
+                                                                                                                                            enjoy!</strong>
+                                                                                                    </p>
+                                                                                </div>
+
+
+                                                                                <button id="closeManual">Close</button>
+                                                            </div>
+                                        </div>
+
                                         <button id="start-tour-button" class="button">Start Tour</button>
                                         <button id="start-tutorial-button" class="button">Start Tutorial</button>
                                         <button id="toggleAccess" aria-expanded="false" role="button"
                                                             aria-controls="menu">Show Page
                                                             Settings</button>
+
                     </div>
 
                     <div id="accessDiv" class="hidden" style="text-align: center;">
@@ -6889,6 +7273,7 @@
                     <script src="slider_helper/slider_helper.js"></script>
                     <script src="../hitch/hitchhickerAM.js"></script>
                     <script src="tutorial/auto-tutor.js"></script>
+                    <script src="manual.js"></script>
 
 
 
