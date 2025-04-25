@@ -2,7 +2,6 @@ let originalImageData;
 const imageCanvas = document.getElementById("imageCanvas");
 const ctx = imageCanvas.getContext("2d");
 
-<<<<<<< HEAD
 document
   .getElementById("imageUpload")
   .addEventListener("change", function (event) {
@@ -47,57 +46,11 @@ document
 let pipetteMode = null; // To track which color picker is active for selection
 
 // Add event listener for the delete button
-=======
-document.getElementById("imageUpload").addEventListener("change", function (event) {
-  const file = event.target.files[0];
-  const reader = new FileReader();
-
-  reader.onload = function (e) {
-    const img = new Image();
-    img.crossOrigin = "Anonymous"; // Ensure no cross-origin issues
-
-    img.onload = function () {
-      const maxCanvasWidth = 1200;
-      const maxCanvasHeight = 1000;
-
-      const aspectRatio = img.width / img.height;
-      let newWidth = img.width;
-      let newHeight = img.height;
-
-      if (newWidth > maxCanvasWidth) {
-        newWidth = maxCanvasWidth;
-        newHeight = newWidth / aspectRatio;
-      }
-      if (newHeight > maxCanvasHeight) {
-        newHeight = maxCanvasHeight;
-        newWidth = newHeight * aspectRatio;
-      }
-
-      imageCanvas.width = newWidth;
-      imageCanvas.height = newHeight;
-
-      // Draw the resized image on the canvas
-      ctx.drawImage(img, 0, 0, newWidth, newHeight);
-      originalImageData = ctx.getImageData(0, 0, newWidth, newHeight);
-    };
-
-    img.src = e.target.result; // Use the dataURL from the FileReader
-  };
-
-  reader.readAsDataURL(file); // Ensure it's read as a data URL
-});
-
-
-let pipetteMode = null; // To track which color picker is active for selection
-
-// When deleting the image, clear the cache by refreshing the canvas content
->>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
 document.getElementById("deleteImage").addEventListener("click", function () {
   // Clear the canvas
   ctx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
 
   // Reset the canvas dimensions (helps in some Safari cases)
-<<<<<<< HEAD
   imageCanvas.width = imageCanvas.width; // Reset width
   imageCanvas.height = imageCanvas.height; // Reset height
 
@@ -116,25 +69,6 @@ document.getElementById("deleteImage").addEventListener("click", function () {
     imageCanvas.width / 2 - 60,
     imageCanvas.height / 2
   );
-=======
-  imageCanvas.width = imageCanvas.width; 
-  imageCanvas.height = imageCanvas.height;
-
-  // Clear any cached image data by resetting src of the image element
-  let img = new Image();
-  img.src = ""; // Clear src for reset
-  originalImageData = null;
-
-  //Remove file name
-  document.getElementById("imageUpload").value = "";
-  
-  // Display a placeholder 
-  ctx.fillStyle = "#f0f0f0"; 
-  ctx.fillRect(0, 0, imageCanvas.width, imageCanvas.height);
-  ctx.font = "20px Arial";
-  ctx.fillStyle = "#000000"; 
-  ctx.fillText("Image Removed", imageCanvas.width / 2 - 60, imageCanvas.height / 2);
->>>>>>> 36c234ac43345e674f5a511f5fc4c7df2e8b7c34
 });
 
 // Function to get the RGB color from a canvas pixel
