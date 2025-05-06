@@ -9,7 +9,8 @@
 
 <body>
                     <header>
-                                        <h1>Accessible Projects And Tools</h1>
+                                        <h1 style="justify-self: center;">Alien Instruments Accessible Projects And
+                                                            Tools</h1>
                     </header>
 
                     <!-- Custom Modal -->
@@ -33,7 +34,7 @@
                     </div>
 
                     <div id="accessDiv" class="hidden" style="text-align: center;">
-                                        <div id="preset-container">
+                                        <div id="preset-container" class="preset-tour">
                                                             <div class="presets-panel panel">
                                                                                 <label for="preset-name">Save
                                                                                                     Presets
@@ -242,33 +243,34 @@
                                         <div class="main">
 
                                                             <div class="slider-container panel" id="letter-tour">
-                                                                                <label for="letter-spacing-slider">Letter
+                                                                                <label
+                                                                                                    for="access_letter-spacing-slider">Letter
                                                                                                     Spacing</label>
                                                                                 <input role="slider" aria-label="Letter Spacing"
                                                                                                     type="range" min="0"
                                                                                                     max="0.2" value="0"
                                                                                                     step="0.01"
-                                                                                                    id="letter-spacing-slider">
+                                                                                                    id="access_letter-spacing-slider">
                                                             </div>
 
                                                             <div class="slider-container panel" id="word-tour">
-                                                                                <label for="word-spacing-slider">Word
+                                                                                <label for="access_word-spacing-slider">Word
                                                                                                     Spacing</label>
                                                                                 <input role="slider" aria-label="Word Spacing"
                                                                                                     type="range" min="0"
                                                                                                     max="0.5" value="0"
                                                                                                     step="0.01"
-                                                                                                    id="word-spacing-slider">
+                                                                                                    id="access_word-spacing-slider">
                                                             </div>
 
                                                             <div class="slider-container panel" id="line-tour">
-                                                                                <label for="line-spacing-slider">Line
+                                                                                <label for="access_line-spacing-slider">Line
                                                                                                     Spacing</label>
                                                                                 <input role="slider" aria-label="Line Spacing"
                                                                                                     type="range" min="1"
                                                                                                     max="2" value="1"
                                                                                                     step="0.1"
-                                                                                                    id="line-spacing-slider">
+                                                                                                    id="access_line-spacing-slider">
                                                             </div>
                                         </div>
 
@@ -420,7 +422,7 @@
                                                                                                                         type="color"
                                                                                                                         id="key-font-colour-picker">
                                                                                 </div>
-                                                                                <label for="Test-input">Test</label>
+
                                                                                 <input aria-label="Test Input/Visual Purposes Only"
                                                                                                     style="width: 170px; height: 50px;"
                                                                                                     type="text"
@@ -543,23 +545,6 @@
                                                                                                     aria-pressed="false">
                                                                                                     REMOVE<br>GRADIENT
                                                                                 </button>
-
-                                                                                <div class="checkbox-wrapper"
-                                                                                                    style="border: none;">
-                                                                                                    <input aria-label="Togggle Gradients"
-                                                                                                                        role="checkbox"
-                                                                                                                        type="checkbox"
-                                                                                                                        id="toggle-gradients">
-                                                                                                    <label aria-hidden="true"
-                                                                                                                        class="radiobutton"
-                                                                                                                        for="toggle-gradients">
-                                                                                                                        <span
-                                                                                                                                            class="led-indicator"></span>
-                                                                                                                        Remove<br>
-                                                                                                                        Gradient
-                                                                                                    </label>
-                                                                                </div>
-
                                                             </div>
 
 
@@ -625,11 +610,11 @@
                                                                                 <div class="slider-container panel"
                                                                                                     id="border-tour">
                                                                                                     <label
-                                                                                                                        for="border-radius-slider">Border
+                                                                                                                        for="access_border-radius-slider">Border
                                                                                                                         Radius</label>
                                                                                                     <input role="slider" aria-label="Border Radius"
                                                                                                                         type="range"
-                                                                                                                        id="border-radius-slider"
+                                                                                                                        id="access_border-radius-slider"
                                                                                                                         min="1"
                                                                                                                         max="15"
                                                                                                                         step="1"
@@ -638,27 +623,24 @@
                                                                                 <div class="slider-container panel"
                                                                                                     id="thickness-tour">
                                                                                                     <label
-                                                                                                                        for="border-thickness-slider">Border
+                                                                                                                        for="access_border-thickness-slider">Border
                                                                                                                         Thickness</label>
                                                                                                     <input role="slider" aria-label="Border Thickness"
                                                                                                                         type="range"
-                                                                                                                        id="border-thickness-slider"
+                                                                                                                        id="access_border-thickness-slider"
                                                                                                                         min="1"
                                                                                                                         max="5"
                                                                                                                         step="1"
                                                                                                                         value="1">
                                                                                 </div>
-
-
-
                                                                                 <div class="slider-container panel"
                                                                                                     id="focus-tour">
                                                                                                     <label
-                                                                                                                        for="focus-size-slider">Focus
+                                                                                                                        for="access_focus-size-slider">Focus
                                                                                                                         Size</label>
                                                                                                     <input role="slider" aria-label="Focus Size"
                                                                                                                         type="range"
-                                                                                                                        id="focus-size-slider"
+                                                                                                                        id="access_focus-size-slider"
                                                                                                                         min="1"
                                                                                                                         max="8"
                                                                                                                         value="4">
@@ -669,7 +651,8 @@
                     </div>
 
                     <div>
-                                        <h2>Visual Impairment Filters and Colour Contrast Checker</h2>
+                                        <h2 style="justify-self: center;">Visual Impairment Filters and Colour Contrast
+                                                            Checker</h2>
                                         <p>Building accessible software and websites is crucial to ensuring that
                                                             everyone, including visually impaired and blind users, can
                                                             engage with digital content. This tool is designed to help
@@ -689,7 +672,8 @@
 
                     </div>
                     <div>
-                                        <h2>Alien Instruments Access Mod: Sound Design for Everyone</h2>
+                                        <h2 style="justify-self: center;">Alien Instruments Access Mod: Sound Design for
+                                                            Everyone</h2>
 
                                         <p>
                                                             Access Mod is a fully accessible, web-based modular
@@ -710,7 +694,8 @@
                     </div>
 
                     <div style="padding: 10px;">
-                                        <h2>Alien Instruments UBIK: The Talking MIDI Mapper</h2>
+                                        <h2 style="justify-self: center;">Alien Instruments UBIK: The Talking MIDI
+                                                            Mapper</h2>
                                         <p>Welcome to Alien Instruments UBIK, the talking MIDI mapping solution. Create
                                                             groups for your controls and start
                                                             adding sliders and buttons to send MIDI CC’s. Completely
@@ -745,6 +730,89 @@
                                         <a role="link" aria-label="Go To Access Mod. Opens In New Page"
                                                             href="Ubik/index.html">UBIK</a>
 
+                    </div>
+
+                    <div>
+                                        <section>
+                                                            <h2>Alien Instruments Poly Synth</h2>
+                                                            <p>A new generation of accessible music technology.</p>
+
+                                                            <p><strong>Alien Instruments Poly Synth</strong> is a fully
+                                                                                polyphonic web-based synthesizer
+                                                                                designed for <em>everyone</em>.
+                                                                                Play directly from your computer
+                                                                                keyboard, connect any MIDI device, or
+                                                                                even shape your sound with your voice.
+                                                            </p>
+
+                                                            <p>At the heart of the project is a strong focus on
+                                                                                <strong>accessibility and
+                                                                                                    customization</strong>:
+                                                            </p>
+
+                                                            <ul>
+                                                                                <li><strong>Dual Interface
+                                                                                                                        Modes:</strong><br>
+                                                                                                    •
+                                                                                                    <em>Skeuomorphic</em>:
+                                                                                                    A rich, tactile
+                                                                                                    visual experience
+                                                                                                    inspired by classic
+                                                                                                    hardware.<br>
+                                                                                                    • <em>Customizable
+                                                                                                                        UI</em>:
+                                                                                                    Total control over
+                                                                                                    page settings —
+                                                                                                    adjust color
+                                                                                                    schemes, font types,
+                                                                                                    sizes, contrast
+                                                                                                    levels, and choose
+                                                                                                    from a variety of
+                                                                                                    slider styles for
+                                                                                                    maximum comfort and
+                                                                                                    clarity.
+                                                                                </li>
+                                                                                <li><strong>Voice-Control
+                                                                                                                        System:</strong><br>
+                                                                                                    Issue spoken
+                                                                                                    commands to tweak
+                                                                                                    parameters, map
+                                                                                                    controls, and create
+                                                                                                    sounds hands-free.
+                                                                                </li>
+                                                                                <li><strong>Professional Audio
+                                                                                                                        Effects:</strong><br>
+                                                                                                    Shape your tone with
+                                                                                                    built-in <em>Dimension
+                                                                                                                        Expander</em>,
+                                                                                                    <em>Delay</em>, and
+                                                                                                    a <em>Three-Band
+                                                                                                                        EQ</em>
+                                                                                                    for deep, spatial
+                                                                                                    sound design.
+                                                                                </li>
+                                                            </ul>
+
+                                                            <p>Built using cutting-edge Web Audio technology,
+                                                                                <strong>Alien Instruments Poly
+                                                                                                    Synth</strong> is
+                                                                                made to empower all creators — no
+                                                                                barriers, no limits.
+                                                            </p>
+                                        </section>
+
+
+                                        <p>This project uses custom rotary knobs and has its own set of accessibility
+                                                            settings.Choose the interface style from the links below,
+                                                            you can change this in
+                                                            either UI at anytime and all settings are shared.</p>
+                                        <a role="link" aria-label="Go To Poly Synth Skeuomorphic. Opens In New Page"
+                                                            href="PolySynth/dist/poly.html">Poly Synth Skeuomorphic
+                                                            Interface</a><br><br>
+
+                                        <a role="link" aria-label="Go To Poly Synth Custom. Opens In New Page"
+                                                            href="PolySynth/dist/poly2.html">Poly Synth Custom
+                                                            Interface</a>
                     </div>
                     <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

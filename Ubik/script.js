@@ -1045,36 +1045,11 @@ function speakFloat(paramId, value) {
   speak(`${paramId} set to ${Number(value).toFixed(2)}`);
 }
 
-function createUtterance(text) {
-  const speechText = text || document.getElementById("speech-text").value;
-  const speechPitch =
-    parseFloat(document.getElementById("speech-pitch").value) / 100;
-  const speechRate =
-    parseFloat(document.getElementById("speech-rate").value) / 100;
-  const speechVolume =
-    parseFloat(document.getElementById("speech-volume").value) / 100;
-  const speechVoiceIndex = parseInt(
-    document.getElementById("speech-voice").value
-  );
-
-  const utterance = new SpeechSynthesisUtterance(speechText);
-  utterance.pitch = speechPitch;
-  utterance.rate = speechRate;
-  utterance.volume = speechVolume;
-
-  const voices = window.speechSynthesis.getVoices();
-  if (voices[speechVoiceIndex]) {
-    utterance.voice = voices[speechVoiceIndex];
-  } else {
-    console.warn("Selected voice is not available.");
-  }
-
-  return utterance;
-}
-
 function speak(text) {
-  const utterance = createUtterance(text);
-  window.speechSynthesis.speak(utterance);
+  const live = document.getElementById("aria-live");
+  if (!live) return;
+  live.textContent = "";
+  setTimeout(() => (live.textContent = text), 10);
 }
 
 function enableMidiLearn(paramId) {
@@ -1099,110 +1074,6 @@ function loadMidiMappings() {
     midiMapping = JSON.parse(storedMappings);
   }
 }
-
-function populateVoiceList() {
-  const voices = window.speechSynthesis.getVoices();
-  const voiceSelect = document.getElementById("speech-voice");
-  voiceSelect.innerHTML = ""; // Clear existing options
-
-  voices.forEach((voice, index) => {
-    const option = document.createElement("option");
-    option.textContent = `${voice.name} (${voice.lang})`;
-    option.value = index;
-    voiceSelect.appendChild(option);
-  });
-
-  const savedVoiceIndex = localStorage.getItem("speech-voice");
-  if (savedVoiceIndex !== null) {
-    voiceSelect.value = savedVoiceIndex;
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  loadMidiMappings();
-  populateVoiceList();
-  window.speechSynthesis.onvoiceschanged = populateVoiceList;
-
-  document
-    .getElementById("speech-pitch")
-    .addEventListener("input", function () {
-      document.getElementById("pitch-output").textContent = this.value;
-      saveSettings();
-    });
-
-  document.getElementById("speech-rate").addEventListener("input", function () {
-    document.getElementById("rate-output").textContent = this.value;
-    saveSettings();
-  });
-
-  document
-    .getElementById("speech-volume")
-    .addEventListener("input", function () {
-      document.getElementById("volume-output").textContent = this.value;
-      saveSettings();
-    });
-
-  document
-    .getElementById("speech-voice")
-    .addEventListener("change", function () {
-      saveSettings();
-    });
-
-  function updateOutputValues() {
-    document.getElementById("pitch-output").textContent =
-      document.getElementById("speech-pitch").value;
-    document.getElementById("rate-output").textContent =
-      document.getElementById("speech-rate").value;
-    document.getElementById("volume-output").textContent =
-      document.getElementById("speech-volume").value;
-  }
-
-  updateOutputValues(); // Initialize output values on page load
-
-  function loadSettings() {
-    const pitch = localStorage.getItem("speech-pitch");
-    const rate = localStorage.getItem("speech-rate");
-    const volume = localStorage.getItem("speech-volume");
-    const voiceIndex = localStorage.getItem("speech-voice");
-
-    if (pitch !== null) document.getElementById("speech-pitch").value = pitch;
-    if (rate !== null) document.getElementById("speech-rate").value = rate;
-    if (volume !== null)
-      document.getElementById("speech-volume").value = volume;
-    if (voiceIndex !== null)
-      document.getElementById("speech-voice").value = voiceIndex;
-    updateOutputValues();
-  }
-
-  function saveSettings() {
-    localStorage.setItem(
-      "speech-pitch",
-      document.getElementById("speech-pitch").value
-    );
-    localStorage.setItem(
-      "speech-rate",
-      document.getElementById("speech-rate").value
-    );
-    localStorage.setItem(
-      "speech-volume",
-      document.getElementById("speech-volume").value
-    );
-    localStorage.setItem(
-      "speech-voice",
-      document.getElementById("speech-voice").value
-    );
-  }
-
-  window.onload = function () {
-    loadSettings();
-    populateVoiceList();
-  };
-
-  document.getElementById("speak-button").addEventListener("click", () => {
-    const utterance = createUtterance();
-    window.speechSynthesis.speak(utterance);
-  });
-});
 
 document.addEventListener("DOMContentLoaded", function () {
   populateBankSelect();
@@ -1248,20 +1119,6 @@ function sendProgramChangeMessage() {
     console.error("No MIDI output selected.");
   }
 }
-
-//div toggles for menus
-document
-  .getElementById("toggleVoiceSettings")
-  .addEventListener("click", function () {
-    const voiceSettingsDiv = document.getElementById("voiceSettingsDiv");
-    voiceSettingsDiv.classList.toggle("hidden");
-
-    if (voiceSettingsDiv.classList.contains("hidden")) {
-      this.textContent = "Show Voice Settings";
-    } else {
-      this.textContent = "Hide Voice Settings";
-    }
-  });
 
 document
   .getElementById("toggleMIDISettings")

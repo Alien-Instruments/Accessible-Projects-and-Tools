@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="../polySynth/polySynth2.css">
+
+
+</head>
+
+
+<body class="letterSpacing wordSpacing">
+
+  <button id="start-tour-button" class="button">Start Tour</button>
+
+
+  <!-- Custom Tour Modal Structure -->
+  <div id="custom-tour-modal" class="custom-modal" tabindex="-1" role="dialog" aria-labelledby="custom-tour-title"
+    aria-hidden="true" style="display:none;">
+    <div class="custom-modal-content">
+      <h2 id="custom-tour-title">Tour Step Title</h2>
+      <h3 id="custom-tour-text">Tour step content goes here.</h3>
+      <div class="custom-modal-buttons">
+        <button id="custom-next-step" class="button">Next</button>
+        <button id="custom-prev-step" class="button" style="display:none;">Previous</button>
+        <button id="custom-close-tour" class="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <h1>Alien Instruments POLY SYNTH</h1>
+
+  <div id="menu" tabindex="-1">
+    <button id="midi-tour" onclick="openMidiLearnMenu()">Open MIDI Settings</button>
+    <div id="midi-learn-menu" style="display: none;">
+      <div id="controls">
+
+        <div class="checkbox-wrapper" style="border: none;" id="input-mode-tour">
+          <input type="checkbox" id="input-method-toggle">
+          <label class="radiobutton" for="input-method-toggle">
+            <span class="led-indicator"></span>
+            Musical Typing Off
+          </label>
+        </div>
+
+        <label for="midi-inputs">MIDI Input</label>
+        <select id="midi-inputs">
+          <option value="none">No MIDI input</option>
+        </select>
+        <label for="midi-channel">MIDI Channel</label>
+        <select id="midi-channel">
+          <!-- MIDI channels are 1-16 -->
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+        </select>
+
+        <div class="checkbox-wrapper" style="border: none;" id="speak-tour">
+          <input type="checkbox" id="speak-midi-toggle">
+          <label class="radiobutton" for="speak-midi-toggle">
+            <span class="led-indicator"></span>
+            Speak Values
+          </label>
+        </div>
+      </div>
+      <h1>MIDI Learn</h1>
+      <div class="midi-learn" id="midi-learn-tour">
+        <div style="display: flex; flex-direction: column;">
+          <p>EQ</p>
+          <button id="low-freq-learn" onclick="enableMidiLearn('low-frequency')">EQ Low Frequency</button>
+          <button id="low-gain-learn" onclick="enableMidiLearn('low-gain')">EQ Low Gain</button>
+          <button id="mid-freq-learn" onclick="enableMidiLearn('mid-frequency')">EQ Mid Frequency</button>
+          <button id="mid-gain-learn" onclick="enableMidiLearn('mid-gain')">EQ Mid Gain</button>
+          <button id="mid-peak-learn" onclick="enableMidiLearn('mid-peak')">EQ Mid Peak</button>
+          <button id="high-freq-learn" onclick="enableMidiLearn('high-frequency')">EQ High Frequency</button>
+          <button id="high-gain-learn" onclick="enableMidiLearn('high-gain')">EQ High Gain</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <p>Expander</p>
+          <button id="expander-wet-learn" onclick="enableMidiLearn('expander-wet')">Expander Wet</button>
+          <button id="expander-feed-learn" onclick="enableMidiLearn('expander-feedback')">Expander Feedback</button>
+          <button id="expander-time-learn" onclick="enableMidiLearn('expander-space-time')">Expander Space
+            Time</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <p>Delay</p>
+          <button id="delay-wet-learn" onclick="enableMidiLearn('delay-wet')">Delay Wet</button>
+          <button id="delay-feed-learn" onclick="enableMidiLearn('delay-feedback')">Delay Feedback</button>
+          <button id="delay-time-learn" onclick="enableMidiLearn('delay-time')">Delay Time</button>
+          <button id="delay-low-learn" onclick="enableMidiLearn('delay-frequency')">Delay Low Cut</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <p>Synth</p>
+          <button id="oscillators-learn" onclick="enableMidiLearn('oscillators')">Oscillator Count</button>
+          <button id="detune-learn" onclick="enableMidiLearn('detune')">Oscillator De-Tune</button>
+          <button id="attack-learn" onclick="enableMidiLearn('amp-attack')">Amp Attack</button>
+          <button id="decay-learn" onclick="enableMidiLearn('amp-decay')">Amp Decay</button>
+          <button id="sustain-learn" onclick="enableMidiLearn('amp-sustain')">Amp Sustain</button>
+          <button id="release-learn" onclick="enableMidiLearn('amp-release')">Amp Release</button>
+          <button id="depth-learn" onclick="enableMidiLearn('lfo-depth')">LFO Depth</button>
+          <button id="rate-learn" onclick="enableMidiLearn('lfo-rate')">LFO Rate</button>
+          <button id="filter-gain-learn" onclick="enableMidiLearn('filter-gain')">Filter Gain</button>
+          <button id="filter-freq-learn" onclick="enableMidiLearn('filter-frequency')">Filter Frequency</button>
+          <button id="resonance-learn" onclick="enableMidiLearn('filter-resonance')">Filter Resonance</button>
+        </div>
+      </div>
+      <button id="close-midi-tour" onclick="closeMidiLearnMenu()">Close</button>
+    </div>
+
+
+
+
+
+
+    <div>
+      <button id="inter-tour" class="button wordSpacing letterSpacing"
+        onclick="window.location.href='poly.html'">Skeuomorphic
+        Interface</button>
+
+      <button class="button wordSpacing letterSpacing" id="togglePreset">Show Presets</button>
+    </div>
+
+    <div class="hidden" id="presetDiv">
+      <input type="text" id="audio-preset-name" placeholder="Enter audio preset name">
+      <button id="save-audio-preset">Save Audio Preset</button>
+      <select style="width: 300px;" id="audio-preset-list">
+        <option value="">Select Audio Preset</option>
+      </select>
+    </div>
+
+    <div>
+      <button class="button wordSpacing letterSpacing" id="toggleHotkeys">Show Hotkey Map</button>
+      <!-- <button class="button wordSpacing letterSpacing" id="toggleVoiceSettings">Show Voice Settings</button> -->
+      <button id="toggleAccess" class="button wordSpacing letterSpacing">Show Interface Settings</button>
+      <button class="button wordSpacing letterSpacing" id="openModalBtn">Open Manual</button>
+    </div>
+
+
+
+
+    <!-- The modal -->
+    <div id="accessDiv" class="hidden" style="text-align: center;">
+      <div class="main" id="preset-tour">
+        <input type="text" id="preset-name" placeholder="Enter preset name">
+        <button id="save-preset">Save Access Preset</button>
+        <select style="width: 300px;" id="preset-list">
+          <option value="">Select a preset</option>
+        </select>
+      </div>
+      <h2>Font Settings</h2>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+        <div class="font" style="width: 12rem;">
+          <label for="font-size-select">Size</label>
+          <select id="font-size-select">
+            <option value="12">Small</option>
+            <option value="18">Medium</option>
+            <option value="26">Large</option>
+            <option value="32">Largest</option>
+          </select>
+        </div>
+
+        <div class="font" style="width: 12rem;">
+          <label for="bold-select">Bold</label>
+          <select id="bold-select">
+            <option value="normal">Off</option>
+            <option value="bold">On</option>
+          </select>
+        </div>
+
+        <div class="font" style="width: 18rem;">
+          <label for="font-family-select">Family</label>
+          <select id="font-family-select">
+            <option value="Arial">Arial</option>
+            <option value="Arial Narrow">Arial Narrow</option>
+            <option value="Times New Roman">Times N R</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Courier">Courier</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Andale Mono">Andale Mono</option>
+            <option value="Candara">Candara</option>
+            <option value="Geneva">Geneva</option>
+            <option value="Optima">Optima</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Gill Sans">Gill Sans</option>
+            <option value="Palatino">Palatino</option>
+            <option value="Monaco">Monaco</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="CustomFont">Open Dyslexic</option>
+            <option value="Luminari">Luminari</option>
+            <option value="Chalkduster">Chalkduster</option>
+            <option value="Marker Felt">Marker Felt</option>
+            <option value="Bradley Hand">Bradley Hand</option>
+          </select>
+        </div>
+
+        <div class="font" style="width: 12rem;">
+          <label for="font-style-select">Style</label>
+          <select id="font-style-select">
+            <option value="normal">Normal</option>
+            <option value="italic">Italic</option>
+            <option value="underline">Underline</option>
+          </select>
+        </div>
+
+        <div class="font" style="width: 12rem;">
+          <label for="font-variant-select">Variant</label>
+          <select id="font-variant-select">
+            <option value="normal">Normal</option>
+            <option value="small-caps">Small Caps</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="colour-tour">
+        <h2 class="styled-text">
+          Use the colour pickers below to change the colours of the page and controls.
+        </h2>
+      </div>
+
+      <div class="main">
+        <div id="page-tour">
+          <div class="color-picker-row">
+            <p>Page</p>
+          </div>
+          <div class="color-picker-row">
+            <label for="color-picker-2">Fill</label>
+            <input type="color" id="color-picker-2">
+          </div>
+          <div class="color-picker-row">
+            <label for="border-picker">Border</label>
+            <input type="color" id="border-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="color-picker">Font</label>
+            <input type="color" id="color-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="focus-color-picker">Focus</label>
+            <input type="color" id="focus-color-picker">
+          </div>
+        </div>
+
+        <div id="button-tour">
+          <div class="color-picker-row">
+            <p>Button</p>
+          </div>
+          <div class="color-picker-row">
+            <label for="color-picker-5">Fill</label>
+            <input type="color" id="color-picker-5">
+          </div>
+          <div class="color-picker-row">
+            <label for="button-border-picker">Border</label>
+            <input type="color" id="button-border-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="button-font-picker">Font</label>
+            <input type="color" id="button-font-picker">
+          </div>
+          <div class="testButton" style="border: none;">
+            <button class="button wordSpacing letterSpacing">Button</button>
+          </div>
+        </div>
+
+        <div id="select-tour">
+          <div class="color-picker-row">
+            <p>Select</p>
+          </div>
+          <div class="color-picker-row">
+            <label for="select-background-picker">Fill</label>
+            <input type="color" id="select-background-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="select-border-picker">Border</label>
+            <input type="color" id="select-border-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="select-font-picker">Font</label>
+            <input type="color" id="select-font-picker">
+          </div>
+          <div class="testSelect" style="border: none;">
+            <select id="font-test-select">
+              <option value="20" selected>Option</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="main">
+        <div id="slider-tour">
+          <div class="color-picker-row">
+            <p>Slider</p>
+          </div>
+          <div class="color-picker-row">
+            <label for="color-picker-3">Fill</label>
+            <input type="color" id="color-picker-3">
+          </div>
+          <div class="color-picker-row">
+            <label for="slider-outline-picker">Border</label>
+            <input type="color" id="slider-outline-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="color-picker-4">Tick</label>
+            <input type="color" id="color-picker-4">
+          </div>
+        </div>
+
+        <div id="panel-tour">
+          <div class="color-picker-row">
+            <p>Panel</p>
+          </div>
+          <div class="color-picker-row">
+            <label for="panel-background-picker">Fill</label>
+            <input type="color" id="panel-background-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="panel-border-picker">Border</label>
+            <input type="color" id="panel-border-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="panel-gradient-picker">Gradient</label>
+            <input type="color" id="panel-gradient-picker">
+          </div>
+        </div>
+        <div style="border: none;" id="test-slider-tour">
+          <div class="center">
+            <label aria-hidden="true" for="test">Slider</label>
+            <div class='range-knob-wrapper' style="border: none;">
+              <input aria-label="Test Slider" class="slider" id='test' max='100' min='0' step="1" type='range'
+                value="1">
+              <div class='range-knob'></div>
+            </div>
+            <span aria-hidden="true">100</span>
+          </div>
+          <div class="knobSelect" style="border: none; text-align: center;">
+
+            <label for="knob-design-select">Dial Style</label><br>
+            <select id="knob-design-select">
+              <option value="classic">Classic Dial</option>
+              <option value="minimal">Minimal Dial</option>
+              <option value="fancy">Fancy Dial</option>
+              <option value="retro">Retro Dial</option>
+              <option value="modern">Modern Dial</option>
+              <option value="neon">Neon Dial</option>
+              <option value="flat">Flat Dial</option>
+              <option value="shadow">Shadow Dial</option>
+              <option value="outline">Outline Dial</option>
+              <option value="glow">Glow Dial</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="label-tour">
+          <div class="color-picker-row">
+            <p>Label</p>
+          </div>
+          <div class="color-picker-row">
+            <label for="label-background-picker">Fill</label>
+            <input type="color" id="label-background-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="label-border-picker">Border</label>
+            <input type="color" id="label-border-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="label-font-picker">Font</label>
+            <input type="color" id="label-font-picker">
+          </div>
+        </div>
+
+        <div id="output-tour">
+          <div class="color-picker-row">
+            <p>Output</p>
+          </div>
+          <div class="color-picker-row">
+            <label for="output-background-picker">Fill</label>
+            <input type="color" id="output-background-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="output-border-picker">Border</label>
+            <input type="color" id="output-border-picker">
+          </div>
+          <div class="color-picker-row">
+            <label for="output-font-picker">Font</label>
+            <input type="color" id="output-font-picker">
+          </div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="volume-container" id="border-tour">
+          <label for="border-radius-slider">Border Radius</label><br>
+          <input type="range" id="border-radius-slider" min="1" max="15" step="1" value="10">
+        </div>
+
+        <div class="volume-container" id="focus-tour">
+          <label for="focus-size-slider">Focus Size</label><br>
+          <input type="range" id="focus-size-slider" min="1" max="8" value="4">
+        </div>
+
+        <div class="volume-container" id="letter-tour">
+          <label for="letter-spacing-slider">Letter Spacing</label><br>
+          <input type="range" min="0" max="0.2" value="0" step="0.01" id="letter-spacing-slider"><br>
+        </div>
+
+        <div class="volume-container" id="word-tour">
+          <label for="word-spacing-slider">Word Spacing</label><br>
+          <input type="range" min="0" max="0.5" value="0" step="0.01" id="word-spacing-slider"><br>
+        </div>
+
+        <div class="checkbox-wrapper" id="toggle-grad-tour">
+          <input type="checkbox" id="toggle-gradients">
+          <label class="radiobutton" for="toggle-gradients">
+            <span class="led-indicator"></span>
+            Remove Gradient
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal target-class">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span id="closeModalBtn" class="close">&times;</span>
+      <div class="volume-container">
+        <label for="line-spacing-slider">Line Spacing</label>
+        <input type="range" min="1" max="2" value="1" step="0.1" id="line-spacing-slider"><br>
+      </div>
+      <p>Navigation: This app can be navigated completely via key commands. Tab to move forward, Tab + Shift to move
+        backward. </p>
+
+      <p>
+        To jump between modules, use Alt +
+      </p>
+      <P>
+        C = Master Sync
+      </P>
+      <p>
+        V = Drum Machine
+      </p>
+      <p>
+        B = Bass Synth
+      </p>
+      <p>
+        N = Poly Synth Effects
+      </p>
+      <p>
+        M = Poly Synth
+      </p>
+      <p>
+        These keys can be changed via the main page.
+      </p>
+      <P>
+        To interact with dropdown menus, use down and up arrows for selection and Return to select.
+      </P>
+      <p>
+        For sliders I have added some extra commands for working with audio params in the frequency range.
+        When a slider is in focus you can use the left and right arrows to increase and decrease the value
+        by the designated step value. Holding Shift while using the arrow keys will times the step value by X10,
+        holding Shift + Ctrl + arrow keys will multiply the step value by X100. To set a slider to its minimum value
+        press 1,
+        for max value press 2, and to return to default press 0. These controls can also be used with a screen reader,
+        VoiceOver users will not need to interact with the slider to use these controls and will still get full
+        feedback.
+      </p>
+
+      <p>
+        Modules:
+      </p>
+      <p>
+        Sync Mate sets the master tempo and number of steps for the drum machine and the bass synthesisers sequencer.
+        Use the start, stop button so start and stop both sequencers. Changing tempo while playing will restart both
+        sequencers from step 1.
+      </p>
+      <p>
+        Drum Machine, use the show programmer button to reveal the full-page mixer and programmer underneath the drum
+        machine. Use the mixer panel to set the volumes for each drum sound.
+        Click on the steps in the programmer to have the drum sound play on that step. If not all the steps are shown
+        this means they are in overflow, you can use the Tab key to reveal the
+        steps or swipe with a track pad touch screen. Mouse users there is also a slider revealed to show the missing
+        steps. Use the show mutes’ button to reveal the mute buttons panel.
+        You can mute out chosen sounds and change patterns or drum sounds then bring them back in or create build ups.
+      </p>
+      <p>
+        Bass Synth is a simple single oscillator synthesiser with an amplifier envelope, filter, and bass booster. Use
+        the drop downs to select oscillator and filter types. Use the show sequencer
+        button to reveal the sequencer below the synth. The sequencer is made from drop down menus, use these to select
+        a note that will play on that step. Like the drum programmer the sequencer
+        uses overflow to fit in all the steps. Use the same controls as the drum programmer to reveal the sequencer
+        steps.
+      </p>
+      <p>
+        Poly Synth Effects combine a dimension expander with a delay. The expander is comprised of 4 separate short
+        delay lines each slightly staggered to give a wider bigger sound.
+        Use the wet/dry to blend the signals and feedback to set how much signal is fed back to the delay lines. Use
+        space/time to set the length of the delays. This is then processed through the delay stage.
+      </p>
+      <P>
+        Poly Synth is a polyphonic synthesiser emulating the Super Saw style oscillator. This adds a choice of Triangle,
+        Square and Saw waves. Select how many oscillators are stacked and use the detune control to detune all
+        oscillators.
+        The signal is the routed through the amp with an ADSR envelope. Finally passing through the modulated filter.
+        Use the LFO rate and depth to modulate the cut off frequency. Finally play the synth with your computer
+        keyboard,
+        use keys A, S, D, F, G, H, J, K, L, ;, and ‘ as the white keys and W, E, T, Y, U, O, and P as sharp/flat. Use Z
+        to transpose the keyboard down an octave and X to transpose upwards.
+      </P>
+      <h2>Voice Settings</h2>
+      <p>This project uses speech to text to control parameters and to map MIDI CC's.
+        The commands are as follows.</p>
+
+      <p>To set the value of a slider say “set 'parameter name' value”
+      <p>example “set low frequency 5000” </p>
+
+      <p>speak values as five thousand or five hundred etc.</p>
+
+      <p>To increase or decrease a slider by a value say “'parameter name' up 20” or “'parameter name' down 20”.</p>
+
+      <p>To hear the range of a slider say “'parameter name' range”.</p>
+
+      <p>To hear the contents of a drop down say “'parameter name' list”.</p>
+
+      <p>To hear the current value of a slider or menu say “current 'parameter name'”.</p>
+
+      <p>To map a MIDI CC say “'parameter name' map”.</p>
+
+      <p><strong>Parameter names list</strong></p>
+
+
+      <p>Low Frequency, Low Gain, Mid Frequency, Mid Gain, Mid Peak, High Frequency, High Gain.
+      <p>
+
+      <p>Dimension wet, Dimension Feedback, Dimension Space Time.
+      <p>
+
+      <p>Delay Wet, Delay Feedback, Delay Time, Delay Low Cut.
+      <p>
+
+      <p>Oscillator Waveform, Oscillators, Detune, Attack, Decay, Sustain, release, LFO Waveform, LFO Depth, LFO Rate,
+        Filter Type, Filter Frequency, Filter Resonance.
+      <p>
+        <button id="closeBtnInside" class="button">Close Manual</button>
+    </div>
+  </div>
+
+  <div id="hotkeysDiv" class="hidden" style="border: none;">
+    <form id="key-config-form">
+      <div style="display: flex; flex-direction: row; border: none;">
+        <div id="nav-keys-tour">
+          <p>Navigation Keys</p>
+          <div style="border: none;">
+            <label for="modifier-key">Modifier Key:</label><br>
+            <select id="modifier-key">
+              <option value="altKey">Alt</option>
+              <option value="ctrlKey">Ctrl</option>
+              <option value="shiftKey">Shift</option>
+            </select>
+          </div>
+          <div style="border: none;">
+            <label for="key-c">Sync Mate:</label><br>
+            <input type="text" id="key-c" value="c" maxlength="1">
+          </div>
+          <div style="border: none;">
+            <label for="key-v">Drum Machine:</label><br>
+            <input type="text" id="key-v" value="v" maxlength="1">
+          </div>
+          <div style="border: none;">
+            <label for="key-b">Bass Synth:</label><br>
+            <input type="text" id="key-b" value="b" maxlength="1">
+          </div>
+          <div style="border: none;">
+            <label for="key-n">Poly Synth Effects:</label><br>
+            <input type="text" id="key-n" value="n" maxlength="1">
+          </div>
+          <div style="border: none;">
+            <label for="key-m">Poly Synth:</label><br>
+            <input type="text" id="key-m" value="m" maxlength="1">
+          </div>
+        </div>
+
+        <div id="slider-help-tour">
+          <p>Slider Helpers</p>
+          <div style="border: none;">
+            <div style="border: none;">
+              <label for="modifier1">X10 Modifier:</label><br>
+              <select id="modifier1">
+                <option value="shiftKey">Shift</option>
+                <option value="ctrlKey">Ctrl</option>
+                <option value="altKey">Alt</option>
+              </select>
+            </div>
+            <div style="border: none;">
+              <label for="modifier2">X100 Modifier:</label><br>
+              <select id="modifier2">
+                <option value="shiftKey">Shift</option>
+                <option value="ctrlKey" selected>Ctrl</option>
+                <option value="altKey">Alt</option>
+              </select>
+            </div>
+          </div>
+          <div style="border: none;">
+            <label for="numberKey0">Set Slider To Default:</label><br>
+            <input type="text" id="numberKey0" value="0" maxlength="1">
+          </div>
+          <div style="border: none;">
+            <label for="numberKey1">Set Slider To Min:</label><br>
+            <input type="text" id="numberKey1" value="1" maxlength="1">
+          </div>
+          <div style="border: none;">
+            <label for="numberKey2">Set Slider To Max:</label><br>
+            <input type="text" id="numberKey2" value="2" maxlength="1">
+          </div>
+        </div>
+      </div>
+      <button id="update-tour" class="drum-button" type="submit">Update</button>
+    </form>
+  </div>
+
+  <!-- <div id="voiceSettingsDiv" class="hidden">
+
+    <div style="display: flex; flex-direction: row; border: none;">
+      <div id="pitch-tour" class="center" style="border: none;">
+        <label aria-hidden="true" for="speech-pitch">Pitch</label>
+        <div class='range-knob-wrapper' style="border: none;">
+          <input aria-label="Speech Pitch" class="slider" id='speech-pitch' max='200' min='100' step="1" type='range'
+            value="100">
+          <div class='range-knob'></div>
+        </div>
+        <span aria-hidden="true" id="pitch-output">100</span>
+      </div>
+
+      <div id="rate-tour" class="center" style="border: none;">
+        <label aria-hidden="true" for="speech-rate">Rate</label>
+        <div class='range-knob-wrapper' style="border: none;">
+          <input aria-label="Speech Rate" class="slider" id='speech-rate' max='200' min='0' step="1" type='range'
+            value="100">
+          <div class='range-knob'></div>
+        </div>
+        <span aria-hidden="true" id="rate-output">100</span>
+      </div>
+
+      <div id="volume-tour" class="center" style="border: none;">
+        <label aria-hidden="true" for="speech-volume">Volume</label>
+        <div class='range-knob-wrapper' style="border: none;">
+          <input aria-label="Speech Volume" class="slider" id='speech-volume' max='100' min='0' step="1" type='range'
+            value="100">
+          <div class='range-knob'></div>
+        </div>
+        <span aria-hidden="true" id="volume-output">100</span>
+      </div>
+    </div> -->
+
+  <!-- <div class="center-container"
+      style="display: flex; flex-direction: column; justify-content: center; border-radius: 10px;">
+      <div class="input-container" style="border: none;">
+        <label for="speech-voice">Voice:</label><br>
+        <select id="speech-voice"></select>
+      </div>
+
+      <div class="input-container" style="border: none;">
+        <label for="speech-text">Text:</label><br>
+        <input style="width: 400px;" type="text" id="speech-text" value="Hello, how can I help you today?" />
+      </div>
+
+      <button class="button" id="speak-button">Speak</button>
+
+    </div>
+  </div> -->
+
+  </div>
+
+  <div id="vics" tabindex="-1">
+    <button class="button wordSpacing letterSpacing" id="start-recognition">Start Voice Commands</button>
+    <button class="button wordSpacing letterSpacing" id="stop-recognition" disabled>Stop Voice Commands</button>
+  </div>
+
+  <div class="main">
+    <div class="EQ" id="EQ" tabindex="-1" aria-label="3 Band Equalizer">
+      <h1>3 Band Equalizer</h1>
+      <h2>Low Band</h2>
+      <div>
+        <div class="center">
+          <label aria-hidden="true" for="low-frequency">Frequency</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Low Frequency" class="slider" id='low-frequency' max='20000' min='20' step="1"
+              type='range' value="6000">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="low-frequency-value">0</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="low-gain">Gain</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Low Band Gain" class="slider" id='low-gain' max='40' min='-40' step="1" type='range'
+              value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="low-gain-value">0</span>
+        </div>
+        <!-- Low -->
+      </div>
+      <h2>Mid Band</h2>
+      <div>
+        <div class="center">
+          <label aria-hidden="true" for="mid-frequency">Frequency</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Expander Wet/Dry" class="slider" id='mid-frequency' max='20000' min='20' step="1"
+              type='range' value="1000">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="mid-frequency-value">100</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="mid-gain">Gain</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Expander Wet/Dry" class="slider" id='mid-gain' max='40' min='-40' step="1" type='range'
+              value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="mid-gain-value">0</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="mid-peak">Peak</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Quality Peak" class="slider" id='mid-peak' max='10' min='1' step="1" type='range'
+              value="1">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="mid-q-value">0</span>
+        </div>
+        <!-- Mid -->
+      </div>
+      <h2>High Band</h2>
+      <div>
+        <div class="center">
+          <label aria-hidden="true" for="high-frequency">Frequency</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Expander Wet/Dry" class="slider" id='high-frequency' max='20000' min='20' step="1"
+              type='range' value="10000">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="high-frequency-value">10000</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="high-gain">Gain</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="High Band Gain" class="slider" id='high-gain' max='40' min='-40' step="1" type='range'
+              value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="high-gain-value">0</span>
+        </div>
+        <!-- High -->
+      </div>
+    </div>
+
+
+
+
+
+    <div aria-label="Poly Synth Effects" class="multi-effect" tabindex="-1" id="poly-synth-effects">
+
+      <h1>Space Time Continuum</h1>
+
+      <h2>Dimension Expander</h2>
+      <div class="dimension">
+        <div class="center">
+          <label aria-hidden="true" for="expander-wet">Wet/Dry</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Expander Wet/Dry" class="slider" id='expander-wet' max='100' min='0' step="1"
+              type='range' value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="expander-wet-out">0</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="expander-feedback">Feedback</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Expander Feedback" class="slider" id='expander-feedback' max='45' min='0' step="1"
+              type='range' value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="expander-feed-out">0</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="expander-space-time">Space Time</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Expander Space Time" class="slider" id='expander-space-time' max='100' min='0' step="1"
+              type='range' value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="expander-space-time-out">0</span>
+        </div>
+      </div>
+
+
+      <h2>Delay</h2>
+      <div style="display: flex; flex-direction: row;">
+        <div class="center">
+          <label aria-hidden="true" for="delay-wet">Wet/Dry</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Delay Wet/Dry" class="slider" id='delay-wet' max='100' min='0' step="1" type='range'
+              value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="wet-level-output-nm">0</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="delay-feedback">Feedback</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Delay Feedback" class="slider" id='delay-feedback' max='80' min='0' step="1" type='range'
+              value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="feedback-output-nm">0</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="delay-time">Delay time</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Delay Time" class="slider" id='delay-time' max='100' min='0' step="1" type='range'
+              value="0.1">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="delay-time-output-nm"></span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="delay-frequency">Low Cut</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Delay Filter Frequency" class="slider" id='delay-frequency' max='20000' min='20' step="1"
+              type='range' value="20000">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" class="lcd-text2" id="cutoff-output-nm"></span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="synthesiser" tabindex="-1" id="poly-synth">
+      <h1>Alien Instruments Super Poly</h1>
+      <h2>Oscillators</h2>
+      <div>
+        <div class="center2">
+          <label aria-hidden="true" for="wave-type-osc">Waveform</label>
+          <select class="lcd-select" id="wave-type-osc" aria-label="Oscillator Waveform"
+            aria-details="Use this menu to select the waveform for the oscillators"
+            title="Use this menu to select the waveform for the oscillators">
+            <option value="square">Square</option>
+            <option value="sawtooth" selected>Saw</option>
+            <option value="triangle">Tri</option>
+          </select>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="oscillators">Oscillators</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Number Of Oscillators" class="slider" id='oscillators' max='16' min='2' step="1"
+              type='range' value="4">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="sawsOut" class="lcd-text">4</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="detune">Detune</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Oscillators De-Tune" class="slider" id='detune' max='100' min='0' step="1" type='range'
+              value="4">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="detuneOut" class="lcd-text">4</span>
+        </div>
+      </div>
+
+      <h2>Amp Envelope</h2>
+      <div>
+        <div class="center">
+          <label aria-hidden="true" for="amp-attack">Attack</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Amp Attack" class="slider" id='amp-attack' max='100' min='0' step="1" type='range'
+              value="10">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="attack-output2" class="lcd-text">0.01</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="amp-decay">Decay</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Amp Decay" class="slider" id='amp-decay' max='100' min='0' step="1" type='range'
+              value="10">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="decay-output2" class="lcd-text">0.01</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="amp-sustain">Sustain</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Amp Sustain" class="slider" id='amp-sustain' max='100' min='0' step="1" type='range'
+              value="80">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="sustain-output2" class="lcd-text">0.8</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="amp-release">Release</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Amp Release" class="slider" id='amp-release' max='100' min='0' step="1" type='range'
+              value="10">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="release-output2" class="lcd-text">0.01</span>
+        </div>
+        <!-- env end -->
+      </div>
+
+
+
+      <h2>Lfo</h2>
+      <div>
+
+        <div class="center2">
+          <label aria-hidden="true" for="lfo-waveform-select1-f1">LFO Waveform</label>
+          <select class="lcd-select" id="lfo-waveform-select1-f1" aria-label="Filter LFO Waveform"
+            title="Set the waveform for the filter LFO">
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Saw</option>
+            <option value="triangle">Tri</option>
+          </select>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="lfo-depth">Depth</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Filter Lfo Depth" class="slider" id='lfo-depth' max='2000' min='-2000' step="1"
+              type='range' value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="lfo-depth-output1-f1" class="lcd-text">0</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="lfo-rate">Rate</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Filter LFO Rate" class="slider" id='lfo-rate' max='30' min='0' step="1" type='range'
+              value="2">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="lfo-rate-output1-f1" class="lcd-text">0.01</span>
+        </div>
+      </div>
+      <h2>Filter</h2>
+      <div>
+        <div class="center2">
+          <label aria-hidden="true" for="filter-one-type-control-f1">Type</label>
+          <select class="lcd-select" id="filter-one-type-control-f1" aria-label="Filter Type"
+            title="Use this menu to select the filter type">
+            <option value="lowpass">Low Pass</option>
+            <option value="highpass">High Pass</option>
+            <option value="bandpass">Band Pass</option>
+            <option value="notch">Notch</option>
+            <option value="allpass">All Pass</option>
+          </select>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="filter-gain">Gain</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Filter Gain" class="slider" id='filter-gain' max='100' min='0' step="1" type='range'
+              value="50">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="gain-output-f1" class="lcd-text">0.5</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="filter-frequency">Frequency</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Filter Cut Off" class="slider" id='filter-frequency' max='20000' min='20' step="1"
+              type='range' value="20000">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="filter-freq-output-f1" class="lcd-text">16000</span>
+        </div>
+        <div class="center">
+          <label aria-hidden="true" for="filter-resonance">Resonance</label>
+          <div class='range-knob-wrapper' style="border: none;">
+            <input aria-label="Filter Resonance" class="slider" id='filter-resonance' max='40' min='0' step="1"
+              type='range' value="0">
+            <div class='range-knob'></div>
+          </div>
+          <span aria-hidden="true" id="resonance-output-f1" class="lcd-text">0</span>
+        </div>
+      </div>
+    </div>
+    <!-- end main -->
+  </div>
+
+  <div aria-hidden="true">
+
+    <div id="keyboard" style="border: none;"></div>
+
+  </div>
+
+
+  <div>
+    <div>
+      <div class="color-picker-row module-wrapper">
+        <label aria-hidden="true" for="white-keys-colour-picker">Keys/1</label>
+        <input type="color" id="white-keys-colour-picker">
+      </div>
+      <div class="color-picker-row module-wrapper">
+        <label aria-hidden="true" for="black-keys-colour-picker">Keys/2</label>
+        <input type="color" id="black-keys-colour-picker">
+      </div>
+      <div class="color-picker-row module-wrapper">
+        <label aria-hidden="true" for="key-font-colour-picker">Font</label>
+        <input type="color" id="key-font-colour-picker">
+      </div>
+    </div>
+
+
+    <!-- end of table -->
+  </div>
+
+  <div id="ariaLiveRegion" class="visually-hidden" aria-live="polite"></div>
+  <div id="aria-live" aria-live="polite" aria-atomic="true" style="position:absolute; left:-9999px;">
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../polySynth/tuna.js"></script>
+  <script src="rotary.js"></script>
+  <script src="script.js"></script>
+  <script src="../polySynth/mousetrap.js"></script>
+  <script src="hotKeys.js"></script>
+  <script src="../accessibility/accessibilitySettings.js"></script>
+  <script src="../accessibility/hitchhicker.js"></script>
+</body>
+
+</html>

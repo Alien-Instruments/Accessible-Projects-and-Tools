@@ -1,0 +1,64 @@
+#keyboard {
+  cursor: pointer;
+  user-select: none;
+}
+
+#keyboard ul {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  perspective: 1400px;
+}
+
+#keyboard ul li {
+  float: left;
+  width: 4.236067987318243rem; /* key width */
+  height: 6.8541019874318065rem; /* key height */
+  display: flex;
+  align-items: flex-end;
+  font-family: "Helvetica", sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding-left: 0.2rem;
+  padding-bottom: 0.1rem;
+  margin-right: 0.2rem;
+  border-radius: 0 0 1rem 1rem; /* smooth rounded bottom edges */
+  box-sizing: border-box;
+  background: linear-gradient(to top right, #fdfdfd, #d1d1d1);
+  color: #555;
+  text-shadow: 1px 1px 1px #ffffff;
+  border: 0.1rem solid #bfbfbf;
+  border-bottom: 0.3rem solid #a7a7a7;
+  box-shadow: 0 6px 6px -4px #000; /* refined shadow */
+}
+
+#keyboard ul li.active {
+  background: linear-gradient(to top right, #e0e0e0, #ffffff);
+  box-shadow: 0 3px 3px -2px #000; /* lighter shadow when active */
+}
+
+#keyboard ul li.accidental {
+  position: relative;
+  margin-left: -1.61803399rem;
+  margin-right: -3.7360679836591215rem;
+  height: 4.236067987318243rem; /* shorter key for accidentals */
+  background: linear-gradient(to top right, #303030, #505050);
+  color: #ffffff;
+  text-shadow: 0 1px 0 #000000;
+  border-top: 0.1rem solid #333;
+  border-left: 0.2rem solid #111;
+  border-right: 0.2rem solid #111;
+  border-bottom: 0.3rem solid #000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6),
+    0 -1px 5px rgba(255, 255, 255, 0.1); /* more refined shadows */
+  border-radius: 0 0 0.5rem 0.5rem; /* rounded bottom for accidentals */
+}
+
+#keyboard ul li.accidental.active {
+  background: linear-gradient(to top right, #383838, #585858);
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.6); /* less intense shadow for active state */
+}
+
+#keyboard ul li:last-child {
+  margin-right: 0;
+}

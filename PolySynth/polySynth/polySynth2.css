@@ -1,0 +1,99 @@
+#keyboard {
+  height: 8rem;
+  overflow: auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 0;
+}
+
+#keyboard ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+#keyboard ul li {
+  width: 4rem;
+  height: 6.854rem;
+  display: flex;
+  align-items: flex-end;
+  text-transform: uppercase;
+  padding-left: 0.4rem;
+  padding-bottom: 0.236rem;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-sizing: border-box;
+  background-color: var(--white-keys-color);
+  color: var(--font-keys-color);
+  text-shadow: 0 1px 0 #000000;
+  border: 0.1rem solid #3c3c3c;
+  box-shadow: inset 0 0.2rem 0.2rem rgba(255, 255, 255, 0.7),
+    0 0.236rem 0.618rem rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    to bottom,
+    var(--white-keys-color) 0%,
+    #e6e6e6 100%
+  );
+}
+
+#keyboard ul li::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.2rem;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#keyboard ul li.active {
+  text-shadow: 0 1px 0 #ffffff;
+  transform: perspective(100px) translateZ(-2px);
+}
+
+#keyboard ul li.accidental {
+  position: relative;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  height: 4.236rem;
+  background-color: var(--black-keys-color);
+  text-shadow: 0 1px 0 #000000;
+  border: 0.1rem solid #606060;
+  box-shadow: inset 0 0.2rem 0.2rem rgba(255, 255, 255, 0.5),
+    0 0.236rem 0.618rem rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    to bottom,
+    var(--black-keys-color) 0%,
+    #1a1a1a 100%
+  );
+  z-index: 1;
+}
+
+#keyboard ul li.accidental::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.2rem;
+  box-shadow: inset 0 0.1rem 0.1rem rgba(255, 255, 255, 0.1);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#keyboard ul li.accidental.active {
+  text-shadow: 0 1px 0 #4d4d4d;
+  transform: perspective(1000px) rotateY(10deg);
+}
+
+#keyboard ul li:last-child {
+  margin-right: 0;
+}

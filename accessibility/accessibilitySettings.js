@@ -473,7 +473,7 @@ function applyFontVariant(variant) {
 }
 
 $(document).ready(function () {
-  const focusSizeSlider = $("#focus-size-slider");
+  const focusSizeSlider = $("#access_focus-size-slider");
 
   focusSizeSlider.on("input", function () {
     const focusSize = this.value + "px";
@@ -483,8 +483,8 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  const borderRadiusSlider = $("#border-radius-slider");
-  const borderThicknessSlider = $("#border-thickness-slider");
+  const borderRadiusSlider = $("#access_border-radius-slider");
+  const borderThicknessSlider = $("#access_border-thickness-slider");
 
   borderRadiusSlider.on("input", function () {
     const borderRadius = this.value + "px";
@@ -520,7 +520,9 @@ function saveFontFamilyToLocalStorage(font) {
 }
 
 function saveSliderValueToLocalStorage(sliderId, value) {
-  localStorage.setItem(sliderId, value);
+  if (sliderId.startsWith("access_")) {
+    localStorage.setItem(sliderId, value);
+  }
 }
 
 $(document).ready(function () {
@@ -535,9 +537,9 @@ $(document).ready(function () {
 // Function to trigger 'input' events on sliders
 function triggerSliderChangeEvents() {
   // Select all the sliders related to focus size, border thickness, and border radius
-  const focusSizeSlider = $("#focus-size-slider");
-  const borderRadiusSlider = $("#border-radius-slider");
-  const borderThicknessSlider = $("#border-thickness-slider");
+  const focusSizeSlider = $("#access_focus-size-slider");
+  const borderRadiusSlider = $("#access_border-radius-slider");
+  const borderThicknessSlider = $("#access_border-thickness-slider");
 
   // Trigger 'input' event to simulate user changing the value
   focusSizeSlider.trigger("input");
@@ -609,22 +611,22 @@ function applyWordSpacing(value) {
 
 function applySliderValue(sliderId, value) {
   switch (sliderId) {
-    case "focus-size-slider":
+    case "access_focus-size-slider":
       updateFocusSize(value + "px");
       break;
-    case "border-radius-slider":
+    case "access_border-radius-slider":
       updateBorderRadius(value + "px");
       break;
-    case "border-thickness-slider":
+    case "access_border-thickness-slider":
       updateBorderThickness(value + "px");
       break;
-    case "line-spacing-slider":
+    case "access_line-spacing-slider":
       applyLineSpacing(value);
       break;
-    case "letter-spacing-slider":
+    case "access_letter-spacing-slider":
       applyLetterSpacing(value);
       break;
-    case "word-spacing-slider":
+    case "access_word-spacing-slider":
       applyWordSpacing(value);
       break;
     default:
@@ -633,19 +635,19 @@ function applySliderValue(sliderId, value) {
 }
 
 // Event listeners for the sliders
-$("#line-spacing-slider").on("input", function () {
+$("#access_line-spacing-slider").on("input", function () {
   const value = parseFloat(this.value);
   saveSliderValueToLocalStorage(this.id, value);
   applySliderValue(this.id, value);
 });
 
-$("#letter-spacing-slider").on("input", function () {
+$("#access_letter-spacing-slider").on("input", function () {
   const value = parseFloat(this.value);
   saveSliderValueToLocalStorage(this.id, value);
   applySliderValue(this.id, value);
 });
 
-$("#word-spacing-slider").on("input", function () {
+$("#access_word-spacing-slider").on("input", function () {
   const value = parseFloat(this.value);
   saveSliderValueToLocalStorage(this.id, value);
   applySliderValue(this.id, value);
@@ -937,39 +939,33 @@ $(document).ready(function () {
 const toggleGradients = $("#toggleGradients");
 
 toggleGradients.on("click", function () {
-  const isActive = $(this).attr("aria-pressed") === "true";
-  const newState = !isActive;
+  const wasEnabled = $(this).attr("aria-pressed") === "true";
+  const gradientsEnabled = !wasEnabled;
 
-  // Update button
-  $(this).attr("aria-pressed", String(newState));
-  $(this).html(newState ? "SHOW<br>GRADIENT" : "REMOVE<br>GRADIENT");
+  // Update button visuals
+  $(this)
+    .attr("aria-pressed", String(gradientsEnabled))
+    .html(gradientsEnabled ? "REMOVE<br>GRADIENT" : "SHOW<br>GRADIENT");
 
   // Store state
-  localStorage.setItem("gradientsEnabled", String(newState));
+  localStorage.setItem("gradientsEnabled", String(gradientsEnabled));
 
-  // Apply classes
-  $(".panel").each(function () {
-    $(this).toggleClass("no-gradient", newState);
-  });
-
-  $(".slider-container").each(function () {
-    $(this).toggleClass("no-gradient", newState);
+  // Apply or remove 'no-gradient' class based on *not* gradientsEnabled
+  $(".panel, .slider-container").each(function () {
+    $(this).toggleClass("no-gradient", !gradientsEnabled);
   });
 });
 
 // Function to retrieve toggle state from local storage
 $(document).ready(function () {
   const saved = localStorage.getItem("gradientsEnabled") === "true";
+  const $toggle = $("#toggleGradients");
 
-  $("#toggleGradients").attr("aria-pressed", String(saved));
-  $(this).html(saved ? "SHOW<br>GRADIENT" : "REMOVE<br>GRADIENT");
+  $toggle.attr("aria-pressed", String(saved));
+  $toggle.html(saved ? "REMOVE<br>GRADIENT" : "SHOW<br>GRADIENT");
 
-  $(".panel").each(function () {
-    $(this).toggleClass("no-gradient", saved);
-  });
-
-  $(".slider-container").each(function () {
-    $(this).toggleClass("no-gradient", saved);
+  $(".panel, .slider-container").each(function () {
+    $(this).toggleClass("no-gradient", !saved);
   });
 });
 
@@ -1035,6 +1031,12 @@ function applyKnobDesign(design) {
     "classic minimal fancy retro modern twist flat shadow outline simple"
   );
   knobWrappers.addClass(design);
+
+  const knobWrappers2 = $(".range-knob-wrapper");
+  knobWrappers2.removeClass(
+    "classic minimal fancy retro modern twist flat shadow outline simple"
+  );
+  knobWrappers2.addClass(design);
 }
 
 // On page load, retrieve and apply the saved knob design
@@ -1205,12 +1207,12 @@ $(document).ready(function () {
       panelBorderColor: panelBorderPicker.val(),
       groupBackgroundColor: groupBackgroundPicker.val(),
       // Sliders
-      focusSizeSlider: $("#focus-size-slider").val(),
-      borderRadiusSlider: $("#border-radius-slider").val(),
-      borderThicknessSlider: $("#border-thickness-slider").val(),
-      lineSpacingSlider: $("#line-spacing-slider").val(),
-      letterSpacingSlider: $("#letter-spacing-slider").val(),
-      wordSpacingSlider: $("#word-spacing-slider").val(),
+      focusSizeSlider: $("#access_focus-size-slider").val(),
+      borderRadiusSlider: $("#access_border-radius-slider").val(),
+      borderThicknessSlider: $("#access_border-thickness-slider").val(),
+      lineSpacingSlider: $("#access_line-spacing-slider").val(),
+      letterSpacingSlider: $("#access_letter-spacing-slider").val(),
+      wordSpacingSlider: $("#access_word-spacing-slider").val(),
       // Select inputs
       fontSizeSelect: $("#font-size-select").val(),
       boldSelect: $("#bold-select").val(),
@@ -1219,7 +1221,7 @@ $(document).ready(function () {
       fontFamilySelect: $("#font-family-select").val(),
       knobDesignSelect: $("#knob-design-select").val(),
 
-      gradientsEnabled: toggleGradients.is(":checked"),
+      gradientsEnabled: $("#toggleGradients").attr("aria-pressed") === "true",
     };
   }
 
@@ -1261,20 +1263,22 @@ $(document).ready(function () {
     groupBackgroundPicker.val(presetData.groupBackgroundColor).trigger("input");
 
     // Apply slider values
-    $("#focus-size-slider").val(presetData.focusSizeSlider).trigger("input");
-    $("#border-radius-slider")
+    $("#access_focus-size-slider")
+      .val(presetData.focusSizeSlider)
+      .trigger("input");
+    $("#access_border-radius-slider")
       .val(presetData.borderRadiusSlider)
       .trigger("input");
-    $("#border-thickness-slider")
+    $("#access_border-thickness-slider")
       .val(presetData.borderThicknessSlider)
       .trigger("input");
-    $("#line-spacing-slider")
+    $("#access_line-spacing-slider")
       .val(presetData.lineSpacingSlider)
       .trigger("input");
-    $("#letter-spacing-slider")
+    $("#access_letter-spacing-slider")
       .val(presetData.letterSpacingSlider)
       .trigger("input");
-    $("#word-spacing-slider")
+    $("#access_word-spacing-slider")
       .val(presetData.wordSpacingSlider)
       .trigger("input");
 
@@ -1288,9 +1292,20 @@ $(document).ready(function () {
     $("#font-family-select").val(presetData.fontFamilySelect).trigger("change");
     $("#knob-design-select").val(presetData.knobDesignSelect).trigger("change");
 
+    // Update toggle state
+    const gradientsEnabled = presetData.gradientsEnabled;
     toggleGradients
-      .prop("checked", presetData.gradientsEnabled)
-      .trigger("change");
+      .attr("aria-pressed", String(gradientsEnabled))
+      .html(gradientsEnabled ? "REMOVE<br>GRADIENT" : "SHOW<br>GRADIENT");
+
+    // Apply or remove the 'no-gradient' class based on gradientsEnabled
+    $(".panel, .slider-container").each(function () {
+      $(this).toggleClass("no-gradient", !gradientsEnabled);
+    });
+    localStorage.setItem(
+      "gradientsEnabled",
+      String(presetData.gradientsEnabled)
+    );
   }
 });
 
@@ -1334,7 +1349,7 @@ const factoryPresets = {
     fontVariantSelect: "normal",
     fontFamilySelect: "Arial",
     knobDesignSelect: "classic",
-    gradientsEnabled: false,
+    gradientsEnabled: true,
   },
   "Minimal Dark": {
     textColor: "#FFFFFF",
@@ -1672,7 +1687,7 @@ const factoryPresets = {
     borderRadiusSlider: "10",
     borderThicknessSlider: "2",
     buttonBackgroundColor: "#cfcfcf",
-    buttonBorderColor: "#000000",
+    buttonBorderColor: "#FFFFFF",
     buttonFontColor: "#000000",
     focusColor: "#FFFFFF",
     focusSizeSlider: "8",

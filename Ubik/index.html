@@ -339,24 +339,24 @@
     <div class="main">
 
       <div class="slider-container panel" id="letter-tour">
-        <label for="letter-spacing-slider">Letter
+        <label for="access_letter-spacing-slider">Letter
           Spacing</label>
         <input role="slider" aria-label="Letter Spacing" type="range" min="0" max="0.2" value="0" step="0.01"
-          id="letter-spacing-slider">
+          id="access_letter-spacing-slider">
       </div>
 
       <div class="slider-container panel" id="word-tour">
-        <label for="word-spacing-slider">Word
+        <label for="access_word-spacing-slider">Word
           Spacing</label>
         <input role="slider" aria-label="Word Spacing" type="range" min="0" max="0.5" value="0" step="0.01"
-          id="word-spacing-slider">
+          id="access_word-spacing-slider">
       </div>
 
       <div class="slider-container panel" id="line-tour">
-        <label for="line-spacing-slider">Line
+        <label for="access_line-spacing-slider">Line
           Spacing</label>
         <input role="slider" aria-label="Line Spacing" type="range" min="1" max="2" value="1" step="0.1"
-          id="line-spacing-slider">
+          id="access_line-spacing-slider">
       </div>
     </div>
 
@@ -595,24 +595,22 @@
 
       <div class="main">
         <div class="slider-container panel" id="border-tour">
-          <label for="border-radius-slider">Border
+          <label for="access_border-radius-slider">Border
             Radius</label>
-          <input role="slider" aria-label="Border Radius" type="range" id="border-radius-slider" min="1" max="15"
+          <input role="slider" aria-label="Border Radius" type="range" id="access_border-radius-slider" min="1" max="15"
             step="1" value="10">
         </div>
         <div class="slider-container panel" id="thickness-tour">
-          <label for="border-thickness-slider">Border
+          <label for="access_border-thickness-slider">Border
             Thickness</label>
-          <input role="slider" aria-label="Border Thickness" type="range" id="border-thickness-slider" min="1" max="5"
-            step="1" value="1">
+          <input role="slider" aria-label="Border Thickness" type="range" id="access_border-thickness-slider" min="1"
+            max="5" step="1" value="1">
         </div>
-
-
-
         <div class="slider-container panel" id="focus-tour">
-          <label for="focus-size-slider">Focus
+          <label for="access_focus-size-slider">Focus
             Size</label>
-          <input role="slider" aria-label="Focus Size" type="range" id="focus-size-slider" min="1" max="8" value="4">
+          <input role="slider" aria-label="Focus Size" type="range" id="access_focus-size-slider" min="1" max="8"
+            value="4">
         </div>
       </div>
     </div>
@@ -715,49 +713,6 @@
     </div>
   </div>
 
-  <button id="toggleVoiceSettings">Show Voice Settings</button>
-
-  <div id="voiceSettingsDiv" class="hidden">
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-      <div class="slider-container" id="pitch-tour">
-        <label aria-hidden="true" for="speech-pitch">Pitch</label>
-        <input aria-label="Speech Pitch" class="slider" id="speech-pitch" max="200" min="100" step="1" type="range"
-          value="100">
-        <span aria-hidden="true" class="lcd-text2" id="pitch-output">100</span>
-      </div>
-
-      <div class="slider-container" id="rate-tour">
-        <label aria-hidden="true" for="speech-rate">Rate</label>
-        <input aria-label="Speech Rate" class="slider" id="speech-rate" max="200" min="0" step="1" type="range"
-          value="100">
-        <span aria-hidden="true" class="lcd-text2" id="rate-output">100</span>
-      </div>
-
-      <div class="slider-container" id="volume-tour">
-        <label aria-hidden="true" for="speech-volume">Volume</label>
-        <input aria-label="Speech Volume" class="slider" id="speech-volume" max="100" min="0" step="1" type="range"
-          value="100">
-        <span aria-hidden="true" class="lcd-text2" id="volume-output">100</span>
-      </div>
-    </div>
-
-
-    <div class="center-container"
-      style="display: flex; flex-direction: column; justify-content: center; border-radius: 10px;">
-      <div class="input-container" style="border: none;">
-        <label for="speech-voice">Voice:</label><br>
-        <select style="width: 80%;" id="speech-voice"></select>
-      </div>
-      <div class="input-container" style="border: none;">
-        <label for="speech-text">Text:</label><br>
-        <input style="width: 80%;" type="text" id="speech-text" value="Hello, how can I help you?" />
-      </div>
-      <button class="button" id="speak-button">Speak</button>
-    </div>
-  </div>
-  </div>
-
-
   <div>
     <button id="toggle-custom-preset-manager-button">Show Preset Manager</button>
     <div>
@@ -815,6 +770,11 @@
     <div id="controller"></div>
 
   </div>
+
+  <div id="ariaLiveRegion" class="visually-hidden" aria-live="polite"></div>
+  <div id="aria-live" aria-live="polite" aria-atomic="true" style="position:absolute; left:-9999px;">
+  </div>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="script.js"></script>

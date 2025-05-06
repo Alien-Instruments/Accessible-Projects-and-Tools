@@ -95,6 +95,8 @@
                                                             <label for="tutorial-select"><strong>Select a
                                                                                                     tutorial:</strong></label>
                                                             <select id="tutorial-select">
+                                                                                <option value="MIDI_Input">MIDI Input
+                                                                                </option>
                                                                                 <option value="basic">Basic Patch
                                                                                                     Creation</option>
                                                                                 <option value="intermediate">
@@ -102,8 +104,7 @@
                                                                                 </option>
                                                                                 <option value="advanced">Advanced
                                                                                                     Modulation</option>
-                                                                                <option value="MIDI_Input">MIDI Input
-                                                                                </option>
+
                                                             </select>
                                                             <button id="load-tutorial-btn" class="button">Load
                                                                                 Tutorial</button>
@@ -724,33 +725,34 @@
                                         <div class="main">
 
                                                             <div class="slider-container panel" id="letter-tour">
-                                                                                <label for="letter-spacing-slider">Letter
+                                                                                <label
+                                                                                                    for="access_letter-spacing-slider">Letter
                                                                                                     Spacing</label>
                                                                                 <input role="slider" aria-label="Letter Spacing"
                                                                                                     type="range" min="0"
                                                                                                     max="0.2" value="0"
                                                                                                     step="0.01"
-                                                                                                    id="letter-spacing-slider">
+                                                                                                    id="access_letter-spacing-slider">
                                                             </div>
 
                                                             <div class="slider-container panel" id="word-tour">
-                                                                                <label for="word-spacing-slider">Word
+                                                                                <label for="access_word-spacing-slider">Word
                                                                                                     Spacing</label>
                                                                                 <input role="slider" aria-label="Word Spacing"
                                                                                                     type="range" min="0"
                                                                                                     max="0.5" value="0"
                                                                                                     step="0.01"
-                                                                                                    id="word-spacing-slider">
+                                                                                                    id="access_word-spacing-slider">
                                                             </div>
 
                                                             <div class="slider-container panel" id="line-tour">
-                                                                                <label for="line-spacing-slider">Line
+                                                                                <label for="access_line-spacing-slider">Line
                                                                                                     Spacing</label>
                                                                                 <input role="slider" aria-label="Line Spacing"
                                                                                                     type="range" min="1"
                                                                                                     max="2" value="1"
                                                                                                     step="0.1"
-                                                                                                    id="line-spacing-slider">
+                                                                                                    id="access_line-spacing-slider">
                                                             </div>
                                         </div>
 
@@ -1090,11 +1092,11 @@
                                                                                 <div class="slider-container panel"
                                                                                                     id="border-tour">
                                                                                                     <label
-                                                                                                                        for="border-radius-slider">Border
+                                                                                                                        for="access_border-radius-slider">Border
                                                                                                                         Radius</label>
                                                                                                     <input role="slider" aria-label="Border Radius"
                                                                                                                         type="range"
-                                                                                                                        id="border-radius-slider"
+                                                                                                                        id="access_border-radius-slider"
                                                                                                                         min="1"
                                                                                                                         max="15"
                                                                                                                         step="1"
@@ -1103,27 +1105,24 @@
                                                                                 <div class="slider-container panel"
                                                                                                     id="thickness-tour">
                                                                                                     <label
-                                                                                                                        for="border-thickness-slider">Border
+                                                                                                                        for="access_border-thickness-slider">Border
                                                                                                                         Thickness</label>
                                                                                                     <input role="slider" aria-label="Border Thickness"
                                                                                                                         type="range"
-                                                                                                                        id="border-thickness-slider"
+                                                                                                                        id="access_border-thickness-slider"
                                                                                                                         min="1"
                                                                                                                         max="5"
                                                                                                                         step="1"
                                                                                                                         value="1">
                                                                                 </div>
-
-
-
                                                                                 <div class="slider-container panel"
                                                                                                     id="focus-tour">
                                                                                                     <label
-                                                                                                                        for="focus-size-slider">Focus
+                                                                                                                        for="access_focus-size-slider">Focus
                                                                                                                         Size</label>
                                                                                                     <input role="slider" aria-label="Focus Size"
                                                                                                                         type="range"
-                                                                                                                        id="focus-size-slider"
+                                                                                                                        id="access_focus-size-slider"
                                                                                                                         min="1"
                                                                                                                         max="8"
                                                                                                                         value="4">
@@ -1967,34 +1966,6 @@
                                                             <div class="compPanel">
                                                                                 <div class="slider-container">
                                                                                                     <label
-                                                                                                                        for="Mutator LFO Rate">
-                                                                                                                        LFO
-                                                                                                                        Rate:</label>
-                                                                                                    <input type="range" id="Mutator LFO Rate"
-                                                                                                                        min="0.1"
-                                                                                                                        max="20"
-                                                                                                                        step="0.1"
-                                                                                                                        value="1"
-                                                                                                                        data-target="mutatorLfoRateValue" />
-                                                                                                    <span
-                                                                                                                        id="mutatorLfoRateValue">1</span>
-                                                                                </div>
-                                                                                <div class="slider-container">
-                                                                                                    <label
-                                                                                                                        for="Mutator LFO Depth">
-                                                                                                                        LFO
-                                                                                                                        Depth:</label>
-                                                                                                    <input type="range" id="Mutator LFO Depth"
-                                                                                                                        min="0.0"
-                                                                                                                        max="1.0"
-                                                                                                                        step="0.01"
-                                                                                                                        value="0.0"
-                                                                                                                        data-target="mutatorLfoDepthValue" />
-                                                                                                    <span
-                                                                                                                        id="mutatorLfoDepthValue">0</span>
-                                                                                </div>
-                                                                                <div class="slider-container">
-                                                                                                    <label
                                                                                                                         for="Mutator Cut Off">
                                                                                                                         Cut
                                                                                                                         Off:</label>
@@ -2021,6 +1992,35 @@
                                                                                                     <span
                                                                                                                         id="mutatorResValue">20</span>
                                                                                 </div>
+                                                                                <div class="slider-container">
+                                                                                                    <label
+                                                                                                                        for="Mutator LFO Rate">
+                                                                                                                        LFO
+                                                                                                                        Rate:</label>
+                                                                                                    <input type="range" id="Mutator LFO Rate"
+                                                                                                                        min="0.1"
+                                                                                                                        max="20"
+                                                                                                                        step="0.1"
+                                                                                                                        value="1"
+                                                                                                                        data-target="mutatorLfoRateValue" />
+                                                                                                    <span
+                                                                                                                        id="mutatorLfoRateValue">1</span>
+                                                                                </div>
+                                                                                <div class="slider-container">
+                                                                                                    <label
+                                                                                                                        for="Mutator LFO Depth">
+                                                                                                                        LFO
+                                                                                                                        Depth:</label>
+                                                                                                    <input type="range" id="Mutator LFO Depth"
+                                                                                                                        min="0.0"
+                                                                                                                        max="1.0"
+                                                                                                                        step="0.01"
+                                                                                                                        value="0.0"
+                                                                                                                        data-target="mutatorLfoDepthValue" />
+                                                                                                    <span
+                                                                                                                        id="mutatorLfoDepthValue">0</span>
+                                                                                </div>
+
                                                             </div>
                                                             <div id="mutator" class="module">
                                                                                 <div tabindex="0" id="mutator-output"
@@ -2394,8 +2394,7 @@
                                                             <div class="compPanel">
                                                                                 <div class="slider-container">
                                                                                                     <label
-                                                                                                                        for="Reverb Duration">Impulse
-                                                                                                                        Duration:</label>
+                                                                                                                        for="Reverb Duration">Duration:</label>
                                                                                                     <input type="range" id="Reverb Duration"
                                                                                                                         min="0.1"
                                                                                                                         max="5"
@@ -2408,8 +2407,7 @@
 
                                                                                 <div class="slider-container">
                                                                                                     <label
-                                                                                                                        for="Reverb Decay">Impulse
-                                                                                                                        Decay:</label>
+                                                                                                                        for="Reverb Decay">Decay:</label>
                                                                                                     <input type="range" id="Reverb Decay"
                                                                                                                         min="0.1"
                                                                                                                         max="10"
@@ -7273,7 +7271,7 @@
                     <script src="slider_helper/slider_helper.js"></script>
                     <script src="../hitch/hitchhickerAM.js"></script>
                     <script src="tutorial/auto-tutor.js"></script>
-                    <script src="manual.js"></script>
+                    <script src="tutorial/manual.js"></script>
 
 
 
