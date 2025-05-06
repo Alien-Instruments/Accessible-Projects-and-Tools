@@ -1029,6 +1029,11 @@ class StepSequencer {
         noteSelect.id = noteId;
         noteSelect.className = "note-select";
 
+        const tieOption = document.createElement("option");
+        tieOption.value = "tie";
+        tieOption.textContent = "Tie (↔)";
+        noteSelect.appendChild(tieOption);
+
         for (let midi = minMidiNote; midi <= maxMidiNote; midi++) {
           const option = document.createElement("option");
           option.value = midi;
@@ -1204,66 +1209,96 @@ class StepSequencer {
 
   playStep() {
     this.clearHighlight();
+    const currentNoteValue = this.sliders[this.currentStep].value;
+
     if (this.stepActive[this.currentStep]) {
-      const midiNote = parseInt(this.sliders[this.currentStep].value);
-      const velocity = parseInt(this.velocities[this.currentStep].value);
-      const frequency = this.midiToFrequency(midiNote);
-      const gain = velocity / 127;
-      lfos.forEach((lfo, index) => {
-        if (lfo.mode === "trigger") retriggerLFO(index);
-      });
+      if (currentNoteValue !== "tie") {
+        const midiNote = parseInt(currentNoteValue);
+        const velocity = parseInt(this.velocities[this.currentStep].value);
+        const frequency = this.midiToFrequency(midiNote);
+        const gain = velocity / 127;
+        const now = audioContext.currentTime;
 
-      const modTarget = this.modTargets[this.currentStep].value;
-      const modAmount = parseFloat(this.modAmounts[this.currentStep].value);
-      const now = audioContext.currentTime;
+        // Retrigger LFOs only on non-tie notes
+        lfos.forEach((lfo, index) => {
+          if (lfo.mode === "trigger") retriggerLFO(index);
+        });
 
-      if (modTarget === "filter 1 cut off") {
-        const base = 600;
-        const targetValue = base + base * modAmount;
-        filter1.filter.frequency.cancelScheduledValues(now);
-        filter1.filter.frequency.setTargetAtTime(targetValue, now, 0.02);
-      } else if (modTarget === "gain") {
-        const targetValue = gain + modAmount;
-        outputGain.gain.cancelScheduledValues(now);
-        outputGain.gain.setTargetAtTime(targetValue, now, 0.02);
-      } else if (modTarget === "dual filter cut off A") {
-        const base = 600;
-        const targetValue = base + base * modAmount;
-        dualFilter.filterA.frequency.cancelScheduledValues(now);
-        dualFilter.filterA.frequency.setTargetAtTime(targetValue, now, 0.02);
-      } else if (modTarget === "dual filter cut off B") {
-        const base = 600;
-        const targetValue = base + base * modAmount;
-        dualFilter.filterB.frequency.cancelScheduledValues(now);
-        dualFilter.filterB.frequency.setTargetAtTime(targetValue, now, 0.02);
+        // Apply modulation only if this isn't a tie
+        const modTarget = this.modTargets[this.currentStep].value;
+        const modAmount = parseFloat(this.modAmounts[this.currentStep].value);
+        if (modTarget && modTarget !== "none") {
+          const base = 600;
+          const now = audioContext.currentTime;
+          const targetValue = base + base * modAmount;
+
+          switch (modTarget) {
+            case "filter 1 cut off":
+              filter1.filter.frequency.cancelScheduledValues(now);
+              filter1.filter.frequency.setTargetAtTime(targetValue, now, 0.02);
+              break;
+            case "gain":
+              outputGain.gain.cancelScheduledValues(now);
+              outputGain.gain.setTargetAtTime(gain + modAmount, now, 0.02);
+              break;
+            case "dual filter cut off A":
+              dualFilter.filterA.frequency.cancelScheduledValues(now);
+              dualFilter.filterA.frequency.setTargetAtTime(
+                targetValue,
+                now,
+                0.02
+              );
+              break;
+            case "dual filter cut off B":
+              dualFilter.filterB.frequency.cancelScheduledValues(now);
+              dualFilter.filterB.frequency.setTargetAtTime(
+                targetValue,
+                now,
+                0.02
+              );
+              break;
+          }
+        }
+
+        this.playFrequency(frequency);
+        this.sliders[this.currentStep].classList.add("active");
+
+        const attack = parseFloat(
+          document.getElementById("Envelope Attack").value
+        );
+        const decay = parseFloat(
+          document.getElementById("Envelope Decay").value
+        );
+        const sustain = parseFloat(
+          document.getElementById("Envelope Sustain").value
+        );
+        const release = parseFloat(
+          document.getElementById("Envelope Decay").value
+        ); // should be Release?
+
+        ampEnvelope.gain.cancelScheduledValues(now);
+        ampEnvelope.gain.setValueAtTime(0, now);
+        ampEnvelope.gain.linearRampToValueAtTime(gain, now + attack);
+        ampEnvelope.gain.linearRampToValueAtTime(
+          gain * sustain,
+          now + attack + decay
+        );
+
+        const totalStepTime = 60 / this.tempo;
+        const releaseStartTime = now + attack + decay + totalStepTime * 0.5;
+        ampEnvelope.gain.linearRampToValueAtTime(0, releaseStartTime + release);
+
+        // Save state for tie
+        this.lastFrequency = frequency;
+        this.lastGain = gain;
+        this.lastStepTime = now;
+      } else {
+        // Tie step: continue holding previous note (don't retrigger)
+        this.sliders[this.currentStep].classList.add("active");
+        // Optionally extend release later — or ignore if envelope already in sustain
       }
-
-      this.playFrequency(frequency);
-      this.sliders[this.currentStep].classList.add("active");
-
-      const attack = parseFloat(
-        document.getElementById("Envelope Attack").value
-      );
-      const decay = parseFloat(document.getElementById("Envelope Decay").value);
-      const sustain = parseFloat(
-        document.getElementById("Envelope Sustain").value
-      );
-      const release = parseFloat(
-        document.getElementById("Envelope Decay").value
-      );
-
-      ampEnvelope.gain.cancelScheduledValues(now);
-      ampEnvelope.gain.setValueAtTime(0, now);
-      ampEnvelope.gain.linearRampToValueAtTime(gain, now + attack);
-      ampEnvelope.gain.linearRampToValueAtTime(
-        gain * sustain,
-        now + attack + decay
-      );
-
-      const totalStepTime = 60 / this.tempo;
-      const releaseStartTime = now + attack + decay + totalStepTime * 0.5;
-      ampEnvelope.gain.linearRampToValueAtTime(0, releaseStartTime + release);
     }
+
     this.currentStep = (this.currentStep + 1) % this.numSteps;
   }
 
@@ -2259,15 +2294,16 @@ function retriggerLFO(index) {
     oldLFO?.stop();
   } catch (e) {}
   if (oldLFO) oldLFO.disconnect();
-  lfos[index].gain.disconnect();
 
   const newLFO = audioContext.createOscillator();
   newLFO.type = "sine";
   newLFO.frequency.value = parseFloat(
-    document.getElementById(`Lfo ${index + 1} Depth`).value
+    document.getElementById(`Lfo ${index + 1} Rate`).value
   );
+
   lfos[index].osc = newLFO;
   newLFO.connect(lfos[index].gain);
+  newLFO.start();
   updateLfoConnections(index);
 }
 
