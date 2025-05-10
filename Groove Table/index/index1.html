@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                    <link rel="stylesheet" href="../styles/style.css">
+
+</head>
+
+<body class="desktop">
+
+                    <div class="drumMachine">
+                                        <h1 style="font-family: 'Alien';">ALIEN INSTRUMENTS TR Great Oh
+                                                            8</h1>
+                                        <div style="display: flex; flex-direction: row;">
+                                                            <div class="controls-main">
+
+
+                                                                                <div class="slider-div"><br>
+                                                                                                    <label class="tempo-label"
+                                                                                                                        for="tempoSlider">Tempo</label>
+                                                                                                    <div class='range-knob-wrapper'
+                                                                                                                        style="border: none;">
+
+
+                                                                                                                        <input type="range" id="tempoSlider"
+                                                                                                                                            min="40"
+                                                                                                                                            max="300"
+                                                                                                                                            value="120">
+                                                                                                                        <div
+                                                                                                                                            class='range-knob'>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <span class="lcd-text2"
+                                                                                                    id="tempoValue">120
+                                                                                                    Bpm</span>
+
+                                                                                <button id="start">Start</button>
+                                                                                <button id="stop">Stop</button>
+                                                                                <button id="accentToggle" class="red"
+                                                                                                    onclick="toggleAccent()">Steps</button>
+
+
+                                                            </div>
+                                                            <div id="kickDrum" class="controls">
+                                                                                <p>Kick</p>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="kickPitch">Pitch</label>
+                                                                                                    <div class='range-knob-wrapper'
+                                                                                                                        style="border: none;">
+
+
+                                                                                                                        <input id="kickPitch"
+                                                                                                                                            type="range"
+                                                                                                                                            min="40"
+                                                                                                                                            max="200"
+                                                                                                                                            value="120">
+                                                                                                                        <div
+                                                                                                                                            class='range-knob'>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="kickDecay">Decay</label>
+                                                                                                    <div class='range-knob-wrapper'
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="kickDecay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.1"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.25">
+                                                                                                                        <div
+                                                                                                                                            class='range-knob'>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="kickLevel">Level</label>
+                                                                                                    <div class='range-knob-wrapper'
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="kickLevel"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class='range-knob'>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('kick-row', this)">Select</button>
+
+
+                                                            </div>
+
+                                                            <div id="snareDrum" class="controls">
+                                                                                <p>Snare</p>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="snarePitch">Pitch</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="snarePitch"
+                                                                                                                                            type="range"
+                                                                                                                                            min="100"
+                                                                                                                                            max="400"
+                                                                                                                                            value="250">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="snareDecay">Decay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="snareDecay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.05"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0.2">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="snareLevel">Level</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="snareLevel"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('snare-row', this)">Select</button>
+                                                            </div>
+
+                                                            <div id="lowTomDrum" class="controls">
+                                                                                <p>Low Tom</p>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="lowTomPitch">Pitch</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="lowTomPitch"
+                                                                                                                                            type="range"
+                                                                                                                                            min="60"
+                                                                                                                                            max="150"
+                                                                                                                                            value="105">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="lowTomDecay">Decay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="lowTomDecay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.1"
+                                                                                                                                            max="1.5"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.324">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="lowTomLevel">Level</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="lowTomLevel"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('lowtom-row', this)">Select</button>
+                                                            </div>
+
+                                                            <div id="midTomDrum" class="controls">
+                                                                                <p>Mid Tom</p>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="midTomPitch">Pitch</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="midTomPitch"
+                                                                                                                                            type="range"
+                                                                                                                                            min="80"
+                                                                                                                                            max="160"
+                                                                                                                                            value="120">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="midTomDecay">Decay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="midTomDecay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.1"
+                                                                                                                                            max="1.5"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.32">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="midTomLevel">Level</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="midTomLevel"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('midtom-row', this)">Select</button>
+                                                            </div>
+
+                                                            <div id="highTomDrum" class="controls">
+                                                                                <p>High Tom</p>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="highTomPitch">Pitch</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="highTomPitch"
+                                                                                                                                            type="range"
+                                                                                                                                            min="100"
+                                                                                                                                            max="220"
+                                                                                                                                            value="160">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="highTomDecay">Decay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="highTomDecay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.1"
+                                                                                                                                            max="1.5"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.3">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="highTomLevel">Level</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="highTomLevel"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('hightom-row', this)">Select</button>
+                                                            </div>
+                                                            <div id="clapDrum" class="controls">
+                                                                                <p>Clap</p>
+
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="clapTone">Tone</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input type="range" id="clapTone"
+                                                                                                                                            min="200"
+                                                                                                                                            max="2000"
+                                                                                                                                            value="1100"
+                                                                                                                                            step="1">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="clapDelay">Delay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="clapDelay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.01"
+                                                                                                                                            max="0.1"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0.02">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="clapLevel">Level</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="clapLevel"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('clap-row', this)">Select</button>
+                                                            </div>
+                                                            <div id="hatCym" class="controls">
+                                                                                <p>Hi-Hat</p>
+
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="hiHatTone">Tone</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input type="range" id="hiHatTone"
+                                                                                                                                            min="500"
+                                                                                                                                            max="10000"
+                                                                                                                                            value="5200"
+                                                                                                                                            step="1">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="hatDecay">Decay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="hatDecay" type="range"
+                                                                                                                                            min="0.01"
+                                                                                                                                            max="0.3"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0.05">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="hatLevel">Level</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="hatLevel" type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('hihat-row', this)">Select</button>
+                                                            </div>
+
+                                                            <div id="crashCym" class="controls">
+                                                                                <p>Crash</p>
+
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="crashTone">Tone</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input type="range" id="crashTone"
+                                                                                                                                            min="500"
+                                                                                                                                            max="10000"
+                                                                                                                                            value="5200"
+                                                                                                                                            step="1">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="cymbalDecay">Decay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="cymbalDecay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.1"
+                                                                                                                                            max="1.5"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.3">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="cymbalLevel">Level</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="cymbalLevel"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.05"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="select-button"
+                                                                                                    onclick="showTab('cymbal-row', this)">Select</button>
+                                                            </div>
+
+
+
+                                        </div>
+                                        <div id="programmer">
+                                                            <div id="kick-row" class="grid tabContent">
+                                                            </div>
+                                                            <div id="kick-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+                                                            <div id="snare-row" class="grid tabContent"
+                                                                                style="display: none;">
+                                                            </div>
+                                                            <div id="snare-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+                                                            <div id="lowtom-row" class="grid tabContent"
+                                                                                style="display: none;">
+                                                            </div>
+                                                            <div id="lowtom-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+                                                            <div id="midtom-row" class="grid tabContent"
+                                                                                style="display: none;">
+                                                            </div>
+                                                            <div id="midtom-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+                                                            <div id="hightom-row" class="grid tabContent"
+                                                                                style="display: none;">
+                                                            </div>
+                                                            <div id="hightom-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+                                                            <div id="hihat-row" class="grid tabContent"
+                                                                                style="display: none;">
+                                                            </div>
+                                                            <div id="hihat-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+                                                            <div id="cymbal-row" class="grid tabContent"
+                                                                                style="display: none;">
+                                                            </div>
+                                                            <div id="cymbal-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+                                                            <div id="clap-row" class="grid tabContent"
+                                                                                style="display: none;">
+                                                            </div>
+                                                            <div id="clap-accent-row" class="grid tabContent"
+                                                                                style="display: none;"></div>
+
+                                        </div>
+                    </div>
+                    </div>
+
+                    <div class="bass-synth">
+                                        <h1 style="font-family: 'Alien';">ALIEN INSTRUMENTS TeaBee-303</h1>
+                                        <div id="tb303-controls">
+                                                            <div class="controls" style="padding: 20px;">
+                                                                                <label>Waveform:</label>
+                                                                                <select class="lcd-select"
+                                                                                                    style="width: 120px;"
+                                                                                                    id="tb303-waveform">
+                                                                                                    <option
+                                                                                                                        value="sawtooth">
+                                                                                                                        Sawtooth
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="square">
+                                                                                                                        Square
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+                                                            <div class="controls2">
+
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="tb303-cutoff">Cutoff</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input type="range" id="tb303-cutoff"
+                                                                                                                                            min="100"
+                                                                                                                                            max="5000"
+                                                                                                                                            step="1"
+                                                                                                                                            value="1000">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="tb303-resonance">Res</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input type="range" id="tb303-resonance"
+                                                                                                                                            min="1"
+                                                                                                                                            max="30"
+                                                                                                                                            step="0.1"
+                                                                                                                                            value="12">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="tb303-env-amount">Env
+                                                                                                                        Amt</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input type="range" id="tb303-env-amount"
+                                                                                                                                            min="0"
+                                                                                                                                            max="2000"
+                                                                                                                                            step="10"
+                                                                                                                                            value="800">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="tb303-decay">Decay</label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="tb303-decay"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0.05"
+                                                                                                                                            max="0.5"
+                                                                                                                                            step="0.001"
+                                                                                                                                            value="0.3">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                            </div>
+
+                                                            <div class="controls2">
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="lfo-rate">LFO
+                                                                                                                        Rate
+                                                                                                    </label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="lfo-rate" type="range"
+                                                                                                                                            min="0.1"
+                                                                                                                                            max="20"
+                                                                                                                                            step="0.1"
+                                                                                                                                            value="5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="lfo-depth">LFO
+                                                                                                                        Depth
+                                                                                                    </label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input id="lfo-depth"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0"
+                                                                                                                                            max="1000"
+                                                                                                                                            step="1"
+                                                                                                                                            value="100">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                            </div>
+
+                                                            <div class="controls2">
+                                                                                <div class="slider-div">
+                                                                                                    <label
+                                                                                                                        for="volumeSlider">Volume
+                                                                                                    </label>
+                                                                                                    <div class="range-knob-wrapper"
+                                                                                                                        style="border: none;">
+                                                                                                                        <input type="range" id="volumeSlider"
+                                                                                                                                            min="0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0.5">
+                                                                                                                        <div
+                                                                                                                                            class="range-knob">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                            </div>
+                                        </div>
+                                        <div class="select-div"
+                                                            style="margin-top: 10px; display: flex; flex-direction: row;">
+                                                            <div style="display: flex; flex-direction: column;">
+                                                                                <label
+                                                                                                    for="tb303-view-select">Step</label>
+                                                                                <select class="lcd-select"
+                                                                                                    style="width: 100px;"
+                                                                                                    id="tb303-view-select">
+                                                                                                    <option
+                                                                                                                        value="accent">
+                                                                                                                        Accent
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="slide">
+                                                                                                                        Slide
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="mute">
+                                                                                                                        Mute
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+                                                            <div style="display: flex; flex-direction: column;">
+                                                                                <label
+                                                                                                    for="tb303-division">Division</label>
+                                                                                <select class="lcd-select"
+                                                                                                    id="tb303-division"
+                                                                                                    style="width: 100px;">
+                                                                                                    <option value="1">1
+                                                                                                    </option>
+                                                                                                    <option value="2">1/2
+                                                                                                    </option>
+                                                                                                    <option value="4">1/4
+                                                                                                    </option>
+                                                                                                    <option value="8">1/8
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+                                        </div>
+
+
+
+                                        <div class="centered-container">
+                                                            <div id="tb303-sequencer">
+                                                            </div>
+
+
+                                        </div>
+                    </div>
+                    <div style="height: 40px;"></div>
+
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../scripts/drumMachine.js"></script>
+<script src="../scripts/bass.js"></script>
+<script src="../scripts/rotary.js"></script>
+
+</html>
