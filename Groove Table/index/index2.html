@@ -630,6 +630,100 @@
                     </div>
                     </div>
 
+
+                    <!-- Message Modal -->
+                    <div id="preset-message-modal" class="modal" aria-hidden="true" role="alertdialog"
+                                        aria-labelledby="message-title" aria-describedby="message-text">
+                                        <div class="modal-content">
+                                                            <p id="message-text" tabindex="0" aria-live="assertive"></p>
+                                                            <button class="drum-button" id="message-ok-btn">OK</button>
+                                        </div>
+                    </div>
+
+                    <!-- Input Modal -->
+                    <div id="preset-input-modal" class="modal" aria-hidden="true" role="dialog"
+                                        aria-labelledby="input-title" aria-describedby="preset-name-input">
+                                        <div class="modal-content">
+                                                            <input id="preset-name-input" type="text"
+                                                                                placeholder="Enter preset name" />
+                                                            <div style="margin-top: 1rem;">
+                                                                                <button class="drum-button"
+                                                                                                    id="preset-save-btn">Save</button>
+                                                                                <button class="drum-button"
+                                                                                                    id="preset-cancel-btn">Cancel</button>
+                                                            </div>
+                                        </div>
+                    </div>
+
+                    <!-- Confirm Modal -->
+                    <div id="confirm-modal" class="modal" aria-hidden="true" role="alertdialog"
+                                        aria-labelledby="confirm-modal-title" aria-describedby="confirm-modal-message">
+                                        <div class="modal-content">
+                                                            <p id="confirm-modal-message" aria-live="assertive"
+                                                                                tabindex="0"></p>
+                                                            <button class="drum-button"
+                                                                                id="confirm-yes-btn">Yes</button>
+                                                            <button class="drum-button"
+                                                                                id="confirm-no-btn">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <button aria-label="Show Preser Manager" style="margin-left: 30px;"
+                                        onclick="togglePresetPanel()">Presets</button>
+
+
+
+                    <div id="presetModal" class="modal">
+                                        <div class="modal-content">
+
+                                                            <div class="audio-preset">
+                                                                                <div>
+                                                                                                    <select class="lcd-select"
+                                                                                                                        id="presetSelect"
+                                                                                                                        onchange="handlePresetSelect(this.value)">
+                                                                                                                        <option disabled
+                                                                                                                                            selected>
+                                                                                                                                            Select
+                                                                                                                                            a
+                                                                                                                                            preset
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+                                                                                <div
+                                                                                                    style="display: flex; flex-direction: row;">
+                                                                                                    <button class="drum-button"
+                                                                                                                        onclick="saveCurrentAsLocalPreset()">SAVE
+
+                                                                                                                        PRESET</button>
+                                                                                                    <button class="drum-button"
+                                                                                                                        onclick="deleteCurrentPreset()">DELETE
+
+                                                                                                                        PRESET</button>
+                                                                                </div>
+                                                                                <div
+                                                                                                    style="display: flex; flex-direction: rpw;">
+                                                                                                    <button class="drum-button"
+                                                                                                                        onclick="exportPresetWithModal()">EXPORT
+                                                                                                                        PRESETS</button>
+                                                                                                    <label
+                                                                                                                        class="drum-button import-label">
+                                                                                                                        IMPORT
+                                                                                                                        PRESETS
+                                                                                                                        <input type="file" accept=".json"
+                                                                                                                                            onchange="importPreset(this.files[0])"
+                                                                                                                                            hidden />
+                                                                                                    </label>
+
+
+                                                                                </div>
+                                                            </div>
+                                                            <button style="width: 50px;" class="drum-button"
+                                                                                onclick="togglePresetPanel()">X</button>
+                                        </div>
+                    </div>
+
+
                     <div class="drumMachine">
                                         <h1>ALIEN INSTRUMENTS TR Great Oh
                                                             8</h1>
@@ -644,7 +738,9 @@
                                                                                                                         style="border: none;">
 
 
-                                                                                                                        <input type="range" id="tempoSlider"
+                                                                                                                        <input aria-label="Tempo"
+                                                                                                                                            type="range"
+                                                                                                                                            id="tempoSlider"
                                                                                                                                             min="40"
                                                                                                                                             max="300"
                                                                                                                                             value="120">
@@ -661,7 +757,9 @@
 
                                                                                 <button id="start">Start</button>
                                                                                 <button id="stop">Stop</button>
-                                                                                <button id="accentToggle" class="red"
+                                                                                <button aria-label="Toggle Accent/Drum Row"
+                                                                                                    id="accentToggle"
+                                                                                                    class="red"
                                                                                                     onclick="toggleAccent()">Steps</button>
 
 
@@ -675,7 +773,8 @@
                                                                                                                         style="border: none;">
 
 
-                                                                                                                        <input id="kickPitch"
+                                                                                                                        <input aria-label="Kick Pitch"
+                                                                                                                                            id="kickPitch"
                                                                                                                                             type="range"
                                                                                                                                             min="40"
                                                                                                                                             max="200"
@@ -690,7 +789,8 @@
                                                                                                                         for="kickDecay">Decay</label>
                                                                                                     <div class='range-knob-wrapper'
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="kickDecay"
+                                                                                                                        <input aria-label="Kick Decay"
+                                                                                                                                            id="kickDecay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.1"
                                                                                                                                             max="1"
@@ -706,7 +806,8 @@
                                                                                                                         for="kickLevel">Level</label>
                                                                                                     <div class='range-knob-wrapper'
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="kickLevel"
+                                                                                                                        <input aria-label="Kick Level"
+                                                                                                                                            id="kickLevel"
                                                                                                                                             type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
@@ -718,7 +819,8 @@
                                                                                                     </div>
                                                                                 </div>
 
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show Kick Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('kick-row', this)">Select</button>
 
 
@@ -731,7 +833,8 @@
                                                                                                                         for="snarePitch">Pitch</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="snarePitch"
+                                                                                                                        <input aria-label="Snare Pitch"
+                                                                                                                                            id="snarePitch"
                                                                                                                                             type="range"
                                                                                                                                             min="100"
                                                                                                                                             max="400"
@@ -746,7 +849,8 @@
                                                                                                                         for="snareDecay">Decay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="snareDecay"
+                                                                                                                        <input aria-label="Snare Decay"
+                                                                                                                                            id="snareDecay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.05"
                                                                                                                                             max="1"
@@ -762,7 +866,8 @@
                                                                                                                         for="snareLevel">Level</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="snareLevel"
+                                                                                                                        <input aria-label="Snare Level"
+                                                                                                                                            id="snareLevel"
                                                                                                                                             type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
@@ -773,7 +878,8 @@
                                                                                                                         </div>
                                                                                                     </div>
                                                                                 </div>
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show Snare Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('snare-row', this)">Select</button>
                                                             </div>
 
@@ -784,7 +890,8 @@
                                                                                                                         for="lowTomPitch">Pitch</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="lowTomPitch"
+                                                                                                                        <input aria-label="Low Tom Pitch"
+                                                                                                                                            id="lowTomPitch"
                                                                                                                                             type="range"
                                                                                                                                             min="60"
                                                                                                                                             max="150"
@@ -799,7 +906,8 @@
                                                                                                                         for="lowTomDecay">Decay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="lowTomDecay"
+                                                                                                                        <input aria-label="Low Tom Decay"
+                                                                                                                                            id="lowTomDecay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.1"
                                                                                                                                             max="1.5"
@@ -815,7 +923,8 @@
                                                                                                                         for="lowTomLevel">Level</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="lowTomLevel"
+                                                                                                                        <input aria-label="Low Tom Level"
+                                                                                                                                            id="lowTomLevel"
                                                                                                                                             type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
@@ -826,7 +935,8 @@
                                                                                                                         </div>
                                                                                                     </div>
                                                                                 </div>
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show Low Tom Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('lowtom-row', this)">Select</button>
                                                             </div>
 
@@ -837,7 +947,8 @@
                                                                                                                         for="midTomPitch">Pitch</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="midTomPitch"
+                                                                                                                        <input aria-label="Mid Tom Pitch"
+                                                                                                                                            id="midTomPitch"
                                                                                                                                             type="range"
                                                                                                                                             min="80"
                                                                                                                                             max="160"
@@ -852,7 +963,8 @@
                                                                                                                         for="midTomDecay">Decay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="midTomDecay"
+                                                                                                                        <input aria-label="Mid Tom Decay"
+                                                                                                                                            id="midTomDecay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.1"
                                                                                                                                             max="1.5"
@@ -868,7 +980,8 @@
                                                                                                                         for="midTomLevel">Level</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="midTomLevel"
+                                                                                                                        <input aria-label="Mid Tom Level"
+                                                                                                                                            id="midTomLevel"
                                                                                                                                             type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
@@ -879,7 +992,8 @@
                                                                                                                         </div>
                                                                                                     </div>
                                                                                 </div>
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show Mid Tom Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('midtom-row', this)">Select</button>
                                                             </div>
 
@@ -890,7 +1004,8 @@
                                                                                                                         for="highTomPitch">Pitch</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="highTomPitch"
+                                                                                                                        <input aria-label="High Tom Pitch"
+                                                                                                                                            id="highTomPitch"
                                                                                                                                             type="range"
                                                                                                                                             min="100"
                                                                                                                                             max="220"
@@ -905,7 +1020,8 @@
                                                                                                                         for="highTomDecay">Decay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="highTomDecay"
+                                                                                                                        <input aria-label="High Tom Decay"
+                                                                                                                                            id="highTomDecay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.1"
                                                                                                                                             max="1.5"
@@ -921,7 +1037,8 @@
                                                                                                                         for="highTomLevel">Level</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="highTomLevel"
+                                                                                                                        <input aria-label="High Tom Level"
+                                                                                                                                            id="highTomLevel"
                                                                                                                                             type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
@@ -932,7 +1049,8 @@
                                                                                                                         </div>
                                                                                                     </div>
                                                                                 </div>
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show High Tom Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('hightom-row', this)">Select</button>
                                                             </div>
                                                             <div id="clapDrum" class="controls panel">
@@ -943,7 +1061,9 @@
                                                                                                                         for="clapTone">Tone</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input type="range" id="clapTone"
+                                                                                                                        <input aria-label="Clap Tone"
+                                                                                                                                            type="range"
+                                                                                                                                            id="clapTone"
                                                                                                                                             min="200"
                                                                                                                                             max="2000"
                                                                                                                                             value="1100"
@@ -958,7 +1078,8 @@
                                                                                                                         for="clapDelay">Delay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="clapDelay"
+                                                                                                                        <input aria-label="Clap Delay"
+                                                                                                                                            id="clapDelay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.01"
                                                                                                                                             max="0.1"
@@ -974,7 +1095,8 @@
                                                                                                                         for="clapLevel">Level</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="clapLevel"
+                                                                                                                        <input aria-label="Clap Level"
+                                                                                                                                            id="clapLevel"
                                                                                                                                             type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
@@ -985,7 +1107,8 @@
                                                                                                                         </div>
                                                                                                     </div>
                                                                                 </div>
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show CLap Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('clap-row', this)">Select</button>
                                                             </div>
                                                             <div id="hatCym" class="controls panel">
@@ -996,7 +1119,9 @@
                                                                                                                         for="hiHatTone">Tone</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input type="range" id="hiHatTone"
+                                                                                                                        <input aria-label="Hi Hat Tone"
+                                                                                                                                            type="range"
+                                                                                                                                            id="hiHatTone"
                                                                                                                                             min="500"
                                                                                                                                             max="10000"
                                                                                                                                             value="5200"
@@ -1011,7 +1136,9 @@
                                                                                                                         for="hatDecay">Decay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="hatDecay" type="range"
+                                                                                                                        <input aria-label="Hi Hat Decay"
+                                                                                                                                            id="hatDecay"
+                                                                                                                                            type="range"
                                                                                                                                             min="0.01"
                                                                                                                                             max="0.3"
                                                                                                                                             step="0.01"
@@ -1026,7 +1153,9 @@
                                                                                                                         for="hatLevel">Level</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="hatLevel" type="range"
+                                                                                                                        <input aria-label="Hi Hat Level"
+                                                                                                                                            id="hatLevel"
+                                                                                                                                            type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
                                                                                                                                             step="0.05"
@@ -1036,7 +1165,8 @@
                                                                                                                         </div>
                                                                                                     </div>
                                                                                 </div>
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show Hi Hat Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('hihat-row', this)">Select</button>
                                                             </div>
 
@@ -1048,7 +1178,9 @@
                                                                                                                         for="crashTone">Tone</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input type="range" id="crashTone"
+                                                                                                                        <input aria-label="Crash Tone"
+                                                                                                                                            type="range"
+                                                                                                                                            id="crashTone"
                                                                                                                                             min="500"
                                                                                                                                             max="10000"
                                                                                                                                             value="5200"
@@ -1063,7 +1195,8 @@
                                                                                                                         for="cymbalDecay">Decay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="cymbalDecay"
+                                                                                                                        <input aria-label="Crash Decay"
+                                                                                                                                            id="cymbalDecay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.1"
                                                                                                                                             max="1.5"
@@ -1079,7 +1212,8 @@
                                                                                                                         for="cymbalLevel">Level</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="cymbalLevel"
+                                                                                                                        <input aria-label="Crash Level"
+                                                                                                                                            id="cymbalLevel"
                                                                                                                                             type="range"
                                                                                                                                             min="0.0"
                                                                                                                                             max="1"
@@ -1090,7 +1224,8 @@
                                                                                                                         </div>
                                                                                                     </div>
                                                                                 </div>
-                                                                                <button class="select-button"
+                                                                                <button aria-label="Show Crash Row"
+                                                                                                    class="select-button"
                                                                                                     onclick="showTab('cymbal-row', this)">Select</button>
                                                             </div>
 
@@ -1163,7 +1298,9 @@
                                                                                                                         for="tb303-cutoff">Cutoff</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input type="range" id="tb303-cutoff"
+                                                                                                                        <input aria-label="Filter Cut Off"
+                                                                                                                                            type="range"
+                                                                                                                                            id="tb303-cutoff"
                                                                                                                                             min="100"
                                                                                                                                             max="5000"
                                                                                                                                             step="1"
@@ -1179,7 +1316,9 @@
                                                                                                                         for="tb303-resonance">Res</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input type="range" id="tb303-resonance"
+                                                                                                                        <input aria-label="Filter Resonance"
+                                                                                                                                            type="range"
+                                                                                                                                            id="tb303-resonance"
                                                                                                                                             min="1"
                                                                                                                                             max="30"
                                                                                                                                             step="0.1"
@@ -1194,7 +1333,9 @@
                                                                                                                         for="tb303-env-amount">Env</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input type="range" id="tb303-env-amount"
+                                                                                                                        <input aria-label="Filter Envelope Amount"
+                                                                                                                                            type="range"
+                                                                                                                                            id="tb303-env-amount"
                                                                                                                                             min="0"
                                                                                                                                             max="2000"
                                                                                                                                             step="10"
@@ -1210,7 +1351,8 @@
                                                                                                                         for="tb303-decay">Decay</label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="tb303-decay"
+                                                                                                                        <input aria-label="Envelope Decay"
+                                                                                                                                            id="tb303-decay"
                                                                                                                                             type="range"
                                                                                                                                             min="0.05"
                                                                                                                                             max="0.5"
@@ -1230,7 +1372,9 @@
                                                                                                     </label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="lfo-rate" type="range"
+                                                                                                                        <input aria-label="LFO Rate"
+                                                                                                                                            id="lfo-rate"
+                                                                                                                                            type="range"
                                                                                                                                             min="0.1"
                                                                                                                                             max="20"
                                                                                                                                             step="0.1"
@@ -1247,7 +1391,8 @@
                                                                                                     </label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input id="lfo-depth"
+                                                                                                                        <input aria-label="LFO Depth"
+                                                                                                                                            id="lfo-depth"
                                                                                                                                             type="range"
                                                                                                                                             min="0"
                                                                                                                                             max="1000"
@@ -1267,7 +1412,8 @@
                                                             class="panel">
                                                             <div class="select-div">
                                                                                 <label>Waveform</label>
-                                                                                <select class="lcd-select"
+                                                                                <select aria-label="Oscillator Waveform"
+                                                                                                    class="lcd-select"
                                                                                                     id="tb303-waveform">
                                                                                                     <option
                                                                                                                         value="sawtooth">
@@ -1283,7 +1429,8 @@
                                                             <div class="select-div">
                                                                                 <label
                                                                                                     for="tb303-view-select">Step</label>
-                                                                                <select class="lcd-select"
+                                                                                <select aria-label="Visable Steps"
+                                                                                                    class="lcd-select"
                                                                                                     id="tb303-view-select">
                                                                                                     <option
                                                                                                                         value="accent">
@@ -1302,7 +1449,8 @@
                                                             <div class="select-div">
                                                                                 <label
                                                                                                     for="tb303-division">Division</label>
-                                                                                <select class="lcd-select"
+                                                                                <select aria-label="Time Division"
+                                                                                                    class="lcd-select"
                                                                                                     id="tb303-division">
                                                                                                     <option value="1">1
                                                                                                     </option>
@@ -1322,7 +1470,9 @@
                                                                                                     </label>
                                                                                                     <div class="range-knob-wrapper"
                                                                                                                         style="border: none;">
-                                                                                                                        <input type="range" id="volumeSlider"
+                                                                                                                        <input aria-label="Main Volume"
+                                                                                                                                            type="range"
+                                                                                                                                            id="volumeSlider"
                                                                                                                                             min="0"
                                                                                                                                             max="1"
                                                                                                                                             step="0.01"
@@ -1353,5 +1503,6 @@
 <script src="../scripts/bass.js"></script>
 <script src="../scripts/rotary.js"></script>
 <script src="../../accessibility/accessibilitySettings.js"></script>
+<script src="../scripts/saves.js"></script>
 
 </html>

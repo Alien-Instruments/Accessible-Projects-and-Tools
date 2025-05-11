@@ -338,6 +338,7 @@ const createRow = (id, array, isAccent = false) => {
   const container = document.getElementById(id);
   container.innerHTML = "";
   container.style.gap = "5px";
+
   for (let i = 0; i < 16; i++) {
     const wrap = document.createElement("div");
     wrap.classList.add("panel");
@@ -348,13 +349,20 @@ const createRow = (id, array, isAccent = false) => {
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.title = isAccent ? "Accent" : "Steps";
+    checkbox.title = isAccent ? "Accent" : "Step";
 
-    // Apply class names
+    // Add class names
     checkbox.classList.add("step");
     if (isAccent) {
       checkbox.classList.add("accent");
     }
+
+    // Assign unique ID and ARIA label
+    checkbox.id = `${id}-step-${i + 1}-${isAccent ? "accent" : "drum"}`;
+    checkbox.setAttribute(
+      "aria-label",
+      `${isAccent ? "Accent step" : "Drum step"} ${i + 1}`
+    );
 
     array.push(checkbox);
 

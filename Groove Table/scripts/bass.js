@@ -175,7 +175,9 @@ function createTB303Editor(sequence) {
 
     const select = document.createElement("select");
     select.classList.add("lcd-select"); // ✅ Apply the style here
-
+    const selectId = `note-select-${i + 1}`;
+    select.id = selectId;
+    select.setAttribute("aria-label", `Note select ${i + 1}`);
     for (let opt of noteOptions) {
       const option = document.createElement("option");
       option.value = opt.value;
@@ -191,7 +193,9 @@ function createTB303Editor(sequence) {
     const accentBox = document.createElement("input");
     accentBox.type = "checkbox";
     accentBox.classList.add("step", "accent-checkbox"); // ✅ THIS LINE
-
+    const accentId = `accent-${i + 1}`;
+    accentBox.id = accentId;
+    accentBox.setAttribute("aria-label", `Accent ${i + 1}`);
     accentBox.addEventListener("change", () => {
       sequence[i].accent = accentBox.checked;
       applyStateClass(accentBox, "accent", accentBox.checked);
@@ -208,7 +212,9 @@ function createTB303Editor(sequence) {
     const slideBox = document.createElement("input");
     slideBox.type = "checkbox";
     slideBox.classList.add("step", "slide-checkbox"); // ✅ THIS LINE
-
+    const slideId = `slide-${i + 1}`;
+    slideBox.id = slideId;
+    slideBox.setAttribute("aria-label", `Slide ${i + 1}`);
     slideBox.addEventListener("change", () => {
       sequence[i].slide = slideBox.checked;
       applyStateClass(slideBox, "slide", slideBox.checked);
@@ -225,7 +231,9 @@ function createTB303Editor(sequence) {
     const muteBox = document.createElement("input");
     muteBox.type = "checkbox";
     muteBox.classList.add("step", "mute-checkbox"); // ✅ THIS LINE
-
+    const muteId = `mute-${i + 1}`;
+    muteBox.id = muteId;
+    muteBox.setAttribute("aria-label", `Mute ${i + 1}`);
     muteBox.addEventListener("change", () => {
       sequence[i].mute = muteBox.checked;
       applyStateClass(muteBox, "mute", muteBox.checked);
@@ -288,14 +296,12 @@ volumeSlider.addEventListener("input", () => {
 cutoffSlider.addEventListener("input", () => {
   const freq = parseFloat(cutoffSlider.value);
   tb303Filter.frequency.value = freq;
-  cutoffValue.textContent = `${freq} Hz`;
 });
 
 // Update filter Q (resonance)
 resonanceSlider.addEventListener("input", () => {
   const q = parseFloat(resonanceSlider.value);
   tb303Filter.Q.value = q;
-  resonanceValue.textContent = q.toFixed(1);
 });
 
 // Update waveform type on next oscillator start
@@ -314,7 +320,6 @@ let envModAmount = parseFloat(envAmountSlider.value);
 
 envAmountSlider.addEventListener("input", () => {
   envModAmount = parseFloat(envAmountSlider.value);
-  envAmountValue.textContent = envModAmount;
 });
 
 const decaySlider = document.getElementById("tb303-decay");

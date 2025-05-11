@@ -493,6 +493,30 @@ h1 {
   animation: lcdFlicker 3s infinite ease-in-out;
 }
 
+input[type="text"] {
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 22px;
+  width: 400px;
+  height: 40px;
+  color: #ff0000;
+  background-color: #0a0a0a;
+  border: 4px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(193, 191, 191, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+  padding: 4px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+
+  /* NEW */
+  animation: lcdFlicker 3s infinite ease-in-out;
+}
+
 @keyframes lcdFlicker {
   0% {
     opacity: 1;
@@ -655,4 +679,165 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   gap: 20px;
+}
+
+.preset-box {
+  display: flex;
+  margin-top: 25px;
+  padding: 10px;
+  height: 80px;
+  width: 150px;
+  background: linear-gradient(
+    135deg,
+    #bfbfbf 40%,
+    #919090 50%,
+    #676666 70%,
+    #a49797 100%
+  );
+  color: #e1e1e1;
+  font-family: "Alien";
+  border-radius: 15px;
+  box-shadow: 12px 12px 25px rgba(0, 0, 0, 0.8),
+    -8px -8px 15px rgba(255, 255, 255, 0.3),
+    inset 0px 0px 15px rgba(0, 0, 0, 0.4),
+    inset 0px 0px 50px rgba(255, 255, 255, 0.1);
+  border: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#presetModal {
+  display: none;
+  position: fixed; /* Make it stay in place */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999; /* Ensure it's on top of everything */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.8
+  ); /* Optional: add a dark transparent backdrop */
+
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+  border: 1px solid #00ffe1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 0 12px #00ffe1, inset 0 0 6px #004d43;
+  color: #e0fefe;
+  font-family: "Alien", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content select {
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.modal-content button {
+  width: 100%;
+}
+
+#presetModal:hover {
+  box-shadow: 0 0 20px #00ffe1, inset 0 0 10px #004d43;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal[aria-hidden="false"] {
+  display: flex;
+}
+.drum-button {
+  margin: 10px;
+  padding: 5px 10px;
+  font-size: 22px;
+  font-family: "Alien", sans-serif;
+  height: 40px;
+  color: #ffffff;
+  background: radial-gradient(circle, #aa6f6f, #590404 70%);
+  border: 1px solid rgb(255, 254, 254);
+  border-radius: 12px;
+  box-shadow: 0 2px 0 black, 0 8px 16px rgba(0, 0, 0, 0.25);
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+  position: relative;
+  animation: flicker 1.15s infinite alternate;
+}
+
+.drum-button::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5%;
+  right: 5%;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    rgba(229, 120, 120, 0.8),
+    rgba(255, 255, 255, 0)
+  );
+  border-radius: 10px;
+}
+
+.drum-button:hover {
+  background: radial-gradient(circle, #780000, #693c3c 70%);
+}
+
+.drum-button:active {
+  box-shadow: 0 2px 0 black, 0 4px 8px rgba(0, 0, 0, 0.2),
+    0 3px 6px rgba(255, 0, 0, 0.6) inset;
+  transform: translateY(2px);
+}
+
+.drum-button:focus {
+  outline: 1px solid honeydew;
+}
+
+.import-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 22px;
+  height: 30px;
+  width: 100%;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    box-shadow: 0 2px 0 black, 0 4px 8px rgba(0, 0, 0, 0.2),
+      0 3px 6px rgba(255, 0, 0, 0.6) inset;
+  }
+  50% {
+    box-shadow: 0 2px 0 black, 0 4px 8px rgba(0, 0, 0, 0.2),
+      0 3px 6px rgba(255, 0, 0, 1) inset;
+  }
 }
