@@ -1548,7 +1548,7 @@ const factoryPresets = {
     selectBackgroundColor: "#ffffff",
     selectBorderColor: "#000000",
     selectFontColor: "#000000",
-    sliderColor: "#000000",
+    sliderColor: "#FFFFFF",
     sliderOutlineColor: "#919191",
     sliderThumbColor: "#000000",
     textColor: "#000000",

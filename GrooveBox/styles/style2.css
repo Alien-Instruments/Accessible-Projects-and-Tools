@@ -9,7 +9,7 @@
 }
 
 :focus {
-  outline: var(--focus-size, 4px) solid var(--focus-color, #0000ff); /* Default color if not set */
+  outline: var(--focus-size, 4px) solid var(--focus-color, #0000ff);
 }
 
 .hidden {
@@ -30,6 +30,7 @@ body {
   --font-style: normal;
   --font-variant: normal;
   --text-decoration: normal;
+  --font-color: black;
 }
 
 body,
@@ -41,6 +42,7 @@ select,
 button,
 label,
 input[type="text"] {
+  color: var(--font-color);
   font-family: var(--font-family);
   font-size: var(--font-size);
   font-weight: var(--font-weight);
@@ -366,7 +368,7 @@ span {
 /* Optional: Firefox support using scrollbar-color and scrollbar-width */
 .scroll-container {
   scrollbar-color: var(--slider-thumb-color) var(--slider-outline-color);
-  scrollbar-width: thin; /* or auto, or none */
+  scrollbar-width: thin;
 }
 
 /* Range slider designs */
@@ -1359,28 +1361,6 @@ span {
   transform: scale(1.2);
 }
 
-.bass-synth {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 25px;
-  padding: 20px;
-}
-
-.drumMachine {
-  text-align: center;
-}
-
-#tb303-controls {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-#tb303-sequencer {
-  gap: 5px;
-}
-
 .centered-container {
   display: flex;
   justify-content: center;
@@ -1389,7 +1369,6 @@ span {
 .controls2 {
   display: flex;
   flex-direction: row;
-  border: 1px solid hsla(0, 0%, 96%, 0.3);
   border-radius: 5px;
   margin-left: 5px;
   align-items: center;
@@ -1415,149 +1394,6 @@ span {
   justify-items: center;
 }
 
-/* =============== BASE STEP STYLES =============== */
-.step {
-  appearance: none;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(
-    to bottom,
-    var(--slider-outline-color),
-    var(--slider-thumb-color)
-  );
-  border-radius: 8px;
-  position: relative;
-  cursor: pointer;
-  border: 2px solid #666;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), inset 0 -2px 5px rgba(0, 0, 0, 0.5),
-    inset 0 2px 2px rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-}
-
-.step:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4), inset 0 -1px 3px rgba(0, 0, 0, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
-}
-
-.step::before {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #700; /* fallback if no specific style matches */
-  box-shadow: 0 0 4px #200, inset -1px -1px 2px rgba(0, 0, 0, 0.6),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.1);
-  transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-/* =============== UNCHECKED (DULL) COLORS =============== */
-.step:not(.accent):not(.slide):not(.mute)::before {
-  background-color: #004400; /* dull green for normal steps */
-  box-shadow: 0 0 4px #001f00, inset -1px -1px 2px rgba(0, 0, 0, 0.4),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.05);
-}
-
-.step.accent::before {
-  background-color: #665500; /* dull yellow/orange */
-}
-
-.step.slide::before {
-  background-color: #004d4d; /* dull cyan */
-}
-
-.step.mute::before {
-  background-color: #4d004d; /* dull magenta */
-}
-
-/* =============== CHECKED (LIT) COLORS =============== */
-.step:not(.accent):not(.slide):not(.mute):checked::before {
-  background-color: #0f0; /* bright green */
-  box-shadow: 0 0 8px #0f0, 0 0 15px #0f0,
-    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-  animation: ledGlow 1s infinite alternate;
-}
-
-.step.accent:checked::before {
-  background-color: #ff0; /* bright yellow */
-  box-shadow: 0 0 8px #ff0, 0 0 15px #ff0,
-    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-  animation: accentGlow 1s infinite alternate;
-}
-
-.step.slide:checked::before {
-  background-color: #0ff; /* bright cyan */
-  box-shadow: 0 0 8px #0ff, 0 0 15px #0ff,
-    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-  animation: slideGlow 1s infinite alternate;
-}
-
-.step.mute:checked::before {
-  background-color: #f0f; /* bright magenta */
-  box-shadow: 0 0 8px #f0f, 0 0 15px #f0f,
-    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-  animation: muteGlow 1s infinite alternate;
-}
-
-/* =============== PLAYING STATE =============== */
-.step.playing {
-  background-color: rgb(3, 241, 146);
-  box-shadow: 0 0 8px rgb(0, 255, 76), 0 0 15px rgb(0, 255, 55),
-    inset -1px -1px 2px rgba(0, 8, 255, 0.5),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-}
-
-.tb303-step.playing {
-  background-color: rgb(3, 241, 146);
-  box-shadow: 0 0 8px rgb(0, 255, 76), 0 0 15px rgb(0, 255, 55),
-    inset -1px -1px 2px rgba(13, 0, 253, 0.5),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-}
-
-/* =============== ANIMATIONS =============== */
-@keyframes ledGlow {
-  0% {
-    box-shadow: 0 0 8px #0f0, 0 0 15px #0f0;
-  }
-  100% {
-    box-shadow: 0 0 12px #0f0, 0 0 22px #0f0;
-  }
-}
-
-@keyframes accentGlow {
-  0% {
-    box-shadow: 0 0 8px #ff0, 0 0 15px #ff0;
-  }
-  100% {
-    box-shadow: 0 0 12px #ff0, 0 0 22px #ff0;
-  }
-}
-
-@keyframes slideGlow {
-  0% {
-    box-shadow: 0 0 8px #0ff, 0 0 15px #0ff;
-  }
-  100% {
-    box-shadow: 0 0 12px #0ff, 0 0 22px #0ff;
-  }
-}
-
-@keyframes muteGlow {
-  0% {
-    box-shadow: 0 0 8px #f0f, 0 0 15px #f0f;
-  }
-  100% {
-    box-shadow: 0 0 12px #f0f, 0 0 22px #f0f;
-  }
-}
-
 div label {
   display: block; /* or inline-block */
   width: 90%;
@@ -1569,6 +1405,7 @@ div label {
   align-items: center;
   padding: 15px;
   margin-bottom: 5px;
+  min-width: 150px;
 }
 
 .slider-div label {
@@ -1767,4 +1604,441 @@ div label {
 
 .import-label:focus {
   transform: scale(1.05);
+}
+
+#dropZone {
+  width: 300px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  border-radius: 5px;
+  border: var(--border-thickness) solid var(--panel-border-color);
+}
+
+.playing {
+  outline: 2px solid limegreen;
+}
+
+.toggle-group {
+  display: none;
+}
+
+/* =============== BASE STEP STYLES =============== */
+.step {
+  appearance: none;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    var(--slider-outline-color),
+    var(--slider-thumb-color)
+  );
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid #666;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), inset 0 -2px 5px rgba(0, 0, 0, 0.5),
+    inset 0 2px 2px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.step:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4), inset 0 -1px 3px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(0, 119, 60);
+  box-shadow: 0 0 4px #200, inset -1px -1px 2px rgba(0, 0, 0, 0.6),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* =============== UNCHECKED (DULL) COLORS =============== */
+.step:not(.accent):not(.slide):not(.tie-checkbox):checked::before {
+  background-color: #004400; /* dull green for normal steps */
+  box-shadow: 0 0 4px #001f00, inset -1px -1px 2px rgba(0, 0, 0, 0.4),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.step.accent::before {
+  background-color: #665500; /* dull yellow/orange */
+}
+
+.step.slide::before {
+  background-color: #004d4d; /* dull cyan */
+}
+
+.step.tie-checkbox::before {
+  background-color: #4d004d; /* dull magenta */
+}
+
+/* =============== CHECKED (LIT) COLORS =============== */
+.step:not(.accent):not(.slide):not(.tie-checkbox):checked::before {
+  background-color: #0f0; /* bright green */
+  box-shadow: 0 0 8px #0f0, 0 0 15px #0f0,
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+  animation: ledGlow 1s infinite alternate;
+}
+
+.step.accent:checked::before {
+  background-color: #ff0; /* bright yellow */
+  box-shadow: 0 0 8px #ff0, 0 0 15px #ff0,
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+  animation: accentGlow 1s infinite alternate;
+}
+
+.step.slide:checked::before {
+  background-color: #0ff; /* bright cyan */
+  box-shadow: 0 0 8px #0ff, 0 0 15px #0ff,
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+  animation: slideGlow 1s infinite alternate;
+}
+
+.step.tie-checkbox:checked::before {
+  background-color: #f0f;
+  box-shadow: 0 0 8px #f0f, 0 0 15px #f0f,
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+  animation: tieGlow 1s infinite alternate;
+}
+
+/* =============== ANIMATIONS =============== */
+@keyframes ledGlow {
+  0% {
+    box-shadow: 0 0 8px #0f0, 0 0 15px #0f0;
+  }
+  100% {
+    box-shadow: 0 0 12px #0f0, 0 0 22px #0f0;
+  }
+}
+
+@keyframes accentGlow {
+  0% {
+    box-shadow: 0 0 8px #ff0, 0 0 15px #ff0;
+  }
+  100% {
+    box-shadow: 0 0 12px #ff0, 0 0 22px #ff0;
+  }
+}
+
+@keyframes slideGlow {
+  0% {
+    box-shadow: 0 0 8px #0ff, 0 0 15px #0ff;
+  }
+  100% {
+    box-shadow: 0 0 12px #0ff, 0 0 22px #0ff;
+  }
+}
+
+@keyframes tieGlow {
+  0% {
+    box-shadow: 0 0 8px #f0f, 0 0 15px #f0f;
+  }
+  100% {
+    box-shadow: 0 0 12px #f0f, 0 0 22px #f0f;
+  }
+}
+
+/* =============== PLAYING STATE =============== */
+.step.playing {
+  background-color: rgb(3, 241, 146);
+  box-shadow: 0 0 8px rgb(0, 255, 76), 0 0 15px rgb(0, 255, 55),
+    inset -1px -1px 2px rgba(0, 8, 255, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.tb303-step.playing {
+  background-color: rgb(3, 241, 146);
+  box-shadow: 0 0 8px rgb(0, 255, 76), 0 0 15px rgb(0, 255, 55),
+    inset -1px -1px 2px rgba(13, 0, 253, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.sequence-step.playing {
+  background-color: rgb(3, 241, 146);
+  box-shadow: 0 0 8px rgb(0, 255, 76), 0 0 15px rgb(0, 255, 55),
+    inset -1px -1px 2px rgba(13, 0, 253, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.drumMachine {
+  width: 100%;
+  height: 80%;
+}
+
+.bass-synth {
+  width: 100%;
+  height: 80%;
+}
+
+.sampler {
+  width: 100%;
+  height: 80%;
+}
+
+.polySynth {
+  width: 100%;
+  height: 80%;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+}
+
+#tb303-sequencer {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 5px;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 90%;
+  padding: 20px;
+}
+
+#sequencer {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 5px;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 90%;
+  padding: 20px;
+}
+
+#programmer {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 5px;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 90%;
+  padding: 20px;
+}
+
+#polySequencer {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 5px;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 90%;
+  padding: 20px;
+}
+
+.groove-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  padding: 10px;
+  width: 95%;
+  height: 100%;
+  justify-self: center;
+}
+
+.tb303-step {
+  text-align: center;
+}
+
+.sequence-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  min-width: 150px;
+}
+
+.sequence-step select {
+  width: 90%;
+}
+
+.drum-step {
+  text-align: center;
+}
+
+#polySequencer {
+  display: flex;
+  gap: 5px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: flex-start;
+}
+
+.switch-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--font-color);
+  background-color: var(--background-color);
+  cursor: pointer;
+  user-select: none;
+  padding: 12px;
+}
+
+.switch-toggle input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.switch-knob {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: var(--background-color);
+  border: 2px solid #555;
+  border-radius: 10px;
+  box-shadow: inset 0 0 4px #000, 0 0 4px rgba(0, 255, 0, 0.2);
+  transition: background 0.2s ease-in-out;
+}
+
+.switch-knob::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 16px;
+  height: 25px;
+  background: #ccc;
+  border: 1px solid #444;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px #000;
+  transition: transform 0.2s ease-in-out;
+}
+
+.switch-toggle input[type="checkbox"]:checked + .switch-knob::before {
+  transform: translateX(20px);
+  background: rgb(82, 10, 10);
+  border-color: rgb(252, 24, 24);
+}
+
+.switch-toggle input[type="checkbox"]:checked + .switch-knob {
+  box-shadow: inset 0 0 6px rgb(255, 0, 0), 0 0 6px rgba(255, 0, 0, 0.4);
+}
+
+.switch-toggle input[type="checkbox"]:focus + .switch-knob {
+  outline: var(--focus-size) solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+#sampler-cutoff-value,
+#sampler-resonance-value,
+#attackValue,
+#decayValue,
+#filterAmountValue,
+#sampler-volume-value,
+#osc-1-gainValue,
+#filter-depth-value,
+#osc-2-gainValue,
+#osc-2-detuneValue,
+#amp-attack-value,
+#amp-decay-value,
+#filter-cutoff-value,
+#filter-q-value,
+#filter-decay-value,
+#filter-attack-value,
+#tb303-cutoff-value,
+#tb303-resonance-value,
+#tb303-volume-value,
+#tb303-env-amount-value,
+#tb303-decay-value,
+#lfo-rate-value,
+#lfo-depth-value,
+#endDisplay,
+#startDisplay,
+#tb303-distortion-value {
+  display: block;
+  margin-top: 10px;
+}
+#sampler-cutoff-value,
+#sampler-resonance-value,
+#attackValue,
+#decayValue,
+#filterAmountValue,
+#sampler-volume-value,
+#osc-1-gainValue,
+#filter-depth-value,
+#osc-2-gainValue,
+#osc-2-detuneValue,
+#amp-attack-value,
+#amp-decay-value,
+#filter-cutoff-value,
+#filter-q-value,
+#filter-decay-value,
+#filter-attack-value,
+#tb303-cutoff-value,
+#tb303-resonance-value,
+#tb303-volume-value,
+#tb303-env-amount-value,
+#tb303-decay-value,
+#lfo-rate-value,
+#lfo-depth-value,
+#endDisplay,
+#startDisplay,
+#tb303-distortion-value,
+#tempoValue {
+  display: block;
+  margin-top: 15px;
+}
+
+.file-upload-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--font-color);
+}
+
+.file-upload-label {
+  padding: 10px 20px;
+  background-color: var(--background-color);
+  color: var(--focus-color);
+  border: var(--border-thickness) solid var(--panel-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-name-display {
+  width: 300px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  border-radius: 5px;
+  border: var(--border-thickness) solid var(--panel-border-color);
+  text-align: left;
+  letter-spacing: 2px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-bottom: 4px;
+  margin-top: 6px;
 }

@@ -1,39 +1,19 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Accessible Projects And Tools</title>
-                    <link rel="stylesheet" href="VI Filters/style.css">
+                    <meta charset="UTF-8" />
+                    <title>Generative Synth</title>
+
+
+                    <link rel="stylesheet" href="styles/style.css" id="light" />
+                    <link rel="stylesheet" href="styles/style2.css" id="dark" disabled />
+
 </head>
 
 <body>
-                    <header>
-                                        <h1 style="justify-self: center;">Alien Instruments Accessible Projects And
-                                                            Tools</h1>
-                    </header>
 
-                    <!-- Custom Modal -->
-                    <div id="custom-modal" class="modal" aria-hidden="true" role="alertdialog"
-                                        aria-labelledby="modal-title" aria-describedby="modal-message">
-                                        <div class="modal-content">
-
-                                                            <p id="modal-message" aria-live="assertive" tabindex="0">
-                                                            </p>
-                                                            <button id="modal-ok-btn" class="modal-ok-btn">OK</button>
-                                        </div>
-                    </div>
-
-                    <div>
-                                        <p>Use these settings to select font family, size, variants and spacings. Change
-                                                            the page
-                                                            colours and style to suit your needs.</p>
-                                        <button id="toggleAccess" aria-expanded="false" role="button"
-                                                            aria-controls="menu">Show Page
-                                                            Settings</button>
-                    </div>
-
-                    <div id="accessDiv" class="hidden" style="text-align: center;">
+                    <div id="accessDiv" class="hidden panel" style="text-align: center;">
                                         <div id="preset-container" class="preset-tour">
                                                             <div class="presets-panel panel">
                                                                                 <label for="preset-name">Save
@@ -574,6 +554,7 @@
                                                                                                                         type="color"
                                                                                                                         id="label-font-picker">
                                                                                 </div>
+
                                                             </div>
 
                                                             <div id="output-tour" class="panel">
@@ -602,8 +583,7 @@
                                                                                                                         type="color"
                                                                                                                         id="output-font-picker">
                                                                                 </div>
-                                                                                <span aria-label="Test Span With Text">Lorem
-                                                                                                    ipsum</span>
+
                                                             </div>
 
                                                             <div class="main">
@@ -650,252 +630,183 @@
                     </div>
                     </div>
 
-                    <div>
-                                        <h2 style="justify-self: center;">Visual Impairment Filters and Colour Contrast
-                                                            Checker</h2>
-                                        <p>Building accessible software and websites is crucial to ensuring that
-                                                            everyone, including visually impaired and blind users, can
-                                                            engage with digital content. This tool is designed to help
-                                                            developers and designers create more inclusive products. By
-                                                            allowing users to upload images and apply visual impairment
-                                                            filters, it offers a unique perspective on how designs
-                                                            appear to individuals with various visual impairments.
-                                                            Additionally, the built-in WCAG contrast checker ensures
-                                                            that your designs meet essential accessibility standards for
-                                                            text and background contrast. With this tool, you can easily
-                                                            identify and address potential accessibility issues early in
-                                                            the design process.</p>
-                                        <a role="link" aria-label="Go To Visual Impairment Filter Contrast Checker. Opens In New Page"
-                                                            href="VI Filters/index.html">Visual
-                                                            Impairment
-                                                            Filter/Contrast Checker</a>
-
-                    </div>
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments Access Mod: Sound Design for
-                                                            Everyone</h2>
-
-                                        <p>
-                                                            Access Mod is a fully accessible, web-based modular
-                                                            synthesiser built with inclusivity at its core. Designed to
-                                                            empower musicians and sound designers of all abilities,
-                                                            Access Mod combines the flexibility of modular synthesis
-                                                            with an interface tailored for screen reader users, keyboard
-                                                            navigation, and customizable control schemes. Whether you're
-                                                            building rich textures, sharp leads, or experimental
-                                                            soundscapes, Access Mod ensures that creating music is an
-                                                            open and engaging experience for all. With drag-and-drop
-                                                            patching, keyboard shortcuts, and visual feedback tools,
-                                                            this synthesiser puts creative control back into every
-                                                            user's hands—no barriers, just sound.
-                                        </p>
-                                        <a role="link" aria-label="Go To Access Mod. Opens In New Page"
-                                                            href="Mod2/index.html">Access Mod</a>
+                    <div id="save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save MIDI Maping</h3>
+                                                            <input type="text" id="save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
                     </div>
 
-                    <div style="padding: 10px;">
-                                        <h2 style="justify-self: center;">Alien Instruments UBIK: The Talking MIDI
-                                                            Mapper</h2>
-                                        <p>Welcome to Alien Instruments UBIK, the talking MIDI mapping solution. Create
-                                                            groups for your controls and start
-                                                            adding sliders and buttons to send MIDI CC’s. Completely
-                                                            accessible for screen reading and keyboard navigation.
-                                                            Labelling groups and components also labels for screen
-                                                            reading. Design your own interface and map it to the device
-                                                            or software you wish to control. Each slider has a MIDI
-                                                            learn button, click this and follow the voice prompts to
-                                                            map your controller. When adding a slider, you can map the
-                                                            output range displayed on the screen and spoken aloud
-                                                            to and integer or float to match the parameter you are
-                                                            controlling. Alternatively, you can display or hear the
-                                                            current MIDI CC value. For buttons you can set the on value
-                                                            to any cc value, when mapped this will speak as
-                                                            “parameter name” on and off and display the same in the
-                                                            button. To get started click the add group button and
-                                                            follow the prompts. Or take a guided tour of the interface
-                                                            and settings by clicking the "Start Tour" button.
-                                        </p>
-                                        <p>
-                                        <p>If you are using a screen reader to take the tour after clicking start tour
-                                                            focus will go to a heading level 2,
-                                                            this is the parameter name, and that component shows focus
-                                                            in the UI. Use the tab key and next will be a heading
-                                                            level 3 with a description and context of the area or item.
-                                                            Press tab again and you will focus on the next button,
-                                                            followed by previous and then close buttons. When the tour
-                                                            ends there will be a finish button.</p>
-                                        </p>
 
-                                        <p>Have fun and enjoy!</p>
-                                        <a role="link" aria-label="Go To Access Mod. Opens In New Page"
-                                                            href="Ubik/index.html">UBIK</a>
-
+                    <div id="export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Current Mapping</h3>
+                                                            <input type="text" id="export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
                     </div>
 
-                    <div>
-                                        <section>
-                                                            <h2>Alien Instruments Poly Synth</h2>
-                                                            <p>A new generation of accessible music technology.</p>
 
-                                                            <p><strong>Alien Instruments Poly Synth</strong> is a fully
-                                                                                polyphonic web-based synthesizer
-                                                                                designed for <em>everyone</em>.
-                                                                                Play directly from your computer
-                                                                                keyboard, connect any MIDI device, or
-                                                                                even shape your sound with your voice.
-                                                            </p>
-
-                                                            <p>At the heart of the project is a strong focus on
-                                                                                <strong>accessibility and
-                                                                                                    customization</strong>:
-                                                            </p>
-
-                                                            <ul>
-                                                                                <li><strong>Dual Interface
-                                                                                                                        Modes:</strong><br>
-                                                                                                    •
-                                                                                                    <em>Skeuomorphic</em>:
-                                                                                                    A rich, tactile
-                                                                                                    visual experience
-                                                                                                    inspired by classic
-                                                                                                    hardware.<br>
-                                                                                                    • <em>Customizable
-                                                                                                                        UI</em>:
-                                                                                                    Total control over
-                                                                                                    page settings —
-                                                                                                    adjust color
-                                                                                                    schemes, font types,
-                                                                                                    sizes, contrast
-                                                                                                    levels, and choose
-                                                                                                    from a variety of
-                                                                                                    slider styles for
-                                                                                                    maximum comfort and
-                                                                                                    clarity.
-                                                                                </li>
-                                                                                <li><strong>Voice-Control
-                                                                                                                        System:</strong><br>
-                                                                                                    Issue spoken
-                                                                                                    commands to tweak
-                                                                                                    parameters, map
-                                                                                                    controls, and create
-                                                                                                    sounds hands-free.
-                                                                                </li>
-                                                                                <li><strong>Professional Audio
-                                                                                                                        Effects:</strong><br>
-                                                                                                    Shape your tone with
-                                                                                                    built-in <em>Dimension
-                                                                                                                        Expander</em>,
-                                                                                                    <em>Delay</em>, and
-                                                                                                    a <em>Three-Band
-                                                                                                                        EQ</em>
-                                                                                                    for deep, spatial
-                                                                                                    sound design.
-                                                                                </li>
-                                                            </ul>
-
-                                                            <p>Built using cutting-edge Web Audio technology,
-                                                                                <strong>Alien Instruments Poly
-                                                                                                    Synth</strong> is
-                                                                                made to empower all creators — no
-                                                                                barriers, no limits.
-                                                            </p>
-                                        </section>
-
-
-                                        <p>This project uses custom rotary knobs and has its own set of accessibility
-                                                            settings.Choose the interface style from the links below,
-                                                            you can change this in
-                                                            either UI at anytime and all settings are shared.</p>
-                                        <a role="link" aria-label="Go To Poly Synth Skeuomorphic. Opens In New Page"
-                                                            href="PolySynth/dist/poly.html">Poly Synth Skeuomorphic
-                                                            Interface</a><br><br>
-
-                                        <a role="link" aria-label="Go To Poly Synth Custom. Opens In New Page"
-                                                            href="PolySynth/dist/poly2.html">Poly Synth Custom
-                                                            Interface</a>
+                    <div id="clear-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Clear All MIDI Mappings?</h3>
+                                                            <p>This will remove all saved CC assignments. This action
+                                                                                cannot be undone.</p>
+                                                            <button class="lcd-button"
+                                                                                id="clear-confirm-btn">Clear</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
                     </div>
 
-                    <div>
-                                        <h2>Alien Instruments Groove Table</h2>
-                                        <p>This project is a tribute to two iconic instruments that shaped the sound of
-                                                            electronic music: the Roland TR-808 drum machine and the
-                                                            TB-303 bass synthesizer. Built entirely with modern web
-                                                            technologies using the Web Audio API and Web MIDI, this
-                                                            application reimagines these classic machines in a browser
-                                                            environment—no plugins or downloads required.</p>
-
-                                        <p>The project features two fully functional synthesizer interfaces:</p>
-
-                                        <p>A skeuomorphic mode that visually mimics the original hardware layout and
-                                                            styling for nostalgic fidelity</p>
-                                        <p>A custom UI mode offering a modern, streamlined interface optimized for
-                                                            performance and accessibility</p>
-                                        <p>Both interfaces are fully accessible, designed with inclusive practices in
-                                                            mind. Screen reader support, keyboard navigation, and
-                                                            responsive layouts ensure usability across a wide range of
-                                                            devices and user needs. Under the hood, synchronized audio
-                                                            engines drive the 808-inspired drum sequencer and 303-style
-                                                            bassline generator, with tempo sync, swing, accent, and
-                                                            parameter automation all supported.</p>
-
-                                        <p>This homage aims not only to preserve the spirit of these instruments but
-                                                            also to invite new experimentation through the flexibility
-                                                            of the web.</p>
-                                        <a role="link" aria-label="Go To Groove Table Skeuomorphic. Opens In New Page"
-                                                            href="Groove Table/index.html">Groove Table Skeuomorphic
-                                                            Interface</a><br><br>
-
-                                        <a role="link" aria-label="Go To Groove Table Custom. Opens In New Page"
-                                                            href="Groove Table/index/index2.html">Groove Table
-                                                            Custom
-                                                            Interface</a>
-
+                    <!-- Save Audio Preset Modal -->
+                    <div id="audio-save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save Audio Preset</h3>
+                                                            <input type="text" id="audio-save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
                     </div>
 
-                    <div>
-                                        <h2>Alien Instruments Web Audio Groovebox</h2>
-                                        <p>Welcome to the Web Audio Groovebox — a fully browser-based music production
-                                                            environment powered by the Web Audio API. This project
-                                                            brings together a suite of integrated tools for electronic
-                                                            music creation, all running natively in your web browser
-                                                            with no plugins or downloads required.</p>
-
-                                        <p>Whether you're laying down beats, programming basslines, slicing samples, or
-                                                            crafting polyphonic melodies, the Groovebox provides
-                                                            intuitive, hands-on control through a clean and responsive
-                                                            UI.</p>
-
-                                        <p>Features</p>
-
-                                        <p> Drum Machine: Multi-voice drum synthesizer with individual
-                                                            step sequencers, pitch/decay/level controls, and accent
-                                                            toggling.</p>
-                                        <p>
-                                                            Bass Synth (TB-303 style): Acid-style monosynth with slide,
-                                                            tie, and accent sequencing, plus full control over filter,
-                                                            envelope, and distortion parameters.</p>
-                                        <p>
-                                                            Sampler: Load your own audio files or factory samples, with
-                                                            control over start/end points, reverse playback, envelope
-                                                            shaping, and filter settings.</p>
-                                        <p>
-                                                            Polyphonic Synth: Two-oscillator poly synth with filter and
-                                                            amp envelopes, per-step sequencing, and chord playback
-                                                            support.</p>
-                                        <a role="link" aria-label="Go To Groove Box. Opens In New Page"
-                                                            href="GrooveBox/index.html">Groove
-                                                            Box Skeuomorphic Interface</a><br><br>
-
-                                        <a role="link" aria-label="Go To Groove Box. Opens In New Page"
-                                                            href="GrooveBox/index2.html">Groove
-                                                            Box Custom Interface</a>
+                    <!-- Export Audio Presets Modal -->
+                    <div id="audio-export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Audio Presets</h3>
+                                                            <input type="text" id="audio-export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
                     </div>
+
+                    <div id="midi-learn-modal" class="modal-overlay" style="display: none;">
+                                        <div class="modal-content">
+                                                            <button id="close-midi-learn"
+                                                                                class="modal-close-btn">×</button>
+                                                            <div class="midi-learn"
+                                                                                style="display: flex; flex-direction: row;">
+                                                                                <div id="midi-mapping-list"
+                                                                                                    class="lcd-panel">
+                                                                                </div>
+                                                                                <div style="display: flex; flex-direction: column;"
+                                                                                                    class="midi-preset-controls">
+                                                                                                    <!-- <input type="text" id="preset-name" placeholder="Preset name..." /> -->
+                                                                                                    <button class="lcd-button"
+                                                                                                                        id="save-preset">Save
+                                                                                                                        Preset</button>
+                                                                                                    <button class="lcd-button"
+                                                                                                                        id="export-cc-btn">Export</button>
+                                                                                                    <label tabindex="0" class="lcd-button"
+                                                                                                                        id="import-label"
+                                                                                                                        style="text-align: center;">
+                                                                                                                        Import
+                                                                                                                        <input type="file" id="import-cc-file"
+                                                                                                                                            accept=".json"
+                                                                                                                                            hidden />
+                                                                                                    </label>
+                                                                                                    <button class="lcd-button"
+                                                                                                                        id="clear-mappings-btn">Clear
+                                                                                                                        All
+                                                                                                                        Mappings</button>
+                                                                                </div>
+                                                                                <div class="preset-controls"></div>
+                                                                                <div id="midi-preset-list"
+                                                                                                    class="lcd-panel">
+                                                                                </div>
+                                                            </div>
+                                        </div>
+                    </div>
+
+                    <div id="audio-preset-modal" class="modal-overlay" style="display: none;">
+                                        <div class="modal-content">
+                                                            <button id="close-audio-preset-modal"
+                                                                                class="modal-close-btn">×</button>
+                                                            <div class="audio-preset-controls"
+                                                                                style="display: flex; flex-direction: row;">
+                                                                                <div
+                                                                                                    style="display: flex; flex-direction: column;">
+                                                                                                    <button class="lcd-button"
+                                                                                                                        id="open-audio-save-modal">Save
+                                                                                                                        Audio
+                                                                                                                        Preset</button>
+                                                                                                    <button class="lcd-button"
+                                                                                                                        id="open-audio-export-modal">Export
+                                                                                                                        Audio
+                                                                                                                        Presets</button>
+                                                                                                    <label tabindex="0" class="lcd-button"
+                                                                                                                        id="import-audio-label">
+                                                                                                                        Import
+                                                                                                                        Audio
+                                                                                                                        Presets
+                                                                                                                        <input type="file" id="import-audio-file"
+                                                                                                                                            accept=".json"
+                                                                                                                                            hidden />
+                                                                                                    </label>
+                                                                                </div>
+                                                                                <div id="audio-preset-list"
+                                                                                                    class="lcd-panel">
+                                                                                </div>
+                                                            </div>
+                                        </div>
+                    </div>
+
+
+
+                    <button id="startButton">Start Synth & Scene</button>
+
+
+                    <div id="modPanel" style=" top:0px; right:0px;">
+                                        <h3 style="font-weight: bold;">Synth Panel</h3>
+                                        <button id="theme-button" style="display: none; margin-bottom: 10px;"
+                                                            onclick="switchTheme()">Switch
+                                                            Theme</button>
+                                        <button id="toggleAccess" aria-expanded="false" role="button"
+                                                            aria-controls="menu">Show Page
+                                                            Settings</button>
+                                        <button id="open-audio-preset-btn" class="lcd-button">Open Audio
+                                                            Presets</button>
+                                        <button id="open-midi-learn-btn" class="lcd-button">Open MIDI Learn</button>
+
+                                        <div id="midi-ui"></div>
+                    </div>
+
+                    <div class="visually-hidden" id="aria-status" role="status" aria-live="polite"></div>
+
+                    <script>
+                                        function switchTheme() {
+                                                            const light = document.getElementById('light');
+                                                            const dark = document.getElementById('dark');
+                                                            const toggleAccess = document.getElementById('toggleAccess');
+
+                                                            if (light.disabled) {
+                                                                                light.disabled = false;
+                                                                                dark.disabled = true;
+                                                                                toggleAccess.style.display = 'none'; // hide in light mode
+                                                            } else {
+                                                                                light.disabled = true;
+                                                                                dark.disabled = false;
+                                                                                toggleAccess.style.display = ''; // show in dark mode
+
+                                                            }
+                                        }
+
+                    </script>
+
+
                     <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                    <script src="accessibility/accessibilitySettings.js"></script>
-
-</body>
-
+                    <script type="module" src="./src/main.js"></script>
+                    <script src="../accessibility/accessibilitySettings.js"></script>
 </body>
 
 </html>

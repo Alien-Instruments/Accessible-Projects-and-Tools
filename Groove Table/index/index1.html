@@ -86,13 +86,14 @@
                                                                                                     <button class="drum-button"
                                                                                                                         onclick="exportPresetWithModal()">EXPORT
                                                                                                                         PRESETS</button>
-                                                                                                    <label
-                                                                                                                        class="drum-button import-label">
+                                                                                                    <label class="drum-button import-label"
+                                                                                                                        tabindex="0"
+                                                                                                                        role="button"
+                                                                                                                        onkeydown="if(event.key === 'Enter' || event.key === ' ') this.querySelector('input').click();">
                                                                                                                         IMPORT
                                                                                                                         PRESETS
                                                                                                                         <input type="file" accept=".json"
-                                                                                                                                            onchange="importPreset(this.files[0])"
-                                                                                                                                            hidden />
+                                                                                                                                            onchange="importPreset(this.files[0])" />
                                                                                                     </label>
 
 

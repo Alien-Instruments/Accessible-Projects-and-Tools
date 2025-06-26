@@ -17,8 +17,8 @@ function populatePresetSelect(selectedKey = currentPresetKey) {
   }
 
   for (const key in localStorage) {
-    if (key.startsWith("preset_")) {
-      const name = key.replace("preset_", "");
+    if (key.startsWith("GB-preset_")) {
+      const name = key.replace("GB-preset_", "");
       const opt = document.createElement("option");
       opt.value = "local:" + name;
       opt.textContent = `${name}`;
@@ -61,61 +61,10 @@ function saveCurrentAsLocalPreset() {
   });
 }
 
-// Existing helpers
 function getPreset() {
   const preset = {};
-  const accessibilityIds = new Set([
-    // Font settings
-    "font-size-select",
-    "bold-select",
-    "font-family-select",
-    "font-style-select",
-    "font-variant-select",
-
-    // Spacing sliders
-    "access_letter-spacing-slider",
-    "access_word-spacing-slider",
-    "access_line-spacing-slider",
-    "access_border-radius-slider",
-    "access_border-thickness-slider",
-    "access_focus-size-slider",
-
-    // Accessibility color pickers
-    "color-picker",
-    "color-picker-2",
-    "color-picker-3",
-    "color-picker-4",
-    "color-picker-5",
-    "border-picker",
-    "focus-color-picker",
-    "button-border-picker",
-    "button-font-picker",
-    "group-background-picker",
-    "select-background-picker",
-    "select-border-picker",
-    "select-font-picker",
-    "black-keys-colour-picker",
-    "white-keys-colour-picker",
-    "key-font-colour-picker",
-    "panel-background-picker",
-    "panel-border-picker",
-    "panel-gradient-picker",
-    "label-background-picker",
-    "label-border-picker",
-    "label-font-picker",
-    "output-background-picker",
-    "output-border-picker",
-    "output-font-picker",
-    "slider-outline-picker",
-    "LineThickness",
-
-    // Checkbox and design selector
-    "toggle-gradients",
-    "knob-design-select",
-  ]);
-
   document.querySelectorAll("input, select, textarea").forEach((el) => {
-    if (!el.id || accessibilityIds.has(el.id)) return;
+    if (!el.id) return;
 
     if (el.type === "checkbox") {
       preset[el.id] = el.checked;
@@ -129,14 +78,12 @@ function getPreset() {
       preset[el.id] = el.value;
     }
   });
-
   return preset;
 }
 
 function setPreset(preset) {
   for (const [key, value] of Object.entries(preset)) {
     const el = document.getElementById(key);
-    // 📻 Handle radio buttons by name if no element with this ID exists
     if (!el) {
       const radios = document.querySelectorAll(
         `input[type="radio"][name="${key}"]`
@@ -198,7 +145,7 @@ function deleteCurrentPreset() {
   const name = currentPresetKey.split(":")[1];
   showPresetConfirmModal(`Delete the preset "${name}"?`, (confirmed) => {
     if (confirmed) {
-      localStorage.removeItem("preset_" + name);
+      localStorage.removeItem("GB-preset_" + name);
       currentPresetKey = null;
       populatePresetSelect();
       document.getElementById("presetSelect").selectedIndex = 0;
@@ -208,11 +155,11 @@ function deleteCurrentPreset() {
 
 function savePresetToLocal(name) {
   const preset = getPreset();
-  localStorage.setItem("preset_" + name, JSON.stringify(preset));
+  localStorage.setItem("GB-preset_" + name, JSON.stringify(preset));
 }
 
 function loadPresetFromLocal(name) {
-  const data = localStorage.getItem("preset_" + name);
+  const data = localStorage.getItem("GB-preset_" + name);
   if (data) {
     setPreset(JSON.parse(data));
   }
@@ -222,8 +169,8 @@ function exportPreset(filename = "presets") {
   const allPresets = {};
 
   for (const key in localStorage) {
-    if (key.startsWith("preset_")) {
-      const name = key.replace("preset_", "");
+    if (key.startsWith("GB-preset_")) {
+      const name = key.replace("GB-preset_", "");
       try {
         allPresets[name] = JSON.parse(localStorage.getItem(key));
       } catch (e) {
@@ -287,7 +234,7 @@ function importPreset(file) {
       }
 
       const name = keys[index++];
-      const key = "preset_" + name;
+      const key = "GB-preset_" + name;
 
       if (localStorage.getItem(key)) {
         // Show your custom confirm modal
@@ -322,7 +269,7 @@ let factoryPresets2 = {};
 
 async function loadFactoryPresets() {
   try {
-    const response = await fetch("../factory-presets/factory.json");
+    const response = await fetch("factory-presets/factory.json");
     if (!response.ok) {
       throw new Error(`HTTP ${response.status} - ${response.statusText}`);
     }

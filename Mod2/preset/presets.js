@@ -142,12 +142,12 @@ const accessibilityIds = new Set([
   "font-variant-select",
 
   // Spacing sliders
-  "letter-spacing-slider",
-  "word-spacing-slider",
-  "line-spacing-slider",
-  "border-radius-slider",
-  "border-thickness-slider",
-  "focus-size-slider",
+  "access_letter-spacing-slider",
+  "access_word-spacing-slider",
+  "access_line-spacing-slider",
+  "access_border-radius-slider",
+  "access_border-thickness-slider",
+  "access_focus-size-slider",
 
   // Accessibility color pickers
   "color-picker",

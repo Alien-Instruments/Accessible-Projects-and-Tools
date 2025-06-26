@@ -1,0 +1,672 @@
+:root {
+  --panel-bg: #18191f;
+  --panel-width: 250px;
+  --panel-radius: 12px;
+  --panel-shadow: 0 0 10px rgba(255, 255, 255, 0.933);
+  --accent: #33cfff;
+  --label-color: #b4dafb;
+  --value-color: #fff;
+  --font-main: "Inter", Arial, sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+#modPanel,
+#particleControlPanel {
+  position: absolute;
+  top: 0;
+  height: 90vh;
+  width: var(--panel-width);
+  max-width: var(--panel-width);
+  min-width: 260px;
+  border-radius: 12px;
+  background: var(--panel-bg);
+  color: #fff;
+  font-family: var(--font-main);
+  z-index: 20;
+  box-shadow: var(--panel-shadow);
+  padding: 32px 20px 20px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 8px;
+}
+
+#particleControlPanel {
+  left: 0;
+  border-right: 1.5px solid #26273b;
+}
+
+.mod-group,
+.panel-group {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--panel-radius);
+  margin-bottom: 18px;
+  padding: 16px 12px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px #0005;
+  text-align: center;
+}
+
+#particleControlPanel .panel-title {
+  font-size: 1.32em;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+/* LABELS BELOW SLIDERS */
+.mod-row,
+.panel-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 8px;
+}
+.mod-label-below,
+.panel-label-below {
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--label-color);
+  margin-top: 6px;
+  margin-bottom: 2px;
+  text-align: left;
+}
+.mod-value-below,
+.panel-value-below {
+  font-size: 1em;
+  color: var(--value-color);
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+#apply-particle-impulse,
+#add-particle-electron,
+#add-particle-proton,
+#add-particle-neutron {
+  width: 60%;
+  align-self: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: rgb(125, 125, 125);
+  outline: none;
+  border: 1px solid #3de4e8;
+  width: 150px;
+  height: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 30px;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 25px;
+  border-radius: 2px;
+  background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 10%,
+      transparent 10%,
+      transparent 11%,
+      transparent 11%,
+      transparent 16%,
+      transparent 16%,
+      transparent 17%,
+      transparent 17%,
+      transparent 22%,
+      transparent 22%,
+      transparent 23%,
+      transparent 23%,
+      transparent 28%,
+      transparent 28%,
+      transparent 29%,
+      transparent 29%,
+      transparent 34%,
+      transparent 34%,
+      transparent 35%,
+      transparent 35%,
+      transparent 40%,
+      transparent 40%,
+      transparent 41%,
+      transparent 41%,
+      transparent 46%,
+      transparent 46%,
+      transparent 47%,
+      transparent 47%,
+      transparent 52%,
+      #3de4e8 52%,
+      #3de4e8 53%,
+      lightgreen 53%,
+      lightgreen 57%,
+      black 57%,
+      black 58%,
+      transparent 58%,
+      transparent 63%,
+      transparent 63%,
+      transparent 64%,
+      transparent 64%,
+      transparent 69%,
+      transparent 69%,
+      transparent 70%,
+      transparent 70%,
+      transparent 75%,
+      transparent 75%,
+      transparent 76%,
+      transparent 76%,
+      transparent 81%,
+      transparent 81%,
+      transparent 82%,
+      transparent 82%,
+      transparent 87%,
+      transparent 87%,
+      transparent 88%,
+      transparent 88%,
+      transparent 93%,
+      transparent 93%,
+      transparent 94%,
+      transparent 94%,
+      transparent 99%,
+      transparent 99%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #474646 0%, #474747 100%),
+    linear-gradient(135deg, transparent 15%, #ffffff33 50%, transparent 85%);
+  border: 2px solid #3de4e8;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 25px;
+  border-radius: 2px;
+  background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 10%,
+      transparent 10%,
+      transparent 11%,
+      transparent 11%,
+      transparent 16%,
+      transparent 16%,
+      transparent 17%,
+      transparent 17%,
+      transparent 22%,
+      transparent 22%,
+      transparent 23%,
+      transparent 23%,
+      transparent 28%,
+      transparent 28%,
+      transparent 29%,
+      transparent 29%,
+      transparent 34%,
+      transparent 34%,
+      transparent 35%,
+      transparent 35%,
+      transparent 40%,
+      black 40%,
+      black 41%,
+      transparent 41%,
+      transparent 46%,
+      black 46%,
+      black 47%,
+      transparent 47%,
+      transparent 52%,
+      black 52%,
+      black 53%,
+      #3de4e8 53%,
+      #3de4e8 57%,
+      black 57%,
+      black 58%,
+      transparent 58%,
+      transparent 63%,
+      black 63%,
+      black 64%,
+      transparent 64%,
+      transparent 69%,
+      black 69%,
+      black 70%,
+      transparent 70%,
+      transparent 75%,
+      transparent 75%,
+      transparent 76%,
+      transparent 76%,
+      transparent 81%,
+      transparent 81%,
+      transparent 82%,
+      transparent 82%,
+      transparent 87%,
+      transparent 87%,
+      transparent 88%,
+      transparent 88%,
+      transparent 93%,
+      transparent 93%,
+      transparent 94%,
+      transparent 94%,
+      transparent 99%,
+      transparent 99%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #474646 0%, #474747 100%),
+    linear-gradient(135deg, transparent 15%, #ffffff33 50%, transparent 85%);
+  border: 2px solid #3de4e8;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.7),
+    inset 0 2px 5px rgba(255, 255, 255, 0.9);
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  transform: scale(1.2);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.7),
+    inset 0 2px 5px rgba(255, 255, 255, 0.9);
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  transform: scale(1.2);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.7),
+    inset 0 2px 5px rgba(255, 255, 255, 0.9);
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  transform: scale(1.2);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.7),
+    inset 0 2px 5px rgba(255, 255, 255, 0.9);
+}
+
+/* SELECT & DROPDOWN */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: rgb(59, 59, 59);
+  color: whitesmoke;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  padding-right: 40px;
+  padding-left: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="ffffff"" stroke="ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 9 12 15 18 9"></polygon></svg>');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.1px) center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+/* Hide the default arrow icon in Firefox */
+select::-ms-expand {
+  display: none;
+}
+
+/* Style the custom arrow icon */
+select {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--font-color, whitesmoke)" stroke="var(--font-color, whitesmoke)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 9 12 15 18 9"></polygon></svg>');
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.1px) center; /* Position further to the right */
+}
+
+/* BUTTONS */
+button {
+  background: linear-gradient(90deg, #3de4e8 0%, #67a5fd 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin: 8px 8px 0 0;
+  color: #15161f;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: filter 0.14s;
+  box-shadow: 0 2px 10px #3de4e82c;
+}
+button:hover {
+  filter: brightness(0.95) contrast(1.1);
+}
+
+/* UTILITY: FOR SLIDER VALUE NUMBER */
+span.slider-value,
+span[id$="-value"] {
+  text-align: right;
+  display: block;
+  font-size: 1em;
+  color: var(--label-color);
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+#startButton {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  background: linear-gradient(90deg, #3de4e8 0%, #67a5fd 100%);
+  color: #15161f;
+  font-weight: 700;
+  font-size: 1.15em;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  box-shadow: 0 2px 10px #3de4e82c;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: filter 0.16s;
+}
+#startButton:hover {
+  filter: brightness(0.93) contrast(1.1);
+}
+
+.colour-div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-items: center;
+}
+
+.colour-div input[type="color"] {
+  width: 90%;
+  height: 40px;
+}
+
+.mod-category,
+.panel-category {
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5em;
+  text-align: left;
+  align-items: center;
+}
+
+.mod-category-heading,
+.panel-category-heading {
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+  user-select: none;
+}
+
+#input[type="checkbox"] {
+  vertical-align: middle;
+  width: 99%;
+}
+
+#input[type="checkbox"] + span {
+  vertical-align: middle;
+}
+
+.checkbox-container {
+  display: inline-block;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-button {
+  display: inline-block;
+  padding: 10px;
+  background: linear-gradient(90deg, #3de4e8 0%, #67a5fd 100%);
+  border: 3px solid #67a5fd;
+  border-radius: 10px;
+  color: #000000;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.checkbox-input:checked ~ .checkbox-button {
+  background: linear-gradient(90deg, #3de4e8 0%, #67a5fd 100%);
+  border: 3px solid whitesmoke;
+  border-color: #ffffff;
+}
+
+.checkbox-input:focus ~ .checkbox-button {
+  outline: 2px solid whitesmoke;
+  outline-offset: 2px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: whitesmoke;
+  font-family: var(--font-main);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #181c20;
+  border: 2px solid #36ffad;
+  border-radius: 14px;
+  padding: 2rem;
+  width: 80%;
+  height: 260px;
+  position: relative;
+  box-shadow: 0 0 40px #000;
+  justify-items: space-between;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content-2 {
+  background: #181c20;
+  border: 2px solid #36ffad;
+  font-family: var(--font-main);
+  border-radius: 14px;
+  padding: 2rem;
+  width: 80%;
+  position: relative;
+  box-shadow: 0 0 40px #000;
+  justify-items: space-between;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #36ffad;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.lcd-button {
+  margin-bottom: 20px;
+}
+
+#midi-mapping-list {
+  overflow: auto;
+  font-family: var(--font-main);
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  width: 400px;
+  height: 200px;
+  margin-top: 50px;
+  margin-right: 20px;
+}
+
+#midi-preset-list {
+  overflow: auto;
+  font-family: var(--font-main);
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  width: 400px;
+  height: 200px;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+#audio-preset-list {
+  overflow: auto;
+  font-family: var(--font-main);
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  width: 400px;
+  height: 240px;
+  margin-left: 10px;
+}
+
+#midi-mapping-list ul,
+#midi-preset-list ul,
+#audio-preset-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+#midi-mapping-list li,
+#midi-preset-list li,
+#audio-preset-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+#midi-mapping-list .remove-btn,
+#midi-preset-list .remove-btn,
+#audio-preset-list .remove-btn {
+  color: #182424;
+  background-color: #206976;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  border: 2px dashed black;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+#midi-mapping-list .remove-btn:focus,
+#midi-preset-list .remove-btn:focus,
+#audio-preset-list .remove-btn:focus {
+  outline: 2px dashed black;
+  outline-offset: 2px;
+}
+
+.remove-btn2 {
+  border: none;
+  background-color: #206976;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.slider-container.learning {
+  outline: 2px dashed yellow;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    outline-color: yellow;
+  }
+  50% {
+    outline-color: orange;
+  }
+  100% {
+    outline-color: yellow;
+  }
+}
