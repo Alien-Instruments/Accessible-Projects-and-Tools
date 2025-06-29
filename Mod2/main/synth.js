@@ -1615,8 +1615,8 @@ function removeConnection(sourceNodeId) {
 
 // Handle keydown event for spacebar to start drag or drop
 document.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default spacebar behavior (e.g., scrolling)
+  if (event.code === "KeyP") {
+    event.preventDefault();
 
     // If no sourceNode, pick up the focused node for dragging
     if (!sourceNode && focusedNode) {

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+                    <meta charset="UTF-8">
+                    <title>SpectraSynth</title>
+                    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+
+<body class="desktop">
+                    <div id="save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save MIDI Maping</h3>
+                                                            <input type="text" id="save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <div id="export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Current Mapping</h3>
+                                                            <input type="text" id="export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <div id="clear-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Clear All MIDI Mappings?</h3>
+                                                            <p>This will remove all saved CC assignments. This action
+                                                                                cannot be undone.</p>
+                                                            <button class="lcd-button"
+                                                                                id="clear-confirm-btn">Clear</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <!-- Save Audio Preset Modal -->
+                    <div id="audio-save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save Audio Preset</h3>
+                                                            <input type="text" id="audio-save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <!-- Export Audio Presets Modal -->
+                    <div id="audio-export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Audio Presets</h3>
+                                                            <input type="text" id="audio-export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <div class="synth">
+                                        <div style="display: flex; flex-direction: row; margin-top: 20px;">
+                                                            <button class="lcd-button" id="toggle-midi-learn"
+                                                                                data-label="MIDI Learn">Show
+                                                                                MIDI Learn</button>
+                                                            <button class="lcd-button" id="toggle-audio-preset-controls"
+                                                                                data-label="Audio Presets">Show Audio
+                                                                                Presets</button>
+                                        </div>
+
+                                        <div class="audio-preset-controls hidden" id="audio-preset-controls">
+                                                            <div style="display: flex; flex-direction: column;">
+                                                                                <button class="lcd-button"
+                                                                                                    id="open-audio-save-modal">Save
+                                                                                                    Audio
+                                                                                                    Preset</button>
+                                                                                <button class="lcd-button"
+                                                                                                    id="open-audio-export-modal">Export
+                                                                                                    Audio
+                                                                                                    Presets</button>
+                                                                                <label tabindex="0" class="lcd-button"
+                                                                                                    id="import-audio-label">Import
+                                                                                                    Audio
+                                                                                                    Presets
+                                                                                                    <input type="file" id="import-audio-file"
+                                                                                                                        accept=".json"
+                                                                                                                        hidden />
+                                                                                </label>
+                                                            </div>
+                                                            <div id="audio-preset-list" class="lcd-panel">
+                                                            </div>
+                                        </div>
+
+                                        <div class="midi-learn hidden" id="midi-learn">
+
+                                                            <div id="midi-mapping-list" class="lcd-panel"></div>
+
+                                                            <div style="display: flex; flex-direction: column;"
+                                                                                class="midi-preset-controls">
+                                                                                <!-- <input type="text" id="preset-name" placeholder="Preset name..." /> -->
+                                                                                <button class="lcd-button"
+                                                                                                    id="save-preset">Save
+                                                                                                    Preset</button>
+                                                                                <button class="lcd-button"
+                                                                                                    id="export-cc-btn">Export</button>
+                                                                                <label tabindex="0" class="lcd-button"
+                                                                                                    id="import-label"
+                                                                                                    style="text-align: center;">
+                                                                                                    Import
+                                                                                                    <input type="file" id="import-cc-file"
+                                                                                                                        accept=".json"
+                                                                                                                        hidden />
+                                                                                </label>
+                                                                                <button class="lcd-button"
+                                                                                                    id="clear-mappings-btn">Clear
+                                                                                                    All
+                                                                                                    Mappings</button>
+
+                                                            </div>
+                                                            <div class="preset-controls"></div>
+                                                            <div id="midi-preset-list" class="lcd-panel">
+                                                            </div>
+
+                                        </div>
+                                        <div id="midi-ui"></div>
+
+                                        <div id="synth-ui">
+
+                                                            <div class="xy-row">
+                                                                                <div
+                                                                                                    style="display: flex; flex-direction: column;">
+                                                                                                    <div
+                                                                                                                        class="slider-container">
+                                                                                                                        <label
+                                                                                                                                            for="xMorph"><b>Morph
+                                                                                                                                                                X:</b></label>
+                                                                                                                        <input aria-label="X Morph"
+                                                                                                                                            id="xMorph"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0">
+                                                                                                                        <span class="slider-value lcd-text"
+                                                                                                                                            id="xMorphValue">0.00</span>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="slider-container">
+                                                                                                                        <label
+                                                                                                                                            for="yMorph"><b>Morph
+                                                                                                                                                                Y:</b></label>
+                                                                                                                        <input aria-label="Y Morph"
+                                                                                                                                            id="yMorph"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0">
+                                                                                                                        <span class="slider-value lcd-text"
+                                                                                                                                            id="yMorphValue">0.00</span>
+                                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="xy-div">
+                                                                                                    <div id="xyPad" tabindex="0"
+                                                                                                                        role="slider"
+                                                                                                                        aria-label="XY Pad: adjust X and Y parameters using arrow keys"
+                                                                                                                        aria-valuemin="0"
+                                                                                                                        aria-valuemax="1"
+                                                                                                                        aria-valuenow="0.5"
+                                                                                                                        aria-valuetext="X:
+                                                                                                                        0.5,
+                                                                                                                        Y:
+                                                                                                                        0.5">
+                                                                                                                        <div class="dot"
+                                                                                                                                            id="xyDot">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="harm-div">
+                                                                                                    <canvas id="plot" width="500"
+                                                                                                                        height="200"
+                                                                                                                        aria-describedby="spectrum-desc"></canvas>
+                                                                                                    <div class="small">
+                                                                                                                        Spectrum
+                                                                                                                        of
+                                                                                                                        current
+                                                                                                                        waveform
+                                                                                                                        (harmonic
+                                                                                                                        amplitudes)
+                                                                                                    </div>
+                                                                                                    <!-- Not focusable, no tabindex! -->
+                                                                                                    <p aria-hidden="true"
+                                                                                                                        id="spectrum-desc"
+                                                                                                                        class="sr-only">
+
+                                                                                                    </p>
+                                                                                </div>
+
+
+                                                            </div>
+
+                                                            <div
+                                                                                style="display: flex; justify-content: center; align-items: center;; flex-direction: column; text-align: center;">
+                                                                                <h3>User Harmonics</h3>
+                                                                                <div aria-label="User Harmonics Table"
+                                                                                                    id="harmonics-table">
+                                                                                </div>
+                                                            </div>
+                                                            <div class="top-row">
+                                                                                <div class="filter-controls">
+                                                                                                    <h3>Filter</h3>
+                                                                                                    <div
+                                                                                                                        class="filter-row">
+                                                                                                                        <div
+                                                                                                                                            class="select-div">
+                                                                                                                                            <label>Type</label>
+                                                                                                                                            <select aria-label="Filter Type"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="filterType">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="lowpass">
+                                                                                                                                                                                    Lowpass
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="highpass">
+                                                                                                                                                                                    Highpass
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="bandpass">
+                                                                                                                                                                                    Bandpass
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="notch">
+                                                                                                                                                                                    Notch
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container">
+                                                                                                                                            <label>Cutoff</label>
+                                                                                                                                            <input aria-label="Filter Cut Off"
+                                                                                                                                                                id="filterCutoff"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="20"
+                                                                                                                                                                max="20000"
+                                                                                                                                                                step="1"
+                                                                                                                                                                value="20000">
+                                                                                                                                            <span class="lcd-text"
+                                                                                                                                                                id="filterCutoff-value">20000</span>
+
+
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container">
+                                                                                                                                            <label>Resonance</label>
+                                                                                                                                            <input aria-label="Filter Resonance"
+                                                                                                                                                                id="filterResonance"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0.1"
+                                                                                                                                                                max="24"
+                                                                                                                                                                step="0.1"
+                                                                                                                                                                value="0.5">
+                                                                                                                                            <span class="lcd-text"
+                                                                                                                                                                id="filterResonance-value">0.5</span>
+                                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="output-div">
+                                                                                                    <h3>Output</h3>
+                                                                                                    <div
+                                                                                                                        class="output-row">
+                                                                                                                        <div
+                                                                                                                                            class="slider-container">
+                                                                                                                                            <label>Volume</label>
+                                                                                                                                            <input aria-label="Output Volume"
+                                                                                                                                                                id="outputVol"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="1">
+                                                                                                                                            <span class="lcd-text"
+                                                                                                                                                                id="outputValue">1</span>
+
+                                                                                                                        </div>
+
+                                                                                                                        <canvas id="outputMeterCanvas"
+                                                                                                                                            width="50"
+                                                                                                                                            height="60"
+                                                                                                                                            style="background:#111; border-radius:4px;"></canvas>
+                                                                                                    </div>
+
+                                                                                </div>
+                                                            </div>
+                                                            <div class="lfos">
+                                                                                <div class="lfo-controls">
+                                                                                                    <h3>LFO 1
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="lfo-row">
+                                                                                                                        <div
+                                                                                                                                            class="select-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoShape">Shape</label>
+                                                                                                                                            <select aria-label="LFO 1 Shape"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfoShape">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sine">
+                                                                                                                                                                                    Sine
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="triangle">
+                                                                                                                                                                                    Triangle
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="square">
+                                                                                                                                                                                    Square
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sawtooth">
+                                                                                                                                                                                    Sawtooth
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoRate">Rate</label>
+                                                                                                                                            <input aria-label="LFO 1 Rate"
+                                                                                                                                                                id="lfoRate"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0.1"
+                                                                                                                                                                max="20"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="2">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfoRate-value">2.00</span>
+
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoDepth">Depth</label>
+                                                                                                                                            <input aria-label="LFO 1 Depth"
+                                                                                                                                                                id="lfoDepth"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfoDepth-value">0.00</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="select-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoTarget">Target</label>
+                                                                                                                                            <select aria-label="LFO 1 Destination"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfoTarget">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="none">
+
+                                                                                                                                                                                    None
+                                                                                                                                                                </option>
+
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="filter">
+
+                                                                                                                                                                                    Cut
+                                                                                                                                                                                    Off
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="pitch">
+
+                                                                                                                                                                                    Pitch
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="xMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    X
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="yMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    Y
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="lfo-controls">
+                                                                                                    <h3>LFO 2
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="lfo-row">
+                                                                                                                        <div
+                                                                                                                                            class="select-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Shape">Shape</label>
+                                                                                                                                            <select aria-label="LFO 2 Shape"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfo2Shape">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sine">
+                                                                                                                                                                                    Sine
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="triangle">
+                                                                                                                                                                                    Triangle
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="square">
+                                                                                                                                                                                    Square
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sawtooth">
+                                                                                                                                                                                    Sawtooth
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Rate">LFO
+                                                                                                                                                                2
+                                                                                                                                                                Rate</label>
+                                                                                                                                            <input id="lfo2Rate" type="range"
+                                                                                                                                                                min="0.1"
+                                                                                                                                                                max="20"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="2">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfo2Rate-value">2.00</span>
+
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Depth">Depth</label>
+                                                                                                                                            <input aria-label="LFO 2 Depth"
+                                                                                                                                                                id="lfo2Depth"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfo2Depth-value">0.00</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="select-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Target">Target</label>
+                                                                                                                                            <select aria-label="LFO 2 Destination"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfo2Target">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="none">
+
+                                                                                                                                                                                    None
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="filter">
+                                                                                                                                                                                    Cut
+                                                                                                                                                                                    Off
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="pitch">
+                                                                                                                                                                                    Pitch
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="xMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    X
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="yMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    Y
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                            </div>
+
+                                                            <div class="env-row">
+                                                                                <div class="envelope-controls">
+                                                                                                    <h3>Amp Envelope
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="envelope-sliders">
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert">
+                                                                                                                                            <label>Attack</label>
+                                                                                                                                            <input aria-label="Amp Attack"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envA"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.05">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envA-value">0.05</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert">
+                                                                                                                                            <label>Decay</label>
+                                                                                                                                            <input aria-label="Amp Decay"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envD"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.15">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envD-value">0.15</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert">
+                                                                                                                                            <label>Sustain</label>
+                                                                                                                                            <input aria-label="Amp Sustain"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envS"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.8">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envS-value">0.80</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert">
+                                                                                                                                            <label>Release</label>
+                                                                                                                                            <input aria-label="Amp Release"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envR"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.5">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envR-value">0.50</span>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div id="mod-envelope-section">
+                                                                                                    <h3>Mod Envelope
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="envelope-sliders">
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert-2">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvA">Attack</label>
+                                                                                                                                            <input aria-label="Mod Attack"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvA"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.01">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvA-value">0.01</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert-2">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvD">Decay</label>
+                                                                                                                                            <input aria-label="Mod Decay"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvD"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.1">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvD-value">0.10</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert-2">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvS">Sustain</label>
+                                                                                                                                            <input aria-label="Mod Sustain"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvS"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="1">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvS-value">1.00</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert-2">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvR">Release</label>
+                                                                                                                                            <input aria-label="Mod Release"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvR"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.1">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvR-value">0.10</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container-vert-2">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvDepth">Depth</label>
+                                                                                                                                            <input aria-label="Mod Depth"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvDepth"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="-1"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvDepth-value">0.00</span>
+                                                                                                                        </div>
+
+                                                                                                                        <div
+                                                                                                                                            class="select-div">
+                                                                                                                                            <label>Destination</label>
+                                                                                                                                            <select aria-label="Mod Destination"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="modEnvDest">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="pitch">
+                                                                                                                                                                                    Pitch
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="filter">
+                                                                                                                                                                                    Cut
+                                                                                                                                                                                    Off
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                    </div>
+
+
+                                                                                </div>
+
+
+                                                            </div>
+
+                                                            <div id="fx-bank"></div>
+                                                            <div
+                                                                                style="color: azure; text-align: center; font-weight: bolder; font-size: large;">
+                                                                                FX Chain
+                                                            </div>
+                                                            <div tabindex="0" id="fx-chain"></div>
+                                        </div>
+                    </div>
+                    <div style="height: 60px;"></div>
+                    <div class="visually-hidden" id="aria-status" role="status" aria-live="polite"></div>
+                    <input id="numberKey0" type="hidden" value="0" />
+                    <input id="numberKey1" type="hidden" value="1" />
+                    <input id="numberKey2" type="hidden" value="2" />
+                    <input id="modifier1" type="hidden" value="shiftKey" />
+                    <input id="modifier2" type="hidden" value="ctrlKey" />
+
+                    <script type="module" src="src/synth.js"></script>
+                    <script type="module" src="src/master-fx.js"></script>
+                    <script src="src/toggle.js"></script>
+                    <script src="src/sliders.js"></script>
+</body>
+
+</html>

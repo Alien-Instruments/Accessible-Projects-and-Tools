@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+                    <meta charset="UTF-8">
+                    <title>SpectraSynth</title>
+                    <link rel="stylesheet" href="styles/style2.css">
+
+</head>
+
+<body class="desktop">
+
+                    <button id="toggleAccess" class="button wordSpacing letterSpacing">Show Interface Settings</button>
+
+                    <div id="accessDiv" class="hidden" style="text-align: center;">
+                                        <div id="preset-container" class="preset-tour">
+                                                            <div class="presets-panel panel">
+                                                                                <label for="preset-name">Save
+                                                                                                    Presets
+                                                                                </label><br>
+                                                                                <input role="text" aria-label="Enter Preset Name"
+                                                                                                    type="text"
+                                                                                                    id="preset-name"
+                                                                                                    placeholder="Enter preset name" />
+                                                                                <button role="button"
+                                                                                                    id="save-preset-btn">Save
+                                                                                                    Preset</button>
+                                                            </div>
+
+                                                            <div class="presets-panel panel">
+                                                                                <label for="preset-list">Load
+                                                                                                    Presets</label><br>
+                                                                                <select role="combobox"
+                                                                                                    aria-label="Load Presets"
+                                                                                                    id="preset-list">
+                                                                                                    <option value="" disabled
+                                                                                                                        selected>
+                                                                                                                        Select
+                                                                                                                        a
+                                                                                                                        preset
+                                                                                                    </option>
+                                                                                </select>
+                                                                                <button role="button"
+                                                                                                    id="delete-preset-btn">Delete
+                                                                                                    Preset</button>
+                                                            </div>
+
+                                        </div>
+
+                                        <h2>Font Settings</h2>
+                                        <div
+                                                            style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label
+                                                                                                    for="font-size-select">Size</label>
+                                                                                <select id="font-size-select">
+                                                                                                    <option value="12">
+                                                                                                                        Small
+                                                                                                    </option>
+                                                                                                    <option value="18">
+                                                                                                                        Medium
+                                                                                                    </option>
+                                                                                                    <option value="26">
+                                                                                                                        Large
+                                                                                                    </option>
+                                                                                                    <option value="34">
+                                                                                                                        Largest
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label for="bold-select">Bold</label>
+                                                                                <select id="bold-select">
+                                                                                                    <option
+                                                                                                                        value="normal">
+                                                                                                                        Off
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="bold">
+                                                                                                                        On
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel">
+                                                                                <label
+                                                                                                    for="font-family-select">Family</label>
+                                                                                <select id="font-family-select">
+                                                                                                    <option
+                                                                                                                        value="Arial">
+                                                                                                                        Arial
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Arial Narrow">
+                                                                                                                        Arial
+                                                                                                                        Narrow
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Times New Roman">
+                                                                                                                        Times
+                                                                                                                        N
+                                                                                                                        R
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Verdana">
+                                                                                                                        Verdana
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Helvetica">
+                                                                                                                        Helvetica
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Courier">
+                                                                                                                        Courier
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Courier New">
+                                                                                                                        Courier
+                                                                                                                        New
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Andale Mono">
+                                                                                                                        Andale
+                                                                                                                        Mono
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Candara">
+                                                                                                                        Candara
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Geneva">
+                                                                                                                        Geneva
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Optima">
+                                                                                                                        Optima
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Trebuchet MS">
+                                                                                                                        Trebuchet
+                                                                                                                        MS
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Gill Sans">
+                                                                                                                        Gill
+                                                                                                                        Sans
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Palatino">
+                                                                                                                        Palatino
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Monaco">
+                                                                                                                        Monaco
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Tahoma">
+                                                                                                                        Tahoma
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="CustomFont">
+                                                                                                                        Open
+                                                                                                                        Dyslexic
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Luminari">
+                                                                                                                        Luminari
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Chalkduster">
+                                                                                                                        Chalkduster
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Marker Felt">
+                                                                                                                        Marker
+                                                                                                                        Felt
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Bradley Hand">
+                                                                                                                        Bradley
+                                                                                                                        Hand
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label
+                                                                                                    for="font-style-select">Style</label>
+                                                                                <select id="font-style-select">
+                                                                                                    <option
+                                                                                                                        value="normal">
+                                                                                                                        Normal
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="italic">
+                                                                                                                        Italic
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="underline">
+                                                                                                                        Underline
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label
+                                                                                                    for="font-variant-select">Variant</label>
+                                                                                <select id="font-variant-select">
+                                                                                                    <option
+                                                                                                                        value="normal">
+                                                                                                                        Normal
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="small-caps">
+                                                                                                                        Small
+                                                                                                                        Caps
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+                                        </div>
+                                        <div class="main">
+
+                                                            <div class="slider-container panel" id="letter-tour">
+                                                                                <label
+                                                                                                    for="access_letter-spacing-slider">Letter
+                                                                                                    Spacing</label>
+                                                                                <input role="slider" aria-label="Letter Spacing"
+                                                                                                    type="range" min="0"
+                                                                                                    max="0.2" value="0"
+                                                                                                    step="0.01"
+                                                                                                    id="access_letter-spacing-slider">
+                                                            </div>
+
+                                                            <div class="slider-container panel" id="word-tour">
+                                                                                <label for="access_word-spacing-slider">Word
+                                                                                                    Spacing</label>
+                                                                                <input role="slider" aria-label="Word Spacing"
+                                                                                                    type="range" min="0"
+                                                                                                    max="0.5" value="0"
+                                                                                                    step="0.01"
+                                                                                                    id="access_word-spacing-slider">
+                                                            </div>
+
+                                                            <div class="slider-container panel" id="line-tour">
+                                                                                <label for="access_line-spacing-slider">Line
+                                                                                                    Spacing</label>
+                                                                                <input role="slider" aria-label="Line Spacing"
+                                                                                                    type="range" min="1"
+                                                                                                    max="2" value="1"
+                                                                                                    step="0.1"
+                                                                                                    id="access_line-spacing-slider">
+                                                            </div>
+                                        </div>
+
+                                        <div class="pickers">
+                                                            <h2 class="styled-text">
+                                                                                Use the colour
+                                                                                pickers below to
+                                                                                change
+                                                                                the colours of the
+                                                                                page and controls.
+                                                            </h2>
+                                        </div>
+
+                                        <div class="main">
+                                                            <div id="page-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Page
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-2">Fill</label>
+                                                                                                    <input aria-label="Page Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-2">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="border-picker">Border</label>
+                                                                                                    <input aria-label="Page Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker">Font</label>
+                                                                                                    <input aria-label="Page Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="focus-color-picker">Focus</label>
+                                                                                                    <input aria-label="Keyboard Focus Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="focus-color-picker">
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="button-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Button
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-5">Fill</label>
+                                                                                                    <input aria-label="Button Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-5">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="button-border-picker">Border</label>
+                                                                                                    <input aria-label="Button Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="button-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="button-font-picker">Font</label>
+                                                                                                    <input aria-label="Button Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="button-font-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="group-background-picker">Toggle</label>
+                                                                                                    <input aria-label="Button Toggle Colour "
+                                                                                                                        type="color"
+                                                                                                                        id="group-background-picker">
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="select-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Menu
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="select-background-picker">Fill</label>
+                                                                                                    <input aria-label="Menu Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="select-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="select-border-picker">Border</label>
+                                                                                                    <input aria-label="Menu Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="select-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="select-font-picker">Font</label>
+                                                                                                    <input aria-label="Menu Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="select-font-picker">
+                                                                                </div>
+                                                                                <div class="testSelect"
+                                                                                                    style="border: none;">
+                                                                                                    <select aria-label="Test Menu/Visual Purposes Only"
+                                                                                                                        id="font-test-select">
+                                                                                                                        <option value="20"
+                                                                                                                                            selected>
+                                                                                                                                            Option
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="popup-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Input
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div
+                                                                                                    class="color-picker-row module-wrapper">
+                                                                                                    <label
+                                                                                                                        for="black-keys-colour-picker">Fill</label>
+                                                                                                    <input aria-label="Text Input Fill"
+                                                                                                                        type="color"
+                                                                                                                        id="black-keys-colour-picker">
+                                                                                </div>
+                                                                                <div
+                                                                                                    class="color-picker-row module-wrapper">
+                                                                                                    <label
+                                                                                                                        for="white-keys-colour-picker">Border</label>
+                                                                                                    <input aria-label="Text Input Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="white-keys-colour-picker">
+                                                                                </div>
+                                                                                <div
+                                                                                                    class="color-picker-row module-wrapper">
+                                                                                                    <label
+                                                                                                                        for="key-font-colour-picker">Font</label>
+                                                                                                    <input aria-label="Text Input Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="key-font-colour-picker">
+                                                                                </div>
+
+                                                                                <input aria-label="Test Input/Visual Purposes Only"
+                                                                                                    style="width: 170px; height: 50px;"
+                                                                                                    type="text"
+                                                                                                    id="Test-input"
+                                                                                                    placeholder="Text Entry" />
+                                                            </div>
+
+
+
+                                                            <div id="slider-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Slider
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-3">Thumb</label>
+                                                                                                    <input aria-label="Slider Thumb Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-3">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="slider-outline-picker">Border</label>
+                                                                                                    <input aria-label="Slider Thumb Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="slider-outline-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-4">Track</label>
+                                                                                                    <input aria-label="Slider Track Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-4">
+                                                                                </div>
+                                                                                <label for="knob-design-select">Slider
+                                                                                                    Style</label><br>
+                                                                                <select aria-label="Select Slider Style"
+                                                                                                    id="knob-design-select">
+                                                                                                    <option
+                                                                                                                        value="classic">
+                                                                                                                        Classic
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="minimal">
+                                                                                                                        Minimal
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="fancy">
+                                                                                                                        Fancy
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="retro">
+                                                                                                                        Retro
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="modern">
+                                                                                                                        Modern
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="twist">
+                                                                                                                        twist
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="flat">
+                                                                                                                        Flat
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="shadow">
+                                                                                                                        Shadow
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="outline">
+                                                                                                                        Outline
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="simple">
+                                                                                                                        simple
+
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div id="panel-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Panel
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="panel-background-picker">Fill</label>
+                                                                                                    <input aria-label="Panel Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="panel-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="panel-border-picker">Border</label>
+                                                                                                    <input aria-label="Panel Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="panel-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="panel-gradient-picker">Gradient</label>
+                                                                                                    <input aria-label="Panel Gradient Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="panel-gradient-picker">
+                                                                                </div>
+                                                                                <button id="toggleGradients"
+                                                                                                    aria-pressed="false">
+                                                                                                    REMOVE<br>GRADIENT
+                                                                                </button>
+                                                            </div>
+
+
+                                                            <div id="label-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Label
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="label-background-picker">Fill</label>
+                                                                                                    <input aria-label="Label Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="label-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="label-border-picker">Border</label>
+                                                                                                    <input aria-label="Label Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="label-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="label-font-picker">Font</label>
+                                                                                                    <input aria-label="Label Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="label-font-picker">
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="output-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Span
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="output-background-picker">Fill</label>
+                                                                                                    <input aria-label="Span Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="output-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="output-border-picker">Border</label>
+                                                                                                    <input aria-label="Span Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="output-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="output-font-picker">Font</label>
+                                                                                                    <input aria-label="Span Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="output-font-picker">
+                                                                                </div>
+                                                                                <span aria-label="Test Span With Text">Lorem
+                                                                                                    ipsum</span>
+                                                            </div>
+
+                                                            <div class="main">
+                                                                                <div class="slider-container panel"
+                                                                                                    id="border-tour">
+                                                                                                    <label
+                                                                                                                        for="access_border-radius-slider">Border
+                                                                                                                        Radius</label>
+                                                                                                    <input role="slider" aria-label="Border Radius"
+                                                                                                                        type="range"
+                                                                                                                        id="access_border-radius-slider"
+                                                                                                                        min="1"
+                                                                                                                        max="15"
+                                                                                                                        step="1"
+                                                                                                                        value="10">
+                                                                                </div>
+                                                                                <div class="slider-container panel"
+                                                                                                    id="thickness-tour">
+                                                                                                    <label
+                                                                                                                        for="access_border-thickness-slider">Border
+                                                                                                                        Thickness</label>
+                                                                                                    <input role="slider" aria-label="Border Thickness"
+                                                                                                                        type="range"
+                                                                                                                        id="access_border-thickness-slider"
+                                                                                                                        min="1"
+                                                                                                                        max="5"
+                                                                                                                        step="1"
+                                                                                                                        value="1">
+                                                                                </div>
+                                                                                <div class="slider-container panel"
+                                                                                                    id="focus-tour">
+                                                                                                    <label
+                                                                                                                        for="access_focus-size-slider">Focus
+                                                                                                                        Size</label>
+                                                                                                    <input role="slider" aria-label="Focus Size"
+                                                                                                                        type="range"
+                                                                                                                        id="access_focus-size-slider"
+                                                                                                                        min="1"
+                                                                                                                        max="8"
+                                                                                                                        value="4">
+                                                                                </div>
+                                                            </div>
+                                        </div>
+                    </div>
+                    </div>
+
+                    <div id="save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save MIDI Maping</h3>
+                                                            <input type="text" id="save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <div id="export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Current Mapping</h3>
+                                                            <input type="text" id="export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <div id="clear-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Clear All MIDI Mappings?</h3>
+                                                            <p>This will remove all saved CC assignments. This action
+                                                                                cannot be undone.</p>
+                                                            <button class="lcd-button"
+                                                                                id="clear-confirm-btn">Clear</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <!-- Save Audio Preset Modal -->
+                    <div id="audio-save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save Audio Preset</h3>
+                                                            <input type="text" id="audio-save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <!-- Export Audio Presets Modal -->
+                    <div id="audio-export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Audio Presets</h3>
+                                                            <input type="text" id="audio-export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <div class="synth">
+                                        <div style="display: flex; flex-direction: row; margin-top: 20px;"
+                                                            class="panel">
+                                                            <button class="lcd-button" id="toggle-midi-learn"
+                                                                                data-label="MIDI Learn">Show
+                                                                                MIDI Learn</button>
+                                                            <button class="lcd-button" id="toggle-audio-preset-controls"
+                                                                                data-label="Audio Presets">Show Audio
+                                                                                Presets</button>
+                                        </div>
+
+                                        <div class="audio-preset-controls hidden panel" id="audio-preset-controls">
+                                                            <div style="display: flex; flex-direction: column;">
+                                                                                <button class="lcd-button"
+                                                                                                    id="open-audio-save-modal">Save
+                                                                                                    Audio
+                                                                                                    Preset</button>
+                                                                                <button class="lcd-button"
+                                                                                                    id="open-audio-export-modal">Export
+                                                                                                    Audio
+                                                                                                    Presets</button>
+                                                                                <label tabindex="0" class="lcd-button"
+                                                                                                    id="import-audio-label">Import
+                                                                                                    Audio
+                                                                                                    Presets
+                                                                                                    <input type="file" id="import-audio-file"
+                                                                                                                        accept=".json"
+                                                                                                                        hidden />
+                                                                                </label>
+                                                            </div>
+                                                            <div id="audio-preset-list" class="lcd-panel">
+                                                            </div>
+                                        </div>
+
+                                        <div class="midi-learn hidden panel" id="midi-learn">
+
+                                                            <div id="midi-mapping-list" class="lcd-panel"></div>
+
+                                                            <div style="display: flex; flex-direction: column;"
+                                                                                class="midi-preset-controls">
+
+                                                                                <button class="lcd-button"
+                                                                                                    id="save-preset">Save
+                                                                                                    Preset</button>
+                                                                                <button class="lcd-button"
+                                                                                                    id="export-cc-btn">Export</button>
+                                                                                <label tabindex="0" class="lcd-button"
+                                                                                                    id="import-label"
+                                                                                                    style="text-align: center;">
+                                                                                                    Import
+                                                                                                    <input type="file" id="import-cc-file"
+                                                                                                                        accept=".json"
+                                                                                                                        hidden />
+                                                                                </label>
+                                                                                <button class="lcd-button"
+                                                                                                    id="clear-mappings-btn">Clear
+                                                                                                    All
+                                                                                                    Mappings</button>
+
+                                                            </div>
+                                                            <!-- <div class="preset-controls"></div> -->
+                                                            <div id="midi-preset-list" class="lcd-panel">
+                                                            </div>
+
+                                        </div>
+                                        <div id="midi-ui" class="panel"></div>
+
+                                        <div id="synth-ui">
+
+                                                            <div class="xy-row panel">
+                                                                                <div
+                                                                                                    style="display: flex; flex-direction: column;">
+                                                                                                    <div
+                                                                                                                        class="slider-container panel">
+                                                                                                                        <label
+                                                                                                                                            for="xMorph"><b>Morph
+                                                                                                                                                                X:</b></label>
+                                                                                                                        <input aria-label="X Morph"
+                                                                                                                                            id="xMorph"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0">
+                                                                                                                        <span class="slider-value lcd-text"
+                                                                                                                                            id="xMorphValue">0.00</span>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                                        class="slider-container panel">
+                                                                                                                        <label
+                                                                                                                                            for="yMorph"><b>Morph
+                                                                                                                                                                Y:</b></label>
+                                                                                                                        <input aria-label="Y Morph"
+                                                                                                                                            id="yMorph"
+                                                                                                                                            type="range"
+                                                                                                                                            min="0"
+                                                                                                                                            max="1"
+                                                                                                                                            step="0.01"
+                                                                                                                                            value="0">
+                                                                                                                        <span class="slider-value lcd-text"
+                                                                                                                                            id="yMorphValue">0.00</span>
+                                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="xy-div panel">
+                                                                                                    <div id="xyPad" tabindex="0"
+                                                                                                                        role="slider"
+                                                                                                                        aria-label="XY Pad: adjust X and Y parameters using arrow keys"
+                                                                                                                        aria-valuemin="0"
+                                                                                                                        aria-valuemax="1"
+                                                                                                                        aria-valuenow="0.5"
+                                                                                                                        aria-valuetext="X:
+                                                                                                                        0.5,
+                                                                                                                        Y:
+                                                                                                                        0.5">
+                                                                                                                        <div class="dot"
+                                                                                                                                            id="xyDot">
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="harm-div panel">
+                                                                                                    <canvas id="plot" width="500"
+                                                                                                                        height="200"
+                                                                                                                        aria-describedby="spectrum-desc"></canvas>
+                                                                                                    <div class="small">
+                                                                                                                        Spectrum
+                                                                                                                        of
+                                                                                                                        current
+                                                                                                                        waveform
+                                                                                                                        (harmonic
+                                                                                                                        amplitudes)
+                                                                                                    </div>
+                                                                                                    <!-- Not focusable, no tabindex! -->
+                                                                                                    <p aria-hidden="true"
+                                                                                                                        id="spectrum-desc"
+                                                                                                                        class="sr-only">
+
+                                                                                                    </p>
+                                                                                </div>
+
+
+                                                            </div>
+
+                                                            <div class="user-harm-div"
+                                                                                style="display: flex; justify-content: center; align-items: center;; flex-direction: column; text-align: center; border: none;">
+                                                                                <h3>User Harmonics</h3>
+                                                                                <div class="panel" aria-label="User Harmonics Table"
+                                                                                                    id="harmonics-table">
+                                                                                </div>
+                                                            </div>
+                                                            <div class="top-row">
+                                                                                <div class="filter-controls panel">
+                                                                                                    <h3>Filter</h3>
+                                                                                                    <div
+                                                                                                                        class="filter-row">
+                                                                                                                        <div
+                                                                                                                                            class="select-div panel">
+                                                                                                                                            <label>Type</label>
+                                                                                                                                            <select aria-label="Filter Type"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="filterType">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="lowpass">
+                                                                                                                                                                                    Lowpass
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="highpass">
+                                                                                                                                                                                    Highpass
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="bandpass">
+                                                                                                                                                                                    Bandpass
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="notch">
+                                                                                                                                                                                    Notch
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container panel">
+                                                                                                                                            <label>Cutoff</label>
+                                                                                                                                            <input aria-label="Filter Cut Off"
+                                                                                                                                                                id="filterCutoff"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="20"
+                                                                                                                                                                max="20000"
+                                                                                                                                                                step="1"
+                                                                                                                                                                value="20000">
+                                                                                                                                            <span class="lcd-text"
+                                                                                                                                                                id="filterCutoff-value">20000</span>
+
+
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container panel">
+                                                                                                                                            <label>Resonance</label>
+                                                                                                                                            <input aria-label="Filter Resonance"
+                                                                                                                                                                id="filterResonance"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0.1"
+                                                                                                                                                                max="24"
+                                                                                                                                                                step="0.1"
+                                                                                                                                                                value="0.5">
+                                                                                                                                            <span class="lcd-text"
+                                                                                                                                                                id="filterResonance-value">0.5</span>
+                                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="output-div panel">
+                                                                                                    <h3>Output</h3>
+                                                                                                    <div
+                                                                                                                        class="output-row">
+                                                                                                                        <div
+                                                                                                                                            class="slider-container panel">
+                                                                                                                                            <label>Volume</label>
+                                                                                                                                            <input aria-label="Output Volume"
+                                                                                                                                                                id="outputVol"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="1">
+                                                                                                                                            <span class="lcd-text"
+                                                                                                                                                                id="outputValue">1</span>
+
+                                                                                                                        </div>
+
+                                                                                                                        <canvas id="outputMeterCanvas"
+                                                                                                                                            width="50"
+                                                                                                                                            height="60"
+                                                                                                                                            style="background:#111; border-radius:4px;"></canvas>
+                                                                                                    </div>
+
+                                                                                </div>
+                                                            </div>
+                                                            <div class="lfos">
+                                                                                <div class="lfo-controls panel">
+                                                                                                    <h3>LFO 1
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="lfo-row">
+                                                                                                                        <div
+                                                                                                                                            class="select-div panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoShape">Shape</label>
+                                                                                                                                            <select aria-label="LFO 1 Shape"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfoShape">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sine">
+                                                                                                                                                                                    Sine
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="triangle">
+                                                                                                                                                                                    Triangle
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="square">
+                                                                                                                                                                                    Square
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sawtooth">
+                                                                                                                                                                                    Sawtooth
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoRate">Rate</label>
+                                                                                                                                            <input aria-label="LFO 1 Rate"
+                                                                                                                                                                id="lfoRate"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0.1"
+                                                                                                                                                                max="20"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="2">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfoRate-value">2.00</span>
+
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoDepth">Depth</label>
+                                                                                                                                            <input aria-label="LFO 1 Depth"
+                                                                                                                                                                id="lfoDepth"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfoDepth-value">0.00</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="select-div panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfoTarget">Target</label>
+                                                                                                                                            <select aria-label="LFO 1 Destination"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfoTarget">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="none">
+
+                                                                                                                                                                                    None
+                                                                                                                                                                </option>
+
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="filter">
+
+                                                                                                                                                                                    Cut
+                                                                                                                                                                                    Off
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="pitch">
+
+                                                                                                                                                                                    Pitch
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="xMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    X
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="yMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    Y
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="lfo-controls panel">
+                                                                                                    <h3>LFO 2
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="lfo-row">
+                                                                                                                        <div
+                                                                                                                                            class="select-div panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Shape">Shape</label>
+                                                                                                                                            <select aria-label="LFO 2 Shape"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfo2Shape">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sine">
+                                                                                                                                                                                    Sine
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="triangle">
+                                                                                                                                                                                    Triangle
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="square">
+                                                                                                                                                                                    Square
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="sawtooth">
+                                                                                                                                                                                    Sawtooth
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Rate">LFO
+                                                                                                                                                                2
+                                                                                                                                                                Rate</label>
+                                                                                                                                            <input id="lfo2Rate" type="range"
+                                                                                                                                                                min="0.1"
+                                                                                                                                                                max="20"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="2">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfo2Rate-value">2.00</span>
+
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Depth">Depth</label>
+                                                                                                                                            <input aria-label="LFO 2 Depth"
+                                                                                                                                                                id="lfo2Depth"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="lfo2Depth-value">0.00</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="select-div panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="lfo2Target">Target</label>
+                                                                                                                                            <select aria-label="LFO 2 Destination"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="lfo2Target">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="none">
+
+                                                                                                                                                                                    None
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="filter">
+                                                                                                                                                                                    Cut
+                                                                                                                                                                                    Off
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="pitch">
+                                                                                                                                                                                    Pitch
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="xMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    X
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="yMorph">
+                                                                                                                                                                                    Morph
+                                                                                                                                                                                    Y
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                            </div>
+
+                                                            <div class="env-row">
+                                                                                <div class="envelope-controls panel">
+                                                                                                    <h3>Amp Envelope
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="envelope-sliders">
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label>Attack</label>
+                                                                                                                                            <input aria-label="Amp Attack"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envA"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.05">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envA-value">0.05</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label>Decay</label>
+                                                                                                                                            <input aria-label="Amp Decay"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envD"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.15">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envD-value">0.15</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label>Sustain</label>
+                                                                                                                                            <input aria-label="Amp Sustain"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envS"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.8">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envS-value">0.80</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label>Release</label>
+                                                                                                                                            <input aria-label="Amp Release"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="envR"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.5">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="envR-value">0.50</span>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div id="mod-envelope-section"
+                                                                                                    class="panel">
+                                                                                                    <h3>Mod Envelope
+                                                                                                    </h3>
+                                                                                                    <div
+                                                                                                                        class="envelope-sliders">
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvA">Attack</label>
+                                                                                                                                            <input aria-label="Mod Attack"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvA"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.01">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvA-value">0.01</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvD">Decay</label>
+                                                                                                                                            <input aria-label="Mod Decay"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvD"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.1">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvD-value">0.10</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvS">Sustain</label>
+                                                                                                                                            <input aria-label="Mod Sustain"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvS"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="1">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvS-value">1.00</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvR">Release</label>
+                                                                                                                                            <input aria-label="Mod Release"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvR"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="0"
+                                                                                                                                                                max="2"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0.1">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvR-value">0.10</span>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-container slider-container-vert panel">
+                                                                                                                                            <label
+                                                                                                                                                                for="modEnvDepth">Depth</label>
+                                                                                                                                            <input aria-label="Mod Depth"
+                                                                                                                                                                class="vertical-slider"
+                                                                                                                                                                id="modEnvDepth"
+                                                                                                                                                                type="range"
+                                                                                                                                                                min="-1"
+                                                                                                                                                                max="1"
+                                                                                                                                                                step="0.01"
+                                                                                                                                                                value="0">
+                                                                                                                                            <span class="slider-value lcd-text"
+                                                                                                                                                                id="modEnvDepth-value">0.00</span>
+                                                                                                                        </div>
+
+                                                                                                                        <div
+                                                                                                                                            class="select-div panel">
+                                                                                                                                            <label>Destination</label>
+                                                                                                                                            <select aria-label="Mod Destination"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="modEnvDest">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="pitch">
+                                                                                                                                                                                    Pitch
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="filter">
+                                                                                                                                                                                    Cut
+                                                                                                                                                                                    Off
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                    </div>
+
+
+                                                                                </div>
+
+
+                                                            </div>
+
+                                                            <div id="fx-bank" class="panel"></div>
+                                                            <div style="text-align: center; border: none;">
+                                                                                FX Chain: Drop Effect Below
+                                                            </div>
+                                                            <div tabindex="0" id="fx-chain"></div>
+                                        </div>
+                    </div>
+
+                    <div class="visually-hidden" id="aria-status" role="status" aria-live="polite"></div>
+                    <input id="numberKey0" type="hidden" value="0" />
+                    <input id="numberKey1" type="hidden" value="1" />
+                    <input id="numberKey2" type="hidden" value="2" />
+                    <input id="modifier1" type="hidden" value="shiftKey" />
+                    <input id="modifier2" type="hidden" value="ctrlKey" />
+
+                    <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script type="module" src="src/synth.js"></script>
+                    <script type="module" src="src/master-fx.js"></script>
+                    <script src="src/toggle.js"></script>
+                    <script src="src/sliders.js"></script>
+                    <script src="../accessibility/accessibilitySettings.js"></script>
+</body>
+
+</html>

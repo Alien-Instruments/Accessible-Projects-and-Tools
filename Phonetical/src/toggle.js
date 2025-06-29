@@ -1,0 +1,19 @@
+function toggleSection(buttonId, sectionId) {
+  const btn = document.getElementById(buttonId);
+  const section = document.getElementById(sectionId);
+  const baseLabel = btn.getAttribute("data-label");
+
+  btn.addEventListener("click", () => {
+    section.classList.toggle("hidden");
+    if (section.classList.contains("hidden")) {
+      btn.textContent = "Show " + baseLabel;
+    } else {
+      btn.textContent = "Hide " + baseLabel;
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  toggleSection("toggle-audio-preset-controls", "audio-preset-controls");
+  toggleSection("toggle-midi-learn", "midi-learn");
+});

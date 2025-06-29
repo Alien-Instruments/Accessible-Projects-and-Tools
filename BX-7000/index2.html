@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-X 7000</title>
+  <link rel="stylesheet" href="styles/style2.css">
+</head>
+
+<body class="desktop">
+
+  <button id="toggleAccess" class="button wordSpacing letterSpacing">Show Interface Settings</button>
+
+  <div id="accessDiv" class="hidden" style="text-align: center;">
+    <div id="preset-container" class="preset-tour"
+      style="display: flex; flex-direction: row; justify-content: space-evenly;">
+      <div class="presets-panel panel" style="width: 40%;">
+        <label for="preset-name">Save
+          Presets
+        </label><br>
+        <input role="text" aria-label="Enter Preset Name" type="text" id="preset-name"
+          placeholder="Enter preset name" />
+        <button role="button" id="save-preset-btn">Save
+          Preset</button>
+      </div>
+
+      <div class="presets-panel panel" style="width: 40%;">
+        <label for="preset-list">Load
+          Presets</label><br>
+        <select role="combobox" aria-label="Load Presets" id="preset-list">
+          <option value="" disabled selected>
+            Select
+            a
+            preset
+          </option>
+        </select>
+        <button role="button" id="delete-preset-btn">Delete
+          Preset</button>
+      </div>
+
+    </div>
+
+    <h2>Font Settings</h2>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-size-select">Size</label>
+        <select id="font-size-select">
+          <option value="12">
+            Small
+          </option>
+          <option value="18">
+            Medium
+          </option>
+          <option value="26">
+            Large
+          </option>
+          <option value="34">
+            Largest
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="bold-select">Bold</label>
+        <select id="bold-select">
+          <option value="normal">
+            Off
+          </option>
+          <option value="bold">
+            On
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel">
+        <label for="font-family-select">Family</label>
+        <select id="font-family-select">
+          <option value="Arial">
+            Arial
+          </option>
+          <option value="Arial Narrow">
+            Arial
+            Narrow
+          </option>
+          <option value="Times New Roman">
+            Times
+            N
+            R
+          </option>
+          <option value="Verdana">
+            Verdana
+          </option>
+          <option value="Helvetica">
+            Helvetica
+          </option>
+          <option value="Courier">
+            Courier
+          </option>
+          <option value="Courier New">
+            Courier
+            New
+          </option>
+          <option value="Andale Mono">
+            Andale
+            Mono
+          </option>
+          <option value="Candara">
+            Candara
+          </option>
+          <option value="Geneva">
+            Geneva
+          </option>
+          <option value="Optima">
+            Optima
+          </option>
+          <option value="Trebuchet MS">
+            Trebuchet
+            MS
+          </option>
+          <option value="Gill Sans">
+            Gill
+            Sans
+          </option>
+          <option value="Palatino">
+            Palatino
+          </option>
+          <option value="Monaco">
+            Monaco
+          </option>
+          <option value="Tahoma">
+            Tahoma
+          </option>
+          <option value="CustomFont">
+            Open
+            Dyslexic
+          </option>
+          <option value="Luminari">
+            Luminari
+          </option>
+          <option value="Chalkduster">
+            Chalkduster
+          </option>
+          <option value="Marker Felt">
+            Marker
+            Felt
+          </option>
+          <option value="Bradley Hand">
+            Bradley
+            Hand
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-style-select">Style</label>
+        <select id="font-style-select">
+          <option value="normal">
+            Normal
+          </option>
+          <option value="italic">
+            Italic
+          </option>
+          <option value="underline">
+            Underline
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-variant-select">Variant</label>
+        <select id="font-variant-select">
+          <option value="normal">
+            Normal
+          </option>
+          <option value="small-caps">
+            Small
+            Caps
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="main">
+
+      <div class="slider-container panel" id="letter-tour">
+        <label for="access_letter-spacing-slider">Letter
+          Spacing</label>
+        <input role="slider" aria-label="Letter Spacing" type="range" min="0" max="0.2" value="0" step="0.01"
+          id="access_letter-spacing-slider">
+      </div>
+
+      <div class="slider-container panel" id="word-tour">
+        <label for="access_word-spacing-slider">Word
+          Spacing</label>
+        <input role="slider" aria-label="Word Spacing" type="range" min="0" max="0.5" value="0" step="0.01"
+          id="access_word-spacing-slider">
+      </div>
+
+      <div class="slider-container panel" id="line-tour">
+        <label for="access_line-spacing-slider">Line
+          Spacing</label>
+        <input role="slider" aria-label="Line Spacing" type="range" min="1" max="2" value="1" step="0.1"
+          id="access_line-spacing-slider">
+      </div>
+    </div>
+
+    <div class="pickers">
+      <h2 class="styled-text">
+        Use the colour
+        pickers below to
+        change
+        the colours of the
+        page and controls.
+      </h2>
+    </div>
+
+    <div class="main">
+      <div id="page-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Page
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-2">Fill</label>
+          <input aria-label="Page Fill Colour" type="color" id="color-picker-2">
+        </div>
+        <div class="color-picker-row">
+          <label for="border-picker">Border</label>
+          <input aria-label="Page Border Colour" type="color" id="border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker">Font</label>
+          <input aria-label="Page Font Colour" type="color" id="color-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="focus-color-picker">Focus</label>
+          <input aria-label="Keyboard Focus Colour" type="color" id="focus-color-picker">
+        </div>
+      </div>
+
+      <div id="button-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Button
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-5">Fill</label>
+          <input aria-label="Button Fill Colour" type="color" id="color-picker-5">
+        </div>
+        <div class="color-picker-row">
+          <label for="button-border-picker">Border</label>
+          <input aria-label="Button Border Colour" type="color" id="button-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="button-font-picker">Font</label>
+          <input aria-label="Button Font Colour" type="color" id="button-font-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="group-background-picker">Toggle</label>
+          <input aria-label="Button Toggle Colour " type="color" id="group-background-picker">
+        </div>
+      </div>
+
+      <div id="select-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Menu
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="select-background-picker">Fill</label>
+          <input aria-label="Menu Fill Colour" type="color" id="select-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="select-border-picker">Border</label>
+          <input aria-label="Menu Border Colour" type="color" id="select-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="select-font-picker">Font</label>
+          <input aria-label="Menu Font Colour" type="color" id="select-font-picker">
+        </div>
+        <div class="testSelect" style="border: none;">
+          <select aria-label="Test Menu/Visual Purposes Only" id="font-test-select">
+            <option value="20" selected>
+              Option
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div id="popup-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Input
+          </h2>
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="black-keys-colour-picker">Fill</label>
+          <input aria-label="Text Input Fill" type="color" id="black-keys-colour-picker">
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="white-keys-colour-picker">Border</label>
+          <input aria-label="Text Input Border Colour" type="color" id="white-keys-colour-picker">
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="key-font-colour-picker">Font</label>
+          <input aria-label="Text Input Font Colour" type="color" id="key-font-colour-picker">
+        </div>
+
+        <input aria-label="Test Input/Visual Purposes Only" style="width: 170px; height: 50px;" type="text"
+          id="Test-input" placeholder="Text Entry" />
+      </div>
+
+
+
+      <div id="slider-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Slider
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-3">Thumb</label>
+          <input aria-label="Slider Thumb Colour" type="color" id="color-picker-3">
+        </div>
+        <div class="color-picker-row">
+          <label for="slider-outline-picker">Border</label>
+          <input aria-label="Slider Thumb Border Colour" type="color" id="slider-outline-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-4">Track</label>
+          <input aria-label="Slider Track Colour" type="color" id="color-picker-4">
+        </div>
+        <label for="knob-design-select">Slider
+          Style</label><br>
+        <select aria-label="Select Slider Style" id="knob-design-select">
+          <option value="classic">
+            Classic
+
+          </option>
+          <option value="minimal">
+            Minimal
+
+          </option>
+          <option value="fancy">
+            Fancy
+
+          </option>
+          <option value="retro">
+            Retro
+
+          </option>
+          <option value="modern">
+            Modern
+
+          </option>
+          <option value="twist">
+            twist
+
+          </option>
+          <option value="flat">
+            Flat
+
+          </option>
+          <option value="shadow">
+            Shadow
+
+          </option>
+          <option value="outline">
+            Outline
+
+          </option>
+          <option value="simple">
+            simple
+
+          </option>
+        </select>
+      </div>
+
+      <div id="panel-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Panel
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-background-picker">Fill</label>
+          <input aria-label="Panel Fill Colour" type="color" id="panel-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-border-picker">Border</label>
+          <input aria-label="Panel Border Colour" type="color" id="panel-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-gradient-picker">Gradient</label>
+          <input aria-label="Panel Gradient Colour" type="color" id="panel-gradient-picker">
+        </div>
+        <button id="toggleGradients" aria-pressed="false">
+          REMOVE<br>GRADIENT
+        </button>
+      </div>
+
+
+      <div id="label-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Label
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="label-background-picker">Fill</label>
+          <input aria-label="Label Fill Colour" type="color" id="label-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="label-border-picker">Border</label>
+          <input aria-label="Label Border Colour" type="color" id="label-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="label-font-picker">Font</label>
+          <input aria-label="Label Font Colour" type="color" id="label-font-picker">
+        </div>
+      </div>
+
+      <div id="output-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Span
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="output-background-picker">Fill</label>
+          <input aria-label="Span Fill Colour" type="color" id="output-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="output-border-picker">Border</label>
+          <input aria-label="Span Border Colour" type="color" id="output-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="output-font-picker">Font</label>
+          <input aria-label="Span Font Colour" type="color" id="output-font-picker">
+        </div>
+        <span aria-label="Test Span With Text">Lorem
+          ipsum</span>
+      </div>
+
+      <div class="main">
+        <div class="slider-container panel" id="border-tour">
+          <label for="access_border-radius-slider">Border
+            Radius</label>
+          <input role="slider" aria-label="Border Radius" type="range" id="access_border-radius-slider" min="1" max="15"
+            step="1" value="10">
+        </div>
+        <div class="slider-container panel" id="thickness-tour">
+          <label for="access_border-thickness-slider">Border
+            Thickness</label>
+          <input role="slider" aria-label="Border Thickness" type="range" id="access_border-thickness-slider" min="1"
+            max="5" step="1" value="1">
+        </div>
+        <div class="slider-container panel" id="focus-tour">
+          <label for="access_focus-size-slider">Focus
+            Size</label>
+          <input role="slider" aria-label="Focus Size" type="range" id="access_focus-size-slider" min="1" max="8"
+            value="4">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <div id="modal-overlay" class="modal-overlay" hidden>
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+      aria-describedby="modal-description" tabindex="-1">
+      <h2 id="modal-title" class="lcd-title"></h2>
+      <p id="modal-description" class="lcd-description"></p>
+      <input id="modal-input" class="lcd-input" type="text" aria-label="Input">
+      <div class="modal-buttons">
+        <button id="modal-confirm" class="preset-button">OK</button>
+        <button id="modal-cancel" class="preset-button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="synth">
+    <div class="panel" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+      <div class="panel" style="display: flex; flex-direction: column; text-align: center; padding: 10px;">
+        <label for="ui-view">Display</label>
+        <select id="ui-view" class="lcd-select" onchange="switchView(this)">
+          <option value="banner">Banner</option>
+          <option value="preset-manager">Preset Manager</option>
+          <option value="midi-map">MIDI Map</option>
+          <option value="arp">Arpeggiator</option>
+        </select>
+      </div>
+
+      <button class="preset-button" id="toggle-analyzers">Show Analyzers</button>
+
+    </div>
+
+    <div id="analyzers" class="panel">
+      <div class="vis-panel">
+        <canvas class="lcd-box" style="width: 580px; height: 150px;" id="oscilloscope" width="600"
+          height="150"></canvas>
+      </div>
+      <div class="vis-panel">
+        <canvas class="lcd-box" style="width: 580px; height: 150px;" id="spectrum" width="600" height="150"></canvas>
+      </div>
+    </div>
+
+    <div class="midi-map hidden panel" style="overflow-x: auto;">
+      <div class="midi-buttons">
+        <button class="preset-button" id="clear-midi-map">Clear
+          MIDI
+          Map</button>
+        <button class="preset-button" id="export-midi-map">Export
+          MIDI
+          Map</button>
+        <button class="preset-button" id="import-midi-map">Import
+          MIDI
+          Map</button>
+      </div>
+      <div id="midi-mapping-table-wrapper" style="max-height: 300px; overflow-y: auto;">
+        <table>
+          <colgroup>
+            <col style="width:30%">
+            <col style="width:60%">
+            <col style="width:40%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>CC Number</th>
+              <th>Mapped Parameter</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody id="midi-mapping-table-body"></tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+    <div class="preset-manager hidden panel" style="justify-content: space-evenly; overflow-x: auto;">
+      <div class="preset-box panel" style="display: flex; flex-direction: column; align-items: center;">
+        <input type="text" id="preset-name-input" placeholder="Enter preset name" class="lcd-input" />
+        <button class="preset-button" id="save-audio-preset-btn" class="lcd-button">Save
+          Preset</button>
+
+
+      </div>
+      <div class="preset-box panel" style="display: flex; flex-direction: column;">
+        <button id="export-presets-btn" class="preset-button">Export
+          Preset File</button>
+        <label for="presetFileInput" class="file-upload-label">Upload
+          Preset File</label>
+        <input type="file" id="presetFileInput" accept=".json" class="file-upload-input" />
+
+
+
+      </div>
+      <div class="preset-box panel" style="display: flex; flex-direction: column;">
+
+        <select class="lcd-select" id="preset-select">
+          <option value="">
+            --
+            Choose
+            a
+            Preset
+            --
+          </option>
+        </select>
+        <button id="delete-user-preset" class="preset-button" disabled>
+          Delete User Preset
+        </button>
+      </div>
+
+    </div>
+    <div class="banner panel" style="overflow-x: auto;">
+      <h1>ALIEN INSTRUMENTS B-X 7000</h1>
+    </div>
+
+    <div class="arp hidden panel" style="overflow-x: auto;">
+
+      <div class="arp-div panel" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+        <label for="arp-mode">Arp Mode</label>
+        <select class="lcd-select" id="arp-mode">
+          <option value="up">Up</option>
+          <option value="down">Down</option>
+          <option value="updown">Up/Down</option>
+          <option value="random">Random</option>
+          <option value="converge">Converge</option>
+          <option value="diverge">Diverge</option>
+          <option value="pairs">Pairs</option>
+          <option value="pedal">Pedal</option>
+          <option value="randomwalk">Randomwalk</option>
+          <option value="euclidean">Euclidean</option>
+          <option value="up2down1">Up 2 Down 1</option>
+          <option value="zigzag">Zigzag</option>
+          <option value="mirror">Mirror</option>
+          <option value="custom">Custom Pattern</option>
+        </select>
+
+        <div style="display: flex; flex-direction: row; gap: 30px; border: none; background: none;">
+
+          <label style="width: 100px;" class="arp-toggle-label"> On
+            <input type="checkbox" id="arp-toggle" />
+            <span class="arp-toggle-custom"></span>
+          </label>
+
+
+          <label style="width: 100px;" class="arp-toggle-label">Latch
+            <input type="checkbox" id="arp-latch">
+            <span class="arp-toggle-custom"></span>
+          </label>
+
+        </div>
+      </div>
+
+      <div class="arp-container">
+        <div class="arp-sliders">
+          <div class="slider-div panel">
+            <label class="lcd-text" for="arp-rate">
+              Rate</label>
+            <div class="range-knob-wrapper">
+              <input type="range" id="arp-rate" min="0.05" max="1" step="0.05" value="0.25">
+              <div class="range-knob">
+              </div>
+            </div>
+            <span id="arp-rate-val" class="lcd-text">0.25s</span>
+          </div>
+
+          <div class="slider-div panel">
+            <label class="lcd-text" for="arp-octaves">
+              Range</label>
+            <div class="range-knob-wrapper">
+              <input type="range" id="arp-octaves" min="1" max="6" value="6" step="1" />
+              <div class="range-knob">
+              </div>
+            </div>
+            <span id="arp-octaves-value" class="lcd-text">6</span>
+          </div>
+
+          <div class="slider-div panel">
+            <label class="lcd-text" for="arp-swing">Swing</label>
+            <div class="range-knob-wrapper">
+              <input type="range" id="arp-swing" min="0" max="0.5" step="0.01" value="0">
+              <div class="range-knob"></div>
+            </div>
+            <span id="arp-swing-val" class="lcd-text">0.00</span>
+          </div>
+
+          <div class="slider-div panel">
+            <label class="lcd-text" for="gateTimeSlider">Gate</label>
+            <div class="range-knob-wrapper">
+              <input type="range" id="gateTimeSlider" min="0.05" max="1.0" step="0.01" value="0.9" />
+              <div class="range-knob"></div>
+            </div>
+            <span id="gateTimeValue" class="lcd-text">0.9</span>
+          </div>
+
+          <div class="panel"
+            style="display: flex; flex-direction: column; margin-left: 50px; padding-left: 10px; padding-right: 10px;">
+            <label for="ratchet-count">Ratchet</label>
+            <select class="lcd-select" id="ratchet-count">
+              <option value="1">1x (Off)</option>
+              <option value="2">2x</option>
+              <option value="3">3x</option>
+              <option value="4">4x</option>
+              <option value="6">6x</option>
+              <option value="8">8x</option>
+            </select>
+            <div class="panel" style="display: flex; flex-direction: column; border: none; background: none;">
+
+              <label class="arp-toggle-label">Randomize
+                <input type="checkbox" id="random-ratchet" />
+                <span class="arp-toggle-custom"></span>
+              </label>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="arp-roll hidden">
+          <div id="piano-roll" class="piano-roll-grid"></div>
+          <button class="preset-button" id="apply-pattern">Apply Pattern</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main-cont-div panel">
+      <div class="midi-div panel">
+        <label for="midiInputSelect">MIDI
+          Input</label>
+        <select class="lcd-select" id="midiInputSelect"></select>
+        <label for="midiInputSelect">MIDI
+          Channel</label>
+        <select class="lcd-select" id="midiChannelSelect">
+          <option value="all">
+            All
+          </option>
+        </select>
+
+        <label for="pitch-bend-range">Pitch Bend Range</label>
+        <select id="pitch-bend-range" class="lcd-select">
+          <option value="1">±1 semitone</option>
+          <option value="2" selected>±2 semitones</option>
+          <option value="5">±5 semitones</option>
+          <option value="12">±12 semitones</option>
+        </select>
+
+        <label for="mod-destination">Mod
+          Wheel
+          Destination:</label>
+        <select class="lcd-select" id="mod-destination">
+          <option value="tremoloDepth">
+            Tremolo
+            Depth
+          </option>
+          <option value="tremoloRate">
+            Tremolo
+            Rate
+          </option>
+          <option value="pitchLFODepth">
+            LFO
+            Depth
+          </option>
+          <option value="pitchLFORate">
+            LFO
+            Rate
+          </option>
+        </select>
+
+        <button id="toggle-midi-learn" class="learn-button-2">
+
+          Activate
+          MIDI
+          Learn
+        </button>
+
+      </div>
+      <div class="algo-div panel">
+
+        <select class="lcd-select" id="algorithm-select" style="width: 100%;">
+        </select>
+
+        <div class="lcd-box">
+          <svg id="algorithm-visual" viewBox="0 0 420 420"></svg>
+          <!-- <div id="algorithm-description" class="sr-only" aria-live="polite"></div> -->
+        </div>
+
+      </div>
+
+      <div class="preset-div panel">
+        <label for="voice-mode-select">Voice
+          Mode</label>
+        <select id="voice-mode-select" class="lcd-select" style="width: 280px;">
+          <option value="mono">
+            Mono
+          </option>
+          <option value="duo">
+            Duo
+          </option>
+        </select>
+
+
+
+
+        <div style="display: flex; flex-direction: row; gap: 20px; margin-top: 15px; padding: 10px;" class="panel">
+          <div class="slider-div panel">
+            <label class="lcd-text" for="glide-time">
+              Glide</label>
+            <div class="range-knob-wrapper">
+              <input type="range" id="glide-time" min="0" max="1" step="0.01" value="0" aria-label="Glide Time" />
+              <div class="range-knob">
+              </div>
+            </div>
+            <span id="glide-time-value" class="lcd-text">0</span>
+          </div>
+          <div class="slider-div panel">
+            <label class="lcd-text" for="master-volume">
+              Volume</label>
+            <div class="range-knob-wrapper">
+              <input type="range" id="master-volume" min="0" max="1" step="0.01" value="0.5" />
+              <div class="range-knob">
+              </div>
+            </div>
+            <span class="lcd-text" id="master-vol-value">0.5</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div style="padding: 10px; margin-top: 20px;" id="algorithm-description" class="sr-only" aria-live="polite"></div>
+
+    <div id="fx-controls" class="panel"></div>
+
+    <div id="operator-controls" class="panel"></div>
+
+
+  </div>
+  </div>
+  <div style="height: 40px;"></div>
+
+  <div id="aria-status" aria-live="polite" aria-atomic="true" style="
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+">
+  </div>
+
+</body>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="module" src="scripts/main.js"></script>
+<script type="module" src="scripts/rotary.js"></script>
+<script src="scripts/toggle.js"></script>
+<script src="../accessibility/accessibilitySettings.js"></script>
+
+
+
+
+
+</html>
