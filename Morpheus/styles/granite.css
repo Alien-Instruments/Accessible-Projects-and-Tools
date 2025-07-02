@@ -1,0 +1,896 @@
+@font-face {
+  font-family: "LCD";
+  src: url("../fonts/LCD2U___.TTF") format("opentype");
+}
+
+.desktop {
+  width: 99%;
+  height: 100vh;
+  background-image: url("../wood-591631.jpg");
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.range-knob-wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  background: radial-gradient(circle, #cec7c7, #171717);
+  border-radius: 50%;
+  border-radius: 50%;
+  outline: 1px solid whitesmoke;
+}
+
+.range-knob-wrapper input[type="range"] {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  top: 0;
+  left: 0;
+}
+
+.range-knob-wrapper .range-knob {
+  position: absolute;
+  z-index: 1;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background: linear-gradient(145deg, #ffffff, #373737);
+  border: 2px solid #080808;
+  border-radius: 50%;
+  transition: transform 0.1s;
+  box-sizing: border-box;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.range-knob-wrapper .range-knob:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 2px;
+  left: 50%;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #6a6a6a, #000000);
+  transform: translateX(-50%);
+}
+
+.range-knob-wrapper input[type="range"]:focus + .range-knob {
+  outline: 2px solid rgb(255, 255, 255);
+  box-shadow: 0 0 12px rgb(255, 254, 254);
+}
+
+.slider-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-div.learning {
+  outline: 2px dashed yellow;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    outline-color: yellow;
+  }
+  50% {
+    outline-color: orange;
+  }
+  100% {
+    outline-color: yellow;
+  }
+}
+
+#synth-ui {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.knob-row {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.lcd-select {
+  background-color: #206976;
+  color: #182424;
+  border-radius: 5px transparent;
+  border: 4px solid #2a2a2a;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+  padding-left: 2px;
+  padding-right: 25px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-family: "LCD", monospace, bold;
+  font-size: 22px;
+  text-align: left;
+  letter-spacing: 1px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23182424" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-position: right center;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  margin-bottom: 4px;
+  animation: lcdFlicker 3s infinite ease-in-out;
+}
+
+.lcd-select:focus {
+  outline: 1px solid whitesmoke;
+  box-shadow: 0 0 6px rgb(255, 254, 254);
+}
+
+.lcd-text {
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  color: #182424;
+  background-color: #206976;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  animation: lcdFlicker 4s infinite ease-in-out;
+}
+
+input[type="text"] {
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: #182424;
+  background-color: #206976;
+  border: 4px solid #2a2a2a;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+  padding: 4px;
+  text-align: center;
+  animation: lcdFlicker 2s infinite ease-in-out;
+}
+
+input[type="text"]::placeholder {
+  color: #1e1e1e;
+  opacity: 0.5;
+}
+
+.oscillator {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.envelopes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.fx {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.lfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.oscillator-1,
+.oscillator-2,
+.oscillator-mod,
+.dual-filter,
+.morphing-filter,
+.filter-morph,
+.delay,
+.amp-envelope,
+.overdrive,
+.distortion,
+.ring-mod,
+.lfo-1,
+.lfo-2,
+.lfo-3,
+.reverb {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  text-align: center;
+}
+
+#midi-mapping-list {
+  overflow: auto;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  color: #182424;
+  background-color: #206976;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  width: 500px;
+  height: 130px;
+}
+
+#midi-preset-list {
+  overflow: auto;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  color: #182424;
+  background-color: #206976;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  width: 400px;
+  height: 130px;
+}
+
+#midi-mapping-list ul,
+#midi-preset-list ul,
+#audio-preset-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+#midi-mapping-list li,
+#midi-preset-list li,
+#audio-preset-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+#midi-mapping-list .remove-btn,
+#midi-preset-list .remove-btn,
+#audio-preset-list .remove-btn {
+  color: #182424;
+  background-color: #206976;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  border: 2px dashed black;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+#midi-mapping-list .remove-btn:focus,
+#midi-preset-list .remove-btn:focus,
+#audio-preset-list .remove-btn:focus {
+  outline: 2px dashed black;
+  outline-offset: 2px;
+}
+
+.remove-btn2 {
+  border: none;
+  background-color: #206976;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.midi-learn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  width: 97%;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+#midi-ui {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  width: 97%;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #222;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 0 20px black;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.fx-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.lcd-button {
+  background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+  border: 2px solid #888;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 1px 0 #fff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  margin-bottom: 5px;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.lcd-button:active {
+  transform: translateY(2px);
+}
+
+.lcd-button:focus {
+  outline: 1px solid whitesmoke;
+  box-shadow: 0 0 6px whitesmoke;
+}
+
+#dualFilter-routing {
+  width: 80px;
+}
+
+#fx-lfo-enable,
+#delay-bypass {
+  width: 40px;
+}
+
+.range-knob-wrapper {
+  position: relative;
+}
+
+.mod-ring {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.2);
+  pointer-events: auto;
+  cursor: grab;
+  transform-origin: center;
+  border-radius: 50%;
+  outline: 4px dashed var(--accent, #0cf);
+  outline-offset: 5px;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
+  opacity: 0.8;
+  z-index: 2;
+  transition: transform 0.1s ease-out;
+}
+
+body.mod-dragging .mod-ring {
+  cursor: ns-resize;
+}
+
+.mod-ring:focus {
+  border: 6px solid var(--accent, #0cf);
+  box-shadow: 0 0 6px var(--accent, #0cf);
+}
+
+.mod-ring:focus,
+.mod-ring:hover,
+body.mod-dragging .mod-ring {
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.lfo-source {
+  padding: 6px 12px;
+  height: 60px;
+  border: 1px dashed greenyellow;
+  box-shadow: 0 0 4px greenyellow;
+  border-radius: 10px;
+  background: rgb(60, 58, 58);
+  font-weight: bold;
+}
+
+.lfo-source.lfo-ui-block:focus {
+  outline: 2px dashed greenyellow;
+  outline-offset: 2px;
+}
+.audio-preset-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  width: 97%;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #323232, #1c1c1c);
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+#audio-preset-list {
+  overflow: auto;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  color: #182424;
+  background-color: #206976;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  width: 400px;
+  height: 130px;
+}
+
+.midi-select-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.synth {
+  background: linear-gradient(to bottom, #2b2b2b 0%, #303030 50%, #292929 100%);
+  border: 1px solid #2a2a2a;
+  box-shadow: 12px 12px 22px rgba(0, 0, 0, 0.7),
+    -5px -5px 20px rgba(255, 255, 255, 0.05),
+    inset 0 10px 30px rgba(16, 15, 15, 0.5),
+    inset 0 -20px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.synth::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: 9px;
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 0, 0, 0.2)
+  );
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.synth::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.panel {
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.checkbox-container {
+  color: white;
+  margin-bottom: 8px;
+  border: none;
+  height: 20px;
+  margin-top: 11px;
+  margin-left: 10px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 180px;
+}
+
+.checkbox-button {
+  background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+  border: 2px solid #888;
+  border-radius: 6px;
+  padding: 3px;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #fff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  margin-bottom: 5px;
+  margin-top: 8px;
+}
+
+.checkbox-input:checked ~ .checkbox-button {
+  background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+  border: 3px solid rgb(255, 255, 255);
+}
+
+.checkbox-input:focus ~ .checkbox-button {
+  outline: 2px solid rgb(255, 255, 255);
+  outline-offset: 1px;
+}
+
+/* Range slider designs */
+.slider-container input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 1px solid white;
+  outline-offset: 0.125rem;
+}
+
+/* Clasic Makie style */
+.slider-container input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: black;
+  outline: none;
+  width: 150px;
+  height: 8px;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 25px;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 45px;
+  height: 25px;
+  background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 10%,
+      transparent 10%,
+      transparent 11%,
+      transparent 11%,
+      transparent 16%,
+      black 16%,
+      black 17%,
+      transparent 17%,
+      transparent 22%,
+      black 22%,
+      black 23%,
+      transparent 23%,
+      transparent 28%,
+      black 28%,
+      black 29%,
+      transparent 29%,
+      transparent 34%,
+      black 34%,
+      black 35%,
+      transparent 35%,
+      transparent 40%,
+      black 40%,
+      black 41%,
+      transparent 41%,
+      transparent 46%,
+      black 46%,
+      black 47%,
+      transparent 47%,
+      transparent 52%,
+      black 52%,
+      black 53%,
+      var(--slider-outline-color, #c51162) 53%,
+      var(--slider-outline-color, #c51162) 57%,
+      black 57%,
+      black 58%,
+      transparent 58%,
+      transparent 63%,
+      black 63%,
+      black 64%,
+      transparent 64%,
+      transparent 69%,
+      black 69%,
+      black 70%,
+      transparent 70%,
+      transparent 75%,
+      black 75%,
+      black 76%,
+      transparent 76%,
+      transparent 81%,
+      black 81%,
+      black 82%,
+      transparent 82%,
+      transparent 87%,
+      black 87%,
+      black 88%,
+      transparent 88%,
+      transparent 93%,
+      transparent 93%,
+      transparent 94%,
+      transparent 94%,
+      transparent 99%,
+      transparent 99%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #969696 0%, #dadada) 100%,
+    linear-gradient(135deg, transparent 15%, #ffffff33 50%, transparent 85%);
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5),
+    inset 0 1px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.3);
+  background-blend-mode: normal, normal, overlay; /* Blends the tilting effect with the base colors */
+}
+
+.slider-container input[type="range"]::-moz-range-thumb {
+  width: 45px;
+  height: 25px;
+  background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 10%,
+      transparent 10%,
+      transparent 11%,
+      transparent 11%,
+      transparent 16%,
+      black 16%,
+      black 17%,
+      transparent 17%,
+      transparent 22%,
+      black 22%,
+      black 23%,
+      transparent 23%,
+      transparent 28%,
+      black 28%,
+      black 29%,
+      transparent 29%,
+      transparent 34%,
+      black 34%,
+      black 35%,
+      transparent 35%,
+      transparent 40%,
+      black 40%,
+      black 41%,
+      transparent 41%,
+      transparent 46%,
+      black 46%,
+      black 47%,
+      transparent 47%,
+      transparent 52%,
+      black 52%,
+      black 53%,
+      var(--slider-outline-color, #c51162) 53%,
+      var(--slider-outline-color, #c51162) 57%,
+      black 57%,
+      black 58%,
+      transparent 58%,
+      transparent 63%,
+      black 63%,
+      black 64%,
+      transparent 64%,
+      transparent 69%,
+      black 69%,
+      black 70%,
+      transparent 70%,
+      transparent 75%,
+      black 75%,
+      black 76%,
+      transparent 76%,
+      transparent 81%,
+      black 81%,
+      black 82%,
+      transparent 82%,
+      transparent 87%,
+      black 87%,
+      black 88%,
+      transparent 88%,
+      transparent 93%,
+      transparent 93%,
+      transparent 94%,
+      transparent 94%,
+      transparent 99%,
+      transparent 99%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #969696 0%, #dadada) 100%,
+    linear-gradient(135deg, transparent 15%, #ffffff33 50%, transparent 85%);
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5),
+    inset 0 1px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.3);
+  background-blend-mode: normal, normal, overlay;
+}
+
+.mod-src-block {
+  padding: 0.5em 0.5em 0.7em;
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.mod-amount-wrap {
+  display: flex;
+  align-items: center;
+}
+.mod-amount-slider {
+  width: 90px;
+}
+
+#mod-ui {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: space-evenly;
+  width: 97%;
+  border: 2px solid rgb(192, 192, 192);
+  border-radius: 10px;
+  padding: 10px;
+}
