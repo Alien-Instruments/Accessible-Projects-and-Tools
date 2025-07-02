@@ -9,7 +9,6 @@ function toggleDiv(groupClass, clickedButton) {
     }
   });
 
-  // Remove 'active' from all buttons, then set it on clicked one
   document
     .querySelectorAll(".module-button")
     .forEach((btn) => btn.classList.remove("active"));
@@ -19,7 +18,6 @@ function toggleDiv(groupClass, clickedButton) {
   }
 }
 
-// Show 'sampler' group by default when the page loads
 window.addEventListener("DOMContentLoaded", () => {
   toggleDiv("drumMachine");
 });

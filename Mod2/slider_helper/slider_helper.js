@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const rangeInputs = document.querySelectorAll('input[type="range"]');
 
-  // Key bindings from input fields (must exist on page)
   const numberKey0 = document.getElementById("numberKey0").value.charCodeAt(0); // Default
   const numberKey1 = document.getElementById("numberKey1").value.charCodeAt(0); // Min
   const numberKey2 = document.getElementById("numberKey2").value.charCodeAt(0); // Max

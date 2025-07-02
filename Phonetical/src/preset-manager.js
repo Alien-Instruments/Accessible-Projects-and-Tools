@@ -20,7 +20,7 @@ export function saveAudioPreset(name, containerId = "synth-ui") {
       controlState[el.id] = el.value;
     }
   });
-  // Optionally handle toggle buttons with aria-pressed or .active
+
   const buttons = document.querySelectorAll(`#${containerId} button[id]`);
   buttons.forEach((btn) => {
     controlState[btn.id] =

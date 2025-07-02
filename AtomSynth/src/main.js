@@ -69,7 +69,7 @@ let currentOctaveRange = 2;
 let currentOctaves = [4, 5];
 let currentNoteLength = 400;
 let currentGlide = 0;
-let legatoMode = "off"; // default to poly
+let legatoMode = "off";
 let currentChordMode = "off";
 let currentNoteInterval = 1000;
 let randomizeNoteLength = false;
@@ -81,10 +81,8 @@ registerMIDIHandler((msg) => {
   const note = Tone.Frequency(data1, "midi").toNote();
 
   if (command === 0x90 && data2 > 0) {
-    // NOTE ON
     noteOn(note, data2 / 127);
   } else if (command === 0x80 || (command === 0x90 && data2 === 0)) {
-    // NOTE OFF
     noteOff(note);
   }
 });
@@ -108,7 +106,6 @@ document.body.appendChild(leftPanel);
 
 createParticleControlPanel(leftPanel, particlePanelConfig);
 
-//Create UI on page load
 const modPanel = document.getElementById("modPanel");
 
 const oscCategory = getOrCreateCategory(modPanel, "Oscillators");
@@ -180,7 +177,7 @@ function startNoteInterval() {
   if (noteIntervalTimer) clearTimeout(noteIntervalTimer);
 
   const nextInterval = randomizeNoteInterval
-    ? Math.floor(Math.random() * 1200) + 200 // e.g. 200–1400 ms
+    ? Math.floor(Math.random() * 1200) + 200
     : currentNoteInterval;
 
   noteIntervalTimer = setTimeout(() => {
@@ -194,7 +191,7 @@ function triggerElectronsNotes() {
     const note = getNoteFromX(body.position.x, currentScale, currentOctaves);
     const velocity = getVelocityFromY(body.position.y);
     const length = randomizeNoteLength
-      ? (Math.random() * 800 + 200) / 1000 + "s" // 200–1000ms
+      ? (Math.random() * 800 + 200) / 1000 + "s"
       : currentNoteLength / 1000 + "s";
 
     triggerChord(note, velocity, length, currentChordMode);
@@ -208,7 +205,6 @@ async function startSynthAndScene() {
   initScene();
   animateScene();
   await setupMIDI(handleIncomingNote);
-  //Trigger notes from electrons
   startNoteInterval();
 }
 
@@ -380,7 +376,6 @@ document.getElementById("note-key-select").addEventListener("change", (e) => {
   setCurrentKey(e.target.value);
 });
 
-// On base octave change
 document
   .getElementById("note-base-octave-select")
   .addEventListener("change", (e) => {
@@ -388,7 +383,6 @@ document
     updateCurrentOctaves();
   });
 
-// On range change
 document
   .getElementById("note-octave-range-slider")
   .addEventListener("input", (e) => {
@@ -427,7 +421,7 @@ document
       // Decide which note to play: e.g., the last electron, highest, lowest, or randomly
       const electrons = getElectrons();
       if (electrons.length > 0) {
-        const { body } = electrons[electrons.length - 1]; // Example: last one
+        const { body } = electrons[electrons.length - 1];
         const note = getNoteFromX(
           body.position.x,
           currentScale,
@@ -538,7 +532,7 @@ document.getElementById("clear-confirm-btn").addEventListener("click", () => {
 
 document.querySelectorAll(".close-modal").forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    e.preventDefault(); // prevent accidental form submission
+    e.preventDefault();
     btn.closest(".modal").classList.add("hidden");
   });
 });
@@ -595,19 +589,16 @@ const closeBtn = document.getElementById("close-midi-learn");
 
 openBtn.addEventListener("click", () => {
   modal.style.display = "flex";
-  // Optionally: document.body.style.overflow = 'hidden'; // Prevent background scroll
 });
 
 closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
-  // Optionally: document.body.style.overflow = '';
 });
 
 // Close on background click
 modal.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.style.display = "none";
-    // Optionally: document.body.style.overflow = '';
   }
 });
 
@@ -615,7 +606,6 @@ modal.addEventListener("click", (e) => {
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modal.style.display !== "none") {
     modal.style.display = "none";
-    // Optionally: document.body.style.overflow = '';
   }
 });
 
@@ -672,37 +662,23 @@ const closeAudioBtn = document.getElementById("close-audio-preset-modal");
 
 openAudioBtn.addEventListener("click", () => {
   audioModal.style.display = "flex";
-  // Optionally: document.body.style.overflow = 'hidden';
 });
 
 closeAudioBtn.addEventListener("click", () => {
   audioModal.style.display = "none";
-  // Optionally: document.body.style.overflow = '';
 });
 
 audioModal.addEventListener("click", (e) => {
   if (e.target === audioModal) {
     audioModal.style.display = "none";
-    // Optionally: document.body.style.overflow = '';
   }
 });
 
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && audioModal.style.display !== "none") {
     audioModal.style.display = "none";
-    // Optionally: document.body.style.overflow = '';
   }
 });
-
-function announce(msg) {
-  const region = document.getElementById("aria-status");
-  if (region) {
-    region.textContent = "";
-    setTimeout(() => {
-      region.textContent = msg;
-    }, 10);
-  }
-}
 
 function updateForceSlidersVisibility(selectedType) {
   document.querySelectorAll(".force-slider").forEach((slider) => {
@@ -729,8 +705,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const light = document.getElementById("light");
   const toggleAccess = document.getElementById("toggleAccess");
   if (light.disabled) {
-    toggleAccess.style.display = ""; // dark mode
+    toggleAccess.style.display = "";
   } else {
-    toggleAccess.style.display = "none"; // light mode
+    toggleAccess.style.display = "none";
   }
 });

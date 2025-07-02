@@ -1425,7 +1425,7 @@ fxBankDiv.addEventListener("keydown", (e) => {
     const fxMeta = FX_LIST.find((fx) => fx.className === fxClass);
     announce(`${fxClass} added to chain`);
     if (fxMeta) {
-      addFX(fxMeta); // now auto-focuses last
+      addFX(fxMeta);
     }
   }
 });
@@ -1445,18 +1445,17 @@ function addFX(meta, focusIdx = null) {
 }
 
 function removeFX(idx) {
-  // 1. Disconnect the FX node if it exists (before splicing from array!)
   const fx = fxChain[idx];
   if (fx && fx.node && fx.node.disconnect) {
     try {
       fx.node.disconnect();
-      // Also disconnect all its inputs, in case of Feedback/Delay/Convolver
+
       if (fx.node.input && fx.node.input.disconnect) {
         fx.node.input.disconnect();
       }
     } catch (e) {}
   }
-  // 2. Remove from the chain
+
   fxChain.splice(idx, 1);
   renderFXChain();
   updateAudioRouting();
@@ -1577,7 +1576,7 @@ document.getElementById("outputVol").addEventListener("input", (e) => {
 
 // --- Stereo Metering Setup ---
 const splitter = audioCtx.createChannelSplitter(2);
-// Upmix mono to stereo for accurate metering!
+// Upmix mono to stereo for accurate metering
 const merger = audioCtx.createChannelMerger(2);
 masterGain.connect(merger, 0, 0);
 masterGain.connect(merger, 0, 1);
@@ -1644,7 +1643,6 @@ function drawStereoMeter() {
   ctx.fillStyle = "#fff";
   ctx.fillRect(8, canvas.height - peakL * canvas.height - 1, 12, 2);
   ctx.fillRect(30, canvas.height - peakR * canvas.height - 1, 12, 2);
-  // Labels (optional)
   ctx.fillStyle = "#aaa";
   ctx.font = "10px sans-serif";
   ctx.fillText("L", 10, canvas.height - 2);

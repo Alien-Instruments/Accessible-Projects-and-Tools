@@ -46,7 +46,7 @@ function handlePresetSelect(value) {
     loadPresetFromLocal(name);
   }
 
-  populatePresetSelect(currentPresetKey); // ✅ Refresh with correct selection
+  populatePresetSelect(currentPresetKey);
 }
 
 // Save with user prompt
@@ -136,7 +136,7 @@ function getPreset() {
 function setPreset(preset) {
   for (const [key, value] of Object.entries(preset)) {
     const el = document.getElementById(key);
-    // 📻 Handle radio buttons by name if no element with this ID exists
+
     if (!el) {
       const radios = document.querySelectorAll(
         `input[type="radio"][name="${key}"]`
@@ -151,20 +151,16 @@ function setPreset(preset) {
       }
       continue;
     }
-    // ☑️ Checkbox
+
     if (el.type === "checkbox") {
       el.checked = Boolean(value);
-    }
-    // 📋 Multi-select
-    else if (el.tagName === "SELECT" && el.multiple && Array.isArray(value)) {
+    } else if (el.tagName === "SELECT" && el.multiple && Array.isArray(value)) {
       Array.from(el.options).forEach((option) => {
         option.selected = value.includes(option.value);
       });
-    }
-    // 🔽 Single-select or any other input
-    else {
+    } else {
       const strVal = String(value);
-      // Only set if value exists in <select> options to avoid silent fail
+
       if (el.tagName === "SELECT") {
         const hasOption = Array.from(el.options).some(
           (opt) => opt.value === strVal
@@ -180,7 +176,7 @@ function setPreset(preset) {
         el.value = strVal;
       }
     }
-    // 📣 Trigger listeners
+
     if (el.id !== "presetSelect") {
       ["input", "change"].forEach((type) => {
         el.dispatchEvent(new Event(type, { bubbles: true }));
@@ -290,7 +286,6 @@ function importPreset(file) {
       const key = "preset_" + name;
 
       if (localStorage.getItem(key)) {
-        // Show your custom confirm modal
         showPresetConfirmModal(
           `Preset "${name}" already exists. Overwrite it?`,
           (confirmed) => {
@@ -310,7 +305,7 @@ function importPreset(file) {
       }
     }
 
-    next(); // Start import loop
+    next();
   };
 
   reader.readAsText(file);
@@ -327,7 +322,7 @@ async function loadFactoryPresets() {
       throw new Error(`HTTP ${response.status} - ${response.statusText}`);
     }
     factoryPresets2 = await response.json();
-    populatePresetSelect(); // Populate select after loading
+    populatePresetSelect();
   } catch (err) {
     console.error("Failed to load factory presets:", err);
     showPresetMessageModal("Could not load factory presets.");
@@ -335,7 +330,7 @@ async function loadFactoryPresets() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  loadFactoryPresets(); // Will call populatePresetSelect after loading
+  loadFactoryPresets();
 });
 
 function togglePresetPanel() {
@@ -366,7 +361,6 @@ function trapModalFocus(modal, focusables) {
         }
       }
 
-      // Optional: Escape closes modal
       if (e.key === "Escape") {
         if (typeof modal.dataset.onEscape === "function") {
           modal.dataset.onEscape();

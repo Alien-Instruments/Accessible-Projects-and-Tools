@@ -266,7 +266,6 @@ function getAlgoColors() {
   };
 }
 
-// Example usage, with robust fallbacks:
 const algoSelect = document.getElementById("algorithm-select");
 const algoSVG = document.getElementById("algorithm-visual");
 if (algoSelect && algoSVG) {

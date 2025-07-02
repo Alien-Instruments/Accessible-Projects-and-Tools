@@ -200,7 +200,7 @@ const tempoValue = document.getElementById("tempoValue");
 
 tempoSlider.addEventListener("input", () => {
   tempo = parseInt(tempoSlider.value, 10);
-  tempoValue.textContent = `${tempo} Bpm`; // <- Add " Bpm" here
+  tempoValue.textContent = `${tempo} Bpm`;
   stepDuration = 60 / tempo / 4;
 
   if (intervalID) {
@@ -215,13 +215,12 @@ let stepDuration = 60 / tempo / 4;
 let currentStep = 0;
 let intervalID;
 
-let activeDrum = null; // e.g., "kick"
-let showingAccent = false; // whether accent view is currently shown
+let activeDrum = null;
+let showingAccent = false;
 
 const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
 
-// Initial styling
 startBtn.classList.add("control-button");
 stopBtn.classList.add("control-button");
 
@@ -462,13 +461,6 @@ document.getElementById("start").onclick = () => {
   if (!intervalID) intervalID = setInterval(schedule, stepDuration * 1000 * 4);
 };
 
-// document.getElementById("stop").onclick = () => {
-//   clearInterval(intervalID);
-//   intervalID = null;
-//   currentStep = 0;
-//   highlightStep(0);
-// };
-
 let activeRow = null;
 
 function showTab(tabId, button = null) {
@@ -488,7 +480,7 @@ function showTab(tabId, button = null) {
   if (button) {
     button.classList.add("active");
   }
-  updateDrumStepVisibility(); // ensure this gets called AFTER the correct row is visible
+  updateDrumStepVisibility();
 }
 
 const accentToggleBtn = document.getElementById("accentToggle");

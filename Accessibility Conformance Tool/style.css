@@ -286,17 +286,14 @@ span {
   border-radius: var(--border-radius);
   color: var(--output-font-color);
   text-align: center;
-  font-size: calc(
-    var(--base-font-size) * 1.25
-  ); /* Adjust based on base font size */
+  font-size: calc(var(--base-font-size) * 1.25);
 }
 
 :root {
-  --color1: #000000; /* Default color for Color 1 */
-  --color2: #ffffff; /* Default color for Color 2 */
+  --color1: #000000;
+  --color2: #ffffff;
 }
 
-/* Test panel to show the selected colors */
 #test-panel {
   padding: 10px;
   background-color: var(--color1);

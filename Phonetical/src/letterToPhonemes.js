@@ -16,8 +16,6 @@ export function letterToPhonemes(word) {
       continue;
     }
     if (word.startsWith("TH", i)) {
-      // Voiceless or voiced? Use position or heuristics
-      // Here, treat as "TH" (voiceless, /θ/) for simplicity
       out.push("TH");
       i += 2;
       continue;
@@ -107,7 +105,6 @@ export function letterToPhonemes(word) {
     }
 
     // Default mapping for vowels/consonants
-    // (this is where you could improve with a larger table)
     if ("AEIOU".includes(ch)) {
       out.push(ch);
       i++;

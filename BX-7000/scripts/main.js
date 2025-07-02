@@ -484,7 +484,7 @@ window.addEventListener("DOMContentLoaded", () => {
       removeBtn.addEventListener("click", () => {
         midiCCMappings.delete(cc);
 
-        // 🧠 Update localStorage
+        // Update localStorage
         const current = JSON.parse(
           localStorage.getItem(LOCAL_MIDI_MAP_KEY) || "{}"
         );
@@ -633,7 +633,7 @@ window.addEventListener("DOMContentLoaded", () => {
     switch (e.key) {
       case "Enter":
         e.preventDefault();
-        // Enter always sets the cell active (like now)
+        // Enter always sets the cell active
         document
           .querySelectorAll(`.piano-roll-cell[data-x='${x}']`)
           .forEach((c) => {
@@ -1401,7 +1401,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // Learn Mode Active
       if (learningParamId) {
         midiCCMappings.set(ccNum, learningParamId);
-        saveCCMappings(midiCCMappings); // ✅ persist mapping
+        saveCCMappings(midiCCMappings); // persist mapping
 
         console.log(`✅ Mapped MIDI CC ${ccNum} to "${learningParamId}"`);
 
@@ -1564,7 +1564,7 @@ function openModal({
     if (e.key === "Escape") close();
   });
 
-  // Basic focus trap (optional)
+  // Basic focus trap
   const focusableEls = modal.querySelectorAll("button, input");
   let i = 0;
   modal.addEventListener("keydown", (e) => {
@@ -1591,7 +1591,6 @@ function initAlgoColorSync() {
       typeof drawAlgorithm === "function"
     )
   ) {
-    // Try again later—page might not be ready yet.
     setTimeout(initAlgoColorSync, 500);
     return;
   }

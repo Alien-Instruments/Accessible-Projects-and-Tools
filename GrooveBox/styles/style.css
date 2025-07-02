@@ -257,7 +257,7 @@
 
 /* Toggle ON (Orange) with Glow */
 #accentToggle.orange {
-  background: rgba(255, 165, 0, 0.1); /* subtle fill */
+  background: rgba(255, 165, 0, 0.1);
   border-color: orange;
   color: orange;
   box-shadow: 0 0 8px 2px orange, inset 0 0 4px rgba(255, 165, 0, 0.3);
@@ -265,7 +265,7 @@
 
 /* Toggle OFF (Red) with Glow */
 #accentToggle.red {
-  background: rgba(255, 0, 0, 0.1); /* subtle fill */
+  background: rgba(255, 0, 0, 0.1);
   border-color: rgb(0, 255, 110);
   color: rgb(0, 255, 76);
   box-shadow: 0 0 8px 2px rgb(0, 255, 72), inset 0 0 4px rgba(255, 0, 0, 0.3);
@@ -292,7 +292,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 5px;
-  align-items: flex-start; /* align top edges */
+  align-items: flex-start;
 }
 
 .tempo-label {
@@ -415,7 +415,7 @@ h1 {
   height: 100%;
   cursor: pointer;
   transform: rotate(-90deg);
-  transform-origin: center center; /* Ensure it rotates around its center */
+  transform-origin: center center;
   top: 0;
   left: 0;
 }
@@ -593,19 +593,13 @@ input[type="text"] {
 
 #presetModal {
   display: none;
-  position: fixed; /* Make it stay in place */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999; /* Ensure it's on top of everything */
-  background: rgba(
-    0,
-    0,
-    0,
-    0.8
-  ); /* Optional: add a dark transparent backdrop */
-
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.8);
   align-items: center;
   justify-content: center;
 }
@@ -801,7 +795,7 @@ input[type="text"] {
   border: 12px solid transparent;
   border-radius: 15px;
   box-shadow: inset 0 0 15px #000, 0 0 10px rgba(0, 0, 0, 0.6),
-    0 0 3px #888 inset, 0 0 20px #aaa; /* glow effect around edge */
+    0 0 3px #888 inset, 0 0 20px #aaa;
   padding: 20px;
   position: relative;
   background-clip: padding-box;
@@ -827,7 +821,7 @@ input[type="text"] {
   border: 12px solid transparent;
   border-radius: 15px;
   box-shadow: inset 0 0 15px #000, 0 0 10px rgba(0, 0, 0, 0.6),
-    0 0 3px #888 inset, 0 0 20px #aaa; /* glow effect around edge */
+    0 0 3px #888 inset, 0 0 20px #aaa;
   padding: 20px;
   position: relative;
   background-clip: padding-box;
@@ -1020,7 +1014,6 @@ input[type="text"] {
       rgba(90, 90, 90, 0.8)
     )
     1 stretch;
-  /* padding: 2px 2px; */
   font-family: "LCD";
   font-size: 18px;
   text-align: left;
@@ -1037,8 +1030,8 @@ input[type="text"] {
 #polySequencer {
   display: flex;
   gap: 5px;
-  flex-wrap: nowrap; /* prevent wrapping */
-  overflow-x: auto; /* allow scrolling */
+  flex-wrap: nowrap;
+  overflow-x: auto;
   justify-content: flex-start;
 }
 
@@ -1070,7 +1063,7 @@ input[type="text"] {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: "Alien"; /* or match your UI font */
+  font-family: "Alien";
   color: rgb(255, 255, 255);
   font-size: 18px;
   cursor: pointer;

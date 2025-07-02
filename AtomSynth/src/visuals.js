@@ -223,10 +223,10 @@ export function initScene() {
     const material = new THREE.MeshBasicMaterial({
       map: texture,
       transparent: true,
-      side: THREE.FrontSide, // or DoubleSide if you want
+      side: THREE.FrontSide,
     });
     const plane = new THREE.Mesh(geometry, material);
-    plane.position.set(0, 0, -5 + 0.01); // FRONT wall, facing the camera
+    plane.position.set(0, 0, -5 + 0.01);
     scene.add(plane);
   });
 

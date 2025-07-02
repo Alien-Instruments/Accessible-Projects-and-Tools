@@ -35,7 +35,6 @@ arpModeSelect.addEventListener("change", () => {
   }
 });
 
-// Optional: Set the correct state on page load
 if (arpModeSelect.value === "custom") {
   arpSliders.classList.add("hidden");
   arpRoll.classList.remove("hidden");

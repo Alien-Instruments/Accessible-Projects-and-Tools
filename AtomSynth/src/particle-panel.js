@@ -519,17 +519,17 @@ export function createParticleControlPanel(container, config) {
       const wrapper = document.createElement("div");
 
       const label = document.createElement("label");
-      label.className = "checkbox-container"; // Apply the container class
+      label.className = "checkbox-container";
 
       const input = document.createElement("input");
       input.type = "checkbox";
       input.id = ctrl.id;
-      input.className = "checkbox-input"; // Apply input class
+      input.className = "checkbox-input";
       input.checked = ctrl.value || false;
 
       const span = document.createElement("span");
-      span.className = "checkbox-button"; // Style span
-      span.textContent = ctrl.label; // Add label text
+      span.className = "checkbox-button";
+      span.textContent = ctrl.label;
 
       label.appendChild(input);
       label.appendChild(span);

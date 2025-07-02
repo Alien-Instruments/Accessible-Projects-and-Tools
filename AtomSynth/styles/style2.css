@@ -92,7 +92,7 @@ input[type="color"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px; /* Set a fixed width for each color picker row */
+  width: 200px;
   border: none;
 }
 
@@ -118,11 +118,11 @@ input[type="color"] {
 }
 
 .color-picker-row input[type="color"] {
-  width: 95%; /* Adjust the width as needed */
-  height: 50px; /* Adjust the height as needed */
-  border: none; /* Optional: Remove default border */
-  border-radius: 5px; /* Optional: Add some border radius */
-  cursor: pointer; /* Optional: Change cursor on hover */
+  width: 95%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .main {
@@ -222,7 +222,7 @@ select {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--font-color, whitesmoke)" stroke="var(--font-color, whitesmoke)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 9 12 15 18 9"></polygon></svg>');
   background-repeat: no-repeat;
   background-repeat: no-repeat;
-  background-position: calc(100% - 0.1px) center; /* Position further to the right */
+  background-position: calc(100% - 0.1px) center;
 }
 
 span {
@@ -296,7 +296,7 @@ span {
   height: 100%;
   cursor: pointer;
   transform: rotate(-90deg);
-  transform-origin: center center; /* Ensure it rotates around its center */
+  transform-origin: center center;
   top: 0;
   left: 0;
 }

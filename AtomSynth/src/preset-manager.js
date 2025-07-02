@@ -33,7 +33,7 @@ export function saveAudioPreset(name, synth) {
       } else if (el.type === "checkbox") {
         preset[el.id] = el.checked;
       } else if (el.type === "color") {
-        preset[el.id] = el.value; // This will be a hex string like "#ff0000"
+        preset[el.id] = el.value;
       } else if (el.tagName === "SELECT") {
         preset[el.id] = el.value;
       }

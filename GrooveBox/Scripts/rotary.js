@@ -87,7 +87,7 @@ RangeKnob.prototype = {
       .val(newValue)[0]
       .dispatchEvent(new Event("input", { bubbles: true }));
 
-    this.rotateKnob(newValue); // optional redundancy
+    this.rotateKnob(newValue);
   },
 
   resetToDefault: function () {

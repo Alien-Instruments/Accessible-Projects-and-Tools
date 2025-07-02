@@ -46,11 +46,10 @@ stopButton.addEventListener("click", () => {
 function startSequencer() {
   clearInterval(intervalId);
   const bpm = getTempo();
-  const interval = (60 / bpm / 4) * 1000; // 16th notes
+  const interval = (60 / bpm / 4) * 1000;
   intervalId = setInterval(advanceStep, interval);
 }
 
-// Create note options: MIDI note names from C3 to C5
 const noteOptions2 = [];
 for (let i = 48; i <= 72; i++) {
   const name = [
@@ -78,7 +77,6 @@ for (let i = 0; i < steps; i++) {
   wrapper.style.alignItems = "center";
   wrapper.style.gap = "4px";
 
-  // LCD-style pitch selector
   const select = document.createElement("select");
   select.classList.add("lcd-select");
   select.setAttribute("aria-label", `Sample Note select ${i + 1}`);
@@ -90,7 +88,7 @@ for (let i = 0; i < steps; i++) {
     opt.textContent = note.name;
     select.appendChild(opt);
   }
-  select.value = "60"; // Default to C4
+  select.value = "60";
   pitchSelectors.push(select);
 
   // Main step checkbox
@@ -107,7 +105,6 @@ for (let i = 0; i < steps; i++) {
   label.textContent = `${i + 1}`;
   label.htmlFor = "sequence-step";
   label.style.textAlign = "center";
-  //label.style.width = "100%";
 
   wrapper.appendChild(select);
   wrapper.appendChild(checkbox);
@@ -150,7 +147,7 @@ Filter.frequency.value = 500;
 Filter.Q.value = 12;
 
 const samplerVolume = audioCtx.createGain();
-samplerVolume.gain.value = 1.0; // Initial master volume
+samplerVolume.gain.value = 1.0;
 
 function playSample(pitchMidi) {
   if (!sampleBuffer) return;

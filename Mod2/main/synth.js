@@ -164,12 +164,12 @@ window.addEventListener("DOMContentLoaded", () => {
     bindSelectToCallback(id, callback);
   });
 
-  // ✅ Delay StepSequencer until after bindings are done
+  //Delay StepSequencer until after bindings are done
   sequencer = new StepSequencer();
 });
 //Bindings=======================================================
 const sliderBindings = [
-  // 🕓 Sequencer
+  // Sequencer
   [
     "tempo",
     (v) => {
@@ -186,7 +186,7 @@ const sliderBindings = [
     "int",
     "Sequencer",
   ],
-  // 🎛️ Complex Oscillator
+  // Complex Oscillator
   [
     "Sine Out",
     (v) => (complexOscillator1.sineOut = v),
@@ -260,7 +260,7 @@ const sliderBindings = [
     "Complex Oscillator",
   ],
 
-  // 🎛️ Pulse Oscillator
+  // Pulse Oscillator
   ["Pulse Level", (v) => (pulseOsc1.level = v), "float", "Pulse Oscillator"],
   ["Pulse Detune", (v) => (pulseOsc1.detune = v), "int", "Pulse Oscillator"],
   ["Pulse Width", (v) => (pulseOsc1.width = v), "float", "Pulse Oscillator"],
@@ -271,7 +271,7 @@ const sliderBindings = [
     "Pulse Oscillator",
   ],
 
-  // 🎛️ Simple Oscillators
+  // Simple Oscillators
   [
     "Osc One Level",
     (v) => (oscillator1.level = v),
@@ -297,10 +297,10 @@ const sliderBindings = [
     "Simple Oscillators",
   ],
 
-  // 🎚️ Filter
+  // Filter
   ["Filter One Freq", (v) => (filter1.frequency = v), "int", "Filter"],
   ["Filter One Resonance", (v) => (filter1.Q = v), "float", "Filter"],
-  // 🎚️ Dual Filter
+  // Dual Filter
   ["Dual Filter Drive", (v) => (dualFilter.drive = v), "int", "Dual Filter"],
   [
     "Filter A Freq",
@@ -337,12 +337,12 @@ const sliderBindings = [
   ["Mutator Env Depth", (v) => (mutator.envelopeDepth = v), "float", "Mutator"],
   ["Mutator Bit Depth", (v) => (mutator.bitDepth = v), "int", "Mutator"],
   ["Mutator Bit Reduction", (v) => (mutator.reduction = v), "float", "Mutator"],
-  // 🕒 Delay
+  // Delay
   ["Delay Time", (v) => (delay.delayTime = v), "int", "Delay"],
   ["Delay Feedback", (v) => (delay.feedback = v), "float", "Delay"],
   ["Delay Cut", (v) => (delay.cutoff = v), "int", "Delay"],
   ["Delay Wet", (v) => (delay.wetLevel = v), "float", "Delay"],
-  // 🌀 Phaser
+  // Phaser
   ["Phaser Rate", (v) => (phaser.rate = v), "float", "Phaser"],
   ["Phaser Depth", (v) => (phaser.depth = v), "float", "Phaser"],
   ["Phaser Feedback", (v) => (phaser.feedback = v), "float", "Phaser"],
@@ -353,7 +353,7 @@ const sliderBindings = [
     "int",
     "Phaser",
   ],
-  // 🌊 Chorus
+  // Chorus
   ["Chorus Feedback", (v) => (chorus.feedback = v), "float", "Chorus"],
   ["Chorus Delay", (v) => (chorus.delay = v), "float", "Chorus"],
   ["Chorus Depth", (v) => (chorus.depth = v), "float", "Chorus"],
@@ -383,13 +383,13 @@ const sliderBindings = [
     "float",
     "Reverb",
   ],
-  // 📦 Cabinet
+  // Cabinet
   ["Cabinet Gain", (v) => (cab.makeupGain = v), "float", "Cabinet"],
-  // ↔️ Auto Panner
+  // ↔Auto Panner
   ["Pan Direction", (v) => (autoPan.pan = v), "float", "Auto Panner"],
   ["Pan Rate", (v) => (autoPan.rate = v), "float", "Auto Panner"],
   ["Pan Depth", (v) => (autoPan.depth = v), "float", "Auto Panner"],
-  // 🧪 Dimension Expander
+  // Dimension Expander
   [
     "Expander Delay",
     (v) => {
@@ -408,22 +408,22 @@ const sliderBindings = [
     "float",
     "Expander",
   ],
-  // ⚡ Overdrive
+  // Overdrive
   ["Drive Drive", (v) => (drive.drive = v), "float", "Overdrive"],
   ["Drive Gain", (v) => (drive.outputGain = v), "float", "Overdrive"],
   ["Drive Curve", (v) => (drive.curveAmount = v), "float", "Overdrive"],
   ["Drive Algorithm", (v) => (drive.algorithmIndex = v), "int", "Overdrive"],
-  // 🔊 Mixer
+  // Mixer
   ["Mixer 1 Gain", (v) => (mixerChannels[0].gain.value = v), "float", "Mixer"],
   ["Mixer 2 Gain", (v) => (mixerChannels[1].gain.value = v), "float", "Mixer"],
   ["Mixer 3 Gain", (v) => (mixerChannels[2].gain.value = v), "float", "Mixer"],
   ["Mixer 4 Gain", (v) => (mixerChannels[3].gain.value = v), "float", "Mixer"],
-  // 📈 Envelope
+  // Envelope
   ["Envelope Attack", (v) => {}, "float", "Envelope"],
   ["Envelope Decay", (v) => {}, "float", "Envelope"],
   ["Envelope Sustain", (v) => {}, "float", "Envelope"],
   ["Envelope Release", (v) => {}, "float", "Envelope"],
-  // 🎚️ EQ
+  // EQ
   ["Low Gain", (v) => (eq.lowGain = v), "int", "EQ"],
   ["Low Freq", (v) => (eq.lowFreq = v), "int", "EQ"],
   ["Mid Gain", (v) => (eq.midGain = v), "int", "EQ"],
@@ -431,7 +431,7 @@ const sliderBindings = [
   ["Mid Res", (v) => (eq.midRes = v), "int", "EQ"],
   ["High Gain", (v) => (eq.highGain = v), "int", "EQ"],
   ["High Freq", (v) => (eq.highFreq = v), "int", "EQ"],
-  // 🔁 LFO 1–3
+  // LFO 1–3
   ["Lfo 1 Rate", (v) => (lfos[0].osc.frequency.value = v), "float", "LFO 1"],
   [
     "Lfo 1 Depth",
@@ -526,18 +526,18 @@ function bindSliderToValue(sliderId, updateCallback, parseAs = "float") {
 
   const parse = parseAs === "int" ? parseInt : parseFloat;
 
-  // 🟢 Restore from localStorage (if saved previously)
+  // Restore from localStorage (if saved previously)
   const saved = localStorage.getItem(`slider_${sliderId}`);
   if (saved !== null) {
     slider.value = saved;
   }
 
-  // 🟢 Initial sync
+  // Initial sync
   const initValue = parse(slider.value);
   output.textContent = initValue;
   if (updateCallback) updateCallback(initValue);
 
-  // 🔁 Update on input
+  // Update on input
   slider.addEventListener("input", function () {
     const value = parse(this.value);
     output.textContent = value;
@@ -660,7 +660,7 @@ function bindSelectToCallback(selectId, callback) {
     return;
   }
 
-  // ⬅️ Restore from localStorage if available
+  // Restore from localStorage if available
   const saved = localStorage.getItem(`select_${selectId}`);
   if (saved !== null) {
     select.value = saved;
@@ -672,7 +672,7 @@ function bindSelectToCallback(selectId, callback) {
     callback(value);
   });
 
-  // 🔄 Apply current or restored value
+  // Apply current or restored value
   callback(select.value);
 }
 
@@ -690,7 +690,7 @@ document
       typeof audioContext !== "undefined" &&
       audioContext.state === "suspended"
     ) {
-      await audioContext.resume(); // ✅ Important: resume context first
+      await audioContext.resume();
       console.log("AudioContext resumed");
     }
 
@@ -779,7 +779,7 @@ function updateSliderVisual(paramName, scaledValue, type) {
     slider.value = value;
     slider.dispatchEvent(new Event("input"));
 
-    // ✅ Also update .range-knob if it's present
+    // Also update .range-knob if it's present
     const wrapper = slider.closest(".second-knob-wrapper");
     if (wrapper) {
       const knob = wrapper.querySelector(".range-knob");
@@ -834,13 +834,13 @@ function handleMIDIMessage(message) {
     // Note off
     triggerRelease();
   } else if ((command & 0xf0) === 0xb0) {
-    // 🎚 Control Change (CC)
+    // Control Change (CC)
     const ccNumber = data1;
     const ccValue = data2;
     console.log("🎛 MIDI CC received:", ccNumber, ccValue);
     handleCC(ccNumber, ccValue); // ✅ call this — logic lives there
   } else if ((command & 0xf0) === 0xe0) {
-    // 🎹 Pitch Bend
+    // Pitch Bend
     const lsb = data1;
     const msb = data2;
     handlePitchBend(lsb, msb);
@@ -1295,7 +1295,6 @@ class StepSequencer {
       } else {
         // Tie step: continue holding previous note (don't retrigger)
         this.sliders[this.currentStep].classList.add("active");
-        // Optionally extend release later — or ignore if envelope already in sustain
       }
     }
 
@@ -1817,7 +1816,7 @@ function saveConnectionsToLocalStorage() {
 
 window.addEventListener("DOMContentLoaded", () => {
   restoreConnectionsFromLocalStorage();
-  // 🆕 Restore saved colors
+  // Restore saved colors
   restoreColorPickers();
 });
 
@@ -2062,7 +2061,7 @@ function disconnectNodes(sourceId, targetId, connectionText) {
     connectionText.remove();
 
     // Remove the connection from the array
-    connections.splice(connectionIndex, 1); // <--- Move this after removeConnection
+    connections.splice(connectionIndex, 1);
   } else {
     console.warn(`Connection between ${sourceId} and ${targetId} not found.`);
   }
@@ -2372,7 +2371,7 @@ lfos.forEach((_, index) => setupLfo(index));
 
 // === MIDI LEARN MODE EXTENSIONS ======================
 
-// 🎛️ MIDI Learn Mode Globals
+// MIDI Learn Mode Globals
 let learnMode = false;
 let paramToMap = null;
 let isSelectTarget = false;
@@ -2395,7 +2394,7 @@ function enterLearnMode(paramName) {
 function handleCC(ccNumber, value) {
   const normalizedValue = value / 127;
 
-  // 🎛 Learn Mode (for sliders or selects)
+  // Learn Mode (for sliders or selects)
   if (learnMode && paramToMap) {
     const mappings = isSelectTarget ? ccSelectMappings : ccMappings;
 
@@ -2417,7 +2416,7 @@ function handleCC(ccNumber, value) {
     return;
   }
 
-  // === 🎚 Slider mapping ===
+  // === Slider mapping ===
   const paramName = ccMappings[ccNumber];
   if (paramName) {
     const binding = sliderBindings.find(([name]) => name === paramName);
@@ -2450,7 +2449,7 @@ function handleCC(ccNumber, value) {
     return;
   }
 
-  // === 🔽 Select mapping ===
+  // === Select mapping ===
   const selectParam = ccSelectMappings[ccNumber];
   if (selectParam) {
     const selectBinding = selectBindings.find(([name]) => name === selectParam);
@@ -2765,7 +2764,6 @@ function showExportModal() {
   // Wait until next frame to ensure DOM update, then focus
   requestAnimationFrame(() => input.focus());
 
-  // Optional: trap focus inside modal
   const focusable = [input, saveBtn, cancelBtn];
   let focusIndex = 0;
 

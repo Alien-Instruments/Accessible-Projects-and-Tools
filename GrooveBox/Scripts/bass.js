@@ -205,8 +205,8 @@ function createTB303Editor(sequence) {
 
   function applyStateClass(el, className, isEnabled) {
     el.classList.add("step");
-    el.classList.add(className); // always add class (like "tie")
-    el.classList.toggle("active", isEnabled); // optional
+    el.classList.add(className);
+    el.classList.toggle("active", isEnabled);
   }
 
   for (let i = 0; i < sequence.length; i++) {
@@ -358,7 +358,6 @@ function highlightTB303Step(index) {
   });
 }
 
-// Call once to build editor
 createTB303Editor(sequence);
 updateTB303StepVisibility();
 
@@ -478,7 +477,6 @@ pageSelect2.addEventListener("change", () => {
   updateTB303StepVisibility();
 });
 
-// Optionally call once at load to set default
 viewSelect.dispatchEvent(new Event("change"));
 
 const distortionSlider = document.getElementById("tb303-distortion");

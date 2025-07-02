@@ -73,7 +73,7 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 5px;
-  align-items: flex-start; /* align top edges */
+  align-items: flex-start;
 }
 
 .button-wrap {
@@ -112,7 +112,7 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #700; /* fallback if no specific style matches */
+  background-color: #700;
   box-shadow: 0 0 4px #200, inset -1px -1px 2px rgba(0, 0, 0, 0.6),
     inset 1px 1px 1px rgba(255, 255, 255, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -120,21 +120,21 @@ body {
 
 /* =============== UNCHECKED (DULL) COLORS =============== */
 .step:not(.accent):not(.slide):not(.mute)::before {
-  background-color: #004400; /* dull green for normal steps */
+  background-color: #004400;
   box-shadow: 0 0 4px #001f00, inset -1px -1px 2px rgba(0, 0, 0, 0.4),
     inset 1px 1px 1px rgba(255, 255, 255, 0.05);
 }
 
 .step.accent::before {
-  background-color: #665500; /* dull yellow/orange */
+  background-color: #665500;
 }
 
 .step.slide::before {
-  background-color: #004d4d; /* dull cyan */
+  background-color: #004d4d;
 }
 
 .step.mute::before {
-  background-color: #4d004d; /* dull magenta */
+  background-color: #4d004d;
 }
 
 /* =============== CHECKED (LIT) COLORS =============== */
@@ -289,7 +289,7 @@ body {
 
 /* Toggle ON (Orange) with Glow */
 #accentToggle.orange {
-  background: rgba(255, 165, 0, 0.1); /* subtle fill */
+  background: rgba(255, 165, 0, 0.1);
   border-color: orange;
   color: orange;
   box-shadow: 0 0 8px 2px orange, inset 0 0 4px rgba(255, 165, 0, 0.3);
@@ -297,7 +297,7 @@ body {
 
 /* Toggle OFF (Red) with Glow */
 #accentToggle.red {
-  background: rgba(255, 0, 0, 0.1); /* subtle fill */
+  background: rgba(255, 0, 0, 0.1);
   border-color: rgb(0, 255, 110);
   color: rgb(0, 255, 76);
   box-shadow: 0 0 8px 2px rgb(0, 255, 72), inset 0 0 4px rgba(255, 0, 0, 0.3);
@@ -432,7 +432,7 @@ h1 {
   height: 100%;
   cursor: pointer;
   transform: rotate(-90deg);
-  transform-origin: center center; /* Ensure it rotates around its center */
+  transform-origin: center center;
   top: 0;
   left: 0;
 }
@@ -560,7 +560,6 @@ input[type="text"] {
       rgba(90, 90, 90, 0.8)
     )
     1 stretch;
-  /* padding: 2px 2px; */
   font-family: "LCD";
   font-size: 18px;
   text-align: left;
@@ -708,18 +707,13 @@ input[type="text"] {
 
 #presetModal {
   display: none;
-  position: fixed; /* Make it stay in place */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999; /* Ensure it's on top of everything */
-  background: rgba(
-    0,
-    0,
-    0,
-    0.8
-  ); /* Optional: add a dark transparent backdrop */
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.8);
 
   align-items: center;
   justify-content: center;

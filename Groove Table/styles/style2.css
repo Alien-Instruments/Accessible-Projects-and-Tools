@@ -113,7 +113,7 @@ input[type="color"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px; /* Set a fixed width for each color picker row */
+  width: 200px;
   border: none;
 }
 
@@ -145,11 +145,11 @@ input[type="color"] {
 }
 
 .color-picker-row input[type="color"] {
-  width: 95%; /* Adjust the width as needed */
-  height: 50px; /* Adjust the height as needed */
-  border: none; /* Optional: Remove default border */
-  border-radius: 5px; /* Optional: Add some border radius */
-  cursor: pointer; /* Optional: Change cursor on hover */
+  width: 95%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .main {
@@ -161,17 +161,13 @@ input[type="color"] {
 .testSelect select {
   width: 95%;
   height: 55px;
-  font-size: calc(
-    var(--base-font-size) * 1.25
-  ); /* Adjust based on base font size */
+  font-size: calc(var(--base-font-size) * 1.25);
 }
 
 .knobSelect select {
   width: 95%;
   height: 55px;
-  font-size: calc(
-    var(--base-font-size) * 1.25
-  ); /* Adjust based on base font size */
+  font-size: calc(var(--base-font-size) * 1.25);
 }
 
 .color-picker-row input[type="color"]::-webkit-color-swatch-wrapper {
@@ -1559,7 +1555,7 @@ span {
 }
 
 div label {
-  display: block; /* or inline-block */
+  display: block;
   width: 90%;
   justify-content: center;
 }

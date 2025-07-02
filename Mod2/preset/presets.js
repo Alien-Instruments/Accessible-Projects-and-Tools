@@ -13,8 +13,6 @@ function trapModalFocus(modal, focusables) {
           first.focus();
         }
       }
-
-      // Optional: Escape closes modal
       if (e.key === "Escape") {
         if (typeof modal.dataset.onEscape === "function") {
           modal.dataset.onEscape();

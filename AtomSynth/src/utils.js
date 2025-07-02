@@ -119,5 +119,5 @@ export function setCurrentKey(k) {
   currentKey = k;
 }
 
-// Uncomment to see your generated notes for sanity check
+// generated notes for sanity check
 // console.log(buildScaleNotes("Dorian", [4, 5], "D#"));

@@ -50,14 +50,12 @@ function speakPhonemes(
 
   // Robotic quantized step (eighth or sixteenth note)
   let phonemeStep = robotSingerMode ? 0.18 : 0.32;
-
-  // --- Fix: choose pitch ---
-  let robotPitch = 48; // C3 (adjust for taste!)
+  let robotPitch = 48;
   let usePitch = robotTalkMode ? robotPitch : note;
 
   phonemes.forEach((ph, i) => {
     if (ph === "__PAUSE__") {
-      time += 0.2; // or whatever pause duration you like (0.10s = 100ms)
+      time += 0.2;
       return;
     }
     if (ph === "*" || ph === "ˈ") {
@@ -189,7 +187,7 @@ function playLiquid(time, spec, velocity, note) {
 
 function playTrill(time, spec, velocity, note) {
   // Trill as 3–4 fast "liquid" pulses, each very short
-  const nTaps = 3 + Math.floor(2 * velocity); // More velocity = more taps
+  const nTaps = 3 + Math.floor(2 * velocity);
   const tapDuration = 0.045;
   const gap = 0.01;
   const voices = [];
@@ -223,12 +221,12 @@ function playAffricate(time, spec, velocity, note) {
     0.04 * velocity * consonantBoost, // Louder burst
     0.04 // Short duration for stop
   );
-  // Fricative release (use similar/noise frequencies, slightly after burst)
+  // Fricative release
   const fricative = playNoiseBurst(
     time + 0.03,
     spec.noise || spec.burst || [2000, 3000], // Default to same freqs if no 'noise'
     0.025 * velocity * consonantBoost, // Softer than burst
-    0.09 // Slightly longer
+    0.09
   );
   return [...burst, ...fricative];
 }
@@ -281,12 +279,11 @@ function playVowelGlide(
     osc.frequency.setValueAtTime(lastVowelFreq, time); // start from previous
     osc.frequency.linearRampToValueAtTime(freq, time + duration * 0.8); // glide
   } else {
-    osc.frequency.value = freq; // no glide (first note)
+    osc.frequency.value = freq;
   }
   lastVowelFreq = freq;
 
   if (true) {
-    // or use a setting
     addLFO(osc.frequency, {
       type: "sine",
       rate: vibratoRate,
@@ -300,9 +297,9 @@ function playVowelGlide(
   if (robotSingerMode) {
     lfo = audioCtx.createOscillator();
     lfo.type = "triangle";
-    lfo.frequency.value = 6.2; // fast/robotic
+    lfo.frequency.value = 6.2;
     lfoGain = audioCtx.createGain();
-    lfoGain.gain.value = freq * 0.011; // about 20-30 cents
+    lfoGain.gain.value = freq * 0.011;
     lfo.connect(lfoGain);
     lfoGain.connect(osc.frequency);
     lfo.start(time);
@@ -409,7 +406,6 @@ window.addEventListener("keydown", (e) => {
     heldKeys.add(e.key);
     const midiNote = 60 + keyboardOctave * 12 + semitoneOffset;
 
-    // Trigger your speech system
     const word = document.getElementById("phonemeInput").value.trim();
     const accent = document.getElementById("accentSelect").value;
     speakPhonemes(word, midiNote, 1.0, accent);
@@ -463,7 +459,7 @@ function setAccent(accent) {
 }
 
 const accentSelect = document.getElementById("accentSelect");
-//Display friendly names instead of keys
+
 const accentLabels = {
   "english-us": "English (US)",
   "english-rp": "English (RP)",
@@ -575,7 +571,7 @@ document.getElementById("clear-confirm-btn").addEventListener("click", () => {
 
 document.querySelectorAll(".close-modal").forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    e.preventDefault(); // prevent accidental form submission
+    e.preventDefault();
     btn.closest(".modal").classList.add("hidden");
   });
 });

@@ -264,7 +264,7 @@ function playPolyNote(midi, duration = 0.3) {
     voice.gain2.disconnect();
     voice.filter.disconnect();
     voice.ampGain.disconnect();
-    Object.assign(voice, createVoice()); // replace with a fresh one
+    Object.assign(voice, createVoice());
   };
 }
 

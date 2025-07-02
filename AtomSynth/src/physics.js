@@ -165,7 +165,7 @@ export function addNeutron(scene, color) {
 }
 
 export function addElectron(scene, position) {
-  const id = `electron-${particleIdCounter++}`; // <-- Give it a unique id
+  const id = `electron-${particleIdCounter++}`;
   const radius = 0.35;
   const shape = new CANNON.Sphere(radius);
   const geometry = new THREE.SphereGeometry(radius, 16, 16);
@@ -209,7 +209,7 @@ export function addElectron(scene, position) {
 
   scene.add(mesh);
   world.addBody(body);
-  const electronObj = { id, mesh, body, type: "electron" }; // <-- add id and type!
+  const electronObj = { id, mesh, body, type: "electron" };
   electrons.push(electronObj);
   return electronObj;
 }
@@ -238,7 +238,7 @@ export function updatePhysics(delta) {
     mesh.position.copy(body.position);
     mesh.quaternion.copy(body.quaternion);
 
-    // Optional: clamp velocity to prevent escape
+    //clamp velocity to prevent escape
     body.velocity.x = Math.max(-20, Math.min(20, body.velocity.x));
     body.velocity.y = Math.max(-20, Math.min(20, body.velocity.y));
     body.velocity.z = Math.max(-20, Math.min(20, body.velocity.z));
@@ -453,7 +453,6 @@ export function applyUserImpulse() {
   );
 }
 
-// This should be called every frame
 export function maybeReattachConstraints() {
   if (disableConstraintReattachment) return;
   if (!constraintsEnabled && performance.now() > impulseCooldown) {

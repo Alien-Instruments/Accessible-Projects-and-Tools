@@ -62,7 +62,6 @@ export async function setupMIDI(synth, uiContainerId = "midi-ui") {
       const [status] = msg.data;
       const channel = (status & 0x0f) + 1;
       if (channel === selectedChannel) {
-        // Don't call handleMIDIMessage(msg, synth);
         externalHandlers.forEach((fn) => fn(msg));
       }
     };

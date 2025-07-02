@@ -79,7 +79,6 @@ canvas {
   margin-bottom: 18px;
 }
 
-/* LABELS BELOW SLIDERS */
 .mod-row,
 .panel-row {
   display: flex;
@@ -314,7 +313,6 @@ input[type="range"]:focus::-moz-range-thumb {
     inset 0 2px 5px rgba(255, 255, 255, 0.9);
 }
 
-/* SELECT & DROPDOWN */
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -349,7 +347,6 @@ select {
   background-position: calc(100% - 0.1px) center; /* Position further to the right */
 }
 
-/* BUTTONS */
 button {
   background: linear-gradient(90deg, #3de4e8 0%, #67a5fd 100%);
   border: none;
@@ -367,7 +364,6 @@ button:hover {
   filter: brightness(0.95) contrast(1.1);
 }
 
-/* UTILITY: FOR SLIDER VALUE NUMBER */
 span.slider-value,
 span[id$="-value"] {
   text-align: right;

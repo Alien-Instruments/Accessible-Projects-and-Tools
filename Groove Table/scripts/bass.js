@@ -1,19 +1,17 @@
-// TB-303 state
 let tb303Step = 0;
 let tb303Scheduler;
 let previousFreq = null;
 
-// TB-303 audio chain
 const tb303Filter = audioCtx.createBiquadFilter();
 tb303Filter.type = "lowpass";
 tb303Filter.frequency.value = 1000;
 tb303Filter.Q.value = 12;
 
-const tb303Amp = audioCtx.createGain(); // Envelope controlled
-const tb303Volume = audioCtx.createGain(); // User volume slider
+const tb303Amp = audioCtx.createGain();
+const tb303Volume = audioCtx.createGain();
 tb303Amp.connect(tb303Volume).connect(audioCtx.destination);
-tb303Amp.gain.value = 1.0; // Let envelope do its job
-tb303Volume.gain.value = 1.0; // Initial master volume
+tb303Amp.gain.value = 1.0;
+tb303Volume.gain.value = 1.0;
 
 tb303Filter.connect(tb303Amp).connect(audioCtx.destination);
 
@@ -95,9 +93,9 @@ function playTB303Step(time, stepIndex) {
 const lfo = audioCtx.createOscillator();
 const lfoGain = audioCtx.createGain();
 
-lfo.type = "sine"; // or triangle/square/sawtooth
-lfo.frequency.value = 5; // default rate in Hz
-lfoGain.gain.value = 100; // default depth in Hz
+lfo.type = "sine";
+lfo.frequency.value = 5;
+lfoGain.gain.value = 100;
 
 lfo.connect(lfoGain).connect(tb303Filter.frequency);
 lfo.start();
@@ -156,7 +154,7 @@ function createTB303Editor(sequence) {
   function applyStateClass(el, className, isEnabled) {
     el.classList.add("step"); // ensure "step" is always present
     el.classList.add(className); // Always keep class
-    el.classList.toggle("active", isEnabled); // Add 'active' state if needed
+    el.classList.toggle("active", isEnabled);
   }
 
   for (let i = 0; i < sequence.length; i++) {
@@ -174,7 +172,7 @@ function createTB303Editor(sequence) {
     label.textContent = i + 1;
 
     const select = document.createElement("select");
-    select.classList.add("lcd-select"); // ✅ Apply the style here
+    select.classList.add("lcd-select");
     const selectId = `note-select-${i + 1}`;
     select.id = selectId;
     select.setAttribute("aria-label", `Note select ${i + 1}`);
@@ -192,7 +190,7 @@ function createTB303Editor(sequence) {
 
     const accentBox = document.createElement("input");
     accentBox.type = "checkbox";
-    accentBox.classList.add("step", "accent-checkbox"); // ✅ THIS LINE
+    accentBox.classList.add("step", "accent-checkbox");
     const accentId = `accent-${i + 1}`;
     accentBox.id = accentId;
     accentBox.setAttribute("aria-label", `Accent ${i + 1}`);
@@ -211,7 +209,7 @@ function createTB303Editor(sequence) {
 
     const slideBox = document.createElement("input");
     slideBox.type = "checkbox";
-    slideBox.classList.add("step", "slide-checkbox"); // ✅ THIS LINE
+    slideBox.classList.add("step", "slide-checkbox");
     const slideId = `slide-${i + 1}`;
     slideBox.id = slideId;
     slideBox.setAttribute("aria-label", `Slide ${i + 1}`);
@@ -230,7 +228,7 @@ function createTB303Editor(sequence) {
 
     const muteBox = document.createElement("input");
     muteBox.type = "checkbox";
-    muteBox.classList.add("step", "mute-checkbox"); // ✅ THIS LINE
+    muteBox.classList.add("step", "mute-checkbox");
     const muteId = `mute-${i + 1}`;
     muteBox.id = muteId;
     muteBox.setAttribute("aria-label", `Mute ${i + 1}`);
@@ -277,7 +275,6 @@ function highlightTB303Step(index) {
   });
 }
 
-// Call once to build editor
 createTB303Editor(sequence);
 
 const waveformSelect = document.getElementById("tb303-waveform");
@@ -306,7 +303,6 @@ resonanceSlider.addEventListener("input", () => {
 
 // Update waveform type on next oscillator start
 waveformSelect.addEventListener("change", () => {
-  // This just updates a setting, used when creating a new osc
   tb303Waveform = waveformSelect.value;
 });
 
@@ -357,11 +353,9 @@ viewSelect.addEventListener("change", () => {
     .querySelectorAll(".mute-checkbox")
     .forEach((cb) => (cb.style.display = "none"));
 
-  // Then show only the selected group
   document.querySelectorAll(`.${view}-checkbox`).forEach((cb) => {
     cb.style.display = "inline-block";
   });
 });
 
-// Optionally call once at load to set default
 viewSelect.dispatchEvent(new Event("change"));

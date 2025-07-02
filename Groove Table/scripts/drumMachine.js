@@ -263,7 +263,7 @@ const tempoValue = document.getElementById("tempoValue");
 
 tempoSlider.addEventListener("input", () => {
   tempo = parseInt(tempoSlider.value, 10);
-  tempoValue.textContent = `${tempo} Bpm`; // <- Add " Bpm" here
+  tempoValue.textContent = `${tempo} Bpm`;
   stepDuration = 60 / tempo / 4;
 
   if (intervalID) {
@@ -278,8 +278,8 @@ let stepDuration = 60 / tempo / 4;
 let currentStep = 0;
 let intervalID;
 
-let activeDrum = null; // e.g., "kick"
-let showingAccent = false; // whether accent view is currently shown
+let activeDrum = null;
+let showingAccent = false;
 
 const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
@@ -299,15 +299,14 @@ tempoSlider.addEventListener("input", () => {
     intervalID = setInterval(schedule, stepDuration * 1000);
   }
 
-  updatePulseRate(); // if you're doing visual pulsing, keep this
+  updatePulseRate();
 });
 
 startBtn.addEventListener("click", () => {
   startBtn.classList.add("active", "pulsing");
   stopBtn.classList.remove("active", "pulsing");
 
-  // Optional: Restart interval
-  intervalID = setInterval(schedule, stepDuration * 1000); // not * 4
+  intervalID = setInterval(schedule, stepDuration * 1000);
 
   updatePulseRate();
 });
@@ -351,7 +350,6 @@ const createRow = (id, array, isAccent = false) => {
     checkbox.type = "checkbox";
     checkbox.title = isAccent ? "Accent" : "Step";
 
-    // Add class names
     checkbox.classList.add("step");
     if (isAccent) {
       checkbox.classList.add("accent");
@@ -391,7 +389,6 @@ function toggleAccent(mainId, accentId) {
 
   const showingAccent = accentRow.style.display === "flex";
 
-  // Hide all rows first
   document.querySelectorAll(".tabContent").forEach((tab) => {
     tab.style.display = "none";
   });
@@ -510,8 +507,8 @@ document.getElementById("stop").onclick = () => {
   clearInterval(intervalID);
   intervalID = null;
   currentStep = 0;
-  tb303Step = 0; // ✅ Add this line
-  tb303PulseCounter = 0; // optional, resets pulse division sync
+  tb303Step = 0;
+  tb303PulseCounter = 0;
 };
 
 let activeRow = null;

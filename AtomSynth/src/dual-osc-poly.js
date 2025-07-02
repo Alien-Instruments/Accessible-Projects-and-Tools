@@ -127,7 +127,6 @@ export class DualOscPoly {
     for (let i = 0; i < this.maxPolyphony; i++) {
       const v = createDualOscVoice(this.options);
       if (this.filter) v.connect(this.filter);
-      //else v.connect(Tone.Destination);
       this.voices.push(v);
     }
   }

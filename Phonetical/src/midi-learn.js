@@ -303,7 +303,6 @@ export function clearAllMappings() {
   announce("All MIDI mappings cleared");
 }
 
-// At the end of your file:
 export function activateMIDILearnFor(el) {
   if (learning && currentTarget) {
     currentTarget.closest(".slider-container")?.classList.remove("learning");

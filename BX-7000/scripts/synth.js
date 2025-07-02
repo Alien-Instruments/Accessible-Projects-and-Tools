@@ -293,7 +293,7 @@ export class FMVoice {
 
   setTremolo(rate, depth, delay = 0) {
     const now = this.context.currentTime;
-    const FADE_TIME = 0.05; // slightly longer for smoother ramp
+    const FADE_TIME = 0.05;
 
     // Set tremolo LFO rate immediately
     this.tremoloLFO.frequency.setValueAtTime(rate, now);
