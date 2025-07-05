@@ -1,1148 +1,972 @@
 <html lang="en">
 
 <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Accessible Projects And Tools</title>
-                    <link rel="stylesheet" href="VI Filters/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessible Projects And Tools</title>
+  <link rel="stylesheet" href="VI Filters/style.css">
 </head>
 
 <body>
-                    <header>
-                                        <h1 style="justify-self: center;">Alien Instruments Accessible Projects And
-                                                            Tools</h1>
-                    </header>
-
-                    <!-- Custom Modal -->
-                    <div id="custom-modal" class="modal" aria-hidden="true" role="alertdialog"
-                                        aria-labelledby="modal-title" aria-describedby="modal-message">
-                                        <div class="modal-content">
-
-                                                            <p id="modal-message" aria-live="assertive" tabindex="0">
-                                                            </p>
-                                                            <button id="modal-ok-btn" class="modal-ok-btn">OK</button>
-                                        </div>
-                    </div>
-
-                    <div>
-                                        <p>Use these settings to select font family, size, variants and spacings. Change
-                                                            the page
-                                                            colours and style to suit your needs.</p>
-                                        <button id="toggleAccess" aria-expanded="false" role="button"
-                                                            aria-controls="menu">Show Page
-                                                            Settings</button>
-                    </div>
-
-                    <div id="accessDiv" class="hidden" style="text-align: center;">
-                                        <div id="preset-container" class="preset-tour">
-                                                            <div class="presets-panel panel">
-                                                                                <label for="preset-name">Save
-                                                                                                    Presets
-                                                                                </label><br>
-                                                                                <input role="text" aria-label="Enter Preset Name"
-                                                                                                    type="text"
-                                                                                                    id="preset-name"
-                                                                                                    placeholder="Enter preset name" />
-                                                                                <button role="button"
-                                                                                                    id="save-preset-btn">Save
-                                                                                                    Preset</button>
-                                                            </div>
-
-                                                            <div class="presets-panel panel">
-                                                                                <label for="preset-list">Load
-                                                                                                    Presets</label><br>
-                                                                                <select role="combobox"
-                                                                                                    aria-label="Load Presets"
-                                                                                                    id="preset-list">
-                                                                                                    <option value="" disabled
-                                                                                                                        selected>
-                                                                                                                        Select
-                                                                                                                        a
-                                                                                                                        preset
-                                                                                                    </option>
-                                                                                </select>
-                                                                                <button role="button"
-                                                                                                    id="delete-preset-btn">Delete
-                                                                                                    Preset</button>
-                                                            </div>
-
-                                        </div>
-
-                                        <h2>Font Settings</h2>
-                                        <div
-                                                            style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                                                            <div class="font panel" style="width: 12rem;">
-                                                                                <label
-                                                                                                    for="font-size-select">Size</label>
-                                                                                <select id="font-size-select">
-                                                                                                    <option value="12">
-                                                                                                                        Small
-                                                                                                    </option>
-                                                                                                    <option value="18">
-                                                                                                                        Medium
-                                                                                                    </option>
-                                                                                                    <option value="26">
-                                                                                                                        Large
-                                                                                                    </option>
-                                                                                                    <option value="34">
-                                                                                                                        Largest
-                                                                                                    </option>
-                                                                                </select>
-                                                            </div>
-
-                                                            <div class="font panel" style="width: 12rem;">
-                                                                                <label for="bold-select">Bold</label>
-                                                                                <select id="bold-select">
-                                                                                                    <option
-                                                                                                                        value="normal">
-                                                                                                                        Off
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="bold">
-                                                                                                                        On
-                                                                                                    </option>
-                                                                                </select>
-                                                            </div>
-
-                                                            <div class="font panel">
-                                                                                <label
-                                                                                                    for="font-family-select">Family</label>
-                                                                                <select id="font-family-select">
-                                                                                                    <option
-                                                                                                                        value="Arial">
-                                                                                                                        Arial
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Arial Narrow">
-                                                                                                                        Arial
-                                                                                                                        Narrow
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Times New Roman">
-                                                                                                                        Times
-                                                                                                                        N
-                                                                                                                        R
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Verdana">
-                                                                                                                        Verdana
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Helvetica">
-                                                                                                                        Helvetica
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Courier">
-                                                                                                                        Courier
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Courier New">
-                                                                                                                        Courier
-                                                                                                                        New
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Andale Mono">
-                                                                                                                        Andale
-                                                                                                                        Mono
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Candara">
-                                                                                                                        Candara
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Geneva">
-                                                                                                                        Geneva
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Optima">
-                                                                                                                        Optima
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Trebuchet MS">
-                                                                                                                        Trebuchet
-                                                                                                                        MS
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Gill Sans">
-                                                                                                                        Gill
-                                                                                                                        Sans
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Palatino">
-                                                                                                                        Palatino
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Monaco">
-                                                                                                                        Monaco
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Tahoma">
-                                                                                                                        Tahoma
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="CustomFont">
-                                                                                                                        Open
-                                                                                                                        Dyslexic
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Luminari">
-                                                                                                                        Luminari
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Chalkduster">
-                                                                                                                        Chalkduster
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Marker Felt">
-                                                                                                                        Marker
-                                                                                                                        Felt
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="Bradley Hand">
-                                                                                                                        Bradley
-                                                                                                                        Hand
-                                                                                                    </option>
-                                                                                </select>
-                                                            </div>
-
-                                                            <div class="font panel" style="width: 12rem;">
-                                                                                <label
-                                                                                                    for="font-style-select">Style</label>
-                                                                                <select id="font-style-select">
-                                                                                                    <option
-                                                                                                                        value="normal">
-                                                                                                                        Normal
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="italic">
-                                                                                                                        Italic
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="underline">
-                                                                                                                        Underline
-                                                                                                    </option>
-                                                                                </select>
-                                                            </div>
-
-                                                            <div class="font panel" style="width: 12rem;">
-                                                                                <label
-                                                                                                    for="font-variant-select">Variant</label>
-                                                                                <select id="font-variant-select">
-                                                                                                    <option
-                                                                                                                        value="normal">
-                                                                                                                        Normal
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="small-caps">
-                                                                                                                        Small
-                                                                                                                        Caps
-                                                                                                    </option>
-                                                                                </select>
-                                                            </div>
-                                        </div>
-                                        <div class="main">
-
-                                                            <div class="slider-container panel" id="letter-tour">
-                                                                                <label
-                                                                                                    for="access_letter-spacing-slider">Letter
-                                                                                                    Spacing</label>
-                                                                                <input role="slider" aria-label="Letter Spacing"
-                                                                                                    type="range" min="0"
-                                                                                                    max="0.2" value="0"
-                                                                                                    step="0.01"
-                                                                                                    id="access_letter-spacing-slider">
-                                                            </div>
-
-                                                            <div class="slider-container panel" id="word-tour">
-                                                                                <label for="access_word-spacing-slider">Word
-                                                                                                    Spacing</label>
-                                                                                <input role="slider" aria-label="Word Spacing"
-                                                                                                    type="range" min="0"
-                                                                                                    max="0.5" value="0"
-                                                                                                    step="0.01"
-                                                                                                    id="access_word-spacing-slider">
-                                                            </div>
-
-                                                            <div class="slider-container panel" id="line-tour">
-                                                                                <label for="access_line-spacing-slider">Line
-                                                                                                    Spacing</label>
-                                                                                <input role="slider" aria-label="Line Spacing"
-                                                                                                    type="range" min="1"
-                                                                                                    max="2" value="1"
-                                                                                                    step="0.1"
-                                                                                                    id="access_line-spacing-slider">
-                                                            </div>
-                                        </div>
-
-                                        <div class="pickers">
-                                                            <h2 class="styled-text">
-                                                                                Use the colour
-                                                                                pickers below to
-                                                                                change
-                                                                                the colours of the
-                                                                                page and controls.
-                                                            </h2>
-                                        </div>
-
-                                        <div class="main">
-                                                            <div id="page-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Page
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="color-picker-2">Fill</label>
-                                                                                                    <input aria-label="Page Fill Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="color-picker-2">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="border-picker">Border</label>
-                                                                                                    <input aria-label="Page Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="border-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="color-picker">Font</label>
-                                                                                                    <input aria-label="Page Font Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="color-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="focus-color-picker">Focus</label>
-                                                                                                    <input aria-label="Keyboard Focus Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="focus-color-picker">
-                                                                                </div>
-                                                            </div>
-
-                                                            <div id="button-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Button
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="color-picker-5">Fill</label>
-                                                                                                    <input aria-label="Button Fill Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="color-picker-5">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="button-border-picker">Border</label>
-                                                                                                    <input aria-label="Button Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="button-border-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="button-font-picker">Font</label>
-                                                                                                    <input aria-label="Button Font Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="button-font-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="group-background-picker">Toggle</label>
-                                                                                                    <input aria-label="Button Toggle Colour "
-                                                                                                                        type="color"
-                                                                                                                        id="group-background-picker">
-                                                                                </div>
-                                                            </div>
-
-                                                            <div id="select-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Menu
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="select-background-picker">Fill</label>
-                                                                                                    <input aria-label="Menu Fill Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="select-background-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="select-border-picker">Border</label>
-                                                                                                    <input aria-label="Menu Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="select-border-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="select-font-picker">Font</label>
-                                                                                                    <input aria-label="Menu Font Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="select-font-picker">
-                                                                                </div>
-                                                                                <div class="testSelect"
-                                                                                                    style="border: none;">
-                                                                                                    <select aria-label="Test Menu/Visual Purposes Only"
-                                                                                                                        id="font-test-select">
-                                                                                                                        <option value="20"
-                                                                                                                                            selected>
-                                                                                                                                            Option
-                                                                                                                        </option>
-                                                                                                    </select>
-                                                                                </div>
-                                                            </div>
-
-                                                            <div id="popup-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Input
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div
-                                                                                                    class="color-picker-row module-wrapper">
-                                                                                                    <label
-                                                                                                                        for="black-keys-colour-picker">Fill</label>
-                                                                                                    <input aria-label="Text Input Fill"
-                                                                                                                        type="color"
-                                                                                                                        id="black-keys-colour-picker">
-                                                                                </div>
-                                                                                <div
-                                                                                                    class="color-picker-row module-wrapper">
-                                                                                                    <label
-                                                                                                                        for="white-keys-colour-picker">Border</label>
-                                                                                                    <input aria-label="Text Input Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="white-keys-colour-picker">
-                                                                                </div>
-                                                                                <div
-                                                                                                    class="color-picker-row module-wrapper">
-                                                                                                    <label
-                                                                                                                        for="key-font-colour-picker">Font</label>
-                                                                                                    <input aria-label="Text Input Font Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="key-font-colour-picker">
-                                                                                </div>
-
-                                                                                <input aria-label="Test Input/Visual Purposes Only"
-                                                                                                    style="width: 170px; height: 50px;"
-                                                                                                    type="text"
-                                                                                                    id="Test-input"
-                                                                                                    placeholder="Text Entry" />
-                                                            </div>
-
-
-
-                                                            <div id="slider-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Slider
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="color-picker-3">Thumb</label>
-                                                                                                    <input aria-label="Slider Thumb Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="color-picker-3">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="slider-outline-picker">Border</label>
-                                                                                                    <input aria-label="Slider Thumb Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="slider-outline-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="color-picker-4">Track</label>
-                                                                                                    <input aria-label="Slider Track Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="color-picker-4">
-                                                                                </div>
-                                                                                <label for="knob-design-select">Slider
-                                                                                                    Style</label><br>
-                                                                                <select aria-label="Select Slider Style"
-                                                                                                    id="knob-design-select">
-                                                                                                    <option
-                                                                                                                        value="classic">
-                                                                                                                        Classic
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="minimal">
-                                                                                                                        Minimal
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="fancy">
-                                                                                                                        Fancy
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="retro">
-                                                                                                                        Retro
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="modern">
-                                                                                                                        Modern
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="twist">
-                                                                                                                        twist
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="flat">
-                                                                                                                        Flat
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="shadow">
-                                                                                                                        Shadow
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="outline">
-                                                                                                                        Outline
-
-                                                                                                    </option>
-                                                                                                    <option
-                                                                                                                        value="simple">
-                                                                                                                        simple
-
-                                                                                                    </option>
-                                                                                </select>
-                                                            </div>
-
-                                                            <div id="panel-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Panel
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="panel-background-picker">Fill</label>
-                                                                                                    <input aria-label="Panel Fill Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="panel-background-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="panel-border-picker">Border</label>
-                                                                                                    <input aria-label="Panel Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="panel-border-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="panel-gradient-picker">Gradient</label>
-                                                                                                    <input aria-label="Panel Gradient Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="panel-gradient-picker">
-                                                                                </div>
-                                                                                <button id="toggleGradients"
-                                                                                                    aria-pressed="false">
-                                                                                                    REMOVE<br>GRADIENT
-                                                                                </button>
-                                                            </div>
-
-
-                                                            <div id="label-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Label
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="label-background-picker">Fill</label>
-                                                                                                    <input aria-label="Label Fill Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="label-background-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="label-border-picker">Border</label>
-                                                                                                    <input aria-label="Label Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="label-border-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="label-font-picker">Font</label>
-                                                                                                    <input aria-label="Label Font Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="label-font-picker">
-                                                                                </div>
-                                                            </div>
-
-                                                            <div id="output-tour" class="panel">
-                                                                                <div class="color-picker-row">
-                                                                                                    <h2>Span
-                                                                                                    </h2>
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="output-background-picker">Fill</label>
-                                                                                                    <input aria-label="Span Fill Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="output-background-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="output-border-picker">Border</label>
-                                                                                                    <input aria-label="Span Border Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="output-border-picker">
-                                                                                </div>
-                                                                                <div class="color-picker-row">
-                                                                                                    <label
-                                                                                                                        for="output-font-picker">Font</label>
-                                                                                                    <input aria-label="Span Font Colour"
-                                                                                                                        type="color"
-                                                                                                                        id="output-font-picker">
-                                                                                </div>
-                                                                                <span aria-label="Test Span With Text">Lorem
-                                                                                                    ipsum</span>
-                                                            </div>
-
-                                                            <div class="main">
-                                                                                <div class="slider-container panel"
-                                                                                                    id="border-tour">
-                                                                                                    <label
-                                                                                                                        for="access_border-radius-slider">Border
-                                                                                                                        Radius</label>
-                                                                                                    <input role="slider" aria-label="Border Radius"
-                                                                                                                        type="range"
-                                                                                                                        id="access_border-radius-slider"
-                                                                                                                        min="1"
-                                                                                                                        max="15"
-                                                                                                                        step="1"
-                                                                                                                        value="10">
-                                                                                </div>
-                                                                                <div class="slider-container panel"
-                                                                                                    id="thickness-tour">
-                                                                                                    <label
-                                                                                                                        for="access_border-thickness-slider">Border
-                                                                                                                        Thickness</label>
-                                                                                                    <input role="slider" aria-label="Border Thickness"
-                                                                                                                        type="range"
-                                                                                                                        id="access_border-thickness-slider"
-                                                                                                                        min="1"
-                                                                                                                        max="5"
-                                                                                                                        step="1"
-                                                                                                                        value="1">
-                                                                                </div>
-                                                                                <div class="slider-container panel"
-                                                                                                    id="focus-tour">
-                                                                                                    <label
-                                                                                                                        for="access_focus-size-slider">Focus
-                                                                                                                        Size</label>
-                                                                                                    <input role="slider" aria-label="Focus Size"
-                                                                                                                        type="range"
-                                                                                                                        id="access_focus-size-slider"
-                                                                                                                        min="1"
-                                                                                                                        max="8"
-                                                                                                                        value="4">
-                                                                                </div>
-                                                            </div>
-                                        </div>
-                    </div>
-                    </div>
-
-                    <div>
-                                        <h2 style="justify-self: center;">Visual Impairment Filters and Colour Contrast
-                                                            Checker</h2>
-                                        <p>Building accessible software and websites is crucial to ensuring that
-                                                            everyone, including visually impaired and blind users, can
-                                                            engage with digital content. This tool is designed to help
-                                                            developers and designers create more inclusive products. By
-                                                            allowing users to upload images and apply visual impairment
-                                                            filters, it offers a unique perspective on how designs
-                                                            appear to individuals with various visual impairments.
-                                                            Additionally, the built-in WCAG contrast checker ensures
-                                                            that your designs meet essential accessibility standards for
-                                                            text and background contrast. With this tool, you can easily
-                                                            identify and address potential accessibility issues early in
-                                                            the design process.</p>
-                                        <a role="link" aria-label="Go To Visual Impairment Filter Contrast Checker. Opens In New Page"
-                                                            href="VI Filters/index.html">Visual
-                                                            Impairment
-                                                            Filter/Contrast Checker</a>
-
-                    </div>
-                    <div>
-                                        <h2 style="justify-self: center;">Accessibility Conformance Checklist</h2>
-
-                                        <p>Ensuring digital accessibility is essential for making technology usable by
-                                                            everyone, including people with disabilities. This
-                                                            Accessibility Evaluation Checklist is designed to help you
-                                                            assess whether your web applications and digital content
-                                                            meet key accessibility standards.</p>
-                                        <p>Each criterion in this checklist covers an important aspect of accessible
-                                                            design, from visual and keyboard navigation to contrast,
-                                                            color use, and support for assistive technologies. As you go
-                                                            through the checklist, you’ll be guided step-by-step through
-                                                            a series of requirements based on established guidelines
-                                                            such as the W3C Web Content Accessibility Guidelines (WCAG)
-                                                            and platform accessibility best practices.</p>
-                                        <p>For each item, review your content or application and mark whether it passes
-                                                            or fails the given criterion. At the end, you’ll receive a
-                                                            summary score and can download your results for
-                                                            documentation or further review.</p>
-                                        <p>By following this checklist, you can identify potential barriers and ensure
-                                                            your products are more inclusive, usable, and compliant with
-                                                            accessibility standards.</p>
-                                        <a role="link" aria-label="Go To Accessibility Conformance Checklist. Opens In New Page"
-                                                            href="Accessibility Conformance Tool/index.html">Accessibility
-                                                            Conformance
-                                                            Checklist</a>
-                    </div>
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments Access Mod: Sound Design for
-                                                            Everyone</h2>
-
-                                        <p>
-                                                            Access Mod is a fully accessible, web-based modular
-                                                            synthesiser built with inclusivity at its core. Designed to
-                                                            empower musicians and sound designers of all abilities,
-                                                            Access Mod combines the flexibility of modular synthesis
-                                                            with an interface tailored for screen reader users, keyboard
-                                                            navigation, and customizable control schemes. Whether you're
-                                                            building rich textures, sharp leads, or experimental
-                                                            soundscapes, Access Mod ensures that creating music is an
-                                                            open and engaging experience for all. With drag-and-drop
-                                                            patching, keyboard shortcuts, and visual feedback tools,
-                                                            this synthesiser puts creative control back into every
-                                                            user's hands—no barriers, just sound.
-                                        </p>
-                                        <a role="link" aria-label="Go To Access Mod. Opens In New Page"
-                                                            href="Mod2/index.html">Access Mod</a>
-                    </div>
-
-                    <div style="padding: 10px;">
-                                        <h2 style="justify-self: center;">Alien Instruments UBIK: The Talking MIDI
-                                                            Mapper</h2>
-                                        <p>Welcome to Alien Instruments UBIK, the talking MIDI mapping solution. Create
-                                                            groups for your controls and start
-                                                            adding sliders and buttons to send MIDI CC’s. Completely
-                                                            accessible for screen reading and keyboard navigation.
-                                                            Labelling groups and components also labels for screen
-                                                            reading. Design your own interface and map it to the device
-                                                            or software you wish to control. Each slider has a MIDI
-                                                            learn button, click this and follow the voice prompts to
-                                                            map your controller. When adding a slider, you can map the
-                                                            output range displayed on the screen and spoken aloud
-                                                            to and integer or float to match the parameter you are
-                                                            controlling. Alternatively, you can display or hear the
-                                                            current MIDI CC value. For buttons you can set the on value
-                                                            to any cc value, when mapped this will speak as
-                                                            “parameter name” on and off and display the same in the
-                                                            button. To get started click the add group button and
-                                                            follow the prompts. Or take a guided tour of the interface
-                                                            and settings by clicking the "Start Tour" button.
-                                        </p>
-                                        <p>
-                                        <p>If you are using a screen reader to take the tour after clicking start tour
-                                                            focus will go to a heading level 2,
-                                                            this is the parameter name, and that component shows focus
-                                                            in the UI. Use the tab key and next will be a heading
-                                                            level 3 with a description and context of the area or item.
-                                                            Press tab again and you will focus on the next button,
-                                                            followed by previous and then close buttons. When the tour
-                                                            ends there will be a finish button.</p>
-                                        </p>
-
-                                        <p>Have fun and enjoy!</p>
-                                        <a role="link" aria-label="Go To Access Mod. Opens In New Page"
-                                                            href="Ubik/index.html">UBIK</a>
-
-                    </div>
-
-                    <div>
-                                        <section>
-                                                            <h2 style="justify-self: center;">Alien Instruments Poly
-                                                                                Synth</h2>
-                                                            <p>A new generation of accessible music technology.</p>
-
-                                                            <p><strong>Alien Instruments Poly Synth</strong> is a fully
-                                                                                polyphonic web-based synthesizer
-                                                                                designed for <em>everyone</em>.
-                                                                                Play directly from your computer
-                                                                                keyboard, connect any MIDI device, or
-                                                                                even shape your sound with your voice.
-                                                            </p>
-
-                                                            <p>At the heart of the project is a strong focus on
-                                                                                <strong>accessibility and
-                                                                                                    customization</strong>:
-                                                            </p>
-
-                                                            <ul>
-                                                                                <li><strong>Dual Interface
-                                                                                                                        Modes:</strong><br>
-                                                                                                    •
-                                                                                                    <em>Skeuomorphic</em>:
-                                                                                                    A rich, tactile
-                                                                                                    visual experience
-                                                                                                    inspired by classic
-                                                                                                    hardware.<br>
-                                                                                                    • <em>Customizable
-                                                                                                                        UI</em>:
-                                                                                                    Total control over
-                                                                                                    page settings —
-                                                                                                    adjust color
-                                                                                                    schemes, font types,
-                                                                                                    sizes, contrast
-                                                                                                    levels, and choose
-                                                                                                    from a variety of
-                                                                                                    slider styles for
-                                                                                                    maximum comfort and
-                                                                                                    clarity.
-                                                                                </li>
-                                                                                <li><strong>Voice-Control
-                                                                                                                        System:</strong><br>
-                                                                                                    Issue spoken
-                                                                                                    commands to tweak
-                                                                                                    parameters, map
-                                                                                                    controls, and create
-                                                                                                    sounds hands-free.
-                                                                                </li>
-                                                                                <li><strong>Professional Audio
-                                                                                                                        Effects:</strong><br>
-                                                                                                    Shape your tone with
-                                                                                                    built-in <em>Dimension
-                                                                                                                        Expander</em>,
-                                                                                                    <em>Delay</em>, and
-                                                                                                    a <em>Three-Band
-                                                                                                                        EQ</em>
-                                                                                                    for deep, spatial
-                                                                                                    sound design.
-                                                                                </li>
-                                                            </ul>
-
-                                                            <p>Built using cutting-edge Web Audio technology,
-                                                                                <strong>Alien Instruments Poly
-                                                                                                    Synth</strong> is
-                                                                                made to empower all creators — no
-                                                                                barriers, no limits.
-                                                            </p>
-                                        </section>
-
-
-                                        <p>This project uses custom rotary knobs and has its own set of accessibility
-                                                            settings.Choose the interface style from the links below,
-                                                            you can change this in
-                                                            either UI at anytime and all settings are shared.</p>
-                                        <a role="link" aria-label="Go To Poly Synth Skeuomorphic. Opens In New Page"
-                                                            href="PolySynth/dist/poly.html">Poly Synth Skeuomorphic
-                                                            Interface</a><br><br>
-
-                                        <a role="link" aria-label="Go To Poly Synth Custom. Opens In New Page"
-                                                            href="PolySynth/dist/poly2.html">Poly Synth Custom
-                                                            Interface</a>
-                    </div>
-
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments Groove Table</h2>
-                                        <p>This project is a tribute to two iconic instruments that shaped the sound of
-                                                            electronic music: the Roland TR-808 drum machine and the
-                                                            TB-303 bass synthesizer. Built entirely with modern web
-                                                            technologies using the Web Audio API and Web MIDI, this
-                                                            application reimagines these classic machines in a browser
-                                                            environment—no plugins or downloads required.</p>
-
-                                        <p>The project features two fully functional synthesizer interfaces:</p>
-
-                                        <p>A skeuomorphic mode that visually mimics the original hardware layout and
-                                                            styling for nostalgic fidelity</p>
-                                        <p>A custom UI mode offering a modern, streamlined interface optimized for
-                                                            performance and accessibility</p>
-                                        <p>Both interfaces are fully accessible, designed with inclusive practices in
-                                                            mind. Screen reader support, keyboard navigation, and
-                                                            responsive layouts ensure usability across a wide range of
-                                                            devices and user needs. Under the hood, synchronized audio
-                                                            engines drive the 808-inspired drum sequencer and 303-style
-                                                            bassline generator, with tempo sync, swing, accent, and
-                                                            parameter automation all supported.</p>
-
-                                        <p>This homage aims not only to preserve the spirit of these instruments but
-                                                            also to invite new experimentation through the flexibility
-                                                            of the web.</p>
-                                        <a role="link" aria-label="Go To Groove Table Skeuomorphic. Opens In New Page"
-                                                            href="Groove Table/index.html">Groove Table Skeuomorphic
-                                                            Interface</a><br><br>
-
-                                        <a role="link" aria-label="Go To Groove Table Custom. Opens In New Page"
-                                                            href="Groove Table/index/index2.html">Groove Table
-                                                            Custom
-                                                            Interface</a>
-
-                    </div>
-
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments Web Audio Groovebox</h2>
-                                        <p>Welcome to the Web Audio Groovebox — a fully browser-based music production
-                                                            environment powered by the Web Audio API. This project
-                                                            brings together a suite of integrated tools for electronic
-                                                            music creation, all running natively in your web browser
-                                                            with no plugins or downloads required.</p>
-
-                                        <p>Whether you're laying down beats, programming basslines, slicing samples, or
-                                                            crafting polyphonic melodies, the Groovebox provides
-                                                            intuitive, hands-on control through a clean and responsive
-                                                            UI.</p>
-
-                                        <p>Features</p>
-
-                                        <p> Drum Machine: Multi-voice drum synthesizer with individual
-                                                            step sequencers, pitch/decay/level controls, and accent
-                                                            toggling.</p>
-                                        <p>
-                                                            Bass Synth (TB-303 style): Acid-style monosynth with slide,
-                                                            tie, and accent sequencing, plus full control over filter,
-                                                            envelope, and distortion parameters.</p>
-                                        <p>
-                                                            Sampler: Load your own audio files or factory samples, with
-                                                            control over start/end points, reverse playback, envelope
-                                                            shaping, and filter settings.</p>
-                                        <p>
-                                                            Polyphonic Synth: Two-oscillator poly synth with filter and
-                                                            amp envelopes, per-step sequencing, and chord playback
-                                                            support.</p>
-                                        <a role="link" aria-label="Go To Groove Box. Opens In New Page"
-                                                            href="GrooveBox/index.html">Groove
-                                                            Box Skeuomorphic Interface</a><br><br>
-
-                                        <a role="link" aria-label="Go To Groove Box. Opens In New Page"
-                                                            href="GrooveBox/index2.html">Groove
-                                                            Box Custom Interface</a>
-                    </div>
-
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments Atom Synth</h2>
-                                        <p>Particle Synth is an interactive, browser-based audio-visual synthesizer that
-                                                            fuses real-time 3D particle physics with polyphonic sound
-                                                            synthesis, modulation, and MIDI control.
-
-                                                            At its core, Particle Synth uses a physics engine
-                                                            (Cannon.js) and 3D rendering (Three.js) to simulate and
-                                                            display electrons, protons, and neutrons in a bounded
-                                                            virtual space. Each particle’s movement and position can be
-                                                            mapped as modulation sources to sound parameters of a
-                                                            versatile dual-oscillator polyphonic synth, built with
-                                                            Tone.js.</p>
-                                        <p>Users can:</p>
-                                        <p>Spawn and control particles (electrons, protons, neutrons), each with unique
-                                                            physics behaviors and customizable visual appearance.</p>
-                                        <p>Assign particle axes (X, Y, Z) as modulation sources for a wide range of
-                                                            synth and effect parameters—essentially turning atomic
-                                                            movement into dynamic audio modulation.</p>
-                                        <p>Shape sounds with a flexible dual-oscillator architecture, multimode filter,
-                                                            envelope controls, portamento, and a chain of effects
-                                                            (delay, tremolo, auto-filter, phaser, pitch shift, and
-                                                            more).</p>
-                                        <p>Automate and randomize notes, modulate sound using real physics, and save or
-                                                            recall complete sound setups as presets.</p>
-                                        <p>Map MIDI CCs to any parameter using a built-in MIDI learn system.</p>
-                                        <p>Visualize all particle activity and sound shaping in real-time in a 3D
-                                                            environment, complete with interactive UI panels for both
-                                                            sound and physics parameters.</p>
-                                        <p>The result is a unique “atomic synthesizer” where sound and visuals are
-                                                            intrinsically connected: physical particle dynamics become
-                                                            modulation sources, allowing users to experiment with sound
-                                                            design in an intuitive, playful, and deeply interactive way.
-                                        </p>
-                                        <a role="link" aria-label="Go To Atom Synth. Opens In New Page"
-                                                            href="AtomSynth/index.html">Atom
-                                                            Synth</a><br><br>
-                    </div>
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments SpectraSynth</h2>
-
-                                        <p>SpectraSynth is an advanced web-based synthesizer and modular effects
-                                                            workstation powered by the Web Audio API. At its heart is a
-                                                            truly expressive 2D morphing oscillator—instantly blend
-                                                            between saw, square, triangle, and custom harmonic waveforms
-                                                            using an intuitive XY pad or sliders for seamless, real-time
-                                                            timbral exploration.</p>
-
-                                        <p>Main Features:</p>
-                                        <p>Accessible, Customizable Interface:
-                                                            Navigate fully by keyboard. Screen-reader friendly with ARIA
-                                                            live regions. Supports alternate color themes, gradients,
-                                                            and multiple knob styles for a personalized experience.</p>
-                                        <p>2D Morphing Oscillator:
-                                                            Morph continuously between classic and user-defined
-                                                            waveforms. Shape and sculpt unique timbres visually via XY
-                                                            pad, precise sliders, or MIDI.</p>
-                                        <p>Deep Modulation:
-                                                            Two independent LFOs and dual envelopes (amp and mod)
-                                                            animate your sound. Modulate filter, pitch, amplitude, or
-                                                            even the morph position itself for evolving, animated tones.
-                                                            LFOs and envelopes are freely assignable.</p>
-                                        <p>Playability:
-                                                            Perform with your QWERTY keyboard (musical typing) or any
-                                                            MIDI controller. Enjoy full pitch bend and velocity support
-                                                            for expressive play.</p>
-                                        <p>Modular Drag-and-Drop Effects:
-                                                            Design your dream FX chain: drag in chorus, phaser, delay,
-                                                            distortion, mutators, morphing filters, EQ, compressor, ring
-                                                            mod, auto-panner, and more. Rearrange,
-                                                            tweak, or remove effects at any time with instant feedback.
-                                        </p>
-                                        <p>MIDI Learn Everywhere:
-                                                            Right-click or press "M" to instantly map it to
-                                                            a MIDI knob, slider, or button. Save, export, and import
-                                                            your MIDI CC mappings for total control and flexibility.</p>
-
-                                        <p>Presets & State Management:
-                                                            Save and recall both synth and FX chain presets.
-                                                            Export/import all your sounds and setups as portable JSON
-                                                            files for easy backup or sharing.</p>
-                                        <p>Visual Feedback:
-                                                            See a live harmonic spectrum and real-time stereo level
-                                                            meter so you can monitor and refine your sound visually as
-                                                            well as by ear.</p>
-                                        <p>SpectraSynth is designed for sound designers, synth enthusiasts, and
-                                                            performers who want deep, hands-on sound creation in the
-                                                            browser. No installs, no limits—just open and play.</p>
-                                        <a role="link" aria-label="Go To SpectraSynth. Opens In New Page"
-                                                            href="Spectral Synth/index.html">SpectraSynth Skeuomorphic
-                                                            Interface</a><br><br>
-                                        <a role="link" aria-label="Go To SpectraSynth. Opens In New Page"
-                                                            href="Spectral Synth/index2.html">SpectraSynth Custom
-                                                            Interface</a><br><br>
-                    </div>
-
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments Phonetical</h2>
-
-                                        <p>Phonetical is a real-time, multi-accent, programmable speech synthesizer that
-                                                            lets you create and shape speech, syllables, and singing—one
-                                                            phoneme at a time. Instead of stringing together audio
-                                                            samples or relying on black-box TTS, Phonetical synthesizes
-                                                            the sound of human (and inhuman!) speech directly from its
-                                                            acoustic building blocks: vowels and consonants, constructed
-                                                            using formant synthesis and bandpass filtering.</p>
-
-                                        <p>Key Features:</p>
-                                        <p>True Phoneme Synthesis: Every sound is synthesized from scratch—no
-                                                            pre-recorded samples, just pure oscillators, noise, and
-                                                            filters.</p>
-                                        <p>Multi-Accent: Choose from multiple built-in accent presets, including
-                                                            American and British English, Spanish, French, German,
-                                                            Japanese, Hindi, Mandarin, and Italian.</p>
-                                        <p>Flexible Input: Type words, phoneme sequences (IPA or ARPAbet), or even play
-                                                            speech live via your MIDI keyboard.</p>
-                                        <p>Expressive Speech: Fine-tune vibrato, formant morphing, consonant boost, and
-                                                            more to shape robotic or naturalistic voices.</p>
-                                        <p>Realtime Control: All parameters respond instantly, and speech can be
-                                                            triggered chromatically—great for talking synth leads, vocal
-                                                            effects, or experimental sound design.</p>
-                                        <p>MIDI Learn & Presets: Map any parameter to MIDI controls, save and recall
-                                                            custom settings, or export/import your patches.</p>
-                                        <p>Modular Drag-and-Drop Effects:
-                                                            Design your dream FX chain: drag in chorus, phaser, delay,
-                                                            distortion, mutators, morphing filters, EQ, compressor, ring
-                                                            mod, auto-panner, and more. Rearrange,
-                                                            tweak, or remove effects at any time with instant feedback.
-                                        </p>
-                                        <p>Unlike typical speech engines, Phonetical is designed for creative
-                                                            exploration: It’s a tool for musicians, sound designers,
-                                                            linguists, and tinkerers who want hands-on control over the
-                                                            mechanics of speech synthesis. Play with formants, accent
-                                                            switching, live vowel morphing, or MIDI-driven talking
-                                                            basslines. See how “robotic” or “natural” you can make your
-                                                            synthetic voice.</p>
-                                        <a role="link" aria-label="Go To Phonetical. Opens In New Page"
-                                                            href="Phonetical/index.html">Phonetical</a><br><br>
-                    </div>
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments B-X 7000</h2>
-
-                                        <p>reimagined for today’s musicians and sound designers. Built from the ground
-                                                            up in JavaScript and the Web Audio API, B-X 7000 recreates
-                                                            the classic 6-operator FM synthesis engine and workflow that
-                                                            made the DX7 an icon—while adding modern enhancements and an
-                                                            intuitive visual interface.</p>
-                                        <p>Whether you’re after vintage electric pianos, metallic bells, evolving pads,
-                                                            or your own experimental textures, B-X 7000 provides
-                                                            hands-on control over every aspect of the FM sound engine.
-                                                            The synth features a flexible algorithm selector, real-time
-                                                            visual feedback, advanced modulation options, integrated
-                                                            effects, MIDI mapping, and a powerful preset system that
-                                                            makes patch management a breeze.</p>
-                                        <p>Designed for both nostalgic exploration and new sonic adventures, B-X 7000
-                                                            puts the magic of classic digital synthesis right in your
-                                                            browser—no hardware or plugins required. Welcome to a new
-                                                            generation of FM sound.</p>
-                                        <a role="link" aria-label="Go To B-X 7000. Opens In New Page"
-                                                            href="BX-7000/index.html">B-X 7000 Skeuomorphic
-                                                            UI</a><br><br>
-                                        <a role="link" aria-label="Go To B-X 7000. Opens In New Page"
-                                                            href="BX-7000/index2.html">B-X 7000 Custom
-                                                            UI</a><br><br>
-                    </div>
-                    <div>
-                                        <h2 style="justify-self: center;">Alien Instruments Morpheus</h2>
-
-                                        <p>This project is a feature-rich, browser-based wavetable synthesizer designed
-                                                            for exploration, accessibility, and creativity. Built with
-                                                            the Web Audio API and modern JavaScript, it offers a
-                                                            responsive, fully customizable synth engine with an
-                                                            intuitive, modular UI—no installation required.</p>
-                                        <p>Key Features</p>
-                                        <p>Wavetable Synthesis:
-                                                            Load and blend between diverse user-provided
-                                                            wavetables—Bass, FM, Granular, Distorted, and more—giving
-                                                            you a vast sonic palette for sound design.</p>
-                                        <p>Advanced Modulation Matrix:
-                                                            Modulate any parameter by connecting LFO sources to almost
-                                                            any control.
-                                                            Accessible Drag & Drop Modulation:
-                                                            Assign modulation using both mouse and keyboard.
-                                                            Mouse: Drag LFO "chips" onto any parameter slider.
-                                                            Keyboard: Use P key to pick up an LFO source and drop
-                                                            it on any focused control, with ARIA live feedback for
-                                                            screen reader users.</p>
-                                        <p>Multi-Effect Chain:
-                                                            Includes dual and morphing filters, delay, distortion, ring
-                                                            modulation, and convolution reverb, all tweakable from the
-                                                            UI.</p>
-                                        <p>Preset Management:
-                                                            Save, load, import, and export your patches and MIDI
-                                                            mappings—presets persist in your browser, and can be shared
-                                                            or backed up as JSON.</p>
-                                        <p>Built-in Keyboard & MIDI Support:
-                                                            Play notes with your typing keyboard
-                                                            or any connected MIDI
-                                                            controller.</p>
-                                        <p>Accessibility-First Design
-                                        </p>
-                                        <p>Screen Reader Announcements:
-                                                            Key UI actions (like assigning modulation) are announced via
-                                                            a live ARIA region for non-visual users.</p>
-                                        <p>Keyboard Navigable:
-                                                            Every slider, button, and modulation target is focusable and
-                                                            operable without a mouse.</p>
-                                        <p>Designed for Sound Designers & Explorers</p>
-                                        <p>Whether you want to craft unique textures, experiment with modulation, or
-                                                            personalize your synth’s appearance, this project provides a
-                                                            playground that’s both powerful and welcoming. All signal
-                                                            routing and modulation are visually clear, with animated
-                                                            modulation rings, real-time UI color theming, and live
-                                                            feedback for every tweak.</p>
-                                        <a role="link" aria-label="Go To Morpheus. Opens In New Page"
-                                                            href="Morpheus/index.html">Morpheus Skeuomorphic
-                                                            UI</a><br><br>
-                                        <a role="link" aria-label="Go To Synthemesc. Opens In New Page"
-                                                            href="Morpheus/index2.html">Morpheus Custom
-                                                            UI</a><br><br>
-                    </div>
-                    <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                    <script src="accessibility/accessibilitySettings.js"></script>
+  <header>
+    <h1 style="justify-self: center;">Alien Instruments Accessible Projects And
+      Tools</h1>
+  </header>
+
+  <!-- Custom Modal -->
+  <div id="custom-modal" class="modal" aria-hidden="true" role="alertdialog" aria-labelledby="modal-title"
+    aria-describedby="modal-message">
+    <div class="modal-content">
+
+      <p id="modal-message" aria-live="assertive" tabindex="0">
+      </p>
+      <button id="modal-ok-btn" class="modal-ok-btn">OK</button>
+    </div>
+  </div>
+
+  <div>
+    <p>Use these settings to select font family, size, variants and spacings. Change
+      the page
+      colours and style to suit your needs.</p>
+    <button id="toggleAccess" aria-expanded="false" role="button" aria-controls="menu">Show Page
+      Settings</button>
+  </div>
+
+  <div id="accessDiv" class="hidden" style="text-align: center;">
+    <div id="preset-container" class="preset-tour">
+      <div class="presets-panel panel">
+        <label for="preset-name">Save
+          Presets
+        </label><br>
+        <input role="text" aria-label="Enter Preset Name" type="text" id="preset-name"
+          placeholder="Enter preset name" />
+        <button role="button" id="save-preset-btn">Save
+          Preset</button>
+      </div>
+
+      <div class="presets-panel panel">
+        <label for="preset-list">Load
+          Presets</label><br>
+        <select role="combobox" aria-label="Load Presets" id="preset-list">
+          <option value="" disabled selected>
+            Select
+            a
+            preset
+          </option>
+        </select>
+        <button role="button" id="delete-preset-btn">Delete
+          Preset</button>
+      </div>
+
+    </div>
+
+    <h2>Font Settings</h2>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-size-select">Size</label>
+        <select id="font-size-select">
+          <option value="12">
+            Small
+          </option>
+          <option value="18">
+            Medium
+          </option>
+          <option value="26">
+            Large
+          </option>
+          <option value="34">
+            Largest
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="bold-select">Bold</label>
+        <select id="bold-select">
+          <option value="normal">
+            Off
+          </option>
+          <option value="bold">
+            On
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel">
+        <label for="font-family-select">Family</label>
+        <select id="font-family-select">
+          <option value="Arial">
+            Arial
+          </option>
+          <option value="Arial Narrow">
+            Arial
+            Narrow
+          </option>
+          <option value="Times New Roman">
+            Times
+            N
+            R
+          </option>
+          <option value="Verdana">
+            Verdana
+          </option>
+          <option value="Helvetica">
+            Helvetica
+          </option>
+          <option value="Courier">
+            Courier
+          </option>
+          <option value="Courier New">
+            Courier
+            New
+          </option>
+          <option value="Andale Mono">
+            Andale
+            Mono
+          </option>
+          <option value="Candara">
+            Candara
+          </option>
+          <option value="Geneva">
+            Geneva
+          </option>
+          <option value="Optima">
+            Optima
+          </option>
+          <option value="Trebuchet MS">
+            Trebuchet
+            MS
+          </option>
+          <option value="Gill Sans">
+            Gill
+            Sans
+          </option>
+          <option value="Palatino">
+            Palatino
+          </option>
+          <option value="Monaco">
+            Monaco
+          </option>
+          <option value="Tahoma">
+            Tahoma
+          </option>
+          <option value="CustomFont">
+            Open
+            Dyslexic
+          </option>
+          <option value="Luminari">
+            Luminari
+          </option>
+          <option value="Chalkduster">
+            Chalkduster
+          </option>
+          <option value="Marker Felt">
+            Marker
+            Felt
+          </option>
+          <option value="Bradley Hand">
+            Bradley
+            Hand
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-style-select">Style</label>
+        <select id="font-style-select">
+          <option value="normal">
+            Normal
+          </option>
+          <option value="italic">
+            Italic
+          </option>
+          <option value="underline">
+            Underline
+          </option>
+        </select>
+      </div>
+
+      <div class="font panel" style="width: 12rem;">
+        <label for="font-variant-select">Variant</label>
+        <select id="font-variant-select">
+          <option value="normal">
+            Normal
+          </option>
+          <option value="small-caps">
+            Small
+            Caps
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="main">
+
+      <div class="slider-container panel" id="letter-tour">
+        <label for="access_letter-spacing-slider">Letter
+          Spacing</label>
+        <input role="slider" aria-label="Letter Spacing" type="range" min="0" max="0.2" value="0" step="0.01"
+          id="access_letter-spacing-slider">
+      </div>
+
+      <div class="slider-container panel" id="word-tour">
+        <label for="access_word-spacing-slider">Word
+          Spacing</label>
+        <input role="slider" aria-label="Word Spacing" type="range" min="0" max="0.5" value="0" step="0.01"
+          id="access_word-spacing-slider">
+      </div>
+
+      <div class="slider-container panel" id="line-tour">
+        <label for="access_line-spacing-slider">Line
+          Spacing</label>
+        <input role="slider" aria-label="Line Spacing" type="range" min="1" max="2" value="1" step="0.1"
+          id="access_line-spacing-slider">
+      </div>
+    </div>
+
+    <div class="pickers">
+      <h2 class="styled-text">
+        Use the colour
+        pickers below to
+        change
+        the colours of the
+        page and controls.
+      </h2>
+    </div>
+
+    <div class="main">
+      <div id="page-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Page
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-2">Fill</label>
+          <input aria-label="Page Fill Colour" type="color" id="color-picker-2">
+        </div>
+        <div class="color-picker-row">
+          <label for="border-picker">Border</label>
+          <input aria-label="Page Border Colour" type="color" id="border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker">Font</label>
+          <input aria-label="Page Font Colour" type="color" id="color-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="focus-color-picker">Focus</label>
+          <input aria-label="Keyboard Focus Colour" type="color" id="focus-color-picker">
+        </div>
+      </div>
+
+      <div id="button-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Button
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-5">Fill</label>
+          <input aria-label="Button Fill Colour" type="color" id="color-picker-5">
+        </div>
+        <div class="color-picker-row">
+          <label for="button-border-picker">Border</label>
+          <input aria-label="Button Border Colour" type="color" id="button-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="button-font-picker">Font</label>
+          <input aria-label="Button Font Colour" type="color" id="button-font-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="group-background-picker">Toggle</label>
+          <input aria-label="Button Toggle Colour " type="color" id="group-background-picker">
+        </div>
+      </div>
+
+      <div id="select-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Menu
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="select-background-picker">Fill</label>
+          <input aria-label="Menu Fill Colour" type="color" id="select-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="select-border-picker">Border</label>
+          <input aria-label="Menu Border Colour" type="color" id="select-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="select-font-picker">Font</label>
+          <input aria-label="Menu Font Colour" type="color" id="select-font-picker">
+        </div>
+        <div class="testSelect" style="border: none;">
+          <select aria-label="Test Menu/Visual Purposes Only" id="font-test-select">
+            <option value="20" selected>
+              Option
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div id="popup-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Input
+          </h2>
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="black-keys-colour-picker">Fill</label>
+          <input aria-label="Text Input Fill" type="color" id="black-keys-colour-picker">
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="white-keys-colour-picker">Border</label>
+          <input aria-label="Text Input Border Colour" type="color" id="white-keys-colour-picker">
+        </div>
+        <div class="color-picker-row module-wrapper">
+          <label for="key-font-colour-picker">Font</label>
+          <input aria-label="Text Input Font Colour" type="color" id="key-font-colour-picker">
+        </div>
+
+        <input aria-label="Test Input/Visual Purposes Only" style="width: 170px; height: 50px;" type="text"
+          id="Test-input" placeholder="Text Entry" />
+      </div>
+
+
+
+      <div id="slider-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Slider
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-3">Thumb</label>
+          <input aria-label="Slider Thumb Colour" type="color" id="color-picker-3">
+        </div>
+        <div class="color-picker-row">
+          <label for="slider-outline-picker">Border</label>
+          <input aria-label="Slider Thumb Border Colour" type="color" id="slider-outline-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="color-picker-4">Track</label>
+          <input aria-label="Slider Track Colour" type="color" id="color-picker-4">
+        </div>
+        <label for="knob-design-select">Slider
+          Style</label><br>
+        <select aria-label="Select Slider Style" id="knob-design-select">
+          <option value="classic">
+            Classic
+
+          </option>
+          <option value="minimal">
+            Minimal
+
+          </option>
+          <option value="fancy">
+            Fancy
+
+          </option>
+          <option value="retro">
+            Retro
+
+          </option>
+          <option value="modern">
+            Modern
+
+          </option>
+          <option value="twist">
+            twist
+
+          </option>
+          <option value="flat">
+            Flat
+
+          </option>
+          <option value="shadow">
+            Shadow
+
+          </option>
+          <option value="outline">
+            Outline
+
+          </option>
+          <option value="simple">
+            simple
+
+          </option>
+        </select>
+      </div>
+
+      <div id="panel-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Panel
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-background-picker">Fill</label>
+          <input aria-label="Panel Fill Colour" type="color" id="panel-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-border-picker">Border</label>
+          <input aria-label="Panel Border Colour" type="color" id="panel-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="panel-gradient-picker">Gradient</label>
+          <input aria-label="Panel Gradient Colour" type="color" id="panel-gradient-picker">
+        </div>
+        <button id="toggleGradients" aria-pressed="false">
+          REMOVE<br>GRADIENT
+        </button>
+      </div>
+
+
+      <div id="label-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Label
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="label-background-picker">Fill</label>
+          <input aria-label="Label Fill Colour" type="color" id="label-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="label-border-picker">Border</label>
+          <input aria-label="Label Border Colour" type="color" id="label-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="label-font-picker">Font</label>
+          <input aria-label="Label Font Colour" type="color" id="label-font-picker">
+        </div>
+      </div>
+
+      <div id="output-tour" class="panel">
+        <div class="color-picker-row">
+          <h2>Span
+          </h2>
+        </div>
+        <div class="color-picker-row">
+          <label for="output-background-picker">Fill</label>
+          <input aria-label="Span Fill Colour" type="color" id="output-background-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="output-border-picker">Border</label>
+          <input aria-label="Span Border Colour" type="color" id="output-border-picker">
+        </div>
+        <div class="color-picker-row">
+          <label for="output-font-picker">Font</label>
+          <input aria-label="Span Font Colour" type="color" id="output-font-picker">
+        </div>
+        <span aria-label="Test Span With Text">Lorem
+          ipsum</span>
+      </div>
+
+      <div class="main">
+        <div class="slider-container panel" id="border-tour">
+          <label for="access_border-radius-slider">Border
+            Radius</label>
+          <input role="slider" aria-label="Border Radius" type="range" id="access_border-radius-slider" min="1" max="15"
+            step="1" value="10">
+        </div>
+        <div class="slider-container panel" id="thickness-tour">
+          <label for="access_border-thickness-slider">Border
+            Thickness</label>
+          <input role="slider" aria-label="Border Thickness" type="range" id="access_border-thickness-slider" min="1"
+            max="5" step="1" value="1">
+        </div>
+        <div class="slider-container panel" id="focus-tour">
+          <label for="access_focus-size-slider">Focus
+            Size</label>
+          <input role="slider" aria-label="Focus Size" type="range" id="access_focus-size-slider" min="1" max="8"
+            value="4">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div>
+    <h2 style="justify-self: center;">Visual Impairment Filters and Colour Contrast
+      Checker</h2>
+    <p>Building accessible software and websites is crucial to ensuring that
+      everyone, including visually impaired and blind users, can
+      engage with digital content. This tool is designed to help
+      developers and designers create more inclusive products. By
+      allowing users to upload images and apply visual impairment
+      filters, it offers a unique perspective on how designs
+      appear to individuals with various visual impairments.
+      Additionally, the built-in WCAG contrast checker ensures
+      that your designs meet essential accessibility standards for
+      text and background contrast. With this tool, you can easily
+      identify and address potential accessibility issues early in
+      the design process.</p>
+    <a role="link" aria-label="Go To Visual Impairment Filter Contrast Checker. Opens In New Page"
+      href="VI Filters/index.html">Visual
+      Impairment
+      Filter/Contrast Checker</a>
+
+  </div>
+  <div>
+    <h2 style="justify-self: center;">Accessibility Conformance Checklist</h2>
+
+    <p>Ensuring digital accessibility is essential for making technology usable by
+      everyone, including people with disabilities. This
+      Accessibility Evaluation Checklist is designed to help you
+      assess whether your web applications and digital content
+      meet key accessibility standards.</p>
+    <p>Each criterion in this checklist covers an important aspect of accessible
+      design, from visual and keyboard navigation to contrast,
+      color use, and support for assistive technologies. As you go
+      through the checklist, you’ll be guided step-by-step through
+      a series of requirements based on established guidelines
+      such as the W3C Web Content Accessibility Guidelines (WCAG)
+      and platform accessibility best practices.</p>
+    <p>For each item, review your content or application and mark whether it passes
+      or fails the given criterion. At the end, you’ll receive a
+      summary score and can download your results for
+      documentation or further review.</p>
+    <p>By following this checklist, you can identify potential barriers and ensure
+      your products are more inclusive, usable, and compliant with
+      accessibility standards.</p>
+    <a role="link" aria-label="Go To Accessibility Conformance Checklist. Opens In New Page"
+      href="Accessibility Conformance Tool/index.html">Accessibility
+      Conformance
+      Checklist</a>
+  </div>
+  <div>
+    <h2 style="justify-self: center;">Alien Instruments Access Mod: Sound Design for
+      Everyone</h2>
+
+    <p>
+      Access Mod is a fully accessible, web-based modular
+      synthesiser built with inclusivity at its core. Designed to
+      empower musicians and sound designers of all abilities,
+      Access Mod combines the flexibility of modular synthesis
+      with an interface tailored for screen reader users, keyboard
+      navigation, and customizable control schemes. Whether you're
+      building rich textures, sharp leads, or experimental
+      soundscapes, Access Mod ensures that creating music is an
+      open and engaging experience for all. With drag-and-drop
+      patching, keyboard shortcuts, and visual feedback tools,
+      this synthesiser puts creative control back into every
+      user's hands—no barriers, just sound.
+    </p>
+    <a role="link" aria-label="Go To Access Mod. Opens In New Page" href="Mod2/index.html">Access Mod</a>
+  </div>
+
+  <div style="padding: 10px;">
+    <h2 style="justify-self: center;">Alien Instruments UBIK: The Talking MIDI
+      Mapper</h2>
+    <p>Welcome to Alien Instruments UBIK, the talking MIDI mapping solution. Create
+      groups for your controls and start
+      adding sliders and buttons to send MIDI CC’s. Completely
+      accessible for screen reading and keyboard navigation.
+      Labelling groups and components also labels for screen
+      reading. Design your own interface and map it to the device
+      or software you wish to control. Each slider has a MIDI
+      learn button, click this and follow the voice prompts to
+      map your controller. When adding a slider, you can map the
+      output range displayed on the screen and spoken aloud
+      to and integer or float to match the parameter you are
+      controlling. Alternatively, you can display or hear the
+      current MIDI CC value. For buttons you can set the on value
+      to any cc value, when mapped this will speak as
+      “parameter name” on and off and display the same in the
+      button. To get started click the add group button and
+      follow the prompts. Or take a guided tour of the interface
+      and settings by clicking the "Start Tour" button.
+    </p>
+    <p>
+    <p>If you are using a screen reader to take the tour after clicking start tour
+      focus will go to a heading level 2,
+      this is the parameter name, and that component shows focus
+      in the UI. Use the tab key and next will be a heading
+      level 3 with a description and context of the area or item.
+      Press tab again and you will focus on the next button,
+      followed by previous and then close buttons. When the tour
+      ends there will be a finish button.</p>
+    </p>
+
+    <p>Have fun and enjoy!</p>
+    <a role="link" aria-label="Go To Access Mod. Opens In New Page" href="Ubik/index.html">UBIK</a>
+
+  </div>
+
+  <div>
+    <section>
+      <h2 style="justify-self: center;">Alien Instruments Poly
+        Synth</h2>
+      <p>A new generation of accessible music technology.</p>
+
+      <p><strong>Alien Instruments Poly Synth</strong> is a fully
+        polyphonic web-based synthesizer
+        designed for <em>everyone</em>.
+        Play directly from your computer
+        keyboard, connect any MIDI device, or
+        even shape your sound with your voice.
+      </p>
+
+      <p>At the heart of the project is a strong focus on
+        <strong>accessibility and
+          customization</strong>:
+      </p>
+
+      <ul>
+        <li><strong>Dual Interface
+            Modes:</strong><br>
+          •
+          <em>Skeuomorphic</em>:
+          A rich, tactile
+          visual experience
+          inspired by classic
+          hardware.<br>
+          • <em>Customizable
+            UI</em>:
+          Total control over
+          page settings —
+          adjust color
+          schemes, font types,
+          sizes, contrast
+          levels, and choose
+          from a variety of
+          slider styles for
+          maximum comfort and
+          clarity.
+        </li>
+        <li><strong>Voice-Control
+            System:</strong><br>
+          Issue spoken
+          commands to tweak
+          parameters, map
+          controls, and create
+          sounds hands-free.
+        </li>
+        <li><strong>Professional Audio
+            Effects:</strong><br>
+          Shape your tone with
+          built-in <em>Dimension
+            Expander</em>,
+          <em>Delay</em>, and
+          a <em>Three-Band
+            EQ</em>
+          for deep, spatial
+          sound design.
+        </li>
+      </ul>
+
+      <p>Built using cutting-edge Web Audio technology,
+        <strong>Alien Instruments Poly
+          Synth</strong> is
+        made to empower all creators — no
+        barriers, no limits.
+      </p>
+    </section>
+
+
+    <p>This project uses custom rotary knobs and has its own set of accessibility
+      settings.Choose the interface style from the links below,
+      you can change this in
+      either UI at anytime and all settings are shared.</p>
+    <a role="link" aria-label="Go To Poly Synth Skeuomorphic. Opens In New Page" href="PolySynth/dist/poly.html">Poly
+      Synth Skeuomorphic
+      Interface</a><br><br>
+
+    <a role="link" aria-label="Go To Poly Synth Custom. Opens In New Page" href="PolySynth/dist/poly2.html">Poly Synth
+      Custom
+      Interface</a>
+  </div>
+
+  <div>
+    <h2 style="justify-self: center;">Alien Instruments Groove Table</h2>
+    <p>This project is a tribute to two iconic instruments that shaped the sound of
+      electronic music: the Roland TR-808 drum machine and the
+      TB-303 bass synthesizer. Built entirely with modern web
+      technologies using the Web Audio API and Web MIDI, this
+      application reimagines these classic machines in a browser
+      environment—no plugins or downloads required.</p>
+
+    <p>The project features two fully functional synthesizer interfaces:</p>
+
+    <p>A skeuomorphic mode that visually mimics the original hardware layout and
+      styling for nostalgic fidelity</p>
+    <p>A custom UI mode offering a modern, streamlined interface optimized for
+      performance and accessibility</p>
+    <p>Both interfaces are fully accessible, designed with inclusive practices in
+      mind. Screen reader support, keyboard navigation, and
+      responsive layouts ensure usability across a wide range of
+      devices and user needs. Under the hood, synchronized audio
+      engines drive the 808-inspired drum sequencer and 303-style
+      bassline generator, with tempo sync, swing, accent, and
+      parameter automation all supported.</p>
+
+    <p>This homage aims not only to preserve the spirit of these instruments but
+      also to invite new experimentation through the flexibility
+      of the web.</p>
+    <a role="link" aria-label="Go To Groove Table Skeuomorphic. Opens In New Page" href="Groove Table/index.html">Groove
+      Table Skeuomorphic
+      Interface</a><br><br>
+
+    <a role="link" aria-label="Go To Groove Table Custom. Opens In New Page"
+      href="Groove Table/index/index2.html">Groove Table
+      Custom
+      Interface</a>
+
+  </div>
+
+  <div>
+    <h2 style="justify-self: center;">Alien Instruments Web Audio Groovebox</h2>
+    <p>Welcome to the Web Audio Groovebox — a fully browser-based music production
+      environment powered by the Web Audio API. This project
+      brings together a suite of integrated tools for electronic
+      music creation, all running natively in your web browser
+      with no plugins or downloads required.</p>
+
+    <p>Whether you're laying down beats, programming basslines, slicing samples, or
+      crafting polyphonic melodies, the Groovebox provides
+      intuitive, hands-on control through a clean and responsive
+      UI.</p>
+
+    <p>Features</p>
+
+    <p> Drum Machine: Multi-voice drum synthesizer with individual
+      step sequencers, pitch/decay/level controls, and accent
+      toggling.</p>
+    <p>
+      Bass Synth (TB-303 style): Acid-style monosynth with slide,
+      tie, and accent sequencing, plus full control over filter,
+      envelope, and distortion parameters.</p>
+    <p>
+      Sampler: Load your own audio files or factory samples, with
+      control over start/end points, reverse playback, envelope
+      shaping, and filter settings.</p>
+    <p>
+      Polyphonic Synth: Two-oscillator poly synth with filter and
+      amp envelopes, per-step sequencing, and chord playback
+      support.</p>
+    <a role="link" aria-label="Go To Groove Box. Opens In New Page" href="GrooveBox/index.html">Groove
+      Box Skeuomorphic Interface</a><br><br>
+
+    <a role="link" aria-label="Go To Groove Box. Opens In New Page" href="GrooveBox/index2.html">Groove
+      Box Custom Interface</a>
+  </div>
+
+  <div>
+    <h2 style="justify-self: center;">Alien Instruments Atom Synth</h2>
+    <p>Particle Synth is an interactive, browser-based audio-visual synthesizer that
+      fuses real-time 3D particle physics with polyphonic sound
+      synthesis, modulation, and MIDI control.
+
+      At its core, Particle Synth uses a physics engine
+      (Cannon.js) and 3D rendering (Three.js) to simulate and
+      display electrons, protons, and neutrons in a bounded
+      virtual space. Each particle’s movement and position can be
+      mapped as modulation sources to sound parameters of a
+      versatile dual-oscillator polyphonic synth, built with
+      Tone.js.</p>
+    <p>Users can:</p>
+    <p>Spawn and control particles (electrons, protons, neutrons), each with unique
+      physics behaviors and customizable visual appearance.</p>
+    <p>Assign particle axes (X, Y, Z) as modulation sources for a wide range of
+      synth and effect parameters—essentially turning atomic
+      movement into dynamic audio modulation.</p>
+    <p>Shape sounds with a flexible dual-oscillator architecture, multimode filter,
+      envelope controls, portamento, and a chain of effects
+      (delay, tremolo, auto-filter, phaser, pitch shift, and
+      more).</p>
+    <p>Automate and randomize notes, modulate sound using real physics, and save or
+      recall complete sound setups as presets.</p>
+    <p>Map MIDI CCs to any parameter using a built-in MIDI learn system.</p>
+    <p>Visualize all particle activity and sound shaping in real-time in a 3D
+      environment, complete with interactive UI panels for both
+      sound and physics parameters.</p>
+    <p>The result is a unique “atomic synthesizer” where sound and visuals are
+      intrinsically connected: physical particle dynamics become
+      modulation sources, allowing users to experiment with sound
+      design in an intuitive, playful, and deeply interactive way.
+    </p>
+    <a role="link" aria-label="Go To Atom Synth. Opens In New Page" href="AtomSynth/index.html">Atom
+      Synth</a><br><br>
+  </div>
+  <div>
+    <h2 style="justify-self: center;">Alien Instruments SpectraSynth</h2>
+
+    <p>SpectraSynth is an advanced web-based synthesizer and modular effects
+      workstation powered by the Web Audio API. At its heart is a
+      truly expressive 2D morphing oscillator—instantly blend
+      between saw, square, triangle, and custom harmonic waveforms
+      using an intuitive XY pad or sliders for seamless, real-time
+      timbral exploration.</p>
+
+    <p>Main Features:</p>
+    <p>Accessible, Customizable Interface:
+      Navigate fully by keyboard. Screen-reader friendly with ARIA
+      live regions. Supports alternate color themes, gradients,
+      and multiple knob styles for a personalized experience.</p>
+    <p>2D Morphing Oscillator:
+      Morph continuously between classic and user-defined
+      waveforms. Shape and sculpt unique timbres visually via XY
+      pad, precise sliders, or MIDI.</p>
+    <p>Deep Modulation:
+      Two independent LFOs and dual envelopes (amp and mod)
+      animate your sound. Modulate filter, pitch, amplitude, or
+      even the morph position itself for evolving, animated tones.
+      LFOs and envelopes are freely assignable.</p>
+    <p>Playability:
+      Perform with your QWERTY keyboard (musical typing) or any
+      MIDI controller. Enjoy full pitch bend and velocity support
+      for expressive play.</p>
+    <p>Modular Drag-and-Drop Effects:
+      Design your dream FX chain: drag in chorus, phaser, delay,
+      distortion, mutators, morphing filters, EQ, compressor, ring
+      mod, auto-panner, and more. Rearrange,
+      tweak, or remove effects at any time with instant feedback.
+    </p>
+    <p>MIDI Learn Everywhere:
+      Right-click or press "M" to instantly map it to
+      a MIDI knob, slider, or button. Save, export, and import
+      your MIDI CC mappings for total control and flexibility.</p>
+
+    <p>Presets & State Management:
+      Save and recall both synth and FX chain presets.
+      Export/import all your sounds and setups as portable JSON
+      files for easy backup or sharing.</p>
+    <p>Visual Feedback:
+      See a live harmonic spectrum and real-time stereo level
+      meter so you can monitor and refine your sound visually as
+      well as by ear.</p>
+    <p>SpectraSynth is designed for sound designers, synth enthusiasts, and
+      performers who want deep, hands-on sound creation in the
+      browser. No installs, no limits—just open and play.</p>
+    <a role="link" aria-label="Go To SpectraSynth. Opens In New Page" href="Spectral Synth/index.html">SpectraSynth
+      Skeuomorphic
+      Interface</a><br><br>
+    <a role="link" aria-label="Go To SpectraSynth. Opens In New Page" href="Spectral Synth/index2.html">SpectraSynth
+      Custom
+      Interface</a><br><br>
+  </div>
+
+  <div>
+    <h2 style="justify-self: center;">Alien Instruments Phonetical</h2>
+
+    <p>Phonetical is a real-time, multi-accent, programmable speech synthesizer that
+      lets you create and shape speech, syllables, and singing—one
+      phoneme at a time. Instead of stringing together audio
+      samples or relying on black-box TTS, Phonetical synthesizes
+      the sound of human (and inhuman!) speech directly from its
+      acoustic building blocks: vowels and consonants, constructed
+      using formant synthesis and bandpass filtering.</p>
+
+    <p>Key Features:</p>
+    <p>True Phoneme Synthesis: Every sound is synthesized from scratch—no
+      pre-recorded samples, just pure oscillators, noise, and
+      filters.</p>
+    <p>Multi-Accent: Choose from multiple built-in accent presets, including
+      American and British English, Spanish, French, German,
+      Japanese, Hindi, Mandarin, and Italian.</p>
+    <p>Flexible Input: Type words, phoneme sequences (IPA or ARPAbet), or even play
+      speech live via your MIDI keyboard.</p>
+    <p>Expressive Speech: Fine-tune vibrato, formant morphing, consonant boost, and
+      more to shape robotic or naturalistic voices.</p>
+    <p>Realtime Control: All parameters respond instantly, and speech can be
+      triggered chromatically—great for talking synth leads, vocal
+      effects, or experimental sound design.</p>
+    <p>MIDI Learn & Presets: Map any parameter to MIDI controls, save and recall
+      custom settings, or export/import your patches.</p>
+    <p>Modular Drag-and-Drop Effects:
+      Design your dream FX chain: drag in chorus, phaser, delay,
+      distortion, mutators, morphing filters, EQ, compressor, ring
+      mod, auto-panner, and more. Rearrange,
+      tweak, or remove effects at any time with instant feedback.
+    </p>
+    <p>Unlike typical speech engines, Phonetical is designed for creative
+      exploration: It’s a tool for musicians, sound designers,
+      linguists, and tinkerers who want hands-on control over the
+      mechanics of speech synthesis. Play with formants, accent
+      switching, live vowel morphing, or MIDI-driven talking
+      basslines. See how “robotic” or “natural” you can make your
+      synthetic voice.</p>
+    <a role="link" aria-label="Go To Phonetical. Opens In New Page" href="Phonetical/index.html">Phonetical</a><br><br>
+  </div>
+  <div>
+    <h2 style="justify-self: center;">Alien Instruments B-X 7000</h2>
+
+    <p>reimagined for today’s musicians and sound designers. Built from the ground
+      up in JavaScript and the Web Audio API, B-X 7000 recreates
+      the classic 6-operator FM synthesis engine and workflow that
+      made the DX7 an icon—while adding modern enhancements and an
+      intuitive visual interface.</p>
+    <p>Whether you’re after vintage electric pianos, metallic bells, evolving pads,
+      or your own experimental textures, B-X 7000 provides
+      hands-on control over every aspect of the FM sound engine.
+      The synth features a flexible algorithm selector, real-time
+      visual feedback, advanced modulation options, integrated
+      effects, MIDI mapping, and a powerful preset system that
+      makes patch management a breeze.</p>
+    <p>Designed for both nostalgic exploration and new sonic adventures, B-X 7000
+      puts the magic of classic digital synthesis right in your
+      browser—no hardware or plugins required. Welcome to a new
+      generation of FM sound.</p>
+    <a role="link" aria-label="Go To B-X 7000. Opens In New Page" href="BX-7000/index.html">B-X 7000 Skeuomorphic
+      UI</a><br><br>
+    <a role="link" aria-label="Go To B-X 7000. Opens In New Page" href="BX-7000/index2.html">B-X 7000 Custom
+      UI</a><br><br>
+  </div>
+
+  <div>
+
+    <div>
+
+      <h2 style="justify-self: center;">Alien Instruments Morpheus</h2>
+
+      <p>This project is a feature-rich, browser-based wavetable synthesizer designed
+        for exploration, accessibility, and creativity. Built with
+        the Web Audio API and modern JavaScript, it offers a
+        responsive, fully customizable synth engine with an
+        intuitive, modular UI—no installation required.</p>
+      <p>Key Features</p>
+      <p>Wavetable Synthesis:
+        Load and blend between diverse user-provided
+        wavetables—Bass, FM, Granular, Distorted, and more—giving
+        you a vast sonic palette for sound design.</p>
+      <p>Advanced Modulation Matrix:
+        Modulate any parameter by connecting LFO sources to almost
+        any control.
+        Accessible Drag & Drop Modulation:
+        Assign modulation using both mouse and keyboard.
+        Mouse: Drag LFO "chips" onto any parameter slider.
+        Keyboard: Use P key to pick up an LFO source and drop
+        it on any focused control, with ARIA live feedback for
+        screen reader users.</p>
+      <p>Multi-Effect Chain:
+        Includes dual and morphing filters, delay, distortion, ring
+        modulation, and convolution reverb, all tweakable from the
+        UI.</p>
+      <p>Preset Management:
+        Save, load, import, and export your patches and MIDI
+        mappings—presets persist in your browser, and can be shared
+        or backed up as JSON.</p>
+      <p>Built-in Keyboard & MIDI Support:
+        Play notes with your typing keyboard
+        or any connected MIDI
+        controller.</p>
+      <p>Accessibility-First Design
+      </p>
+      <p>Screen Reader Announcements:
+        Key UI actions (like assigning modulation) are announced via
+        a live ARIA region for non-visual users.</p>
+      <p>Keyboard Navigable:
+        Every slider, button, and modulation target is focusable and
+        operable without a mouse.</p>
+      <p>Designed for Sound Designers & Explorers</p>
+      <p>Whether you want to craft unique textures, experiment with modulation, or
+        personalize your synth’s appearance, this project provides a
+        playground that’s both powerful and welcoming. All signal
+        routing and modulation are visually clear, with animated
+        modulation rings, real-time UI color theming, and live
+        feedback for every tweak.</p>
+      <a role="link" aria-label="Go To Morpheus. Opens In New Page" href="Morpheus/index.html">Morpheus Skeuomorphic
+        UI</a><br><br>
+      <a role="link" aria-label="Go To Synthemesc. Opens In New Page" href="Morpheus/index2.html">Morpheus Custom
+        UI</a><br><br>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="accessibility/accessibilitySettings.js"></script>
 
 </body>
 
