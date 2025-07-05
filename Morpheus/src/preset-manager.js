@@ -1,4 +1,4 @@
-import { attachModRing } from "./main.js";
+import { attachModRing } from "./mod-ring.js";
 
 const AUDIO_PRESET_COLLECTION_KEY = "MORPHEUS_AUDIO_PRESETS";
 

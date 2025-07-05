@@ -37,7 +37,7 @@ class LFO {
         val = 0;
     }
     const output = val * this.depth;
-    this.phase += (this.rate / this.sampleRate) * 128;
+    this.phase += (this.rate / this.sampleRate) * 64;
     if (this.phase >= 1) this.phase -= 1;
 
     return output;
@@ -58,7 +58,8 @@ class Voice {
     modAmount = 0,
     volume1 = 1.0,
     volume2 = 1.0,
-    pitchBend = 0
+    pitchBend = 0,
+    velocity = 1.0
   ) {
     this.note = note;
     this.frequency = frequency;
@@ -81,6 +82,7 @@ class Voice {
     this.volume1 = volume1;
     this.volume2 = volume2;
     this.pitchBend = pitchBend;
+    this.velocity = velocity;
   }
   nextSample() {
     if (!this.active) return 0;
@@ -143,7 +145,7 @@ class Voice {
         }
         break;
     }
-    return out * this.envValue;
+    return out * this.envValue * this.velocity;
   }
   noteOff() {
     this.envStage = "release";
@@ -161,6 +163,7 @@ class WavetableProcessor extends AudioWorkletProcessor {
       waveA: new Float32Array(2048),
       waveB: new Float32Array(2048),
     };
+    this.masterGain = 0.04;
     this.morph = 0;
     this.detune1 = 0;
     this.detune2 = 0;
@@ -216,6 +219,11 @@ class WavetableProcessor extends AudioWorkletProcessor {
         this.lfo.setShape(data);
       } else if (type === "noteOn") {
         const freq = 440 * Math.pow(2, (data.note - 69) / 12);
+        const velocity =
+          typeof data.velocity === "number" ? data.velocity / 127 : 1.0;
+        if (event.data.type === "masterGain") {
+          this.masterGain = event.data.data;
+        }
         if (this.voices.length >= this.maxVoices) this.voices.shift();
         this.voices.push(
           new Voice(
@@ -231,7 +239,8 @@ class WavetableProcessor extends AudioWorkletProcessor {
             this.modAmount,
             this.volume1,
             this.volume2,
-            this.pitchBend
+            this.pitchBend,
+            velocity
           )
         );
       } else if (type === "noteOff") {
@@ -277,7 +286,7 @@ class WavetableProcessor extends AudioWorkletProcessor {
         v.modAmount = modAmount;
         sample += v.nextSample();
       }
-      output[i] = sample;
+      output[i] = sample * this.masterGain; // <-- overall gain applied
     }
     this.voices = this.voices.filter((v) => v.active);
     return true;
