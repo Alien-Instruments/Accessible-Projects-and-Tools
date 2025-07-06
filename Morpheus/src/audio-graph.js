@@ -1,11 +1,10 @@
-// src/audio-graph.js
 import { audioContext } from "./utils/context.js";
 import { loadScript } from "./utils/loadScript.js";
 
 export async function createAudioGraph() {
   // Load AudioWorkletProcessor and Tuna
   await audioContext.audioWorklet.addModule("src/wavetable-processor.js");
-  await loadScript("src/tuna.js");
+  await loadScript("src/libs/tuna.js");
   const node = new AudioWorkletNode(audioContext, "wavetable-processor");
   const tuna = new Tuna(audioContext);
 

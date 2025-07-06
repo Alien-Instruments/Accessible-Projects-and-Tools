@@ -8,6 +8,7 @@ export function setupVoiceControl({
   announceModeRef = { value: "aria" },
 }) {
   if (!window.voicePickupLFO) window.voicePickupLFO = null;
+  if (!window.voicePickupModEnv) window.voicePickupModEnv = null;
 
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -188,7 +189,7 @@ export function setupVoiceControl({
         p.apply(opt.value);
         announce(`Set ${p.label} to ${opt.label || opt.value}`);
 
-        // Optional: update UI select element if you want
+        // Optional: update UI select element
         const input = document.getElementById(p.id);
         if (input && input.tagName === "SELECT") {
           input.value = opt.value;
@@ -199,6 +200,67 @@ export function setupVoiceControl({
         announce(`Didn't recognize value "${valueText}" for ${p.label}`);
         return;
       }
+    }
+
+    // --- Up/Down by Amount Command: "group param up/down value" ---
+    const upDownMatch = normTranscript.match(/^(.*?)\s+(up|down)\s+([-\d.]+)/);
+    if (upDownMatch) {
+      const paramText = upDownMatch[1].trim(); // e.g. "reverb wet"
+      const direction = upDownMatch[2]; // "up" or "down"
+      const amount = parseFloat(upDownMatch[3]); // e.g. 0.2
+
+      const params = getSynthParams(synth, audioContext);
+
+      // Find best param candidate
+      const candidates = params
+        .map((p) => {
+          let score = 0;
+          const labelNorm = normalizeTranscript(p.label || "");
+          const groupNorm = normalizeTranscript(p.group || "");
+          const idNorm = normalizeTranscript(p.id || "");
+          if ((groupNorm + " " + labelNorm).includes(paramText)) score += 5;
+          if ((labelNorm + " " + groupNorm).includes(paramText)) score += 5;
+          if ((groupNorm + labelNorm).includes(paramText.replace(/\s+/g, "")))
+            score += 2;
+          if (idNorm.includes(paramText)) score += 2;
+          return { p, score };
+        })
+        .sort((a, b) => b.score - a.score);
+
+      const best = candidates.find((c) => c.score > 0);
+      if (!best) {
+        announce(`Couldn't find parameter "${paramText}"`);
+        return;
+      }
+      const p = best.p;
+
+      if (
+        (p.type === "slider" || p.type === "range" || p.type === "number") &&
+        typeof p.min === "number" &&
+        typeof p.max === "number"
+      ) {
+        let currValue = typeof p.value === "function" ? p.value() : p.value;
+        let newValue =
+          direction === "up"
+            ? parseFloat(currValue) + amount
+            : parseFloat(currValue) - amount;
+
+        // Clamp to min/max
+        newValue = Math.max(p.min, Math.min(p.max, newValue));
+
+        p.apply(newValue);
+
+        announce(`Set ${p.group} ${p.label} to ${newValue}`);
+        // Optionally update UI
+        const input = document.getElementById(p.id);
+        if (input) {
+          input.value = newValue;
+          input.dispatchEvent(new Event("input"));
+        }
+      } else {
+        announce(`${p.group} ${p.label} cannot be changed up/down by value.`);
+      }
+      return;
     }
 
     // Focus command: "focus on [param]", "go to [param]", "select [param]"
@@ -241,6 +303,29 @@ export function setupVoiceControl({
       } else {
         announce(`Couldn't focus ${p.label} (not found in UI)`);
       }
+      return;
+    }
+
+    const envWordNumbers = { one: 1, two: 2 };
+    // Add pickup for env
+    const envPickupPattern =
+      /\b(?:pick up|grab)\b.*?\b(env|mod envelope)\s*(\d|one|two)\b/;
+    const envPickupMatch = normTranscript.match(envPickupPattern);
+    if (envPickupMatch) {
+      let envNum = envPickupMatch[2];
+      if (isNaN(envNum)) envNum = envWordNumbers[envNum];
+      if (envNum && [1, 2].includes(Number(envNum))) {
+        const envId = "modEnv" + envNum;
+        const env = synth.uiModEnvs.find(
+          (e) => e.id.toLowerCase() === envId.toLowerCase()
+        );
+        if (env) {
+          window.voicePickupModEnv = env;
+          announce(`Picked up Mod Envelope ${envNum}`);
+          return;
+        }
+      }
+      announce(`Didn't recognize envelope number in "${transcript}"`);
       return;
     }
 
@@ -363,9 +448,9 @@ export function setupVoiceControl({
       return;
     }
 
-    // ----------- LFO DROP -----------
+    // ----------- LFO / ENV DROP -----------
     const dropMatch = normTranscript.match(/\bdrop on (.+)/);
-    if (dropMatch && window.voicePickupLFO) {
+    if (dropMatch && (window.voicePickupLFO || window.voicePickupModEnv)) {
       const destText = dropMatch[1].trim();
       const destNorm = normalizeTranscript(destText);
       const params = getSynthParams(synth, audioContext);
@@ -407,17 +492,114 @@ export function setupVoiceControl({
         range,
         depth: 1.0,
       };
-      window.voicePickupLFO.targets.push(target);
-      if (typeof window.attachModRing === "function") {
-        window.attachModRing(target, synth, announce);
+
+      if (window.voicePickupLFO) {
+        // LFO drop (unchanged)
+        window.voicePickupLFO.targets.push(target);
+        if (typeof window.attachModRing === "function") {
+          window.attachModRing(target, synth, announce);
+        }
+        slider.classList.add("modulated");
+        announce(
+          `Dropped ${window.voicePickupLFO.id.toUpperCase()} on ${
+            targetParam.label
+          }`
+        );
+        window.voicePickupLFO = null;
+        return;
       }
-      slider.classList.add("modulated");
-      announce(
-        `Dropped ${window.voicePickupLFO.id.toUpperCase()} on ${
-          targetParam.label
-        }`
-      );
-      window.voicePickupLFO = null;
+
+      if (window.voicePickupModEnv) {
+        // ENV drop
+        window.voicePickupModEnv.targets.push(target);
+        if (typeof window.attachModRing === "function") {
+          window.attachModRing(target, synth, announce);
+        }
+        slider.classList.add("modulated");
+        announce(
+          `Dropped ${window.voicePickupModEnv.id.toUpperCase()} on ${
+            targetParam.label
+          }`
+        );
+        window.voicePickupModEnv = null;
+        return;
+      }
+    }
+
+    // ----------- REMOVE MODULATION (voice) -----------
+    const removeModMatch = normTranscript.match(
+      /\b(remove|clear|delete)\s*(lfo|env|envelope|modulation)?\s*(?:from|on)?\s*(.+)$/
+    );
+
+    if (removeModMatch) {
+      const modType = removeModMatch[2] ? removeModMatch[2].trim() : ""; // e.g., lfo, env, modulation
+      const paramText = removeModMatch[3] ? removeModMatch[3].trim() : "";
+      const params = getSynthParams(synth, audioContext);
+
+      // Find the best-matching parameter (slider)
+      const candidates = params
+        .filter((p) => p.type === "slider" || p.type === "range")
+        .map((p) => {
+          let score = 0;
+          const labelNorm = normalizeTranscript(p.label || "");
+          const idNorm = normalizeTranscript(p.id || "");
+          const groupNorm = normalizeTranscript(p.group || "");
+          if (labelNorm.includes(paramText)) score += 3;
+          if (idNorm.includes(paramText)) score += 2;
+          if (groupNorm.includes(paramText)) score += 1;
+          if (paramText.includes(labelNorm) && labelNorm.length > 0) score += 2;
+          if (paramText.includes(idNorm) && idNorm.length > 0) score += 1;
+          if (paramText.includes(groupNorm) && groupNorm.length > 0) score += 1;
+          return { p, score };
+        })
+        .sort((a, b) => b.score - a.score);
+      const best = candidates.find((c) => c.score > 0);
+
+      if (!best) {
+        announce(`Couldn't find parameter "${paramText}" to remove modulation`);
+        return;
+      }
+
+      const slider = document.getElementById(best.p.id);
+
+      let removed = false;
+      // Remove from all LFOs
+      if (!modType || modType === "lfo" || modType === "modulation") {
+        for (const lfo of synth.uiLfos || []) {
+          const before = lfo.targets.length;
+          lfo.targets = lfo.targets.filter(
+            (t) => t.id !== best.p.id && t.slider !== slider
+          );
+          if (before !== lfo.targets.length) removed = true;
+        }
+      }
+      // Remove from all Envelopes
+      if (
+        !modType ||
+        modType === "env" ||
+        modType === "envelope" ||
+        modType === "modulation"
+      ) {
+        for (const env of synth.uiModEnvs || []) {
+          const before = env.targets.length;
+          env.targets = env.targets.filter(
+            (t) => t.id !== best.p.id && t.slider !== slider
+          );
+          if (before !== env.targets.length) removed = true;
+        }
+      }
+
+      if (removed && slider) {
+        slider.classList.remove("modulated");
+        // Remove mod ring if present
+        slider
+          .closest(".range-knob-wrapper")
+          ?.querySelector(".mod-ring")
+          ?.remove();
+        announce(`Removed modulation from ${best.p.label}`);
+      } else {
+        announce(`No modulation found on ${best.p.label}`);
+      }
       return;
     }
 
@@ -505,6 +687,20 @@ export function setupVoiceControl({
     }
 
     if (value !== null) {
+      // ---- Out-of-range guard for sliders ----
+      if (
+        (p.type === "slider" || p.type === "range" || p.type === "number") &&
+        typeof p.min === "number" &&
+        typeof p.max === "number"
+      ) {
+        const numVal = parseFloat(value);
+        if (numVal < p.min || numVal > p.max) {
+          announce(
+            `Value ${numVal} is out of range for ${p.label}. Please say a value between ${p.min} and ${p.max}.`
+          );
+          return; // Exit without applying
+        }
+      }
       p.apply(value);
 
       // ------ Custom announcement label logic ------

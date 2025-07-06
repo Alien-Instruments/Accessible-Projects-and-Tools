@@ -373,6 +373,36 @@ document.addEventListener("DOMContentLoaded", function () {
       attachTo: "#morphingFilter-lfoDepth",
     },
     {
+      title: "Mod Envelope Attack Time",
+      text: "Sets the attack time for the envelopes attack phase.",
+      attachTo: "#modenv1-attack",
+    },
+    {
+      title: "Mod Envelope Decay Time",
+      text: "Sets the Decay time for the envelopes attack phase.",
+      attachTo: "#modenv1-decay",
+    },
+    {
+      title: "Mod Envelope Sustain Level",
+      text: "Sets the sustain level while holding note.",
+      attachTo: "#modenv1-sustain",
+    },
+    {
+      title: "Mod Envelope Release Time",
+      text: "Sets the release time for the envelopes release phase.",
+      attachTo: "#modenv1-release",
+    },
+    {
+      title: "Mod Envelope Drag Source",
+      text: "Use this to drag the envelope output to and slider in the UI. For keyboard access press P to pick up, navigate to the slider and press P to drop. Envelope depth is applied via the slider labelled Mod depth for param label.",
+      attachTo: ".mod-env-source",
+    },
+    {
+      title: "Mod Envelope 2",
+      text: "Mod envelope 2 is the same as mod envelope 1.",
+      attachTo: ".mod-env-source",
+    },
+    {
       title: "Amp Envelope Attack Time",
       text: "Sets the attack time for the envelopes attack phase.",
       attachTo: "#attack",

@@ -1,4 +1,4 @@
-import { attachModRing } from "./mod-ring.js";
+import { attachModRing } from "./utils/mod-ring.js";
 
 // Utility: Generate LFO sample for a shape at a given phase
 function lfoWaveformSample(shape, phase) {
@@ -106,20 +106,6 @@ export function setupLfoModulationUI({
     }
   }
 
-  // --- Keyboard LFO pickup/drop logic ---
-  // document.addEventListener("keydown", (e) => {
-  //   // Shift+P removes mod
-  //   if (e.key.toLowerCase() === "p" && e.shiftKey) {
-  //     handleRemoveMod();
-  //     return;
-  //   }
-  //   // 'p' triggers pick/drop
-  //   if (e.key.toLowerCase() === "p" && !e.shiftKey) {
-  //     handlePickDrop();
-  //     return;
-  //   }
-  // });
-
   // --- Drag and Drop for LFO sources ---
   document.querySelectorAll(lfoSourcesSelector).forEach((el) => {
     el.addEventListener("dragstart", (e) => {
@@ -139,24 +125,6 @@ export function setupLfoModulationUI({
 
         slider.addEventListener("dragleave", () => {
           slider.classList.remove("drop-target");
-        });
-
-        slider.addEventListener("mousedown", (e) => {
-          if (e.shiftKey) {
-            e.preventDefault(); // avoid interfering with dragging/focus
-            for (const lfo of synth.uiLfos) {
-              const before = lfo.targets.length;
-              lfo.targets = lfo.targets.filter((t) => t.slider !== slider);
-              const after = lfo.targets.length;
-              if (before !== after) {
-                slider.classList.remove("modulated");
-                slider
-                  .closest(".range-knob-wrapper")
-                  ?.querySelector(".mod-ring")
-                  ?.remove();
-              }
-            }
-          }
         });
 
         slider.addEventListener("drop", (e) => {

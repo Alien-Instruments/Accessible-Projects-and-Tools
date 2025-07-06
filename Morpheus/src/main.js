@@ -1,16 +1,16 @@
 export const announceModeRef = { value: "aria" };
 
 import { audioContext } from "./utils/context.js";
-import { attachModRing } from "./mod-ring.js";
+import { attachModRing } from "./utils/mod-ring.js";
 import { createUiLfo } from "./UI/lfo-ui.js";
 import { setupMIDI } from "./midi/midi.js";
-import { setupKeyboard } from "./keyboard.js";
+import { setupKeyboard } from "./utils/keyboard.js";
 import { triggerMIDILearnForControl } from "./midi/midi-learn.js";
 import { setupVoiceControl } from "./voice-control/voice-commands.js";
 import { loadAllWaves } from "./wavetable-loader.js";
 import { createAudioGraph } from "./audio-graph.js";
 import { createSynth } from "./synth-controller.js";
-import { setupModulationUI } from "./modulation-ui.js";
+import { setupModulationUI } from "./modEnv/modulation-ui.js";
 import { setupLfoModulationUI } from "./lfo-modulation-ui.js";
 import { setupPresetUI } from "./UI/preset-ui.js";
 import { waveSources } from "./wave-source.js";
@@ -19,8 +19,11 @@ import { getShortcut, setShortcut } from "./utils/shortcutManager.js";
 import { defaultShortcuts } from "./utils/defaultShortcuts.js";
 import { buildSynthUI } from "./UI/ui.js";
 import { getSynthParams } from "./UI/params.js";
-import { renderAudioPresetList } from "./preset-manager.js";
+import { renderAudioPresetList } from "./presets/preset-manager.js";
 import { getAllShortcuts } from "./utils/shortcutManager.js";
+import { createUiModEnv, animateModEnvs } from "./modEnv/mod-env-ui.js";
+import { setupModEnvModulationUI } from "./UI/mod-env-modulation-ui.js";
+
 import {
   initMIDILearn,
   enableMIDILearnMode,
@@ -43,6 +46,7 @@ const actions = createActions({
 });
 
 export let isModulating = false;
+let lastLoadedPresetName = "";
 let musicalTypingEnabled =
   localStorage.getItem("musicalTypingEnabled") === "false" ? false : true;
 
@@ -72,28 +76,47 @@ function getNormalizedCombo(e) {
   if (e.shiftKey) mods.push("Shift");
   if (e.altKey) mods.push("Alt");
   if (e.metaKey) mods.push("Meta");
-  const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+  // Add check for e.key being defined
+  const key =
+    typeof e.key === "string"
+      ? e.key.length === 1
+        ? e.key.toLowerCase()
+        : e.key
+      : "Unknown";
   return [...mods, key].join("+");
 }
 
-const shortcuts = getAllShortcuts();
-
 window.addEventListener("keydown", (e) => {
-  // If user is editing a shortcut, ignore
+  // 1. Ignore if user is editing a shortcut input (your UI for changing shortcuts)
   if (
     document.activeElement &&
     document.activeElement.classList.contains("shortcut-input-editing")
   )
     return;
 
+  // 2. Ignore if focus is in a text input, textarea, or contenteditable
+  const ae = document.activeElement;
+  if (
+    ae &&
+    ((ae.tagName === "INPUT" &&
+      (ae.type === "text" ||
+        ae.type === "search" ||
+        ae.type === "email" ||
+        ae.type === "password")) ||
+      ae.tagName === "TEXTAREA" ||
+      ae.isContentEditable)
+  )
+    return;
+
+  // 3. Actually handle the shortcut
   const comboStr = getNormalizedCombo(e);
-  const shortcuts = getAllShortcuts(); // <-- MOVE THIS HERE
+  const shortcuts = getAllShortcuts(); // Always get up-to-date mapping!
   for (let action in shortcuts) {
     if (shortcuts[action] === comboStr) {
       e.preventDefault();
       e.stopPropagation();
       actions[action] && actions[action]();
-      break; // Stop after first match!
+      break;
     }
   }
 });
@@ -204,6 +227,9 @@ synth.node.port.postMessage({
   data: "both",
 });
 
+synth.uiModEnvs = [createUiModEnv("modEnv1"), createUiModEnv("modEnv2")];
+animateModEnvs(synth);
+
 const button = document.getElementById("toggleMusicalTyping");
 button.textContent = musicalTypingEnabled
   ? "Disable Musical Typing"
@@ -246,6 +272,112 @@ document.getElementById("start").addEventListener("click", function () {
   this.classList.add("hidden");
 });
 
+function setupKeyboardModSourceDrag(containerSelector = "#synth-ui") {
+  // Allow drag with keyboard on both .lfo-source and .mod-env-source
+  document
+    .querySelectorAll(
+      `${containerSelector} .lfo-source, ${containerSelector} .mod-env-source`
+    )
+    .forEach((el) => {
+      el.addEventListener("keydown", (e) => {
+        // 'P' for pick up / drag start
+        if (e.key.toLowerCase() === "p" && !e.shiftKey) {
+          e.preventDefault();
+          el.classList.add("dragging-by-keyboard");
+          // Store on window/global what is being "dragged"
+          window.keyboardDragSource = el;
+          // Announce/indicate, or focus next drop target
+          announce(
+            `${el.textContent.trim()} picked up. Tab to a knob and press P again to drop.`
+          );
+        } else if (e.key.toLowerCase() === "p" && e.shiftKey) {
+          // Remove modulation assignment if focused and Shift+P
+          e.preventDefault();
+          // This is for removing mod assignment from the currently focused slider
+          const slider = document.activeElement
+            .closest(".range-knob-wrapper")
+            ?.querySelector("input[type=range]");
+          if (slider) {
+            const paramId = slider.dataset.paramId;
+            if (el.classList.contains("lfo-source")) {
+              const lfoId = el.dataset.lfoId;
+              const lfo = synth.uiLfos.find((l) => l.id === lfoId);
+              if (lfo) {
+                lfo.targets = lfo.targets.filter((t) => t.id !== paramId);
+                slider.classList.remove("modulated");
+                slider
+                  .closest(".range-knob-wrapper")
+                  ?.querySelector(".mod-ring")
+                  ?.remove();
+                announce(`LFO removed from ${paramId}`);
+              }
+            } else if (el.classList.contains("mod-env-source")) {
+              const envId = el.dataset.modEnvId;
+              const env = synth.uiModEnvs.find((e) => e.id === envId);
+              if (env) {
+                env.targets = env.targets.filter((t) => t.id !== paramId);
+                slider.classList.remove("modulated");
+                slider
+                  .closest(".range-knob-wrapper")
+                  ?.querySelector(".mod-ring")
+                  ?.remove();
+                announce(`Envelope removed from ${paramId}`);
+              }
+            }
+          }
+        }
+      });
+    });
+
+  // Drop via keyboard when slider is focused and "P" is pressed
+  document
+    .querySelectorAll(`${containerSelector} input[type=range]`)
+    .forEach((slider) => {
+      slider.addEventListener("keydown", (e) => {
+        if (e.key.toLowerCase() === "p" && window.keyboardDragSource) {
+          e.preventDefault();
+          const source = window.keyboardDragSource;
+          const paramId = slider.dataset.paramId;
+          const min = parseFloat(slider.min);
+          const max = parseFloat(slider.max);
+          const range = max - min;
+          const originalVal = parseFloat(slider.value);
+
+          const target = {
+            id: paramId,
+            slider,
+            originalVal,
+            range,
+            depth: 1.0,
+          };
+
+          if (source.classList.contains("lfo-source")) {
+            const lfoId = source.dataset.lfoId;
+            const lfo = synth.uiLfos.find((l) => l.id === lfoId);
+            if (lfo && !lfo.targets.some((t) => t.slider === slider)) {
+              lfo.targets.push(target);
+              attachModRing(target, synth, announce);
+              slider.classList.add("modulated");
+              announce(`LFO assigned to ${paramId}`);
+            }
+          } else if (source.classList.contains("mod-env-source")) {
+            const envId = source.dataset.modEnvId;
+            const env = synth.uiModEnvs.find((e) => e.id === envId);
+            if (env && !env.targets.some((t) => t.slider === slider)) {
+              env.targets.push(target);
+              attachModRing(target, synth, announce);
+              slider.classList.add("modulated");
+              announce(`Envelope assigned to ${paramId}`);
+            }
+          }
+          // Clean up
+          source.classList.remove("dragging-by-keyboard");
+          window.keyboardDragSource = null;
+        }
+      });
+    });
+}
+
 const startButton = document.getElementById("start");
 startButton.addEventListener("click", async () => {
   await audioContext.resume();
@@ -266,6 +398,28 @@ startButton.addEventListener("click", async () => {
 
   buildSynthUI(params, "synth-ui");
   applyGradientSettingToNewElements();
+  setupKeyboardModSourceDrag("#synth-ui");
+
+  setupModEnvModulationUI({
+    synth,
+    announce,
+    audioContext,
+    containerSelector: "#synth-ui",
+    modEnvSourcesSelector: ".mod-env-source",
+  });
+
+  document.querySelectorAll(".lfo-source").forEach((el) => {
+    el.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", el.dataset.lfoId);
+      e.dataTransfer.setData("modType", "lfo");
+    });
+  });
+  document.querySelectorAll(".mod-env-source").forEach((el) => {
+    el.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", el.dataset.modEnvId);
+      e.dataTransfer.setData("modType", "modEnv");
+    });
+  });
 
   document
     .querySelectorAll("#synth-ui input[type='range']")
@@ -279,38 +433,41 @@ startButton.addEventListener("click", async () => {
         slider.classList.remove("drop-target");
       });
 
-      slider.addEventListener("mousedown", (e) => {
-        if (e.shiftKey) {
-          e.preventDefault(); // avoid interfering with dragging/focus
-          for (const lfo of synth.uiLfos) {
-            const before = lfo.targets.length;
-            lfo.targets = lfo.targets.filter((t) => t.slider !== slider);
-            const after = lfo.targets.length;
-
-            if (before !== after) {
-              console.log(
-                `🗑️ Removed ${before - after} LFO mod(s) from ${
-                  slider.dataset.paramId
-                }`
-              );
+      document.addEventListener("mousedown", function (e) {
+        if (e.shiftKey && e.target.classList.contains("mod-ring")) {
+          const slider = e.target
+            .closest(".range-knob-wrapper")
+            ?.querySelector("input[type=range]");
+          if (slider) {
+            slider.focus(); // Always focus the slider
+            // Remove LFO assignments
+            let removedAny = false;
+            for (const lfo of synth.uiLfos) {
+              const before = lfo.targets.length;
+              lfo.targets = lfo.targets.filter((t) => t.slider !== slider);
+              if (before !== lfo.targets.length) removedAny = true;
+            }
+            // Remove ModEnv assignments
+            for (const env of synth.uiModEnvs) {
+              const before = env.targets.length;
+              env.targets = env.targets.filter((t) => t.slider !== slider);
+              if (before !== env.targets.length) removedAny = true;
+            }
+            if (removedAny) {
               slider.classList.remove("modulated");
-              slider
-                .closest(".range-knob-wrapper")
-                ?.querySelector(".mod-ring")
-                ?.remove();
+              e.target.remove(); // Remove just this mod ring!
             }
           }
+          e.preventDefault();
+          e.stopPropagation();
         }
       });
 
       slider.addEventListener("drop", (e) => {
         e.preventDefault();
         slider.classList.remove("drop-target");
-
-        const lfoId = e.dataTransfer.getData("text/plain");
-        const lfo = synth.uiLfos.find((l) => l.id === lfoId);
-        if (!lfo) return;
-
+        const modType = e.dataTransfer.getData("modType");
+        console.log("[drop] modType:", modType);
         const paramId = slider.dataset.paramId;
         const min = parseFloat(slider.min);
         const max = parseFloat(slider.max);
@@ -324,18 +481,43 @@ startButton.addEventListener("click", async () => {
           range,
           depth: 1.0,
         };
-        lfo.targets.push(target);
-        attachModRing(target, synth, announce);
 
-        slider.classList.add("modulated");
-        console.log(`✅ ${lfoId} assigned to ${paramId}`);
+        if (modType === "lfo") {
+          const lfoId = e.dataTransfer.getData("text/plain");
+          const lfo = synth.uiLfos.find((l) => l.id === lfoId);
+          if (!lfo) return;
+
+          // Prevent duplicate assignments to same slider for this LFO
+          if (lfo.targets.some((t) => t.slider === slider)) return;
+
+          lfo.targets.push(target);
+          attachModRing(target, synth, announce);
+
+          slider.classList.add("modulated");
+          console.log(`✅ ${lfoId} assigned to ${paramId}`);
+        } else if (modType === "modEnv") {
+          const modEnvId = e.dataTransfer.getData("text/plain");
+          const env = synth.uiModEnvs.find((m) => m.id === modEnvId);
+          console.log("Env found?", env);
+          if (!env) return;
+
+          // Prevent duplicate assignments to same slider for this env
+          if (env.targets.some((t) => t.slider === slider)) return;
+
+          env.targets.push(target);
+          console.log("[modEnv] Added target for", env.id, target);
+          attachModRing(target, synth, announce);
+
+          slider.classList.add("modulated");
+          console.log(`✅ ${modEnvId} assigned to ${paramId}`);
+        }
       });
     });
 
   await setupMIDI(synth);
   await initMIDILearn();
   enableMIDILearnMode("synth-ui");
-  renderAudioPresetList("audio-preset-list", synth);
+  renderAudioPresetList("audio-preset-list", synth, lastLoadedPresetName);
 });
 
 document.querySelectorAll(".lfo-source").forEach((el) => {
@@ -345,6 +527,7 @@ document.querySelectorAll(".lfo-source").forEach((el) => {
 });
 
 window.lfoUI = lfoUI;
+
 export function announce(msg) {
   const mode = announceModeRef.value;
   if (mode === "aria") {

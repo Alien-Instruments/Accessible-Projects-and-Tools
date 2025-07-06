@@ -156,7 +156,6 @@ body {
   font-size: 20px;
   color: #182424;
   background-color: #206976;
-  border-radius: 5px;
   border: 4px solid #404040;
   border-image: linear-gradient(
       to bottom,
@@ -252,6 +251,38 @@ input[type="text"]::placeholder {
   text-align: center;
 }
 
+#audio-preset-list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+}
+
+#audio-preset-list button {
+  width: 95%;
+}
+
+#audio-preset-list select {
+  width: 100%;
+}
+
+#midi-preset-list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+}
+
+#midi-preset-list button {
+  width: 95%;
+}
+
+#midi-preset-list select {
+  width: 100%;
+}
+
 #midi-mapping-list {
   overflow: auto;
   font-family: "LCD", monospace;
@@ -276,30 +307,6 @@ input[type="text"]::placeholder {
   height: 130px;
 }
 
-#midi-preset-list {
-  overflow: auto;
-  font-family: "LCD", monospace;
-  font-weight: bold;
-  font-size: 20px;
-  color: #182424;
-  background-color: #206976;
-  border-radius: 5px;
-  border: 4px solid #404040;
-  border-image: linear-gradient(
-      to bottom,
-      rgba(43, 43, 43, 0.5),
-      rgba(160, 160, 160, 0.5),
-      rgba(90, 90, 90, 0.8)
-    )
-    1 stretch;
-
-  padding: 3px;
-  text-shadow: 0 0 1px #504f4f;
-  text-align: center;
-  width: 400px;
-  height: 130px;
-}
-
 #midi-mapping-list ul,
 #midi-preset-list ul,
 #audio-preset-list ul {
@@ -316,9 +323,7 @@ input[type="text"]::placeholder {
   margin-bottom: 4px;
 }
 
-#midi-mapping-list .remove-btn,
-#midi-preset-list .remove-btn,
-#audio-preset-list .remove-btn {
+#midi-mapping-list .remove-btn {
   color: #182424;
   background-color: #206976;
   font-family: "LCD", monospace;
@@ -331,9 +336,7 @@ input[type="text"]::placeholder {
   margin-bottom: 5px;
 }
 
-#midi-mapping-list .remove-btn:focus,
-#midi-preset-list .remove-btn:focus,
-#audio-preset-list .remove-btn:focus {
+#midi-mapping-list .remove-btn:focus {
   outline: 2px dashed black;
   outline-offset: 2px;
 }
@@ -508,6 +511,22 @@ body.mod-dragging .mod-ring {
   outline: 2px dashed greenyellow;
   outline-offset: 2px;
 }
+
+.mod-env-source {
+  padding: 6px 12px;
+  height: 60px;
+  border: 1px dashed greenyellow;
+  box-shadow: 0 0 4px greenyellow;
+  border-radius: 10px;
+  background: rgb(60, 58, 58);
+  font-weight: bold;
+}
+
+.mod-env-source.lfo-ui-block:focus {
+  outline: 2px dashed greenyellow;
+  outline-offset: 2px;
+}
+
 .audio-preset-controls {
   display: flex;
   flex-direction: row;
@@ -520,30 +539,6 @@ body.mod-dragging .mod-ring {
   background: linear-gradient(to bottom, #323232, #1c1c1c);
   color: whitesmoke;
   margin-bottom: 10px;
-}
-
-#audio-preset-list {
-  overflow: auto;
-  font-family: "LCD", monospace;
-  font-weight: bold;
-  font-size: 20px;
-  color: #182424;
-  background-color: #206976;
-  border-radius: 5px;
-  border: 4px solid #404040;
-  border-image: linear-gradient(
-      to bottom,
-      rgba(43, 43, 43, 0.5),
-      rgba(160, 160, 160, 0.5),
-      rgba(90, 90, 90, 0.8)
-    )
-    1 stretch;
-
-  padding: 3px;
-  text-shadow: 0 0 1px #504f4f;
-  text-align: center;
-  width: 400px;
-  height: 130px;
 }
 
 .midi-select-wrapper {

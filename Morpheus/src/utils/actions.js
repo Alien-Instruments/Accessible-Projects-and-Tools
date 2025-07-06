@@ -103,6 +103,15 @@ export function createActions({ announceModeRef, recognition, announce }) {
       focusPanel("category lfo panel");
     },
   };
+  function announce(msg) {
+    const region = document.getElementById("aria-status");
+    if (region) {
+      region.textContent = "";
+      setTimeout(() => {
+        region.textContent = msg;
+      }, 10);
+    }
+  }
 }
 function focusPanel(className) {
   const selector = "." + className.trim().split(/\s+/).join(".");
@@ -141,14 +150,4 @@ function moveSlider(direction, multiplier = 1) {
     multiplier,
     newValue,
   });
-}
-
-function announce(msg) {
-  const region = document.getElementById("aria-status");
-  if (region) {
-    region.textContent = "";
-    setTimeout(() => {
-      region.textContent = msg;
-    }, 10);
-  }
 }

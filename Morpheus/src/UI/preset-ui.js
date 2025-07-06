@@ -2,13 +2,16 @@ import {
   saveAudioPreset,
   exportAudioPreset,
   importAudioPreset,
-} from "../preset-manager.js";
+  deleteAudioPreset,
+  renderAudioPresetList,
+} from "../presets/preset-manager.js";
 
 import {
   exportMappings,
   importMappings,
   savePreset,
   clearAllMappings,
+  deletePreset,
 } from "../midi/midi-learn.js";
 
 export function setupPresetUI({ synth, announce }) {
@@ -56,6 +59,26 @@ export function setupPresetUI({ synth, announce }) {
     .getElementById("clear-mappings-btn")
     ?.addEventListener("click", () => {
       openModal("clear-modal");
+    });
+
+  document
+    .getElementById("audio-delete-confirm-btn")
+    .addEventListener("click", () => {
+      const modal = document.getElementById("audio-delete-modal");
+      const name = modal.dataset.presetToDelete;
+      if (name) {
+        deleteAudioPreset(name);
+        // After delete, re-render the preset list and clear selection
+        renderAudioPresetList("audio-preset-list", synth, "");
+        // Optionally, clear the global tracking variable
+        if (
+          typeof lastLoadedPresetName !== "undefined" &&
+          lastLoadedPresetName === name
+        ) {
+          lastLoadedPresetName = "";
+        }
+      }
+      modal.classList.add("hidden");
     });
 
   document.getElementById("clear-confirm-btn").addEventListener("click", () => {
@@ -174,6 +197,20 @@ export function setupPresetUI({ synth, announce }) {
       if (file) {
         const name = file.name.replace(/\\.json$/i, "");
         importAudioPreset(file, name, synth);
+      }
+    });
+
+  document
+    .getElementById("midi-delete-confirm-btn")
+    .addEventListener("click", () => {
+      const modal = document.getElementById("midi-delete-modal");
+      const name = modal.dataset.presetToDelete;
+      if (name) {
+        // First, hide modal
+        modal.classList.add("hidden");
+        // Then delete and re-render
+        deletePreset(name);
+        renderPresetList("midi-preset-list", "");
       }
     });
 }

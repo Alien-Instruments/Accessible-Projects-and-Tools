@@ -1,6 +1,8 @@
-import { attachModRing } from "./mod-ring.js";
+import { attachModRing } from "../utils/mod-ring.js";
 
 const AUDIO_PRESET_COLLECTION_KEY = "MORPHEUS_AUDIO_PRESETS";
+
+let lastLoadedPresetName = "";
 
 export function saveAudioPreset(name, containerId = "synth-ui", synth) {
   const controls = document.querySelectorAll(
@@ -22,10 +24,7 @@ export function saveAudioPreset(name, containerId = "synth-ui", synth) {
       } else if (el.tagName === "SELECT") {
         preset[el.id] = el.value;
       } else if (el.tagName === "BUTTON") {
-        // For toggle buttons, store their pressed state (optional: use aria-pressed or class)
-        preset[el.id] =
-          el.classList.contains("active") ||
-          el.getAttribute("aria-pressed") === "true";
+        preset[el.id] = el.getAttribute("aria-pressed") === "true";
       }
     }
     // Save LFO mod targets
@@ -36,6 +35,14 @@ export function saveAudioPreset(name, containerId = "synth-ui", synth) {
         depth: t.depth,
       })),
     }));
+    preset._modEnvMods =
+      synth.uiModEnvs?.map((env) => ({
+        id: env.id,
+        targets: env.targets.map((t) => ({
+          id: t.id,
+          depth: t.depth,
+        })),
+      })) || [];
   });
 
   const presets =
@@ -73,12 +80,9 @@ export function loadAudioPreset(name, containerId = "synth-ui", synth) {
       if (el.type === "checkbox") {
         el.checked = value;
       } else if (el.tagName === "BUTTON") {
-        if (value) {
-          el.classList.add("active");
-          el.setAttribute("aria-pressed", "true");
-        } else {
-          el.classList.remove("active");
-          el.setAttribute("aria-pressed", "false");
+        const current = el.getAttribute("aria-pressed") === "true";
+        if (current !== value) {
+          el.click();
         }
       } else {
         el.value = value;
@@ -120,7 +124,39 @@ export function loadAudioPreset(name, containerId = "synth-ui", synth) {
       });
     });
   }
-  attachModRing(target);
+  if (preset._modEnvMods && synth?.uiModEnvs) {
+    synth.uiModEnvs.forEach((env) => (env.targets = []));
+
+    preset._modEnvMods.forEach((mod) => {
+      const env = synth.uiModEnvs.find((e) => e.id === mod.id);
+      if (!env) return;
+
+      mod.targets.forEach((targetData) => {
+        const slider = document.querySelector(
+          `#${containerId} [data-param-id="${targetData.id}"]`
+        );
+        if (slider) {
+          const min = parseFloat(slider.min);
+          const max = parseFloat(slider.max);
+          const range = max - min;
+          const originalVal = parseFloat(slider.value);
+
+          const target = {
+            id: targetData.id,
+            slider,
+            originalVal,
+            range,
+            depth: targetData.depth,
+          };
+
+          env.targets.push(target);
+          slider.classList.add("modulated");
+          attachModRing(target);
+        }
+      });
+    });
+  }
+  //attachModRing(target);
   announce(`Loaded audio preset: ${name}`);
 }
 
@@ -135,7 +171,8 @@ export function deleteAudioPreset(name) {
 
 export function renderAudioPresetList(
   containerId = "audio-preset-list",
-  synth
+  synth,
+  selectedName = ""
 ) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -144,29 +181,69 @@ export function renderAudioPresetList(
     JSON.parse(localStorage.getItem(AUDIO_PRESET_COLLECTION_KEY)) || {};
   container.innerHTML = "<h4>Audio Presets</h4>";
 
-  const list = document.createElement("ul");
+  // Build select
+  const select = document.createElement("select");
+  select.id = "audio-preset-select";
+  select.className = "lcd-select";
+  select.setAttribute("aria-label", "Select audio preset");
+  select.style.minWidth = "160px";
+  select.style.marginRight = "1em";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "-- Select Preset --";
+  select.appendChild(defaultOption);
+
   Object.keys(presets).forEach((name) => {
-    const li = document.createElement("li");
-
-    const loadBtn = document.createElement("button");
-    loadBtn.textContent = "Load " + name;
-    loadBtn.className = "remove-btn";
-    loadBtn.addEventListener("click", () =>
-      loadAudioPreset(name, "synth-ui", synth)
-    );
-
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "REMOVE";
-    delBtn.className = "remove-btn";
-    delBtn.setAttribute("aria-label", `Delete ${name}`);
-    delBtn.addEventListener("click", () => deleteAudioPreset(name));
-
-    li.appendChild(loadBtn);
-    li.appendChild(delBtn);
-    list.appendChild(li);
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    select.appendChild(option);
   });
 
-  container.appendChild(list);
+  // Set the value to the current/last selected name if available
+  if (selectedName && presets[selectedName]) {
+    select.value = selectedName;
+  } else {
+    select.value = "";
+  }
+
+  // Build delete button
+  const delBtn = document.createElement("button");
+  delBtn.textContent = "Delete";
+  delBtn.className = "lcd-button";
+  delBtn.setAttribute("aria-label", "Delete selected preset");
+  delBtn.disabled = !select.value; // Disable if no preset selected
+
+  // Load on select
+  select.addEventListener("change", () => {
+    if (select.value) {
+      lastLoadedPresetName = select.value; // Track selection!
+      loadAudioPreset(select.value, "synth-ui", synth);
+      renderAudioPresetList(containerId, synth, lastLoadedPresetName); // <-- Re-render, keep selection
+      delBtn.disabled = false;
+    } else {
+      delBtn.disabled = true;
+      lastLoadedPresetName = "";
+      renderAudioPresetList(containerId, synth, ""); // Show nothing selected
+    }
+  });
+
+  // Delete selected
+  delBtn.addEventListener("click", () => {
+    if (select.value) {
+      const modal = document.getElementById("audio-delete-modal");
+      const nameSpan = document.getElementById(
+        "audio-delete-modal-preset-name"
+      );
+      nameSpan.textContent = `Preset "${select.value}" will be permanently deleted. This cannot be undone.`;
+      modal.classList.remove("hidden");
+      modal.dataset.presetToDelete = select.value;
+    }
+  });
+
+  container.appendChild(select);
+  container.appendChild(delBtn);
 }
 
 export function exportAudioPreset(filename = "audio-preset.json") {

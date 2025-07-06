@@ -51,9 +51,13 @@ export function buildSynthUI(bindings, containerId = "synth") {
           case "lfo-source":
             control = buildLfoSource(binding);
             break;
+          case "mod-env-source":
+            control = buildModEnvSource(binding);
+            break;
           default:
             control = buildSlider(binding);
         }
+
         knobRow.appendChild(control);
       });
 
@@ -90,6 +94,30 @@ function buildLfoSource(binding) {
   el.addEventListener("dragstart", (e) => {
     e.dataTransfer.setData("text/plain", el.dataset.lfoId);
   });
+  return el;
+}
+
+function buildModEnvSource(binding) {
+  const el = document.createElement("div");
+  el.className = "mod-env-source";
+  el.setAttribute("tabindex", "0");
+  el.setAttribute("draggable", "true");
+  el.setAttribute("role", "region");
+  el.setAttribute(
+    "aria-label",
+    `Envelope source: ${binding.label}. Drag to modulate.`
+  );
+  el.dataset.modEnvId = binding.id;
+  el.innerHTML = `
+    <strong aria-hidden="true">${binding.label}</strong>
+    <div class="lfo-hint" aria-hidden="true">Drag</div>
+  `;
+
+  el.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", el.dataset.modEnvId);
+    e.dataTransfer.setData("modType", "modEnv");
+  });
+
   return el;
 }
 
@@ -195,8 +223,9 @@ function buildToggleButton(binding) {
   const button = document.createElement("button");
   button.id = binding.id;
   const isOn = Boolean(binding.value);
-  button.setAttribute("aria-pressed", isOn);
   button.className = "lcd-button";
+  button.setAttribute("aria-pressed", isOn);
+  button.classList.toggle("active", isOn);
   button.textContent = isOn ? onLabel : offLabel;
 
   // Initial ARIA label includes the current state
@@ -211,6 +240,7 @@ function buildToggleButton(binding) {
   button.addEventListener("click", () => {
     const newValue = !JSON.parse(button.getAttribute("aria-pressed"));
     button.setAttribute("aria-pressed", newValue);
+    button.classList.toggle("active", newValue);
     button.textContent = newValue ? onLabel : offLabel;
     updateAriaLabel(newValue);
     binding.apply?.(newValue);

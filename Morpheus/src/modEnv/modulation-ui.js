@@ -1,4 +1,4 @@
-import { getSynthParams } from "./UI/params.js";
+import { getSynthParams } from "../UI/params.js";
 
 // Helper to build a stylable amount slider
 function createAmountSlider(id, labelText, initial = 1) {

@@ -484,20 +484,163 @@ export function getSynthParams(synth, audioContext) {
       type: "slider",
       apply: (val) => (synth.morphingFilter.lfoDepth = val),
     },
-    // {
-    //   id: "morphingFilter-outputGain",
-    //   label: "Gain",
-    //   group: "Morphing Filter",
-    //   category: "Filters",
-    //   type: "slider",
-    //   value: 0.8,
-    //   min: 0,
-    //   max: 1,
-    //   step: 0.01,
-    //   type: "slider",
-    //   apply: (val) => (synth.morphingFilter.outputGain = val),
-    // },
-    // 🎚 Envelope Controls
+    // Mod Envelope 1 Controls
+    {
+      id: "modenv1-attack",
+      label: "Attack",
+      group: "Mod Envelope 1",
+      category: "Envelopes",
+      type: "slider",
+      min: 0.001,
+      max: 2,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[0] ? synth.uiModEnvs[0].attack : 0.1,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[0])
+          synth.uiModEnvs[0].attack = parseFloat(val);
+      },
+    },
+    {
+      id: "modenv1-decay",
+      label: "Decay",
+      group: "Mod Envelope 1",
+      category: "Envelopes",
+      type: "slider",
+      min: 0.001,
+      max: 2,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[0] ? synth.uiModEnvs[0].decay : 0.2,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[0])
+          synth.uiModEnvs[0].decay = parseFloat(val);
+      },
+    },
+    {
+      id: "modenv1-sustain",
+      label: "Sustain",
+      group: "Mod Envelope 1",
+      category: "Envelopes",
+      type: "slider",
+      min: 0,
+      max: 1,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[0]
+          ? synth.uiModEnvs[0].sustain
+          : 0.7,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[0])
+          synth.uiModEnvs[0].sustain = parseFloat(val);
+      },
+    },
+    {
+      id: "modenv1-release",
+      label: "Release",
+      group: "Mod Envelope 1",
+      category: "Envelopes",
+      type: "slider",
+      min: 0.001,
+      max: 2,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[0]
+          ? synth.uiModEnvs[0].release
+          : 0.3,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[0])
+          synth.uiModEnvs[0].release = parseFloat(val);
+      },
+    },
+
+    // Draggable Source Widget for Mod Envelope
+    {
+      id: "modEnv1",
+      label: "Env1",
+      group: "Mod Envelope 1",
+      category: "Envelopes",
+      type: "mod-env-source",
+    },
+    // Mod Envelope 2 Controls
+    {
+      id: "modenv2-attack",
+      label: "Attack",
+      group: "Mod Envelope 2",
+      category: "Envelopes",
+      type: "slider",
+      min: 0.001,
+      max: 2,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[1] ? synth.uiModEnvs[1].attack : 0.1,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[1])
+          synth.uiModEnvs[0].attack = parseFloat(val);
+      },
+    },
+    {
+      id: "modenv2-decay",
+      label: "Decay",
+      group: "Mod Envelope 2",
+      category: "Envelopes",
+      type: "slider",
+      min: 0.001,
+      max: 2,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[1] ? synth.uiModEnvs[1].decay : 0.2,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[1])
+          synth.uiModEnvs[0].decay = parseFloat(val);
+      },
+    },
+    {
+      id: "modenv2-sustain",
+      label: "Sustain",
+      group: "Mod Envelope 2",
+      category: "Envelopes",
+      type: "slider",
+      min: 0,
+      max: 1,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[1]
+          ? synth.uiModEnvs[1].sustain
+          : 0.7,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[1])
+          synth.uiModEnvs[1].sustain = parseFloat(val);
+      },
+    },
+    {
+      id: "modenv2-release",
+      label: "Release",
+      group: "Mod Envelope 2",
+      category: "Envelopes",
+      type: "slider",
+      min: 0.001,
+      max: 2,
+      step: 0.01,
+      value:
+        synth.uiModEnvs && synth.uiModEnvs[1]
+          ? synth.uiModEnvs[1].release
+          : 0.3,
+      apply: (val) => {
+        if (synth.uiModEnvs && synth.uiModEnvs[1])
+          synth.uiModEnvs[1].release = parseFloat(val);
+      },
+    },
+
+    // Draggable Source Widget for Mod Envelope
+    {
+      id: "modEnv2",
+      label: "Env2",
+      group: "Mod Envelope 2",
+      category: "Envelopes",
+      type: "mod-env-source",
+    },
+    // Amp Envelope Controls
     {
       id: "attack",
       label: "Attack",

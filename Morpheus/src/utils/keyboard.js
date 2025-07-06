@@ -41,6 +41,9 @@ export function setupKeyboard(
       heldKeys.add(e.key);
       const midiNote = 60 + getKeyboardOctave() * 12 + semitoneOffset;
       synth.noteOn(midiNote, 1.0);
+      if (synth.uiModEnvs) {
+        synth.uiModEnvs.forEach((env) => env.trigger());
+      }
     }
   });
 
@@ -51,6 +54,9 @@ export function setupKeyboard(
       heldKeys.delete(e.key);
       const midiNote = 60 + getKeyboardOctave() * 12 + semitoneOffset;
       synth.noteOff(midiNote);
+    }
+    if (synth.uiModEnvs) {
+      synth.uiModEnvs.forEach((env) => env.releaseEnv());
     }
   });
 }

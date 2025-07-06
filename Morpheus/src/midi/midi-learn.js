@@ -165,7 +165,7 @@ export function savePreset(name) {
   presets[name] = ccMapping;
   localStorage.setItem(PRESET_COLLECTION_KEY, JSON.stringify(presets));
   announce(`Saved preset: ${name}`);
-  renderPresetList();
+  renderPresetList("midi-preset-list", name);
 }
 
 export function loadPreset(name) {
@@ -184,41 +184,76 @@ export function deletePreset(name) {
   announce(`Deleted preset: ${name}`);
 }
 
-export function renderPresetList(containerId = "midi-preset-list") {
+export function renderPresetList(
+  containerId = "midi-preset-list",
+  selectedName = ""
+) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  container.innerHTML = "";
-
   const presets = JSON.parse(localStorage.getItem(PRESET_COLLECTION_KEY)) || {};
 
-  const title = document.createElement("h4");
-  title.textContent = "Saved Mapping";
-  container.appendChild(title);
+  container.innerHTML = "<h4>Saved Mapping</h4>";
 
-  const list = document.createElement("ul");
+  // Build the select dropdown
+  const select = document.createElement("select");
+  select.id = "midi-preset-select";
+  select.className = "lcd-select";
+  select.setAttribute("aria-label", "Select MIDI CC mapping preset");
+  select.style.minWidth = "160px";
+  select.style.marginRight = "1em";
 
-  Object.entries(presets).forEach(([name]) => {
-    const li = document.createElement("li");
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "-- Select Preset --";
+  select.appendChild(defaultOption);
 
-    const loadBtn = document.createElement("button");
-    loadBtn.textContent = "Load " + name;
-    loadBtn.className = "remove-btn";
-    loadBtn.addEventListener("click", () => loadPreset(name));
-
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "REMOVE";
-    delBtn.title = "Delete Preset";
-    delBtn.className = "remove-btn";
-    delBtn.setAttribute("aria-label", `Remove mapping for ${name}`);
-    delBtn.addEventListener("click", () => deletePreset(name));
-
-    li.appendChild(loadBtn);
-    li.appendChild(delBtn);
-    list.appendChild(li);
+  Object.keys(presets).forEach((name) => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    select.appendChild(option);
   });
 
-  container.appendChild(list);
+  // Set the select value if a selected name is provided and exists
+  if (selectedName && presets[selectedName]) {
+    select.value = selectedName;
+  } else {
+    select.value = "";
+  }
+
+  // Remove button
+  const delBtn = document.createElement("button");
+  delBtn.textContent = "Delete";
+  delBtn.className = "lcd-button";
+  delBtn.setAttribute("aria-label", "Delete selected MIDI preset");
+  delBtn.disabled = !select.value;
+
+  // When a preset is selected, load it and enable delete
+  select.addEventListener("change", () => {
+    if (select.value) {
+      loadPreset(select.value);
+      renderPresetList(containerId, select.value);
+      delBtn.disabled = false;
+    } else {
+      delBtn.disabled = true;
+      renderPresetList(containerId, "");
+    }
+  });
+
+  // Delete selected preset
+  delBtn.addEventListener("click", () => {
+    if (select.value) {
+      const modal = document.getElementById("midi-delete-modal");
+      const nameSpan = document.getElementById("midi-delete-modal-preset-name");
+      nameSpan.textContent = `Preset "${select.value}" will be permanently deleted. This cannot be undone.`;
+      modal.classList.remove("hidden");
+      modal.dataset.presetToDelete = select.value;
+    }
+  });
+
+  container.appendChild(select);
+  container.appendChild(delBtn);
 }
 
 // --- FILE I/O ---

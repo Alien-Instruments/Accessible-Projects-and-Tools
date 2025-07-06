@@ -195,9 +195,6 @@ class WavetableProcessor extends AudioWorkletProcessor {
       } else if (type === "morph") {
         this.morph = data;
         this.voices.forEach((v) => (v.morph = data));
-      } else if (type === "detune") {
-        this.detune1 = data.detune1;
-        this.detune2 = data.detune2;
       } else if (type === "modAmount") {
         this.modAmount = data;
         this.voices.forEach((v) => (v.modAmount = data));
@@ -212,6 +209,13 @@ class WavetableProcessor extends AudioWorkletProcessor {
         this.voices.forEach((v) => {
           v.volume1 = volume1;
           v.volume2 = volume2;
+        });
+      } else if (type === "detune") {
+        this.detune1 = data.detune1;
+        this.detune2 = data.detune2;
+        this.voices.forEach((v) => {
+          v.detune1 = data.detune1;
+          v.detune2 = data.detune2;
         });
       } else if (type === "lfoTarget") {
         this.lfoTarget = data; // "morph", "modAmount", "both", "none"

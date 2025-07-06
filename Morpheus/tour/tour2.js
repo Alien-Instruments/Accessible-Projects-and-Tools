@@ -179,9 +179,9 @@ document.addEventListener("DOMContentLoaded", function () {
       clickOnFocus: true, // Custom attribute to indicate the button should be clicked on focus
     },
     {
-      title: "Open Shortcut Panel",
-      text: "You can use this panel to edit all the keyboard shortcuts to suit your needs.",
-      attachTo: "#open-shortcuts",
+      title: "Open The User Manual",
+      text: "Opens the manual modal, click heading to reveal text.",
+      attachTo: "#open-manual-btn",
     },
     {
       title: "Turn On/Off Musical Typing",
@@ -189,9 +189,9 @@ document.addEventListener("DOMContentLoaded", function () {
       attachTo: "#toggleMusicalTyping",
     },
     {
-      title: "Open The User Manual",
-      text: "Opens the manual modal, click heading to reveal text.",
-      attachTo: "#open-manual-btn",
+      title: "Open Shortcut Panel",
+      text: "You can use this panel to edit all the keyboard shortcuts to suit your needs.",
+      attachTo: "#open-shortcuts",
     },
     {
       title: "Show Audio Presets",
@@ -503,6 +503,36 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Morph LFO Depth",
       text: "Sets the amount of modulation set by the morph LFO",
       attachTo: "#morphingFilter-lfoDepth",
+    },
+    {
+      title: "Mod Envelope Attack Time",
+      text: "Sets the attack time for the envelopes attack phase.",
+      attachTo: "#modenv1-attack",
+    },
+    {
+      title: "Mod Envelope Decay Time",
+      text: "Sets the Decay time for the envelopes attack phase.",
+      attachTo: "#modenv1-decay",
+    },
+    {
+      title: "Mod Envelope Sustain Level",
+      text: "Sets the sustain level while holding note.",
+      attachTo: "#modenv1-sustain",
+    },
+    {
+      title: "Mod Envelope Release Time",
+      text: "Sets the release time for the envelopes release phase.",
+      attachTo: "#modenv1-release",
+    },
+    {
+      title: "Mod Envelope Drag Source",
+      text: "Use this to drag the envelope output to and slider in the UI. For keyboard access press P to pick up, navigate to the slider and press P to drop. Envelope depth is applied via the slider labelled Mod depth for param label.",
+      attachTo: ".mod-env-source",
+    },
+    {
+      title: "Mod Envelope 2",
+      text: "Mod envelope 2 is the same as mod envelope 1.",
+      attachTo: ".mod-env-source",
     },
     {
       title: "Amp Envelope Attack Time",

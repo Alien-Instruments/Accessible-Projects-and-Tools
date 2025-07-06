@@ -112,11 +112,17 @@ function handleMIDIMessage(msg, synth) {
     const note = data1;
     const velocity = data2 / 127;
     synth.noteOn(note, velocity);
+    if (synth.uiModEnvs) {
+      synth.uiModEnvs.forEach((env) => env.trigger());
+    }
   } else if (command === 0x80 || (command === 0x90 && data2 === 0)) {
     // NOTE OFF (with release velocity)
     const note = data1;
     const releaseVel = data2 / 127; // data2 is release velocity for 0x80 NOTE OFF
     synth.noteOff(note, releaseVel); // pass release velocity to noteOff
+    if (synth.uiModEnvs) {
+      synth.uiModEnvs.forEach((env) => env.releaseEnv());
+    }
     if (synth.setReleaseVelocity) {
       synth.setReleaseVelocity(releaseVel);
     }
