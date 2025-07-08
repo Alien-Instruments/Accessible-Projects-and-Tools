@@ -481,6 +481,17 @@ input[type="text"]::placeholder {
   transition: transform 0.1s ease-out;
 }
 
+.mod-ring-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1em;
+  font-weight: bold;
+  pointer-events: none;
+  text-shadow: 0 0 4px #000, 0 0 2px #000;
+}
+
 body.mod-dragging .mod-ring {
   cursor: ns-resize;
 }

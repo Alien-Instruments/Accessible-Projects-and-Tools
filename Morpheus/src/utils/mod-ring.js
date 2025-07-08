@@ -29,15 +29,32 @@ export function attachModRing(target, synth, announce) {
 
   const existing = wrapper.querySelector(".mod-ring");
   if (existing) existing.remove();
+
   function updateModRingVisuals(modRing, depth) {
     const angle = depth * 270;
     modRing.style.transform = `rotate(${angle - 135}deg)`;
-    // Color based on depth
     const color = getModColor(depth);
     modRing.style.outlineColor = color;
     modRing.style.boxShadow = `0 0 6px ${color}`;
+
+    // Update span value & un-rotate
+    const valueSpan = modRing.querySelector(".mod-ring-value");
+    if (valueSpan) {
+      valueSpan.textContent = depth.toFixed(2);
+      const color = getModColor(depth);
+      modRing.style.color = color;
+      valueSpan.style.transform = `translate(-50%, -50%) rotate(${-(
+        angle - 135
+      )}deg)`;
+    }
   }
+
   const modRing = document.createElement("div");
+  const valueSpan = document.createElement("span");
+  valueSpan.className = "mod-ring-value";
+  valueSpan.textContent = target.depth.toFixed(2);
+  modRing.appendChild(valueSpan);
+
   modRing.className = "mod-ring";
   modRing.dataset.depth = target.depth.toFixed(2);
   modRing.setAttribute("tabindex", "0");

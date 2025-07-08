@@ -12,6 +12,7 @@ import {
   savePreset,
   clearAllMappings,
   deletePreset,
+  renderPresetList,
 } from "../midi/midi-learn.js";
 
 export function setupPresetUI({ synth, announce }) {
