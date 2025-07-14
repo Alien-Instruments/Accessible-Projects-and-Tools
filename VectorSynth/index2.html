@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                    <link rel="stylesheet" href="styles/custom.css">
+</head>
+
+<body class="desktop">
+
+                    <button id="toggleAccess" class="button wordSpacing letterSpacing">Show Interface Settings</button>
+
+                    <div id="accessDiv" class="hidden" style="text-align: center;">
+                                        <div id="preset-container" class="preset-tour">
+                                                            <div class="presets-panel panel">
+                                                                                <label for="preset-name">Save
+                                                                                                    Presets
+                                                                                </label><br>
+                                                                                <input role="text" aria-label="Enter Preset Name"
+                                                                                                    type="text"
+                                                                                                    id="preset-name"
+                                                                                                    placeholder="Enter preset name" />
+                                                                                <button role="button"
+                                                                                                    id="save-preset-btn">Save
+                                                                                                    Preset</button>
+                                                            </div>
+
+                                                            <div class="presets-panel panel">
+                                                                                <label for="preset-list">Load
+                                                                                                    Presets</label><br>
+                                                                                <select role="combobox"
+                                                                                                    aria-label="Load Presets"
+                                                                                                    id="preset-list">
+                                                                                                    <option value="" disabled
+                                                                                                                        selected>
+                                                                                                                        Select
+                                                                                                                        a
+                                                                                                                        preset
+                                                                                                    </option>
+                                                                                </select>
+                                                                                <button role="button"
+                                                                                                    id="delete-preset-btn">Delete
+                                                                                                    Preset</button>
+                                                            </div>
+
+                                        </div>
+
+                                        <h2>Font Settings</h2>
+                                        <div
+                                                            style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label
+                                                                                                    for="font-size-select">Size</label>
+                                                                                <select id="font-size-select">
+                                                                                                    <option value="12">
+                                                                                                                        Small
+                                                                                                    </option>
+                                                                                                    <option value="18">
+                                                                                                                        Medium
+                                                                                                    </option>
+                                                                                                    <option value="26">
+                                                                                                                        Large
+                                                                                                    </option>
+                                                                                                    <option value="34">
+                                                                                                                        Largest
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label for="bold-select">Bold</label>
+                                                                                <select id="bold-select">
+                                                                                                    <option
+                                                                                                                        value="normal">
+                                                                                                                        Off
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="bold">
+                                                                                                                        On
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel">
+                                                                                <label
+                                                                                                    for="font-family-select">Family</label>
+                                                                                <select id="font-family-select">
+                                                                                                    <option
+                                                                                                                        value="Arial">
+                                                                                                                        Arial
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Arial Narrow">
+                                                                                                                        Arial
+                                                                                                                        Narrow
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Times New Roman">
+                                                                                                                        Times
+                                                                                                                        N
+                                                                                                                        R
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Verdana">
+                                                                                                                        Verdana
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Helvetica">
+                                                                                                                        Helvetica
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Courier">
+                                                                                                                        Courier
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Courier New">
+                                                                                                                        Courier
+                                                                                                                        New
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Andale Mono">
+                                                                                                                        Andale
+                                                                                                                        Mono
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Candara">
+                                                                                                                        Candara
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Geneva">
+                                                                                                                        Geneva
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Optima">
+                                                                                                                        Optima
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Trebuchet MS">
+                                                                                                                        Trebuchet
+                                                                                                                        MS
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Gill Sans">
+                                                                                                                        Gill
+                                                                                                                        Sans
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Palatino">
+                                                                                                                        Palatino
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Monaco">
+                                                                                                                        Monaco
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Tahoma">
+                                                                                                                        Tahoma
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="CustomFont">
+                                                                                                                        Open
+                                                                                                                        Dyslexic
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Luminari">
+                                                                                                                        Luminari
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Chalkduster">
+                                                                                                                        Chalkduster
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Marker Felt">
+                                                                                                                        Marker
+                                                                                                                        Felt
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="Bradley Hand">
+                                                                                                                        Bradley
+                                                                                                                        Hand
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label
+                                                                                                    for="font-style-select">Style</label>
+                                                                                <select id="font-style-select">
+                                                                                                    <option
+                                                                                                                        value="normal">
+                                                                                                                        Normal
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="italic">
+                                                                                                                        Italic
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="underline">
+                                                                                                                        Underline
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div class="font panel" style="width: 12rem;">
+                                                                                <label
+                                                                                                    for="font-variant-select">Variant</label>
+                                                                                <select id="font-variant-select">
+                                                                                                    <option
+                                                                                                                        value="normal">
+                                                                                                                        Normal
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="small-caps">
+                                                                                                                        Small
+                                                                                                                        Caps
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+                                        </div>
+                                        <div class="main">
+
+                                                            <div class="slider-container panel" id="letter-tour">
+                                                                                <label
+                                                                                                    for="access_letter-spacing-slider">Letter
+                                                                                                    Spacing</label>
+                                                                                <input role="slider" aria-label="Letter Spacing"
+                                                                                                    type="range" min="0"
+                                                                                                    max="0.2" value="0"
+                                                                                                    step="0.01"
+                                                                                                    id="access_letter-spacing-slider">
+                                                            </div>
+
+                                                            <div class="slider-container panel" id="word-tour">
+                                                                                <label for="access_word-spacing-slider">Word
+                                                                                                    Spacing</label>
+                                                                                <input role="slider" aria-label="Word Spacing"
+                                                                                                    type="range" min="0"
+                                                                                                    max="0.5" value="0"
+                                                                                                    step="0.01"
+                                                                                                    id="access_word-spacing-slider">
+                                                            </div>
+
+                                                            <div class="slider-container panel" id="line-tour">
+                                                                                <label for="access_line-spacing-slider">Line
+                                                                                                    Spacing</label>
+                                                                                <input role="slider" aria-label="Line Spacing"
+                                                                                                    type="range" min="1"
+                                                                                                    max="2" value="1"
+                                                                                                    step="0.1"
+                                                                                                    id="access_line-spacing-slider">
+                                                            </div>
+                                        </div>
+
+                                        <div class="pickers">
+                                                            <h2 class="styled-text">
+                                                                                Use the colour
+                                                                                pickers below to
+                                                                                change
+                                                                                the colours of the
+                                                                                page and controls.
+                                                            </h2>
+                                        </div>
+
+                                        <div class="main">
+                                                            <div id="page-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Page
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-2">Fill</label>
+                                                                                                    <input aria-label="Page Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-2">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="border-picker">Border</label>
+                                                                                                    <input aria-label="Page Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker">Font</label>
+                                                                                                    <input aria-label="Page Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="focus-color-picker">Focus</label>
+                                                                                                    <input aria-label="Keyboard Focus Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="focus-color-picker">
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="button-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Button
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-5">Fill</label>
+                                                                                                    <input aria-label="Button Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-5">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="button-border-picker">Border</label>
+                                                                                                    <input aria-label="Button Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="button-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="button-font-picker">Font</label>
+                                                                                                    <input aria-label="Button Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="button-font-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="group-background-picker">Toggle</label>
+                                                                                                    <input aria-label="Button Toggle Colour "
+                                                                                                                        type="color"
+                                                                                                                        id="group-background-picker">
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="select-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Menu
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="select-background-picker">Fill</label>
+                                                                                                    <input aria-label="Menu Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="select-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="select-border-picker">Border</label>
+                                                                                                    <input aria-label="Menu Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="select-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="select-font-picker">Font</label>
+                                                                                                    <input aria-label="Menu Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="select-font-picker">
+                                                                                </div>
+                                                                                <div class="testSelect"
+                                                                                                    style="border: none;">
+                                                                                                    <select aria-label="Test Menu/Visual Purposes Only"
+                                                                                                                        id="font-test-select">
+                                                                                                                        <option value="20"
+                                                                                                                                            selected>
+                                                                                                                                            Option
+                                                                                                                        </option>
+                                                                                                    </select>
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="popup-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Input
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div
+                                                                                                    class="color-picker-row module-wrapper">
+                                                                                                    <label
+                                                                                                                        for="black-keys-colour-picker">Fill</label>
+                                                                                                    <input aria-label="Text Input Fill"
+                                                                                                                        type="color"
+                                                                                                                        id="black-keys-colour-picker">
+                                                                                </div>
+                                                                                <div
+                                                                                                    class="color-picker-row module-wrapper">
+                                                                                                    <label
+                                                                                                                        for="white-keys-colour-picker">Border</label>
+                                                                                                    <input aria-label="Text Input Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="white-keys-colour-picker">
+                                                                                </div>
+                                                                                <div
+                                                                                                    class="color-picker-row module-wrapper">
+                                                                                                    <label
+                                                                                                                        for="key-font-colour-picker">Font</label>
+                                                                                                    <input aria-label="Text Input Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="key-font-colour-picker">
+                                                                                </div>
+
+                                                                                <input aria-label="Test Input/Visual Purposes Only"
+                                                                                                    style="width: 170px; height: 50px;"
+                                                                                                    type="text"
+                                                                                                    id="Test-input"
+                                                                                                    placeholder="Text Entry" />
+                                                            </div>
+
+
+
+                                                            <div id="slider-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Slider
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-3">Thumb</label>
+                                                                                                    <input aria-label="Slider Thumb Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-3">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="slider-outline-picker">Border</label>
+                                                                                                    <input aria-label="Slider Thumb Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="slider-outline-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="color-picker-4">Track</label>
+                                                                                                    <input aria-label="Slider Track Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="color-picker-4">
+                                                                                </div>
+
+                                                                                <select aria-label="Select Slider Style"
+                                                                                                    id="knob-design-select">
+                                                                                                    <option
+                                                                                                                        value="classic">
+                                                                                                                        Classic
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="minimal">
+                                                                                                                        Minimal
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="fancy">
+                                                                                                                        Fancy
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="retro">
+                                                                                                                        Retro
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="modern">
+                                                                                                                        Modern
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="twist">
+                                                                                                                        twist
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="flat">
+                                                                                                                        Flat
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="shadow">
+                                                                                                                        Shadow
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="outline">
+                                                                                                                        Outline
+
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                                        value="simple">
+                                                                                                                        simple
+
+                                                                                                    </option>
+                                                                                </select>
+                                                            </div>
+
+                                                            <div id="panel-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Panel
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="panel-background-picker">Fill</label>
+                                                                                                    <input aria-label="Panel Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="panel-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="panel-border-picker">Border</label>
+                                                                                                    <input aria-label="Panel Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="panel-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="panel-gradient-picker">Gradient</label>
+                                                                                                    <input aria-label="Panel Gradient Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="panel-gradient-picker">
+                                                                                </div>
+                                                                                <button id="toggleGradients"
+                                                                                                    aria-pressed="false">
+                                                                                                    REMOVE<br>GRADIENT
+                                                                                </button>
+                                                            </div>
+
+
+                                                            <div id="label-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Label
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="label-background-picker">Fill</label>
+                                                                                                    <input aria-label="Label Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="label-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="label-border-picker">Border</label>
+                                                                                                    <input aria-label="Label Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="label-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="label-font-picker">Font</label>
+                                                                                                    <input aria-label="Label Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="label-font-picker">
+                                                                                </div>
+                                                            </div>
+
+                                                            <div id="output-tour" class="panel">
+                                                                                <div class="color-picker-row">
+                                                                                                    <h2>Span
+                                                                                                    </h2>
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="output-background-picker">Fill</label>
+                                                                                                    <input aria-label="Span Fill Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="output-background-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="output-border-picker">Border</label>
+                                                                                                    <input aria-label="Span Border Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="output-border-picker">
+                                                                                </div>
+                                                                                <div class="color-picker-row">
+                                                                                                    <label
+                                                                                                                        for="output-font-picker">Font</label>
+                                                                                                    <input aria-label="Span Font Colour"
+                                                                                                                        type="color"
+                                                                                                                        id="output-font-picker">
+                                                                                </div>
+                                                                                <span aria-label="Test Span With Text">Lorem
+                                                                                                    ipsum</span>
+                                                            </div>
+
+                                                            <div class="main">
+                                                                                <div class="slider-container panel"
+                                                                                                    id="border-tour">
+                                                                                                    <label
+                                                                                                                        for="access_border-radius-slider">Border
+                                                                                                                        Radius</label>
+                                                                                                    <input role="slider" aria-label="Border Radius"
+                                                                                                                        type="range"
+                                                                                                                        id="access_border-radius-slider"
+                                                                                                                        min="1"
+                                                                                                                        max="15"
+                                                                                                                        step="1"
+                                                                                                                        value="10">
+                                                                                </div>
+                                                                                <div class="slider-container panel"
+                                                                                                    id="thickness-tour">
+                                                                                                    <label
+                                                                                                                        for="access_border-thickness-slider">Border
+                                                                                                                        Thickness</label>
+                                                                                                    <input role="slider" aria-label="Border Thickness"
+                                                                                                                        type="range"
+                                                                                                                        id="access_border-thickness-slider"
+                                                                                                                        min="1"
+                                                                                                                        max="5"
+                                                                                                                        step="1"
+                                                                                                                        value="1">
+                                                                                </div>
+                                                                                <div class="slider-container panel"
+                                                                                                    id="focus-tour">
+                                                                                                    <label
+                                                                                                                        for="access_focus-size-slider">Focus
+                                                                                                                        Size</label>
+                                                                                                    <input role="slider" aria-label="Focus Size"
+                                                                                                                        type="range"
+                                                                                                                        id="access_focus-size-slider"
+                                                                                                                        min="1"
+                                                                                                                        max="8"
+                                                                                                                        value="4">
+                                                                                </div>
+                                                            </div>
+                                        </div>
+                    </div>
+                    </div>
+
+                    <div id="save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save MIDI Maping</h3>
+                                                            <input type="text" id="save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <div id="export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Current Mapping</h3>
+                                                            <input type="text" id="export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <div id="clear-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Clear All MIDI Mappings?</h3>
+                                                            <p>This will remove all saved CC assignments. This action
+                                                                                cannot be undone.</p>
+                                                            <button class="lcd-button"
+                                                                                id="clear-confirm-btn">Clear</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <!-- Save Audio Preset Modal -->
+                    <div id="audio-save-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Save Audio Preset</h3>
+                                                            <input type="text" id="audio-save-preset-name"
+                                                                                placeholder="Preset name" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-save-confirm-btn">Save</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <!-- Export Audio Presets Modal -->
+                    <div id="audio-export-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Export Audio Presets</h3>
+                                                            <input type="text" id="audio-export-filename"
+                                                                                placeholder="Filename" />
+                                                            <button class="lcd-button"
+                                                                                id="audio-export-confirm-btn">Export</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <div id="audio-delete-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Delete Audio Preset?</h3>
+                                                            <p id="audio-delete-modal-preset-name"></p>
+                                                            <button class="lcd-button"
+                                                                                id="audio-delete-confirm-btn">Delete</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+
+                    <div id="midi-delete-modal" class="modal hidden">
+                                        <div class="modal-content">
+                                                            <h3>Delete MIDI Preset?</h3>
+                                                            <p id="midi-delete-modal-preset-name"></p>
+                                                            <button class="lcd-button"
+                                                                                id="midi-delete-confirm-btn">Delete</button>
+                                                            <button class="close-modal lcd-button">Cancel</button>
+                                        </div>
+                    </div>
+
+                    <div id="shortcuts-panel" style="display: none;" tabindex="-1">
+                                        <h3>Edit Keyboard Shortcuts</h3>
+                                        <div id="shortcut-warning"
+                                                            style="color: #f66; font-weight: bold; min-height:1.2em">
+                                        </div>
+                                        <div id="shortcuts-list"></div>
+                                        <button class="lcd-button" id="close-shortcuts">Close</button>
+
+
+                    </div>
+
+                    <div id="manual-modal" class="modal" style="display: none;">
+                                        <div class="modal-backdrop"></div>
+                                        <div class="modal-dialog" role="dialog" aria-modal="true"
+                                                            aria-labelledby="manual-modal-title">
+                                                            <button class="modal-close"
+                                                                                aria-label="Close Manual">&times;</button>
+                                                            <h2 id="manual-modal-title">Synth Manual</h2>
+                                                            <div id="manual-container"></div>
+                                        </div>
+                    </div>
+
+                    <div class="synth">
+                                        <div
+                                                            style="display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 20px;">
+                                                            <button class="lcd-button" id="toggle-manual-btn">Show
+                                                                                Manual</button>
+                                                            <button class="lcd-button" id="toggle-midi-learn"
+                                                                                data-label="MIDI Learn">Show
+                                                                                MIDI
+                                                                                Learn</button>
+                                                            <button class="lcd-button" id="toggle-audio-preset-controls"
+                                                                                data-label="Audio Presets">Show Audio
+                                                                                Presets</button>
+                                                            <button class="lcd-button" id="toggle-midi-mod"
+                                                                                data-label="MIDI Mod">Show
+                                                                                MIDI Mod</button>
+                                                            <button class="lcd-button" id="voice-btn">Speak
+                                                                                Command</button>
+                                                            <label class="checkbox-container">
+                                                                                <input type="checkbox"
+                                                                                                    class="checkbox-input"
+                                                                                                    id="announce-toggle" />
+                                                                                <span class="checkbox-button">Speak
+                                                                                                    Voice Control
+                                                                                                    feedback</span>
+                                                            </label>
+                                                            <button class="lcd-button" id="open-shortcuts">Edit
+                                                                                Shortcuts</button>
+                                                            <button class="lcd-button" id="toggleMusicalTyping">Disable
+                                                                                Musical Typing</button>
+
+                                                            <button id="toggle-mpe">Enable MPE</button>
+                                                            <button class="lcd-button" id="toggle-arp"
+                                                                                data-label="Arp">Show
+                                                                                Arp</button>
+
+                                        </div>
+                                        <div id="MPE-Mod" style="display: none;" tabindex="-1">
+                                                            <div
+                                                                                style="display: flex; flex-direction: column; text-align: center;">
+                                                                                <label for="pitchBendDest">
+                                                                                                    Pitch Bend maps
+                                                                                                    to</label>
+                                                                                <select class="lcd-select"
+                                                                                                    id="pitchBendDest">
+
+                                                                                </select>
+                                                            </div>
+                                                            <div
+                                                                                style="display: flex; flex-direction: column; text-align: center;">
+                                                                                <label for="aftertouchDest">
+                                                                                                    Aftertouch maps
+                                                                                                    to</label>
+                                                                                <select class="lcd-select"
+                                                                                                    id="aftertouchDest"></select>
+
+                                                            </div>
+                                                            <div
+                                                                                style="display: flex; flex-direction: column; text-align: center;">
+                                                                                <label for="modWheelDest">
+                                                                                                    Mod Wheel maps
+                                                                                                    to</label>
+                                                                                <select class="lcd-select"
+                                                                                                    id="modWheelDest"></select>
+                                                            </div>
+                                                            <div
+                                                                                style="display: flex; flex-direction: column; text-align: center;">
+                                                                                <label for="slideDest">
+                                                                                                    Slide maps
+                                                                                                    to</label>
+                                                                                <select class="lcd-select"
+                                                                                                    id="slideDest"></select>
+
+                                                            </div>
+
+                                        </div>
+
+                                        <div class="audio-preset-controls hidden" id="audio-preset-controls"
+                                                            tabindex="-1">
+                                                            <div style="display: flex; flex-direction: column;">
+                                                                                <button class="lcd-button"
+                                                                                                    id="open-audio-save-modal">Save
+                                                                                                    Audio
+                                                                                                    Preset</button>
+                                                                                <button class="lcd-button"
+                                                                                                    id="open-audio-export-modal">Export
+                                                                                                    Audio
+                                                                                                    Presets</button>
+                                                                                <label tabindex="0" class="lcd-button"
+                                                                                                    id="import-audio-label">Import
+                                                                                                    Audio
+                                                                                                    Presets
+                                                                                                    <input type="file" id="import-audio-file"
+                                                                                                                        accept=".json"
+                                                                                                                        hidden />
+                                                                                </label>
+                                                            </div>
+                                                            <div id="audio-preset-list" class="lcd-panel">
+                                                            </div>
+                                        </div>
+
+                                        <div class="midi-learn hidden" id="midi-learn" tabindex="-1">
+
+                                                            <div id="midi-mapping-list" class="lcd-panel"></div>
+
+                                                            <div style="display: flex; flex-direction: column;"
+                                                                                class="midi-preset-controls">
+
+                                                                                <button class="lcd-button"
+                                                                                                    id="save-preset">Save
+                                                                                                    Preset</button>
+                                                                                <button class="lcd-button"
+                                                                                                    id="export-cc-btn">Export</button>
+                                                                                <label tabindex="0" class="lcd-button"
+                                                                                                    id="import-label"
+                                                                                                    style="text-align: center;">
+                                                                                                    Import
+                                                                                                    <input type="file" id="import-cc-file"
+                                                                                                                        accept=".json"
+                                                                                                                        hidden />
+                                                                                </label>
+                                                                                <button class="lcd-button"
+                                                                                                    id="clear-mappings-btn">Clear
+                                                                                                    All
+                                                                                                    Mappings</button>
+
+                                                            </div>
+
+                                                            <div id="midi-preset-list" class="lcd-panel">
+                                                            </div>
+
+                                        </div>
+
+
+
+                                        <div id="midi-ui"></div>
+
+
+                                        <div style="display: flex; flex-direction: row; justify-content: center;">
+                                                            <div id="vector-ui"></div>
+                                                            <div id="output">
+                                                                                <canvas id="outputMeterCanvas"
+                                                                                                    width="50"
+                                                                                                    height="225"
+                                                                                                    style="background:#111; border-radius:4px; border: 1px solid grey;"></canvas>
+                                                            </div>
+                                        </div>
+                                        <div id="synth-ui">
+
+                                                            <div class="arp hidden" id="arp" style="overflow: auto;"
+                                                                                tabindex="-1">
+
+                                                                                <div class="arp-panel"
+                                                                                                    style="display: flex; flex-direction: column; align-items: center;">
+                                                                                                    <label
+                                                                                                                        for="arp-mode">Arp
+                                                                                                                        Mode</label>
+                                                                                                    <select style="width: 200px;"
+                                                                                                                        class="lcd-select"
+                                                                                                                        id="arp-mode">
+                                                                                                                        <option
+                                                                                                                                            value="up">
+                                                                                                                                            Up
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="down">
+                                                                                                                                            Down
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="updown">
+                                                                                                                                            Up/Down
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="random">
+                                                                                                                                            Random
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="converge">
+                                                                                                                                            Converge
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="diverge">
+                                                                                                                                            Diverge
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="pairs">
+                                                                                                                                            Pairs
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="pedal">
+                                                                                                                                            Pedal
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="randomwalk">
+                                                                                                                                            Randomwalk
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="euclidean">
+                                                                                                                                            Euclidean
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="up2down1">
+                                                                                                                                            Up
+                                                                                                                                            2
+                                                                                                                                            Down
+                                                                                                                                            1
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="up3down1">
+                                                                                                                                            Up
+                                                                                                                                            3
+                                                                                                                                            Down
+                                                                                                                                            1
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="zigzag">
+                                                                                                                                            Zigzag
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="mirror">
+                                                                                                                                            Mirror
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="pendulum">
+                                                                                                                                            Pendulum
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="brownian">
+                                                                                                                                            Brownian
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="polyrhythm">
+                                                                                                                                            Polyrhythm
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="stepskip">
+                                                                                                                                            Step
+                                                                                                                                            Skip
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="spiral">
+                                                                                                                                            Spiral
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="fractal">
+                                                                                                                                            Fractal
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="echo">
+                                                                                                                                            Echo
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="clusterrandom">
+                                                                                                                                            Cluster
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="fibonacci">
+                                                                                                                                            Fibonacci
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="golden">
+                                                                                                                                            Golden
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                                            value="custom">
+                                                                                                                                            Custom
+                                                                                                                                            Pattern
+                                                                                                                        </option>
+
+                                                                                                    </select>
+
+                                                                                                    <div
+                                                                                                                        style="display: flex; flex-direction: row; gap: 50px;">
+                                                                                                                        <div
+                                                                                                                                            style="text-align: center; justify-items: center; align-items: center;">
+                                                                                                                                            <label
+                                                                                                                                                                class="arp-toggle-label">On
+                                                                                                                                                                <input type="checkbox"
+                                                                                                                                                                                    id="arp-toggle" />
+                                                                                                                                                                <span
+                                                                                                                                                                                    class="arp-toggle-custom"></span>
+                                                                                                                                            </label>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            style=" justify-items: center; align-items: center;">
+                                                                                                                                            <label
+                                                                                                                                                                class="arp-toggle-label">Latch
+                                                                                                                                                                <input type="checkbox"
+                                                                                                                                                                                    id="arp-latch">
+                                                                                                                                                                <span
+                                                                                                                                                                                    class="arp-toggle-custom"></span>
+                                                                                                                                            </label>
+                                                                                                                        </div>
+                                                                                                    </div>
+                                                                                </div>
+                                                                                <button id="arp-view-toggle"
+                                                                                                    class="preset-button hidden lcd-button"
+                                                                                                    style="margin-top: 10px;">
+                                                                                                    Show Sliders
+                                                                                </button>
+                                                                                <div class="arp-container">
+                                                                                                    <div
+                                                                                                                        class="arp-sliders">
+                                                                                                                        <div
+                                                                                                                                            style="display: flex; flex-direction: column;">
+                                                                                                                                            <label
+                                                                                                                                                                for="arp-division">Division</label>
+                                                                                                                                            <select style="width: 14rem;"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="arp-division">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="1/1">
+                                                                                                                                                                                    Whole
+                                                                                                                                                                                    (1/1)
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="1/2">
+                                                                                                                                                                                    Half
+                                                                                                                                                                                    (1/2)
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="1/4">
+                                                                                                                                                                                    Quarter
+                                                                                                                                                                                    (1/4)
+                                                                                                                                                                </option>
+
+                                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                                            class="slider-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="arp-bpm">
+                                                                                                                                                                BPM</label>
+                                                                                                                                            <div
+                                                                                                                                                                class="range-knob-wrapper">
+                                                                                                                                                                <input type="range" id="arp-bpm"
+                                                                                                                                                                                    min="40"
+                                                                                                                                                                                    max="300"
+                                                                                                                                                                                    step="1"
+                                                                                                                                                                                    value="120">
+                                                                                                                                                                <div
+                                                                                                                                                                                    class="range-knob">
+                                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                            <span id="arp-bpm-val"
+                                                                                                                                                                class="lcd-text">0.25s</span>
+                                                                                                                        </div>
+
+                                                                                                                        <div
+                                                                                                                                            class="slider-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="arp-octaves">
+                                                                                                                                                                Range</label>
+                                                                                                                                            <div
+                                                                                                                                                                class="range-knob-wrapper">
+                                                                                                                                                                <input type="range" id="arp-octaves"
+                                                                                                                                                                                    min="1"
+                                                                                                                                                                                    max="6"
+                                                                                                                                                                                    value="6"
+                                                                                                                                                                                    step="1" />
+                                                                                                                                                                <div
+                                                                                                                                                                                    class="range-knob">
+                                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                            <span id="arp-octaves-value"
+                                                                                                                                                                class="lcd-text">6</span>
+                                                                                                                        </div>
+
+                                                                                                                        <div
+                                                                                                                                            class="slider-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="arp-swing">Swing</label>
+                                                                                                                                            <div
+                                                                                                                                                                class="range-knob-wrapper">
+                                                                                                                                                                <input type="range" id="arp-swing"
+                                                                                                                                                                                    min="0"
+                                                                                                                                                                                    max="0.5"
+                                                                                                                                                                                    step="0.01"
+                                                                                                                                                                                    value="0">
+                                                                                                                                                                <div
+                                                                                                                                                                                    class="range-knob">
+                                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                            <span id="arp-swing-val"
+                                                                                                                                                                class="lcd-text">0.00</span>
+                                                                                                                        </div>
+
+                                                                                                                        <div
+                                                                                                                                            class="slider-div">
+                                                                                                                                            <label
+                                                                                                                                                                for="gateTimeSlider">Gate</label>
+                                                                                                                                            <div
+                                                                                                                                                                class="range-knob-wrapper">
+                                                                                                                                                                <input type="range" id="gateTimeSlider"
+                                                                                                                                                                                    min="0.05"
+                                                                                                                                                                                    max="1.0"
+                                                                                                                                                                                    step="0.01"
+                                                                                                                                                                                    value="0.9" />
+                                                                                                                                                                <div
+                                                                                                                                                                                    class="range-knob">
+                                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                            <span id="gateTimeValue"
+                                                                                                                                                                class="lcd-text">0.9</span>
+                                                                                                                        </div>
+
+                                                                                                                        <div
+                                                                                                                                            style="display: flex; flex-direction: column; margin-left: 50px;">
+                                                                                                                                            <label
+                                                                                                                                                                for="ratchet-count">Ratchet</label>
+                                                                                                                                            <select style="width: 150px;"
+                                                                                                                                                                class="lcd-select"
+                                                                                                                                                                id="ratchet-count">
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="1">
+                                                                                                                                                                                    1x
+                                                                                                                                                                                    (Off)
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="2">
+                                                                                                                                                                                    2x
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="3">
+                                                                                                                                                                                    3x
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="4">
+                                                                                                                                                                                    4x
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="6">
+                                                                                                                                                                                    6x
+                                                                                                                                                                </option>
+                                                                                                                                                                <option
+                                                                                                                                                                                    value="8">
+                                                                                                                                                                                    8x
+                                                                                                                                                                </option>
+                                                                                                                                            </select>
+                                                                                                                                            <div
+                                                                                                                                                                style="display: flex; flex-direction: column;">
+
+                                                                                                                                                                <label
+                                                                                                                                                                                    class="arp-toggle-label">Randomize
+                                                                                                                                                                                    <input type="checkbox"
+                                                                                                                                                                                                        id="random-ratchet" />
+                                                                                                                                                                                    <span
+                                                                                                                                                                                                        class="arp-toggle-custom"></span>
+                                                                                                                                                                </label>
+
+                                                                                                                                            </div>
+                                                                                                                        </div>
+
+
+
+                                                                                                    </div>
+
+                                                                                                    <div
+                                                                                                                        class="arp-roll hidden">
+                                                                                                                        <div id="piano-roll"
+                                                                                                                                            class="piano-roll-grid">
+                                                                                                                        </div>
+                                                                                                                        <button class="lcd-button"
+                                                                                                                                            id="apply-pattern">Apply
+                                                                                                                                            Pattern</button>
+                                                                                                    </div>
+                                                                                </div>
+                                                            </div>
+                                                            <div id="mod-ui" class="hidden"></div>
+                                                            <div id="synth-controls"></div>
+                                                            <div id="fx-bank" class="effects"></div>
+                                                            <div
+                                                                                style="color: rgb(230, 230, 230); text-align: center; font-weight: bolder;">
+                                                                                FX Chain
+                                                            </div>
+                                                            <div tabindex="0" id="fx-chain" class="effect-chain">Drop
+                                                                                Effects
+                                                                                Here</div>
+                                        </div>
+
+                    </div>
+                    <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script src="../accessibility/accessibilitySettings.js"></script>
+                    <script type="module" src="src/main.js"></script>
+                    <script src="src/utils/toggle.js"></script>
+                    <script src="src/rotary.js"></script>
+                    <script src="src/manual/manual.js"></script>
+
+
+</body>
+
+</html>

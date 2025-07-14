@@ -1,0 +1,1143 @@
+@font-face {
+  font-family: "LCD";
+  src: url("../fonts/LCD2U___.TTF") format("opentype");
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+}
+
+.desktop {
+  width: 98%;
+  height: 100vh;
+  background-image: url("../wood-591631.jpg");
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#vector-ui {
+  border: 6px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(110, 110, 110, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+  background: #000000;
+  margin-bottom: 0.2rem;
+}
+
+.vector-pad:focus {
+  box-shadow: 0 0 0 3px rgba(254, 254, 254, 0.8);
+}
+
+#output {
+  border: 6px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(110, 110, 110, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+  background: #000000;
+  margin-bottom: 0.2rem;
+  margin-left: 2rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1rem;
+  height: rem;
+  padding: 0;
+  margin: -1rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#fx-bank,
+#fx-chain {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.fx-block {
+  border-radius: 8px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 5px #0003;
+  color: #000000;
+  cursor: grab;
+  user-select: none;
+  border: 2px solid #000000;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fx-block:focus {
+  outline: 2px solid rgb(255, 255, 255);
+  outline-offset: 1px;
+}
+
+.fx-block-title {
+  text-align: center;
+  padding: 0.3em 0 0.3em 0;
+  letter-spacing: 0.04em;
+  width: 100%;
+  border-bottom: 1px solid #3334;
+  margin-bottom: 0.3em;
+}
+
+.fx-block.dragging {
+  opacity: 0.4;
+  border-style: dashed;
+}
+
+#fx-chain {
+  min-height: 10rem;
+  width: 97%;
+  border: 2px dashed #202020;
+  border-radius: 8px;
+  margin-bottom: 3rem;
+  align-items: center;
+  padding: 10px;
+}
+
+#fx-chain .fx-block {
+  cursor: move;
+}
+
+#mod-ui {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 97%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.mod-amount-wrap {
+  display: flex;
+  align-items: center;
+}
+.mod-amount-slider {
+  width: 90px;
+}
+
+.mod-src-block select {
+  width: 20rem;
+}
+.mod-src-block {
+  padding: 0.5em 0.5em 0.7em;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100px;
+}
+
+/* Range slider designs */
+.slider-container input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 1px solid white;
+  outline-offset: 0.125rem;
+}
+
+/* Clasic Makie style */
+.slider-container input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: black;
+  outline: none;
+  width: 150px;
+  height: 8px;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 25px;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 45px;
+  height: 25px;
+  background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 10%,
+      transparent 10%,
+      transparent 11%,
+      transparent 11%,
+      transparent 16%,
+      black 16%,
+      black 17%,
+      transparent 17%,
+      transparent 22%,
+      black 22%,
+      black 23%,
+      transparent 23%,
+      transparent 28%,
+      black 28%,
+      black 29%,
+      transparent 29%,
+      transparent 34%,
+      black 34%,
+      black 35%,
+      transparent 35%,
+      transparent 40%,
+      black 40%,
+      black 41%,
+      transparent 41%,
+      transparent 46%,
+      black 46%,
+      black 47%,
+      transparent 47%,
+      transparent 52%,
+      black 52%,
+      black 53%,
+      var(--slider-outline-color, #c51162) 53%,
+      var(--slider-outline-color, #c51162) 57%,
+      black 57%,
+      black 58%,
+      transparent 58%,
+      transparent 63%,
+      black 63%,
+      black 64%,
+      transparent 64%,
+      transparent 69%,
+      black 69%,
+      black 70%,
+      transparent 70%,
+      transparent 75%,
+      black 75%,
+      black 76%,
+      transparent 76%,
+      transparent 81%,
+      black 81%,
+      black 82%,
+      transparent 82%,
+      transparent 87%,
+      black 87%,
+      black 88%,
+      transparent 88%,
+      transparent 93%,
+      transparent 93%,
+      transparent 94%,
+      transparent 94%,
+      transparent 99%,
+      transparent 99%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #969696 0%, #dadada) 100%,
+    linear-gradient(135deg, transparent 15%, #ffffff33 50%, transparent 85%);
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5),
+    inset 0 1px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.3);
+  background-blend-mode: normal, normal, overlay; /* Blends the tilting effect with the base colors */
+}
+
+.slider-container input[type="range"]::-moz-range-thumb {
+  width: 45px;
+  height: 25px;
+  background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 10%,
+      transparent 10%,
+      transparent 11%,
+      transparent 11%,
+      transparent 16%,
+      black 16%,
+      black 17%,
+      transparent 17%,
+      transparent 22%,
+      black 22%,
+      black 23%,
+      transparent 23%,
+      transparent 28%,
+      black 28%,
+      black 29%,
+      transparent 29%,
+      transparent 34%,
+      black 34%,
+      black 35%,
+      transparent 35%,
+      transparent 40%,
+      black 40%,
+      black 41%,
+      transparent 41%,
+      transparent 46%,
+      black 46%,
+      black 47%,
+      transparent 47%,
+      transparent 52%,
+      black 52%,
+      black 53%,
+      var(--slider-outline-color, #c51162) 53%,
+      var(--slider-outline-color, #c51162) 57%,
+      black 57%,
+      black 58%,
+      transparent 58%,
+      transparent 63%,
+      black 63%,
+      black 64%,
+      transparent 64%,
+      transparent 69%,
+      black 69%,
+      black 70%,
+      transparent 70%,
+      transparent 75%,
+      black 75%,
+      black 76%,
+      transparent 76%,
+      transparent 81%,
+      black 81%,
+      black 82%,
+      transparent 82%,
+      transparent 87%,
+      black 87%,
+      black 88%,
+      transparent 88%,
+      transparent 93%,
+      transparent 93%,
+      transparent 94%,
+      transparent 94%,
+      transparent 99%,
+      transparent 99%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, #969696 0%, #dadada) 100%,
+    linear-gradient(135deg, transparent 15%, #ffffff33 50%, transparent 85%);
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5),
+    inset 0 1px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.3);
+  background-blend-mode: normal, normal, overlay;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #222;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 20rem;
+  box-shadow: 0 0 20px black;
+}
+
+.audio-preset-controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  width: 98%;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+.midi-select-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#midi-mapping-list {
+  overflow: auto;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  color: #182424;
+  background-color: #206976;
+  border-radius: 5px;
+  border: 4px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+
+  padding: 3px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  width: 40rem;
+  height: 10rem;
+}
+
+#midi-mapping-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+#midi-mapping-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+#midi-mapping-list .remove-btn {
+  color: #182424;
+  background-color: #206976;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  border: 2px dashed black;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+#midi-mapping-list .remove-btn:focus {
+  outline: 2px dashed black;
+  outline-offset: 2px;
+}
+
+.remove-btn2 {
+  border: none;
+  background-color: #206976;
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.midi-learn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  width: 98%;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+#midi-ui {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  width: 98.3%;
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+#midi-ui label {
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.midi-select-wrapper {
+  padding: 10px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 8px;
+}
+
+.slider-div.learning {
+  outline: 2px dashed rgb(11, 11, 11);
+  animation: pulse 1s infinite;
+}
+
+.range-knob-wrapper {
+  position: relative;
+  width: 3.8rem;
+  height: 3.8rem;
+  margin: 0.5rem;
+  background: radial-gradient(circle, #2a2a2a, #c4c3c3);
+  border-radius: 50%;
+  border-radius: 50%;
+  outline: 1px solid whitesmoke;
+}
+
+.range-knob-wrapper input[type="range"] {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  top: 0;
+  left: 0;
+}
+
+.range-knob-wrapper .range-knob {
+  position: absolute;
+  z-index: 1;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background: linear-gradient(145deg, #232323, #646464);
+  border: 2px solid #080808;
+  border-radius: 50%;
+  transition: transform 0.1s;
+  box-sizing: border-box;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.range-knob-wrapper .range-knob:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 2px;
+  left: 50%;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #6a6a6a, #ffffff);
+  transform: translateX(-50%);
+}
+
+.range-knob-wrapper input[type="range"]:focus + .range-knob {
+  outline: 2px solid rgb(255, 255, 255);
+  box-shadow: 0 0 12px rgb(255, 254, 254);
+}
+
+.range-knob-wrapper.disabled,
+.range-knob-wrapper:has(input:disabled) {
+  opacity: 0.2;
+  filter: grayscale(80%);
+  pointer-events: none;
+}
+
+.range-knob-wrapper.disabled input[type="range"],
+.range-knob-wrapper:has(input:disabled) input[type="range"] {
+  cursor: not-allowed;
+}
+
+.knob-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+#synth-ui {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.mod-ring {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.2);
+  pointer-events: auto;
+  cursor: grab;
+  transform-origin: center;
+  border-radius: 50%;
+  outline: 4px dashed var(--accent, #0cf);
+  outline-offset: 5px;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
+  opacity: 0.8;
+  z-index: 2;
+  transition: transform 0.1s ease-out;
+}
+
+.mod-ring-value {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  display: block; /* makes centering more reliable */
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  background: none;
+  border: none;
+}
+
+body.mod-dragging .mod-ring {
+  cursor: ns-resize;
+}
+
+.mod-ring:focus {
+  border: 6px solid var(--accent, #0cf);
+  box-shadow: 0 0 6px var(--accent, #0cf);
+}
+
+.mod-ring:focus,
+.mod-ring:hover,
+body.mod-dragging .mod-ring {
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.lfo-source {
+  padding: 6px 12px;
+  height: 60px;
+  border: 3px dashed rgb(255, 255, 255);
+  box-shadow: 0 0 4px rgb(255, 255, 255);
+  border-radius: 10px;
+  color: whitesmoke;
+  background: rgb(60, 58, 58);
+  font-weight: bold;
+}
+
+.lfo-source.lfo-ui-block:focus {
+  outline: 2px dashed greenyellow;
+  outline-offset: 2px;
+}
+
+.mod-env-source {
+  padding: 6px 12px;
+  height: 60px;
+  border: 3px dashed rgb(255, 255, 255);
+  box-shadow: 0 0 4px rgb(255, 255, 255);
+  border-radius: 10px;
+  color: whitesmoke;
+  background: rgb(60, 58, 58);
+  font-weight: bold;
+}
+
+.mod-env-source.lfo-ui-block:focus {
+  outline: 2px dashed greenyellow;
+  outline-offset: 2px;
+}
+.amp-envelope,
+.filter-envelope,
+.filter,
+.unison-controls,
+.portamento,
+.vector-pad,
+.master,
+.oscillator-1,
+.oscillator-2,
+.oscillator-3,
+.oscillator-4,
+.mod-envelope-1,
+.mod-envelope-2,
+.lfo-1,
+.lfo-2,
+.lfo-3 {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.global,
+.main-filter,
+.envelopes,
+.oscillator,
+.lfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  margin: 0.1rem;
+  width: 98%;
+  justify-content: space-evenly;
+}
+
+.lcd-select {
+  background-color: #206976;
+  color: #182424;
+  border-radius: 5px transparent;
+  border: 4px solid #2a2a2a;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+  padding-left: 2px;
+  padding-right: 25px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-family: "LCD", monospace, bold;
+  font-size: 22px;
+  text-align: left;
+  letter-spacing: 1px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23182424" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-position: right center;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  margin-bottom: 4px;
+  animation: lcdFlicker 3s infinite ease-in-out;
+}
+
+.lcd-select:focus {
+  outline: 3px solid rgb(9, 9, 9);
+  box-shadow: 0 0 6px rgb(3, 3, 3);
+}
+
+.lcd-text {
+  font-family: "LCD", monospace;
+  font-weight: bold;
+  font-size: 18px;
+  color: #182424;
+  background-color: #206976;
+  border: 4px solid #404040;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(43, 43, 43, 0.5),
+      rgba(160, 160, 160, 0.5),
+      rgba(90, 90, 90, 0.8)
+    )
+    1 stretch;
+  padding: 2px;
+  text-shadow: 0 0 1px #504f4f;
+  text-align: center;
+  animation: lcdFlicker 4s infinite ease-in-out;
+  margin-top: 10px;
+}
+
+.slider-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-div span {
+  width: 100%;
+}
+
+.synth {
+  background: linear-gradient(to bottom, #dadada 0%, #d9d8d8 50%, #dddcdc 100%);
+  box-shadow: 12px 12px 22px rgba(0, 0, 0, 0.7),
+    -5px -5px 20px rgba(255, 255, 255, 0.05),
+    inset 0 10px 30px rgba(16, 15, 15, 0.5),
+    inset 0 -20px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  position: relative;
+  border-radius: 9px;
+}
+
+.synth::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: 9px;
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 0, 0, 0.2)
+  );
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.synth::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border-radius: 9px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.remove-button {
+  background: linear-gradient(to bottom, #f0f0f0, #c0c0c0);
+  border: 2px solid #888;
+  border-radius: 6px;
+  padding: 2px 4px;
+  color: #333;
+  text-shadow: 0 1px 0 #fff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  margin-bottom: 5px;
+  height: 2rem;
+  width: 2rem;
+}
+
+.remove-button:active {
+  transform: translateY(2px);
+}
+
+.remove-button:focus {
+  outline: 1px solid whitesmoke;
+  box-shadow: 0 0 6px whitesmoke;
+}
+
+.lcd-button {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background: linear-gradient(to bottom, #5d5d5d, #030303);
+  border: 2px solid #888;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 16px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  margin-bottom: 5px;
+  margin-top: 8px;
+  margin-left: 10px;
+  height: 29px;
+}
+
+.lcd-button:active {
+  transform: translateY(2px);
+}
+
+.lcd-button:focus {
+  outline: 1px solid whitesmoke;
+  box-shadow: 0 0 6px whitesmoke;
+}
+
+#shortcuts-panel {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(0, 0, 0);
+  padding: 2em;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 1000;
+  color: whitesmoke;
+  width: 700px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: auto;
+  box-shadow: 0 0 20px black;
+}
+
+#shortcuts-panel h3 {
+  margin-top: 0;
+  font-size: 1.3em;
+  letter-spacing: 0.02em;
+}
+
+#shortcuts-list div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.7em;
+  gap: 0.5em;
+}
+
+#shortcuts-list span {
+  flex: 0 0 320px;
+  width: 320px;
+}
+
+#shortcuts-list input[readonly] {
+  border: none;
+  background: #000000;
+  color: #ffffff;
+  padding: 4px 10px;
+  border: 2px solid whitesmoke;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: center;
+  transition: background 0.2s;
+  width: 300px;
+}
+
+#shortcuts-list input[readonly]:focus {
+  outline: 2px solid #5e81ac;
+  background: #e3eaff;
+}
+
+.checkbox-container {
+  color: white;
+  margin-bottom: 8px;
+  border: none;
+  height: 20px;
+  margin-top: 13px;
+  margin-left: 10px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 180px;
+}
+
+.checkbox-button {
+  background: linear-gradient(to bottom, #5d5d5d, #030303);
+  border: 2px solid #888;
+  border-radius: 6px;
+  padding: 3px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  margin-bottom: 5px;
+  margin-top: 8px;
+}
+
+.checkbox-input:checked ~ .checkbox-button {
+  background: linear-gradient(to bottom, #272626, #000000);
+  border: 3px solid rgb(255, 255, 255);
+}
+
+.checkbox-input:focus ~ .checkbox-button {
+  outline: 2px solid rgb(255, 255, 255);
+  outline-offset: 1px;
+}
+
+#speech-controls {
+  margin: 1em 0;
+  padding: 1em 1.5em;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  background: rgb(230, 229, 229);
+  max-width: 350px;
+  text-align: center;
+}
+#speech-controls legend {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+#speech-controls label {
+  display: block;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+#speech-controls select,
+#speech-controls input[type="range"] {
+  margin-left: 0.4em;
+  vertical-align: middle;
+}
+
+#MPE-Mod {
+  display: flex;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  justify-content: space-evenly;
+  width: 90%;
+  padding: 10px;
+}
+
+#speech-volume-value,
+#speech-rate-value {
+  display: inline-block;
+  width: 60px;
+}
+
+.piano-roll-grid {
+  display: grid;
+  grid-template-columns: repeat(16, 30px);
+  grid-template-rows: repeat(8, 15px);
+  gap: 8px;
+  padding: 8px;
+  background: #206976;
+  border: 6px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  outline: 2px solid rgb(60, 59, 59);
+  animation: lcdFlicker3 1.5s infinite alternate;
+}
+
+.piano-roll-cell {
+  align-self: center;
+  width: 30px;
+  height: 15px;
+  background: #206976;
+  border: 1px solid #030303;
+  cursor: pointer;
+  animation: lcdFlicker3 3.5s infinite alternate;
+}
+
+@keyframes lcdFlicker3 {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: inset 0 0 3px rgb(0, 0, 0);
+  }
+  30% {
+    opacity: 0.95;
+    box-shadow: inset 0 0 4px rgb(0, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    box-shadow: inset 0 0 6px rgb(0, 0, 0);
+  }
+  80% {
+    opacity: 0.9;
+    box-shadow: inset 0 0 3px rgb(39, 39, 39);
+  }
+}
+.piano-roll-cell.active {
+  background: #121212;
+}
+
+.piano-roll-cell:focus {
+  outline: 3px solid rgb(240, 240, 240);
+}
+
+#arp-toggle {
+  opacity: 0;
+  position: absolute;
+}
+
+#arp-latch {
+  opacity: 0;
+  position: absolute;
+}
+
+#random-ratchet {
+  opacity: 0;
+  position: absolute;
+}
+
+.arp-toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+}
+
+.arp-toggle-custom {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  border: 2px solid #206976;
+  background: black;
+  outline: 1px solid black;
+  border-radius: 4px;
+}
+
+#arp-toggle:checked + .arp-toggle-custom {
+  background: #206976;
+  box-shadow: 0 0 6px #206976;
+  animation: lcdFlicker3 2s infinite alternate;
+}
+
+#arp-latch:checked + .arp-toggle-custom {
+  background: #206976;
+  box-shadow: 0 0 6px #206976;
+  animation: lcdFlicker3 2s infinite alternate;
+}
+
+#random-ratchet:checked + .arp-toggle-custom {
+  background: #206976;
+  box-shadow: 0 0 6px #206976;
+  animation: lcdFlicker3 2s infinite alternate;
+}
+
+#arp-toggle:focus + .arp-toggle-custom {
+  outline: 1px solid #206976;
+  box-shadow: 0 0 8px #206976;
+}
+
+#arp-latch:focus + .arp-toggle-custom {
+  outline: 1px solid #206976;
+  box-shadow: 0 0 8px #206976;
+}
+
+#random-ratchet:focus + .arp-toggle-custom {
+  outline: 1px solid #206976;
+  box-shadow: 0 0 8px #206976;
+}
+
+.arp-sliders {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: 160px;
+}
+
+.arp-roll {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 160px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.arp {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 3rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  width: 98%;
+}
+
+.arp-panel {
+  padding: 0.4rem;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  min-height: 10rem;
+}
+
+.arp-container {
+  padding: 1rem;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+}
