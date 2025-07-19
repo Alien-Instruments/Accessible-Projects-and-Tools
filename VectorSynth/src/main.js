@@ -122,8 +122,6 @@ setupKeyboard(
   arp
 );
 
-setupModSourceDragListeners();
-
 window.envUI = setupModEnvModulationUI({
   synth,
   announce,
@@ -171,6 +169,7 @@ setupKeyboardModSourceDrag("#fx-chain");
 enableMIDILearnMode("synth-ui");
 updateGlideVisibility();
 setupMPEUI(synth);
+setupModSourceDragListeners();
 
 vectorPad.setSliders(
   document.getElementById("vector-x"),
